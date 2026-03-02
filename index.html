@@ -973,6 +973,400 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   margin-bottom: 3px;
   color: var(--color-text);
 }
+
+/* ============================================
+   ADMIN PANEL
+   ============================================ */
+
+/* Gate */
+.admin-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 340px;
+  padding: var(--space-6);
+}
+.admin-gate-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-8);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.admin-gate-icon {
+  width: 44px;
+  height: 44px;
+  background: color-mix(in oklch, var(--color-primary) 10%, transparent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+  color: var(--color-primary);
+}
+.admin-gate-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+.admin-gate-sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-5);
+}
+.admin-gate-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-3);
+  box-sizing: border-box;
+  transition: border-color 180ms;
+}
+.admin-gate-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-primary) 15%, transparent);
+}
+.admin-gate-btn {
+  width: 100%;
+  padding: 9px 16px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 180ms;
+}
+.admin-gate-btn:hover { opacity: 0.88; }
+.admin-gate-error {
+  font-size: var(--text-xs);
+  color: var(--color-danger, #dc2626);
+  margin-top: var(--space-2);
+  min-height: 16px;
+}
+
+/* Admin content (hidden until unlocked) */
+#adminContent { display: none; }
+
+/* Toolbar */
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+.admin-toolbar-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  flex: 1;
+}
+.admin-toolbar-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Buttons */
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+.admin-btn:hover { background: var(--color-surface-offset); }
+.admin-btn-primary {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.admin-btn-primary:hover { opacity: 0.88; background: var(--color-primary); }
+.admin-btn-success {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #fff;
+}
+.admin-btn-success:hover { opacity: 0.88; background: #16a34a; }
+.admin-btn-danger {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #fff;
+}
+.admin-btn-danger:hover { opacity: 0.88; background: #dc2626; }
+.admin-btn-sm {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+/* Search */
+.admin-search-wrap {
+  position: relative;
+}
+.admin-search-wrap svg {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+.admin-search {
+  padding: 6px 10px 6px 30px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  width: 220px;
+  transition: border-color 180ms;
+}
+.admin-search:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Count badge */
+.admin-count {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  align-self: center;
+  white-space: nowrap;
+}
+
+/* Form */
+.admin-form-wrap {
+  margin-bottom: var(--space-5);
+}
+.admin-form-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  user-select: none;
+  transition: background 180ms;
+}
+.admin-form-toggle:hover { background: var(--color-surface-offset); }
+.admin-form-toggle-icon {
+  transition: transform 180ms;
+  color: var(--color-text-muted);
+}
+.admin-form-toggle-icon.open { transform: rotate(90deg); }
+.admin-form {
+  display: none;
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+.admin-form.open { display: block; }
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.admin-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.admin-form-field label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+.admin-form-field input,
+.admin-form-field select,
+.admin-form-field textarea {
+  padding: 7px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  font-family: inherit;
+  transition: border-color 180ms;
+}
+.admin-form-field input:focus,
+.admin-form-field select:focus,
+.admin-form-field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-primary) 12%, transparent);
+}
+.admin-form-field textarea { resize: vertical; min-height: 64px; }
+.admin-form-full { grid-column: 1 / -1; }
+.admin-form-actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-4);
+}
+
+/* Table */
+.admin-table-wrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.admin-table-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+.admin-table-header-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  flex: 1;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-xs);
+}
+.admin-table th {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface-offset, var(--color-surface));
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  z-index: 2;
+}
+.admin-table td {
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid var(--color-border);
+  vertical-align: middle;
+  color: var(--color-text);
+}
+.admin-table tr:hover td { background: color-mix(in oklch, var(--color-primary) 4%, transparent); }
+.admin-table .admin-edit-row td { background: color-mix(in oklch, var(--color-primary) 6%, transparent); }
+.admin-table .admin-edit-row td input,
+.admin-table .admin-edit-row td select,
+.admin-table .admin-edit-row td textarea {
+  padding: 4px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 11px;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+.admin-table .admin-edit-row td input:focus,
+.admin-table .admin-edit-row td select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+.admin-summary-cell {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: help;
+}
+.admin-actions-cell {
+  white-space: nowrap;
+  display: flex;
+  gap: var(--space-1);
+}
+.admin-table-scroll {
+  overflow-x: auto;
+  max-height: 520px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Status msg */
+.admin-status {
+  padding: var(--space-3) var(--space-4);
+  background: color-mix(in oklch, #16a34a 10%, transparent);
+  border: 1px solid color-mix(in oklch, #16a34a 30%, transparent);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  color: #16a34a;
+  margin-top: var(--space-3);
+  display: none;
+}
+.admin-status.visible { display: block; }
+
+/* Col header sort in admin table */
+.admin-table th.sortable { cursor: pointer; user-select: none; }
+.admin-table th.sortable:hover { color: var(--color-text); }
+.admin-sort-icon { margin-left: 3px; opacity: 0.5; font-size: 9px; }
+.admin-table th.sort-asc .admin-sort-icon::after { content: "▲"; opacity: 1; }
+.admin-table th.sort-desc .admin-sort-icon::after { content: "▼"; opacity: 1; }
+.admin-table th:not(.sort-asc):not(.sort-desc) .admin-sort-icon::after { content: "⇅"; }
+
+/* Filter dropdown on admin header */
+.admin-th-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+.admin-filter-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  padding: 2px;
+  border-radius: 3px;
+  font-size: 10px;
+  line-height: 1;
+  transition: background 120ms;
+}
+.admin-filter-btn:hover { background: var(--color-border); color: var(--color-text); }
+.admin-filter-btn.active { color: var(--color-primary); }
 </style>
 </head>
 <body>
@@ -1015,6 +1409,10 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
       <li class="nav-item" data-tab="methodology" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         <span>Methodology</span>
+      </li>
+      <li class="nav-item" data-tab="admin" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
+        <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Admin</span>
       </li>
     </ul>
     <div class="sidebar-footer" style="padding:8px 12px;border-top:1px solid #374151;font-size:10px;color:#6b7280;flex-shrink:0;" id="sidebarLastUpdated">
@@ -1340,6 +1738,162 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
         </div>
 
       </div>
+    </section>
+
+    <!-- ADMIN TAB -->
+    <section class="tab-panel" id="tab-admin">
+
+      <!-- PASSWORD GATE -->
+      <div class="admin-gate" id="adminGate">
+        <div class="admin-gate-card">
+          <div class="admin-gate-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="admin-gate-title">Admin Access</div>
+          <div class="admin-gate-sub">Enter the admin password to continue</div>
+          <input type="password" id="adminPasswordInput" class="admin-gate-input" placeholder="Password" autocomplete="current-password">
+          <button class="admin-gate-btn" id="adminUnlockBtn">Unlock</button>
+          <div class="admin-gate-error" id="adminGateError"></div>
+        </div>
+      </div>
+
+      <!-- ADMIN CONTENT (hidden until auth) -->
+      <div id="adminContent">
+
+        <!-- TOOLBAR -->
+        <div class="admin-toolbar">
+          <div class="admin-toolbar-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Signal Manager
+          </div>
+          <div class="admin-toolbar-actions">
+            <button class="admin-btn admin-btn-success" id="adminPublishBtn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Publish &amp; Export
+            </button>
+            <label class="admin-btn" style="cursor:pointer;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Import JSON
+              <input type="file" id="adminImportFile" accept=".json" style="display:none;">
+            </label>
+          </div>
+        </div>
+        <div class="admin-status" id="adminStatusMsg"></div>
+
+        <!-- ADD SIGNAL FORM (collapsible) -->
+        <div class="admin-form-wrap">
+          <div class="admin-form-toggle" id="adminFormToggle">
+            <svg class="admin-form-toggle-icon" id="adminFormToggleIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            Add New Signal
+          </div>
+          <div class="admin-form" id="adminFormPanel">
+            <div class="admin-form-grid">
+              <div class="admin-form-field">
+                <label>Company Name</label>
+                <input type="text" id="afCompany" list="afCompanyList" placeholder="e.g. Capital Group" autocomplete="off">
+                <datalist id="afCompanyList"></datalist>
+              </div>
+              <div class="admin-form-field">
+                <label>Date Event</label>
+                <input type="date" id="afDateEvent">
+              </div>
+              <div class="admin-form-field">
+                <label>Signal Type</label>
+                <select id="afSignalType">
+                  <option value="">-- Select --</option>
+                  <option value="A">A — Confirmed Deployment</option>
+                  <option value="B">B — Pilot</option>
+                  <option value="C">C — Procurement</option>
+                  <option value="D">D — Leadership Hire</option>
+                  <option value="E">E — Governance/Oversight</option>
+                  <option value="F">F — AI Upskilling</option>
+                  <option value="G">G — Vendor Case Study</option>
+                  <option value="H">H — Earnings/Report</option>
+                  <option value="I">I — PR Mention</option>
+                  <option value="J">J — AI Talent Hiring</option>
+                </select>
+              </div>
+              <div class="admin-form-field">
+                <label>HR Domain</label>
+                <select id="afHRDomain">
+                  <option value="">-- Select --</option>
+                  <option value="Recruiting">Recruiting</option>
+                  <option value="L&D">L&amp;D</option>
+                  <option value="HR Ops">HR Ops</option>
+                  <option value="Comp/Benefits">Comp/Benefits</option>
+                  <option value="Employee Service">Employee Service</option>
+                  <option value="Governance">Governance</option>
+                  <option value="AI Hiring">AI Hiring</option>
+                </select>
+              </div>
+              <div class="admin-form-field">
+                <label>Confirmation Level</label>
+                <select id="afConfirmLevel">
+                  <option value="">-- Select --</option>
+                  <option value="Confirmed Deployment">Confirmed Deployment</option>
+                  <option value="Pilot">Pilot</option>
+                  <option value="Preparing">Preparing</option>
+                  <option value="Exploration">Exploration</option>
+                  <option value="PR Mention">PR Mention</option>
+                </select>
+              </div>
+              <div class="admin-form-field">
+                <label>Source Type</label>
+                <select id="afSourceType">
+                  <option value="">-- Select --</option>
+                  <option value="earnings call">earnings call</option>
+                  <option value="SEC filing">SEC filing</option>
+                  <option value="vendor case study">vendor case study</option>
+                  <option value="job post">job post</option>
+                  <option value="conference presentation">conference presentation</option>
+                  <option value="industry report">industry report</option>
+                  <option value="press release">press release</option>
+                  <option value="news article">news article</option>
+                  <option value="blog post">blog post</option>
+                  <option value="social media">social media</option>
+                </select>
+              </div>
+              <div class="admin-form-field">
+                <label>Confidence Score (0.0&ndash;1.0)</label>
+                <input type="number" id="afConfidence" min="0" max="1" step="0.1" value="0.5">
+              </div>
+            </div>
+            <div class="admin-form-grid">
+              <div class="admin-form-field admin-form-full">
+                <label>Summary</label>
+                <textarea id="afSummary" placeholder="Brief description of this signal..."></textarea>
+              </div>
+              <div class="admin-form-field admin-form-full">
+                <label>Source URLs (one per line)</label>
+                <textarea id="afSourceURLs" placeholder="https://..."></textarea>
+              </div>
+            </div>
+            <div class="admin-form-actions">
+              <button class="admin-btn" id="adminFormReset">Clear</button>
+              <button class="admin-btn admin-btn-primary" id="adminFormSubmit">Add Signal</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIGNALS TABLE -->
+        <div class="admin-table-wrap">
+          <div class="admin-table-header">
+            <div class="admin-table-header-title">All Signals</div>
+            <div class="admin-search-wrap">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="search" class="admin-search" id="adminTableSearch" placeholder="Search signals...">
+            </div>
+            <span class="admin-count" id="adminTableCount"></span>
+          </div>
+          <div class="admin-table-scroll">
+            <table class="admin-table" id="adminTable">
+              <thead id="adminThead"></thead>
+              <tbody id="adminTbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /adminContent -->
     </section>
 
   </main>
@@ -1983,8 +2537,7 @@ function renderOverviewTable() {
   if (refInSet) {
     rows += buildRow(refInSet, rankMap.get(OV_REF), true);
   } else if (refGlobal) {
-    const gRank = allCompanies.filter(c => true).sort((a,b)=>b.maturity-a.maturity).findIndex(c=>c.name===OV_REF) + 1;
-    rows += buildRow(refGlobal, gRank, true, gRank + '*');
+    rows += buildRow(refGlobal, 0, true, 'N/A');
   }
 
   // All other companies (ref excluded to avoid dupe)
@@ -2793,6 +3346,600 @@ renderMovers();
 initGovernance();
 renderGovernance();
 initPeerComparison();
+
+// ============================================
+// ADMIN PANEL
+// ============================================
+function initAdmin() {
+  var ADMIN_HASH = '281418f3d2270d285541d51ea2c8c1a1f0329c7c3f9ab9111d07cfe14fa88e8a';
+
+  // ---- Auth state ----
+  var unlocked = window.__adminUnlocked === true;
+
+  var gateEl     = document.getElementById('adminGate');
+  var contentEl  = document.getElementById('adminContent');
+  var pwInput    = document.getElementById('adminPasswordInput');
+  var unlockBtn  = document.getElementById('adminUnlockBtn');
+  var gateErr    = document.getElementById('adminGateError');
+
+  function showContent() {
+    gateEl.style.display = 'none';
+    contentEl.style.display = 'block';
+    initAdminContent();
+  }
+
+  if (unlocked) {
+    showContent();
+  }
+
+  async function hashPassword(pw) {
+    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  if (unlockBtn) {
+    unlockBtn.addEventListener('click', async function() {
+      var pw = pwInput ? pwInput.value : '';
+      if (!pw) { gateErr.textContent = 'Please enter a password.'; return; }
+      var h = await hashPassword(pw);
+      if (h === ADMIN_HASH) {
+        window.__adminUnlocked = true;
+        gateErr.textContent = '';
+        showContent();
+      } else {
+        gateErr.textContent = 'Incorrect password. Please try again.';
+        if (pwInput) { pwInput.value = ''; pwInput.focus(); }
+      }
+    });
+  }
+  if (pwInput) {
+    pwInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') unlockBtn && unlockBtn.click();
+    });
+  }
+
+  // ---- Data ----
+  var allSignals = [];
+  function flattenSignals() {
+    allSignals = [];
+    Object.values(D.company_details || {}).forEach(function(detail) {
+      (detail.top_signals || []).forEach(function(s) {
+        allSignals.push(Object.assign({}, s));
+      });
+    });
+  }
+
+  // ---- Signal type labels ----
+  var SIG_LABELS = {
+    A:'Confirmed Deployment', B:'Pilot', C:'Procurement',
+    D:'Leadership Hire', E:'Governance', F:'Upskilling',
+    G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
+  };
+
+  // ---- Table state ----
+  var tState = {
+    sort: { col: 'date', dir: -1 },
+    filters: { company_name: new Set(), signal_type: new Set(), HR_domain: new Set(), confirmation_level: new Set() },
+    search: '',
+    editIdx: null  // index in allSignals being edited
+  };
+
+  // ---- Status msg ----
+  var statusEl = document.getElementById('adminStatusMsg');
+  function showStatus(msg) {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.classList.add('visible');
+    clearTimeout(statusEl._t);
+    statusEl._t = setTimeout(function() { statusEl.classList.remove('visible'); }, 5000);
+  }
+
+  // ---- Form toggle ----
+  var formToggle     = document.getElementById('adminFormToggle');
+  var formPanel      = document.getElementById('adminFormPanel');
+  var formToggleIcon = document.getElementById('adminFormToggleIcon');
+  var formOpen       = false;
+  if (formToggle) {
+    formToggle.addEventListener('click', function() {
+      formOpen = !formOpen;
+      formPanel.classList.toggle('open', formOpen);
+      formToggleIcon.classList.toggle('open', formOpen);
+    });
+  }
+
+  // ---- Populate datalist with company names ----
+  function populateCompanyDatalist() {
+    var dl = document.getElementById('afCompanyList');
+    if (!dl) return;
+    dl.innerHTML = '';
+    (D.companies || []).forEach(function(c) {
+      var opt = document.createElement('option');
+      opt.value = c.name;
+      dl.appendChild(opt);
+    });
+  }
+
+  // ---- Form submit ----
+  var formSubmit = document.getElementById('adminFormSubmit');
+  var formReset  = document.getElementById('adminFormReset');
+
+  function getFormValues() {
+    return {
+      company_name:       (document.getElementById('afCompany').value || '').trim(),
+      date_event:         document.getElementById('afDateEvent').value || '',
+      signal_type:        document.getElementById('afSignalType').value || '',
+      HR_domain:          document.getElementById('afHRDomain').value || '',
+      confirmation_level: document.getElementById('afConfirmLevel').value || '',
+      source_type:        document.getElementById('afSourceType').value || '',
+      confidence_score:   parseFloat(document.getElementById('afConfidence').value) || 0.5,
+      summary:            (document.getElementById('afSummary').value || '').trim(),
+      source_urls:        (document.getElementById('afSourceURLs').value || '').split('\n').map(function(u){ return u.trim(); }).filter(Boolean),
+      date_found:         new Date().toISOString().split('T')[0]
+    };
+  }
+
+  function clearForm() {
+    ['afCompany','afDateEvent','afSummary','afSourceURLs'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.value = '';
+    });
+    ['afSignalType','afHRDomain','afConfirmLevel','afSourceType'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.value = '';
+    });
+    var conf = document.getElementById('afConfidence'); if (conf) conf.value = '0.5';
+  }
+
+  if (formSubmit) {
+    formSubmit.addEventListener('click', function() {
+      var vals = getFormValues();
+      if (!vals.company_name) { alert('Company name is required.'); return; }
+      if (!vals.signal_type)  { alert('Signal type is required.'); return; }
+      allSignals.push(vals);
+      clearForm();
+      renderAdminTable();
+      showStatus('Signal added successfully.');
+    });
+  }
+  if (formReset) { formReset.addEventListener('click', clearForm); }
+
+  // ---- Publish / Export ----
+  var publishBtn = document.getElementById('adminPublishBtn');
+  if (publishBtn) {
+    publishBtn.addEventListener('click', function() {
+      if (!confirm('Export all signals as signals_export.json?\n\nWorkflow: Download this file → provide to AI assistant → AI runs the pipeline and updates data.js.')) return;
+      var json = JSON.stringify(allSignals, null, 2);
+      var blob = new Blob([json], { type: 'application/json' });
+      var url  = URL.createObjectURL(blob);
+      var a    = document.createElement('a');
+      a.href = url; a.download = 'signals_export.json';
+      document.body.appendChild(a); a.click();
+      setTimeout(function() { document.body.removeChild(a); URL.revokeObjectURL(url); }, 300);
+      showStatus('Downloaded signals_export.json \u2014 upload this file to update the dashboard.');
+    });
+  }
+
+  // ---- Import ----
+  var importFile = document.getElementById('adminImportFile');
+  if (importFile) {
+    importFile.addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(ev) {
+        try {
+          var parsed = JSON.parse(ev.target.result);
+          if (!Array.isArray(parsed)) { alert('Invalid JSON: expected an array of signals.'); return; }
+          allSignals = parsed;
+          renderAdminTable();
+          showStatus('Imported ' + parsed.length + ' signals from ' + file.name + '.');
+        } catch(err) {
+          alert('Failed to parse JSON: ' + err.message);
+        }
+        importFile.value = '';
+      };
+      reader.readAsText(file);
+    });
+  }
+
+  // ---- Table header build ----
+  function buildAdminThead() {
+    var thead = document.getElementById('adminThead');
+    if (!thead) return;
+    var cols = [
+      { key: 'company_name',        label: 'Company',      sortable: true, filterable: true  },
+      { key: 'date',                label: 'Date',         sortable: true, filterable: false },
+      { key: 'signal_type',         label: 'Type',         sortable: true, filterable: true  },
+      { key: 'HR_domain',           label: 'Domain',       sortable: true, filterable: true  },
+      { key: 'confirmation_level',  label: 'Confirmation', sortable: true, filterable: true  },
+      { key: 'summary',             label: 'Summary',      sortable: false,filterable: false },
+      { key: '_actions',            label: 'Actions',      sortable: false,filterable: false }
+    ];
+    var tr = document.createElement('tr');
+    cols.forEach(function(col) {
+      var th = document.createElement('th');
+      if (col.key === '_actions') { th.textContent = 'Actions'; tr.appendChild(th); return; }
+      th.dataset.col = col.key;
+      if (col.sortable) {
+        th.classList.add('sortable');
+        th.addEventListener('click', function(e) {
+          if (e.target.closest('.admin-filter-btn')) return;
+          if (tState.sort.col === col.key) {
+            tState.sort.dir = tState.sort.dir === 1 ? -1 : 1;
+          } else {
+            tState.sort.col = col.key;
+            tState.sort.dir = col.key === 'date' ? -1 : 1;
+          }
+          refreshAdminThead();
+          renderAdminTable();
+        });
+      }
+      var wrap = document.createElement('div');
+      wrap.className = 'admin-th-wrap';
+      var labelSpan = document.createElement('span');
+      labelSpan.textContent = col.label;
+      wrap.appendChild(labelSpan);
+      if (col.sortable) {
+        var si = document.createElement('span');
+        si.className = 'admin-sort-icon';
+        wrap.appendChild(si);
+      }
+      if (col.filterable) {
+        var fb = document.createElement('button');
+        fb.className = 'admin-filter-btn';
+        fb.dataset.filterCol = col.key;
+        fb.title = 'Filter ' + col.label;
+        fb.textContent = '\u25bc';
+        fb.addEventListener('click', function(e) {
+          e.stopPropagation();
+          showAdminFilterMenu(col.key, th, fb);
+        });
+        wrap.appendChild(fb);
+      }
+      th.appendChild(wrap);
+      tr.appendChild(th);
+    });
+    thead.innerHTML = '';
+    thead.appendChild(tr);
+    refreshAdminThead();
+  }
+
+  function refreshAdminThead() {
+    var thead = document.getElementById('adminThead');
+    if (!thead) return;
+    thead.querySelectorAll('th.sortable').forEach(function(th) {
+      th.classList.remove('sort-asc','sort-desc');
+      if (th.dataset.col === tState.sort.col) {
+        th.classList.add(tState.sort.dir === 1 ? 'sort-asc' : 'sort-desc');
+      }
+    });
+    // Update filter button active state
+    thead.querySelectorAll('.admin-filter-btn').forEach(function(fb) {
+      var fc = fb.dataset.filterCol;
+      fb.classList.toggle('active', tState.filters[fc] && tState.filters[fc].size > 0);
+    });
+  }
+
+  // ---- Filter dropdown (inline) ----
+  var _filterMenuActive = null;
+  function showAdminFilterMenu(colKey, th, triggerBtn) {
+    // Remove any existing
+    var existing = document.getElementById('adminFilterDropdown');
+    if (existing) { existing.remove(); }
+    if (_filterMenuActive === colKey) { _filterMenuActive = null; return; }
+    _filterMenuActive = colKey;
+
+    var values = [];
+    var seen = new Set();
+    allSignals.forEach(function(s) {
+      var v = s[colKey] || '';
+      if (!seen.has(v)) { seen.add(v); values.push(v); }
+    });
+    values.sort();
+
+    var menu = document.createElement('div');
+    menu.id = 'adminFilterDropdown';
+    menu.className = 'col-dropdown open';
+    menu.style.cssText = 'min-width:180px;z-index:100;';
+
+    var sortDir = tState.sort.col === colKey ? tState.sort.dir : null;
+    var html = '<div class="dd-section">';
+    html += '<div class="dd-section-label">Sort</div>';
+    html += '<button class="dd-sort-btn' + (sortDir===1?' active':'') + '" data-afd-sort="' + colKey + '" data-afd-dir="1">Sort A \u2192 Z</button>';
+    html += '<button class="dd-sort-btn' + (sortDir===-1?' active':'') + '" data-afd-sort="' + colKey + '" data-afd-dir="-1">Sort Z \u2192 A</button>';
+    html += '</div><div class="dd-divider"></div>';
+    html += '<div class="dd-section"><div class="dd-section-label">Filter</div></div>';
+    html += '<div class="dd-filter-list" data-afd-col="' + colKey + '">';
+    values.forEach(function(v) {
+      var checked = tState.filters[colKey] && tState.filters[colKey].has(v) ? ' checked' : '';
+      html += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + esc(v || '(blank)') + '</label>';
+    });
+    html += '</div>';
+    html += '<div class="dd-filter-actions">';
+    html += '<button id="afdClear">Clear</button>';
+    html += '<button class="primary" id="afdAll">All</button>';
+    html += '</div>';
+    menu.innerHTML = html;
+
+    // Sort buttons
+    menu.querySelectorAll('[data-afd-sort]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        tState.sort.col = btn.dataset.afdSort;
+        tState.sort.dir = parseInt(btn.dataset.afdDir);
+        refreshAdminThead();
+        renderAdminTable();
+        menu.remove(); _filterMenuActive = null;
+      });
+    });
+    // Filter checkboxes
+    menu.querySelectorAll('.dd-filter-list input[type="checkbox"]').forEach(function(cb) {
+      cb.addEventListener('change', function(e) {
+        e.stopPropagation();
+        var fc = cb.closest('.dd-filter-list').dataset.afdCol;
+        if (cb.checked) { tState.filters[fc].add(cb.value); }
+        else { tState.filters[fc].delete(cb.value); }
+        refreshAdminThead();
+        renderAdminTable();
+      });
+    });
+    // Clear
+    menu.querySelector('#afdClear').addEventListener('click', function(e) {
+      e.stopPropagation();
+      tState.filters[colKey].clear();
+      menu.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
+      refreshAdminThead(); renderAdminTable();
+    });
+    // All
+    menu.querySelector('#afdAll').addEventListener('click', function(e) {
+      e.stopPropagation();
+      values.forEach(function(v) { tState.filters[colKey].add(v); });
+      menu.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = true; });
+      refreshAdminThead(); renderAdminTable();
+    });
+
+    // Position below the th
+    th.style.position = 'relative';
+    th.appendChild(menu);
+
+    // Close on outside click
+    setTimeout(function() {
+      function clickOutside(e) {
+        if (!menu.contains(e.target) && e.target !== triggerBtn) {
+          menu.remove(); _filterMenuActive = null;
+          document.removeEventListener('click', clickOutside);
+        }
+      }
+      document.addEventListener('click', clickOutside);
+    }, 0);
+  }
+
+  // ---- Table render ----
+  function getDateVal(s) { return s.date_event || s.date_found || ''; }
+
+  function getFilteredSorted() {
+    var rows = allSignals.slice();
+
+    // Search
+    var q = tState.search.toLowerCase();
+    if (q) {
+      rows = rows.filter(function(s) {
+        return (
+          (s.company_name||'').toLowerCase().indexOf(q) >= 0 ||
+          (s.signal_type||'').toLowerCase().indexOf(q) >= 0 ||
+          (SIG_LABELS[s.signal_type]||'').toLowerCase().indexOf(q) >= 0 ||
+          (s.HR_domain||'').toLowerCase().indexOf(q) >= 0 ||
+          (s.confirmation_level||'').toLowerCase().indexOf(q) >= 0 ||
+          (s.summary||'').toLowerCase().indexOf(q) >= 0 ||
+          (s.source_type||'').toLowerCase().indexOf(q) >= 0
+        );
+      });
+    }
+
+    // Filters
+    ['company_name','signal_type','HR_domain','confirmation_level'].forEach(function(k) {
+      if (tState.filters[k] && tState.filters[k].size > 0) {
+        rows = rows.filter(function(s) { return tState.filters[k].has(s[k] || ''); });
+      }
+    });
+
+    // Sort
+    var col = tState.sort.col;
+    var dir = tState.sort.dir;
+    rows.sort(function(a, b) {
+      var av, bv;
+      if (col === 'date') {
+        av = getDateVal(a); bv = getDateVal(b);
+      } else {
+        av = (a[col] || '').toString().toLowerCase();
+        bv = (b[col] || '').toString().toLowerCase();
+      }
+      if (av < bv) return -1 * dir;
+      if (av > bv) return 1 * dir;
+      return 0;
+    });
+
+    return rows;
+  }
+
+  function renderAdminTable() {
+    var tbody = document.getElementById('adminTbody');
+    var countEl = document.getElementById('adminTableCount');
+    if (!tbody) return;
+
+    var rows = getFilteredSorted();
+    if (countEl) countEl.textContent = 'Showing ' + rows.length + ' of ' + allSignals.length + ' signals';
+
+    tbody.innerHTML = '';
+
+    if (rows.length === 0) {
+      var emptyTr = document.createElement('tr');
+      var emptyTd = document.createElement('td');
+      emptyTd.colSpan = 7;
+      emptyTd.style.cssText = 'text-align:center;padding:24px;color:var(--color-text-muted);';
+      emptyTd.textContent = 'No signals match your filters.';
+      emptyTr.appendChild(emptyTd); tbody.appendChild(emptyTr); return;
+    }
+
+    rows.forEach(function(sig, rowIdx) {
+      // Find the actual index in allSignals
+      var actualIdx = allSignals.indexOf(sig);
+      var tr = document.createElement('tr');
+      tr.dataset.idx = actualIdx;
+
+      var isEditing = (tState.editIdx === actualIdx);
+      if (isEditing) { tr.classList.add('admin-edit-row'); }
+
+      if (isEditing) {
+        // --- EDIT ROW ---
+        // Company
+        var tdCo = document.createElement('td');
+        tdCo.innerHTML = '<input type="text" class="ae-company" value="' + esc(sig.company_name||'') + '" style="min-width:120px;">';
+        tr.appendChild(tdCo);
+        // Date
+        var tdDt = document.createElement('td');
+        tdDt.innerHTML = '<input type="date" class="ae-date" value="' + esc(getDateVal(sig)) + '">';
+        tr.appendChild(tdDt);
+        // Type
+        var tdTy = document.createElement('td');
+        var typeOpts = Object.keys(SIG_LABELS).map(function(k) {
+          return '<option value="'+k+'"'+(sig.signal_type===k?' selected':'')+'>'+k+' — '+SIG_LABELS[k]+'</option>';
+        }).join('');
+        tdTy.innerHTML = '<select class="ae-type"><option value="">--</option>'+typeOpts+'</select>';
+        tr.appendChild(tdTy);
+        // Domain
+        var tdDo = document.createElement('td');
+        var domOpts = ['Recruiting','L&D','HR Ops','Comp/Benefits','Employee Service','Governance','AI Hiring'].map(function(d) {
+          return '<option value="'+d+'"'+(sig.HR_domain===d?' selected':'')+'>'+d+'</option>';
+        }).join('');
+        tdDo.innerHTML = '<select class="ae-domain"><option value="">--</option>'+domOpts+'</select>';
+        tr.appendChild(tdDo);
+        // Confirmation
+        var tdCf = document.createElement('td');
+        var cfOpts = ['Confirmed Deployment','Pilot','Preparing','Exploration','PR Mention'].map(function(c) {
+          return '<option value="'+c+'"'+(sig.confirmation_level===c?' selected':'')+'>'+c+'</option>';
+        }).join('');
+        tdCf.innerHTML = '<select class="ae-confirm"><option value="">--</option>'+cfOpts+'</select>';
+        tr.appendChild(tdCf);
+        // Summary
+        var tdSu = document.createElement('td');
+        tdSu.innerHTML = '<textarea class="ae-summary" rows="2" style="min-width:160px;">'+esc(sig.summary||'')+'</textarea>';
+        tr.appendChild(tdSu);
+        // Actions: Save / Cancel
+        var tdAc = document.createElement('td');
+        tdAc.className = 'admin-actions-cell';
+        var saveBtn = document.createElement('button');
+        saveBtn.className = 'admin-btn admin-btn-sm admin-btn-primary';
+        saveBtn.textContent = 'Save';
+        saveBtn.addEventListener('click', function() {
+          var s = allSignals[actualIdx];
+          s.company_name       = tr.querySelector('.ae-company').value.trim();
+          var newDate          = tr.querySelector('.ae-date').value;
+          if (s.date_event !== undefined) s.date_event = newDate;
+          else s.date_found = newDate;
+          s.signal_type        = tr.querySelector('.ae-type').value;
+          s.HR_domain          = tr.querySelector('.ae-domain').value;
+          s.confirmation_level = tr.querySelector('.ae-confirm').value;
+          s.summary            = tr.querySelector('.ae-summary').value.trim();
+          tState.editIdx = null;
+          renderAdminTable();
+          showStatus('Signal updated.');
+        });
+        var cancelBtn = document.createElement('button');
+        cancelBtn.className = 'admin-btn admin-btn-sm';
+        cancelBtn.textContent = 'Cancel';
+        cancelBtn.addEventListener('click', function() {
+          tState.editIdx = null;
+          renderAdminTable();
+        });
+        tdAc.appendChild(saveBtn);
+        tdAc.appendChild(cancelBtn);
+        tr.appendChild(tdAc);
+
+      } else {
+        // --- READ ROW ---
+        var date = getDateVal(sig);
+        var typeLabel = sig.signal_type ? (sig.signal_type + ' – ' + (SIG_LABELS[sig.signal_type]||sig.signal_type)) : '—';
+        var summaryText = (sig.summary || '—');
+        var summaryTrunc = summaryText.length > 80 ? summaryText.substring(0,80) + '\u2026' : summaryText;
+
+        var tdCo = document.createElement('td');
+        tdCo.textContent = sig.company_name || '—';
+        tdCo.style.fontWeight = '500';
+        tr.appendChild(tdCo);
+
+        var tdDt = document.createElement('td');
+        tdDt.textContent = date || '—';
+        tdDt.style.fontVariantNumeric = 'tabular-nums';
+        tr.appendChild(tdDt);
+
+        var tdTy = document.createElement('td');
+        tdTy.textContent = typeLabel;
+        tr.appendChild(tdTy);
+
+        var tdDo = document.createElement('td');
+        tdDo.textContent = sig.HR_domain || '—';
+        tr.appendChild(tdDo);
+
+        var tdCf = document.createElement('td');
+        tdCf.textContent = sig.confirmation_level || '—';
+        tr.appendChild(tdCf);
+
+        var tdSu = document.createElement('td');
+        tdSu.className = 'admin-summary-cell';
+        tdSu.textContent = summaryTrunc;
+        tdSu.title = summaryText;
+        tr.appendChild(tdSu);
+
+        var tdAc = document.createElement('td');
+        tdAc.className = 'admin-actions-cell';
+
+        var editBtn = document.createElement('button');
+        editBtn.className = 'admin-btn admin-btn-sm';
+        editBtn.textContent = 'Edit';
+        editBtn.addEventListener('click', function() {
+          tState.editIdx = actualIdx;
+          renderAdminTable();
+        });
+
+        var delBtn = document.createElement('button');
+        delBtn.className = 'admin-btn admin-btn-sm admin-btn-danger';
+        delBtn.textContent = 'Delete';
+        delBtn.addEventListener('click', function() {
+          var co = allSignals[actualIdx] ? (allSignals[actualIdx].company_name || 'this signal') : 'this signal';
+          if (!confirm('Delete signal for ' + co + '?\nThis cannot be undone.')) return;
+          allSignals.splice(actualIdx, 1);
+          if (tState.editIdx === actualIdx) tState.editIdx = null;
+          renderAdminTable();
+          showStatus('Signal deleted.');
+        });
+
+        tdAc.appendChild(editBtn);
+        tdAc.appendChild(delBtn);
+        tr.appendChild(tdAc);
+      }
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ---- Search ----
+  var searchInput = document.getElementById('adminTableSearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      tState.search = this.value;
+      renderAdminTable();
+    });
+  }
+
+  // ---- Init content ----
+  function initAdminContent() {
+    flattenSignals();
+    populateCompanyDatalist();
+    buildAdminThead();
+    renderAdminTable();
+  }
+}
+
+initAdmin();
 
 })();
 </script>
