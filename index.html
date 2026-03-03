@@ -1314,6 +1314,16 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   white-space: nowrap;
   cursor: help;
 }
+.admin-summary-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in oklch, var(--color-primary) 40%, transparent);
+  transition: border-color 180ms;
+}
+.admin-summary-link:hover {
+  border-bottom-style: solid;
+  border-bottom-color: var(--color-primary);
+}
 .admin-actions-cell {
   white-space: nowrap;
   display: flex;
@@ -3885,8 +3895,20 @@ function initAdmin() {
 
         var tdSu = document.createElement('td');
         tdSu.className = 'admin-summary-cell';
-        tdSu.textContent = summaryTrunc;
-        tdSu.title = summaryText;
+        var srcUrl = (sig.source_urls && sig.source_urls.length > 0) ? sig.source_urls[0] : '';
+        if (srcUrl) {
+          var a = document.createElement('a');
+          a.href = srcUrl;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.textContent = summaryTrunc;
+          a.title = summaryText + '\n\n' + srcUrl;
+          a.className = 'admin-summary-link';
+          tdSu.appendChild(a);
+        } else {
+          tdSu.textContent = summaryTrunc;
+          tdSu.title = summaryText;
+        }
         tr.appendChild(tdSu);
 
         var tdAc = document.createElement('td');
