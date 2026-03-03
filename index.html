@@ -1396,10 +1396,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         <span>Overview</span>
       </li>
-      <li class="nav-item" data-tab="rankings" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
-        <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4M3 6h8M3 18h12"/><path d="M17 6l3 3-3 3"/></svg>
-        <span>Rankings</span>
-      </li>
       <li class="nav-item" data-tab="peers" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
         <span>Peer Comparison</span>
@@ -1486,18 +1482,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
       </div>
     </section>
 
-    <!-- RANKINGS TAB -->
-    <section class="tab-panel" id="tab-rankings">
-      <div class="data-table-wrap">
-        <div class="data-table-scroll" style="max-height: calc(100vh - 180px); overflow-y: auto; overscroll-behavior: contain;">
-          <table class="data-table" id="rankingsTable">
-            <thead><tr id="rankingsThead"></tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-        <div id="rankingsCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) 0;"></div>
-      </div>
-    </section>
 
     <!-- PEER COMPARISON TAB -->
     <section class="tab-panel" id="tab-peers">
@@ -2064,7 +2048,7 @@ function getAllCompanies() {
   const all = [];
   for (const [industry, companies] of Object.entries(D.industries)) {
     for (const c of companies) {
-      all.push({ ...c, industry });
+      all.push({ ...c, industry, pr_ratio_val: (c.pr_ratio && c.pr_ratio.ratio != null) ? c.pr_ratio.ratio : 0 });
     }
   }
   all.sort((a, b) => b.maturity - a.maturity);
@@ -2298,6 +2282,8 @@ const OV_COLS = [
   { key: 'signals',      label: 'Signals',      type: 'metric',
     tooltip: '<strong>Signal Count</strong>Total verified HR AI signals tied to specific HR domains. Each signal contributes to its domain score with diminishing returns — the 3rd signal in a domain adds less than the 1st. Breadth across domains matters more than depth in one.' },
   { key: 'pattern',      label: 'Pattern',      type: 'multi-filter' },
+  { key: 'pr_ratio_val',  label: '<span style="color:var(--color-primary);">Deploy</span> vs <span style="color:var(--color-warning);">PR</span>', type: 'metric',
+    tooltip: '<strong><span style="color:var(--color-primary);">Deploy</span> vs <span style="color:var(--color-warning);">PR</span> Ratio</strong>Proportion of signals that are real deployments vs. PR-only mentions. Higher deploy ratio = more substance behind the signal count.' },
 ];
 
 // Metric column tooltips keyed for quick lookup
@@ -2538,7 +2524,8 @@ function renderOverviewTable() {
       '<td class="mono ' + maturityClass(c.maturity) + '">' + fmt(c.maturity) + '</td>' +
       '<td class="mono ' + momentumClass(c.momentum) + '">' + fmtMomentum(c.momentum) + '</td>' +
       '<td class="mono">' + c.signals + '</td>' +
-      '<td>' + patternBadge(c.pattern) + '</td></tr>';
+      '<td>' + patternBadge(c.pattern) + '</td>' +
+      '<td>' + prRatioBar(c.pr_ratio || {}) + '</td></tr>';
   }
 
   let rows = '';
@@ -2584,9 +2571,6 @@ const DOMAIN_TOOLTIPS = {
   'AI Hiring': 'Signals for AI talent hiring intensity: job postings for AI/ML engineers, data scientists, AI product managers, and other AI-focused roles that indicate investment in building AI capabilities.'
 };
 
-// ============================================
-// RANKINGS TAB
-// ============================================
 
 // ============================================
 // GENERIC INTERACTIVE TABLE SYSTEM
@@ -2781,62 +2765,6 @@ function applyTableFiltersAndSort(data, config) {
   return filtered;
 }
 
-// ============================================
-// RANKINGS TAB
-// ============================================
-var rankState = {
-  sort: { key: 'maturity', dir: -1 },
-  filters: { industry: new Set(), sub_industry: new Set(), pattern: new Set() }
-};
-
-var RANK_COLS = [
-  { key: 'rank', label: '#', type: 'static', width: '44px' },
-  { key: 'name', label: 'Company', type: 'sort-only', sortType: 'text' },
-  { key: 'industry', label: 'Industry', type: 'multi-filter', sortType: 'text' },
-  { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter', sortType: 'text' },
-  { key: 'maturity', label: 'Maturity', type: 'sort-only',
-    tooltip: '<strong>Maturity Score (0\u2013100)</strong>Composite score across 7 HR domains. 60% breadth (avg all domains) + 40% depth (avg top 3), adjusted for company size and regulatory complexity.' },
-  { key: 'momentum', label: 'Momentum', type: 'sort-only',
-    tooltip: '<strong>Momentum (\u221210 to +10)</strong>Recent acceleration of HR AI signals. Compares 30-day activity to 12-month baseline.' },
-  { key: 'signals', label: 'Signals', type: 'sort-only',
-    tooltip: '<strong>Signal Count</strong>Total verified HR AI signals. Each contributes to its domain with diminishing returns.' },
-  { key: 'pattern', label: 'Pattern', type: 'multi-filter', sortType: 'text' },
-  { key: 'pr_ratio', label: '<span style="color:var(--color-primary);">Deploy</span> vs <span style="color:var(--color-warning);">PR</span>', type: 'sort-only',
-    tooltip: '<strong><span style="color:var(--color-primary);">Deploy</span> vs <span style="color:var(--color-warning);">PR</span> Ratio</strong>Proportion of signals that are real deployments vs. PR-only mentions. Higher deploy ratio = more substance behind the signal count.' }
-];
-
-var rankConfig = {
-  theadId: 'rankingsThead',
-  state: rankState,
-  columns: RANK_COLS,
-  uniqueValues: function(key) {
-    return [...new Set(allCompanies.map(function(c) { return c[key]; }).filter(Boolean))].sort();
-  },
-  render: renderRankings
-};
-
-function initRankings() {
-  buildInteractiveTable(rankConfig);
-}
-
-function renderRankings() {
-  var filtered = applyTableFiltersAndSort(allCompanies, rankConfig);
-  var countEl = document.getElementById('rankingsCount');
-  if (countEl) countEl.textContent = filtered.length + ' of ' + allCompanies.length + ' companies';
-
-  document.querySelector('#rankingsTable tbody').innerHTML = filtered.map(function(c, i) {
-    return '<tr onclick="openProfile(\'' + esc(c.name) + '\')">' +
-      '<td class="mono">' + (i+1) + '</td>' +
-      '<td class="company-name">' + c.name + '</td>' +
-      '<td style="font-size:var(--text-xs);">' + c.industry + '</td>' +
-      '<td style="font-size:var(--text-xs);text-transform:capitalize;">' + (c.sub_industry || '\u2014') + '</td>' +
-      '<td class="mono ' + maturityClass(c.maturity) + '">' + fmt(c.maturity) + '</td>' +
-      '<td class="mono ' + momentumClass(c.momentum) + '">' + fmtMomentum(c.momentum) + '</td>' +
-      '<td class="mono">' + c.signals + '</td>' +
-      '<td>' + patternBadge(c.pattern) + '</td>' +
-      '<td>' + prRatioBar(c.pr_ratio) + '</td></tr>';
-  }).join('');
-}
 
 // ============================================
 // HEATMAP TAB
@@ -3347,7 +3275,6 @@ function initPeerComparison() {
 // ============================================
 renderOverview();
 initOverviewThead();
-initRankings();
 renderRankings();
 initHeatmap();
 renderHeatmap();
