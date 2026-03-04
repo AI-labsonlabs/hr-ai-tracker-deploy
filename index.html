@@ -1642,7 +1642,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 
     <!-- OVERVIEW TAB -->
     <section class="tab-panel active" id="tab-overview">
-      <div class="kpi-grid" id="kpiGrid"></div>
       <!-- About Section -->
       <div class="about-section" id="aboutSection">
         <a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">
@@ -1655,6 +1654,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
           <div class="about-disclaimer">This is an independent research project. No company sponsors, funds, or endorses this tool. All data is sourced from publicly available information. If you spot something that needs correction, use the flag button on any signal.</div>
         </div>
       </div>
+      <div class="kpi-grid" id="kpiGrid"></div>
 
       <div class="two-col">
         <div class="section-block">
@@ -2399,10 +2399,10 @@ function renderOverview() {
   const s = D.summary;
   const topMoversCount = D.top_movers.filter(m => m.momentum > 0).length;
   document.getElementById('kpiGrid').innerHTML =
-    kpiCard('Companies Tracked', s.total_companies, s.finserv_companies + ' FinServ · ' + s.benchmark_companies + ' Benchmark') +
+    kpiCard('Companies Tracked', s.total_companies, Object.keys(D.industries).length + ' industries') +
     kpiCard('Total Signals', s.total_signals, 'Across all companies') +
-    kpiCard('FinServ Avg Maturity', fmt(s.avg_maturity_finserv), 'Score 0–100 scale') +
-    kpiCard('Benchmark Avg', fmt(s.avg_maturity_benchmark), (((s.avg_maturity_finserv / s.avg_maturity_benchmark - 1) * 100).toFixed(0)) + '% below FinServ') +
+    kpiCard('Avg Maturity', fmt((s.avg_maturity_finserv * s.finserv_companies + s.avg_maturity_benchmark * s.benchmark_companies) / s.total_companies), 'Score 0\u2013100 scale') +
+    kpiCard('Highest Industry', (function(){ var best='',bv=0; for(var ind in D.industries){ var arr=D.industries[ind], av=arr.reduce(function(s,c){return s+c.maturity},0)/arr.length; if(av>bv){bv=av;best=ind;}} return fmt(bv); })(), (function(){ var best=''; var bv=0; for(var ind in D.industries){ var arr=D.industries[ind], av=arr.reduce(function(s,c){return s+c.maturity},0)/arr.length; if(av>bv){bv=av;best=ind;}} return best; })()) +
     kpiCard('Top Movers', topMoversCount, 'Positive momentum');
 
   // Industry chart
