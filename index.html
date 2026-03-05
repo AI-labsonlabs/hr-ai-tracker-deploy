@@ -144,7 +144,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   flex: 1;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: var(--space-5) var(--space-6);
+  padding: var(--space-4) var(--space-6);
   background: var(--color-bg);
 }
 
@@ -175,13 +175,13 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
   gap: var(--space-4);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
 }
 .kpi-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-3) var(--space-4);
 }
 .kpi-label {
   font-size: var(--text-xs);
@@ -217,7 +217,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   color: var(--color-text-muted);
   margin-bottom: var(--space-4);
 }
-.section-block { margin-bottom: var(--space-8); }
+.section-block { margin-bottom: var(--space-5); }
 
 /* ============================================
    BAR CHART
@@ -262,9 +262,12 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   overflow: hidden;
   text-overflow: ellipsis;
 }
+#industryChart .bar-label {
+  width: 150px;
+}
 .bar-track {
   flex: 1;
-  height: 24px;
+  height: 20px;
   background: var(--color-surface-offset);
   border-radius: var(--radius-sm);
   overflow: hidden;
@@ -926,16 +929,35 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 .about-section {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: var(--space-5);
-  margin-bottom: var(--space-6);
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-5);
+  padding: var(--space-4);
 }
+.about-photo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+.about-byline {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.4;
+}
+.about-byline a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+.about-byline a:hover { text-decoration: underline; }
 .about-photo {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--color-border);
@@ -948,9 +970,9 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   margin: 0 0 var(--space-1) 0;
 }
 .about-text p {
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 0 0 var(--space-2) 0;
 }
 .about-text a {
@@ -960,12 +982,12 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 }
 .about-text a:hover { text-decoration: underline; }
 .about-disclaimer {
-  font-size: 10px;
+  font-size: var(--text-xs);
   color: var(--color-text-faint);
   margin-top: var(--space-2);
   padding-top: var(--space-2);
   border-top: 1px solid var(--color-divider);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* Flag Signal Button */
@@ -1644,14 +1666,14 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
     <section class="tab-panel active" id="tab-overview">
       <!-- About Section -->
       <div class="about-section" id="aboutSection">
-        <a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">
-          <img src="andrew-helms.jpg" alt="Andrew Helms" class="about-photo" />
-        </a>
+        <div class="about-photo-wrap">
+          <a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">
+            <img src="andrew-helms.jpg" alt="Andrew Helms" class="about-photo" />
+          </a>
+          <div class="about-byline">Created & maintained by<br><a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">Andrew Helms</a></div>
+        </div>
         <div class="about-text">
-          <h3>HR AI Adoption Intelligence Tracker</h3>
-          <p>An independent research tool tracking how companies are adopting artificial intelligence across HR functions. Built by monitoring public signals (earnings calls, vendor case studies, job postings, governance announcements, and more) and scoring them across 7 HR domains to surface real adoption patterns.</p>
-          <p>Keep in mind that this reflects only what's publicly visible. It's part of the story, not the whole picture. Use what you find here as a starting point for your own analysis, a way to spark conversations, and a reason to reach out to peers at other companies you want to learn from.</p>
-          <p>Created and maintained by <a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">Andrew Helms</a>.</p>
+          <p>An independent research tool tracking how companies are adopting artificial intelligence across HR functions. Built by monitoring public signals (earnings calls, vendor case studies, job postings, governance announcements, and more) and scoring them across 7 HR domains to surface real adoption patterns. Keep in mind that this reflects only what's publicly visible. It's part of the story, not the whole picture. Use what you find here as a starting point for your own analysis, a way to spark conversations, and a reason to reach out to peers at other companies you want to learn from.</p>
           <div class="about-disclaimer">This is an independent research project. No company sponsors, funds, or endorses this tool. All signals are derived from publicly available sources — earnings calls, SEC filings, press releases, public company announcements, job postings, and vendor case studies. The tracker cites publicly announced facts and does not republish source content or collect any personal profile data. If you spot something that needs correction, use the flag button on any signal.</div>
         </div>
       </div>
@@ -2406,7 +2428,7 @@ function renderOverview() {
     kpiCard('Highest Industry', (function(){ var best='',bv=0; for(var ind in D.industries){ var arr=D.industries[ind], av=arr.reduce(function(s,c){return s+c.maturity},0)/arr.length; if(av>bv){bv=av;best=ind;}} return fmt(bv); })(), (function(){ var best=''; var bv=0; for(var ind in D.industries){ var arr=D.industries[ind], av=arr.reduce(function(s,c){return s+c.maturity},0)/arr.length; if(av>bv){bv=av;best=ind;}} return best; })()) +
     kpiCard('Top Movers', topMoversCount, 'Positive momentum');
 
-  // Industry chart
+  // Industry chart — show top 6, collapse rest
   const industryAvgs = {};
   for (const [ind, companies] of Object.entries(D.industries)) {
     const avg = companies.reduce((s, c) => s + c.maturity, 0) / companies.length;
@@ -2414,9 +2436,36 @@ function renderOverview() {
   }
   const sorted = Object.entries(industryAvgs).sort((a, b) => b[1] - a[1]);
   const maxInd = sorted[0][1];
-  document.getElementById('industryChart').innerHTML = sorted.map(([name, avg]) =>
+  const SHOW_TOP = 6;
+  const topIndustries = sorted.slice(0, SHOW_TOP);
+  const restIndustries = sorted.slice(SHOW_TOP);
+  let chartHtml = topIndustries.map(([name, avg]) =>
     '<div class="bar-row"><div class="bar-label">' + name + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (avg / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(avg) + '</div></div>'
   ).join('');
+  if (restIndustries.length > 0) {
+    chartHtml += '<div id="industryChartMore" style="display:none;">' + restIndustries.map(([name, avg]) =>
+      '<div class="bar-row"><div class="bar-label">' + name + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (avg / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(avg) + '</div></div>'
+    ).join('') + '</div>';
+    var moreCount = restIndustries.length;
+    chartHtml += '<button id="industryToggleBtn" style="background:none;border:none;color:var(--color-primary);font-size:var(--text-xs);cursor:pointer;padding:var(--space-2) 0 0;font-weight:500;">+ ' + moreCount + ' more industries \u25BC</button>';
+    // Attach toggle handler after DOM insert
+    setTimeout(function() {
+      var btn = document.getElementById('industryToggleBtn');
+      var more = document.getElementById('industryChartMore');
+      if (btn && more) {
+        btn.addEventListener('click', function() {
+          if (more.style.display === 'none') {
+            more.style.display = 'block';
+            btn.textContent = 'Show fewer \u25B2';
+          } else {
+            more.style.display = 'none';
+            btn.textContent = '+ ' + moreCount + ' more industries \u25BC';
+          }
+        });
+      }
+    }, 0);
+  }
+  document.getElementById('industryChart').innerHTML = chartHtml;
 
   // Top companies table — rendered separately so filter can update it
   renderOverviewTable();
