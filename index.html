@@ -227,6 +227,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  padding: 3px 0;
 }
 .bar-row-clickable {
   cursor: pointer;
@@ -1782,7 +1783,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
       <div style="max-width:1100px;">
         <h2 class="section-title" style="margin-bottom:var(--space-4);">Methodology</h2>
         <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);line-height:1.7;">
-          This tracker evaluates HR AI adoption across 96 companies by collecting, classifying, and scoring public signals. Below is a complete breakdown of how scores are computed.
+          This tracker evaluates HR AI adoption across companies by collecting, classifying, and scoring public signals. Below is a complete breakdown of how scores are computed.
         </p>
 
         <!-- HOW SCORING WORKS (explainer) -->
@@ -1949,6 +1950,20 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             <div class="profile-card">
               <div class="profile-card-title">How Ranks Work</div>
               <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Companies are ranked relative to the current filter selection. If you filter by industry or sub-industry, ranks recalculate within that subset. Use the column header filters on any table to focus on specific segments.</p>
+            </div>
+
+            <!-- Data Estimation -->
+            <div class="profile-card">
+              <div class="profile-card-title">Company Data &amp; Estimation</div>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;margin-bottom:var(--space-2);">
+                Company attributes (revenue, employee count, market cap) come from different sources depending on whether the company is public or private:
+              </p>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;">
+                <p style="margin-bottom:var(--space-2);"><strong>Public companies:</strong> Revenue and employee count are sourced from the most recent earnings report or SEC filing (10-K/10-Q). Market cap is sourced from live financial data and updated regularly. These values link directly to the source.</p>
+                <p style="margin-bottom:var(--space-2);"><strong>Private companies:</strong> Revenue, employee count, and market cap (where applicable) are estimated using publicly available data &mdash; press reports, industry analyses, LinkedIn headcount, and comparable public peer multiples. These values are marked with an <span style="color:var(--color-text-faint);">est.</span> tag.</p>
+                <p style="margin-bottom:var(--space-2);"><strong>Update frequency:</strong> Market cap for public companies is updated daily. Revenue and employee counts are refreshed weekly from the latest available filings and reports. Private company estimates are reviewed periodically as new data becomes available.</p>
+                <p>All estimated figures should be treated as approximations. If you spot an inaccuracy, use the flag button on any signal or reach out directly.</p>
+              </div>
             </div>
 
           </div>
@@ -2328,44 +2343,81 @@ function openProfile(companyName) {
   const co = detail.company;
   const md = detail.maturity_details || {};
   const mom = detail.momentum_details || {};
-  const signals = detail.top_signals || [];
+  const signals = (detail.top_signals || []).slice().sort(function(a, b) {
+    var da = a.date_event || a.date_found || '1970-01-01';
+    var db = b.date_event || b.date_found || '1970-01-01';
+    return db.localeCompare(da);
+  });
   const pr = detail.pr_ratio || {};
-
   const domains = md.domain_scores || {};
+  const fc = md.formula_components || {};
+  const mfc = (mom).formula_components || {};
+  const pw = md.pattern_weights || {};
+  const pattern = md.adoption_pattern || detail.adoption_pattern || '\u2014';
   const allDomains = ['Recruiting', 'L&D', 'HR Ops', 'Comp/Benefits', 'Employee Service', 'Governance', 'AI Hiring'];
+  const isPrivate = co.public_or_private === 'Private';
+  const estTag = ' <span style="font-size:var(--text-xs);color:var(--color-text-faint);font-weight:400;" title="Estimated based on publicly available industry data">est.</span>';
 
+  // Revenue display
+  var revenueVal = co.annual_revenue ? '$' + (co.annual_revenue >= 1000 ? (co.annual_revenue / 1000).toFixed(1) + 'B' : co.annual_revenue + 'M') : '\u2014';
+  var revenueHTML = revenueVal;
+  if (co.annual_revenue && isPrivate) revenueHTML += estTag;
+  if (co.annual_revenue && !isPrivate) {
+    var ticker = co.ticker || '';
+    var earningsUrl = ticker ? 'https://www.google.com/finance/quote/' + ticker + ':' + (co.exchange || 'NYSE') : 'https://www.google.com/search?q=' + encodeURIComponent(companyName + ' latest earnings report');
+    revenueHTML = '<a href="' + earningsUrl + '" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary);text-decoration:none;" title="View latest financials">' + revenueVal + '</a>';
+  }
+
+  // Market cap display
+  var mktCapVal = co.market_cap ? '$' + (co.market_cap >= 1000 ? (co.market_cap / 1000).toFixed(1) + 'B' : co.market_cap + 'M') : '\u2014';
+  var mktCapHTML = mktCapVal;
+  if (co.market_cap && isPrivate) mktCapHTML += estTag;
+  if (co.market_cap && !isPrivate) {
+    var mcTicker = co.ticker || '';
+    var mktCapUrl = mcTicker ? 'https://www.google.com/finance/quote/' + mcTicker + ':' + (co.exchange || 'NYSE') : 'https://www.google.com/search?q=' + encodeURIComponent(companyName + ' market cap');
+    mktCapHTML = '<a href="' + mktCapUrl + '" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary);text-decoration:none;" title="View live market cap">' + mktCapVal + '</a>';
+  }
+
+  // Employee count display
+  var empHTML = co.employee_count ? co.employee_count.toLocaleString() : '\u2014';
+  if (co.employee_count && isPrivate) empHTML += estTag;
+
+  // Domain bars (clickable to filter signals)
   let domainBarsHTML = '';
   for (const d of allDomains) {
     const val = domains[d] || 0;
-    domainBarsHTML += '<div class="bar-row"><div class="bar-label">' + d + '</div><div class="bar-track"><div class="bar-fill" style="width:' + val + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(val, 0) + '</div></div>';
+    var tip = DOMAIN_TOOLTIPS[d] || '';
+    domainBarsHTML += '<div class="bar-row bar-row-clickable profile-domain-bar" data-domain="' + d + '" title="' + tip.replace(/"/g, '&quot;') + '"><div class="bar-label">' + d + '</div><div class="bar-track"><div class="bar-fill" style="width:' + val + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(val, 0) + '</div></div>';
   }
 
+  // All signals HTML
+  const linkIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
   let signalsHTML = '';
-  const showSignals = signals.slice(0, 5);
-  for (const s of showSignals) {
-    const urls = s.source_urls || [];
-    const linkIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
-    let sourcesHTML = '';
-    if (urls.length > 0) {
-      const links = urls.filter(u => u && u.startsWith('http')).map(function(u, i) {
-        let domain;
-        try { domain = new URL(u).hostname.replace('www.', ''); } catch(e) { domain = 'Source'; }
-        const label = urls.length === 1 ? domain : domain;
-        return '<a href="' + u + '" target="_blank" rel="noopener noreferrer">' + linkIcon + ' ' + label + '</a>';
-      });
-      if (links.length) sourcesHTML = '<div class="signal-sources">' + links.join('') + '</div>';
+  if (signals.length === 0) {
+    signalsHTML = '<p style="color:var(--color-text-faint);font-size:var(--text-sm);">No signals available.</p>';
+  } else {
+    for (const s of signals) {
+      const urls = s.source_urls || [];
+      let sourcesHTML = '';
+      if (urls.length > 0) {
+        const links = urls.filter(u => u && u.startsWith('http')).map(function(u) {
+          let domain;
+          try { domain = new URL(u).hostname.replace('www.', ''); } catch(e) { domain = 'Source'; }
+          return '<a href="' + u + '" target="_blank" rel="noopener noreferrer">' + linkIcon + ' ' + domain + '</a>';
+        });
+        if (links.length) sourcesHTML = '<div class="signal-sources">' + links.join('') + '</div>';
+      }
+      signalsHTML += '<div class="signal-item profile-signal-item" data-domain="' + (s.HR_domain || '') + '">' +
+        '<div class="signal-meta"><span>' + (s.date_event || s.date_found || '') + '</span>' +
+        '<span class="badge badge-blue">' + (s.HR_domain || '') + '</span>' +
+        confirmBadge(s.confirmation_level || '') +
+        (s.signal_type === 'J' ? '<span class="badge badge-teal">AI Talent</span>' : '') +
+        flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
+        '</div>' +
+        '<div class="signal-summary">' + (s.summary || '') + '</div>' +
+        sourcesHTML + '</div>';
     }
-    signalsHTML += '<div class="signal-item">' +
-      '<div class="signal-meta"><span>' + (s.date_event || s.date_found || '') + '</span>' +
-      '<span class="badge badge-blue">' + (s.HR_domain || '') + '</span>' +
-      confirmBadge(s.confirmation_level || '') +
-      (s.signal_type === 'J' ? '<span class="badge badge-teal">AI Talent</span>' : '') +
-      flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
-      '</div>' +
-      '<div class="signal-summary">' + (s.summary || '') + '</div>' +
-      sourcesHTML + '</div>';
   }
-  if (!signalsHTML) signalsHTML = '<p style="color:var(--color-text-faint);font-size:var(--text-sm);">No signals available.</p>';
 
   // Gauge SVG
   const matScore = detail.maturity_score || 0;
@@ -2377,6 +2429,39 @@ function openProfile(companyName) {
   const largeArc = gaugeAngle > 90 ? 1 : 0;
   const gaugeColor = matScore > 50 ? '#059669' : matScore >= 20 ? '#d97706' : '#dc2626';
   const gaugeSVG = '<svg viewBox="0 0 120 65" class="gauge-svg"><path d="M 20 55 A 40 40 0 0 1 100 55" fill="none" stroke="var(--color-surface-offset)" stroke-width="8" stroke-linecap="round"/><path d="M 20 55 A 40 40 0 ' + largeArc + ' 1 ' + endX.toFixed(1) + ' ' + endY.toFixed(1) + '" fill="none" stroke="' + gaugeColor + '" stroke-width="8" stroke-linecap="round"/></svg>';
+
+  // --- Collapsible Maturity & Momentum Breakdown ---
+  var accelPct = mfc.monthly_baseline > 0 ? Math.round(mfc.acceleration * 100) : 0;
+  var patternNames = ['Governance', 'Tool', 'Talent', 'AI Hiring', 'PR'];
+  var maxPw = Math.max.apply(null, patternNames.map(function(p) { return pw[p] || 0; }));
+  var patternBarsHTML = '';
+  patternNames.forEach(function(p) {
+    var val = pw[p] || 0;
+    var pct = maxPw > 0 ? (val / maxPw * 100) : 0;
+    patternBarsHTML += '<div style="display:flex;align-items:center;gap:6px;margin:2px 0;">' +
+      '<span style="min-width:70px;">' + p + '</span>' +
+      '<div style="flex:1;height:6px;background:var(--color-surface-offset);border-radius:3px;overflow:hidden;">' +
+      '<div style="height:100%;width:' + pct + '%;background:var(--color-primary);border-radius:3px;"></div></div>' +
+      '<span class="mono" style="min-width:28px;text-align:right;">' + fmt(val, 1) + '</span></div>';
+  });
+
+  var detailsHTML = '<details style="margin-top:var(--space-3);font-size:var(--text-xs);">' +
+    '<summary style="cursor:pointer;font-weight:600;padding:var(--space-2) 0;color:var(--color-text-muted);border-top:1px solid var(--color-border);margin-top:var(--space-2);">Maturity & Momentum Details</summary>' +
+    '<div style="padding:var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-md);margin-top:var(--space-1);">' +
+    '<strong>Maturity Breakdown</strong><br>' +
+    'Mean (all 7 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>' +
+    'Base score (60% breadth + 40% depth): ' + fmt(fc.base_score, 1) + '<br>' +
+    'Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>' +
+    '<strong>Final: ' + fmt(md.score, 1) + '</strong><br><br>' +
+    '<strong>Momentum Breakdown</strong><br>' +
+    'Baseline: ' + fmt(mfc.w365, 1) + ' weighted signals/yr \u2192 ' + fmt(mfc.monthly_baseline, 1) + '/mo<br>' +
+    'Recent: w30=' + fmt(mfc.w30, 1) + ' \u00d7 size ' + fmt(mfc.size_factor, 2) + ' = ' + fmt(mfc.recent_monthly, 1) + '/mo<br>' +
+    'Growth rate: (' + fmt(mfc.recent_monthly,1) + ' \u2212 ' + fmt(mfc.monthly_baseline,1) + ') / ' + fmt(mfc.monthly_baseline,1) + ' = ' + fmt(mfc.acceleration, 2) + ' (' + accelPct + '% above)<br>' +
+    'Recency score: ' + fmt(mfc.velocity, 2) + ' (3\u00d7/2\u00d7/1\u00d7 weighted 30/60/90d vs baseline)<br>' +
+    'Raw = ' + fmt(mfc.acceleration,2) + '\u00d70.6 + ' + fmt(mfc.velocity,2) + '\u00d70.4 = ' + fmt(mfc.raw_momentum, 2) + '<br>' +
+    '<strong>Final: ' + fmtMomentum(mom.score || detail.momentum_score) + '</strong> (tanh scaled)<br><br>' +
+    '<strong>Adoption Pattern: ' + pattern + '</strong><br>' + patternBarsHTML +
+    '</div></details>';
 
   const html = '<div class="profile-back" onclick="closeProfile()" role="button" tabindex="0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</div>' +
     '<div class="profile-header"><span class="profile-company-name">' + co.company_name + '</span>' +
@@ -2390,23 +2475,61 @@ function openProfile(companyName) {
     '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-2);font-size:var(--text-xs);"><div><div style="color:var(--color-text-muted);">30d signals</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">60d signals</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_60d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">90d signals</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_90d || 0) + '</div></div></div></div>' +
     '<div class="profile-card"><div class="profile-card-title">Company Info</div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);font-size:var(--text-sm);">' +
-    '<div><span style="color:var(--color-text-muted);">Employees</span><br><strong>' + (co.employee_count ? co.employee_count.toLocaleString() : '—') + '</strong></div>' +
-    '<div><span style="color:var(--color-text-muted);">Revenue</span><br><strong>' + (co.annual_revenue ? '$' + (co.annual_revenue >= 1000 ? (co.annual_revenue / 1000).toFixed(1) + 'B' : co.annual_revenue + 'M') + (co.public_or_private === 'Private' ? ' <span style="font-size:var(--text-xs);color:var(--color-text-faint);font-weight:400;" title="Estimated based on publicly available industry data">est.</span>' : '') : '—') + '</strong></div>' +
-    '<div><span style="color:var(--color-text-muted);">Market Cap</span><br><strong>' + (co.market_cap ? '$' + (co.market_cap >= 1000 ? (co.market_cap / 1000).toFixed(1) + 'B' : co.market_cap + 'M') : '—') + '</strong></div>' +
-    '<div><span style="color:var(--color-text-muted);">Geography</span><br><strong>' + (co.geographic_footprint || '—') + '</strong></div>' +
+    '<div><span style="color:var(--color-text-muted);">Employees</span><br><strong>' + empHTML + '</strong></div>' +
+    '<div><span style="color:var(--color-text-muted);">Revenue</span><br><strong>' + revenueHTML + '</strong></div>' +
+    '<div><span style="color:var(--color-text-muted);">Market Cap</span><br><strong>' + mktCapHTML + '</strong></div>' +
+    '<div><span style="color:var(--color-text-muted);">Geography</span><br><strong>' + (co.geographic_footprint || '\u2014') + '</strong></div>' +
     '</div></div>' +
     '<div class="profile-card"><div class="profile-card-title"><span style="color:var(--color-primary);">Deployment</span> vs <span style="color:var(--color-warning);">PR</span></div>' +
     '<div style="display:flex;align-items:center;gap:var(--space-4);margin-bottom:var(--space-2);">' +
     '<div style="flex:1;"><div style="display:flex;height:12px;border-radius:var(--radius-full);overflow:hidden;background:var(--color-surface-offset);"><div style="width:' + (pr.deploy_pct || 0) + '%;background:var(--color-primary);"></div><div style="width:' + (pr.pr_pct || 0) + '%;background:var(--color-warning);"></div></div></div>' +
     '</div>' +
-    '<div style="font-size:var(--text-xs);display:flex;gap:var(--space-4);"><span><span style="display:inline-block;width:8px;height:8px;background:var(--color-primary);border-radius:2px;"></span> <span style="color:var(--color-primary);font-weight:600;">Deploy</span> ' + fmt(pr.deploy_pct || 0, 0) + '%</span><span><span style="display:inline-block;width:8px;height:8px;background:var(--color-warning);border-radius:2px;"></span> <span style="color:var(--color-warning);font-weight:600;">PR</span> ' + fmt(pr.pr_pct || 0, 0) + '%</span><span>Label: <strong>' + (pr.label || '—') + '</strong></span></div></div>' +
+    '<div style="font-size:var(--text-xs);display:flex;gap:var(--space-4);"><span><span style="display:inline-block;width:8px;height:8px;background:var(--color-primary);border-radius:2px;"></span> <span style="color:var(--color-primary);font-weight:600;">Deploy</span> ' + fmt(pr.deploy_pct || 0, 0) + '%</span><span><span style="display:inline-block;width:8px;height:8px;background:var(--color-warning);border-radius:2px;"></span> <span style="color:var(--color-warning);font-weight:600;">PR</span> ' + fmt(pr.pr_pct || 0, 0) + '%</span><span>Label: <strong>' + (pr.label || '\u2014') + '</strong></span></div></div>' +
     '</div>' +
-    '<div class="section-block"><h2 class="section-title">HR Domain Scores</h2><div style="max-width:500px;" class="bar-chart">' + domainBarsHTML + '</div></div>' +
-    '<div class="section-block"><h2 class="section-title">Recent Signals (' + detail.total_signals + ' total)</h2>' + signalsHTML + '</div>';
+    detailsHTML +
+    '<div class="section-block"><h2 class="section-title">HR Domain Scores <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(click to filter signals)</span></h2><div style="max-width:500px;" class="bar-chart" id="profileDomainChart">' + domainBarsHTML + '</div></div>' +
+    '<div class="section-block"><h2 class="section-title">Signals <span id="profileSignalCount" style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + detail.total_signals + ' total)</span> <span id="profileFilterLabel" style="display:none;font-weight:400;font-size:var(--text-xs);color:var(--color-primary);cursor:pointer;"></span></h2><div id="profileSignalsList">' + signalsHTML + '</div></div>';
 
   document.getElementById('profileContent').innerHTML = html;
   profileOverlay.classList.add('active');
   profileOverlay.scrollTop = 0;
+
+  // Attach domain bar click handlers for filtering
+  var activeDomainFilter = null;
+  document.querySelectorAll('#profileDomainChart .profile-domain-bar').forEach(function(bar) {
+    bar.addEventListener('click', function() {
+      var domain = this.getAttribute('data-domain');
+      var filterLabel = document.getElementById('profileFilterLabel');
+      var signalItems = document.querySelectorAll('#profileSignalsList .profile-signal-item');
+      // Toggle same domain off
+      if (activeDomainFilter === domain) {
+        activeDomainFilter = null;
+        document.querySelectorAll('#profileDomainChart .profile-domain-bar').forEach(function(b) { b.classList.remove('bar-row-active'); });
+        signalItems.forEach(function(el) { el.style.display = ''; });
+        filterLabel.style.display = 'none';
+        document.getElementById('profileSignalCount').textContent = '(' + signalItems.length + ' total)';
+        return;
+      }
+      activeDomainFilter = domain;
+      document.querySelectorAll('#profileDomainChart .profile-domain-bar').forEach(function(b) { b.classList.remove('bar-row-active'); });
+      this.classList.add('bar-row-active');
+      var visibleCount = 0;
+      signalItems.forEach(function(el) {
+        if (el.getAttribute('data-domain') === domain) { el.style.display = ''; visibleCount++; }
+        else { el.style.display = 'none'; }
+      });
+      filterLabel.textContent = 'Showing: ' + domain + ' \u00d7';
+      filterLabel.style.display = 'inline';
+      filterLabel.onclick = function() {
+        activeDomainFilter = null;
+        document.querySelectorAll('#profileDomainChart .profile-domain-bar').forEach(function(b) { b.classList.remove('bar-row-active'); });
+        signalItems.forEach(function(el) { el.style.display = ''; });
+        filterLabel.style.display = 'none';
+        document.getElementById('profileSignalCount').textContent = '(' + signalItems.length + ' total)';
+      };
+      document.getElementById('profileSignalCount').textContent = '(' + visibleCount + ' of ' + signalItems.length + ')';
+    });
+  });
 }
 window.openProfile = openProfile;
 
@@ -2428,9 +2551,10 @@ function renderOverview() {
     kpiCard('Highest Industry', (function(){ var best='',bv=0; for(var ind in D.industries){ var arr=D.industries[ind].map(function(c){return c.maturity;}).sort(function(a,b){return a-b;}), mid=Math.floor(arr.length/2), med=arr.length%2?arr[mid]:(arr[mid-1]+arr[mid])/2; if(med>bv){bv=med;best=ind;}} return fmt(bv); })(), (function(){ var best=''; var bv=0; for(var ind in D.industries){ var arr=D.industries[ind].map(function(c){return c.maturity;}).sort(function(a,b){return a-b;}), mid=Math.floor(arr.length/2), med=arr.length%2?arr[mid]:(arr[mid-1]+arr[mid])/2; if(med>bv){bv=med;best=ind;}} return best; })()) +
     kpiCard('Top Movers', topMoversCount, 'Positive momentum');
 
-  // Industry chart — show top 6, collapse rest (using median)
+  // Industry chart — show top 6, collapse rest (using median); exclude Conglomerate
   const industryAvgs = {};
   for (const [ind, companies] of Object.entries(D.industries)) {
+    if (ind === 'Conglomerate') continue; // skip single-company category
     const scores = companies.map(c => c.maturity).sort((a, b) => a - b);
     const mid = Math.floor(scores.length / 2);
     const median = scores.length % 2 ? scores[mid] : (scores[mid - 1] + scores[mid]) / 2;
@@ -2488,10 +2612,36 @@ function renderOverview() {
     J: 'Active job postings for AI/ML engineers, data scientists, or AI product managers — indicates investment in building AI capabilities.'
   };
   var maxSTB = Math.max.apply(null, stb.map(function(s){return s.count;})) || 1;
-  document.getElementById('signalTypeChart').innerHTML = stb.filter(function(s){return s.count > 0;}).sort(function(a,b){return b.count - a.count;}).map(function(s) {
+  var stbSorted = stb.filter(function(s){return s.count > 0;}).sort(function(a,b){return b.count - a.count;});
+  var STB_SHOW_TOP = 6;
+  var stbTop = stbSorted.slice(0, STB_SHOW_TOP);
+  var stbRest = stbSorted.slice(STB_SHOW_TOP);
+  function stbBarHTML(s) {
     var hoverText = (stbDescriptions[s.code] || '').replace(/'/g, '&#39;').replace(/"/g, '&quot;');
     return '<div class="bar-row stb-bar" data-stb-label="' + s.label.replace(/"/g, '&quot;') + '" data-stb-desc="' + hoverText + '" style="cursor:help;"><div class="bar-label" style="min-width:180px;">' + s.label + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (s.count / maxSTB * 100) + '%;background:' + (stbColors[s.code] || 'var(--color-blue-500)') + ';"></div></div><div class="bar-value">' + s.count + '</div></div>';
-  }).join('');
+  }
+  var stbChartHtml = stbTop.map(stbBarHTML).join('');
+  if (stbRest.length > 0) {
+    stbChartHtml += '<div id="stbChartMore" style="display:none;">' + stbRest.map(stbBarHTML).join('') + '</div>';
+    var stbMoreCount = stbRest.length;
+    stbChartHtml += '<button id="stbToggleBtn" style="background:none;border:none;color:var(--color-primary);font-size:var(--text-xs);cursor:pointer;padding:var(--space-2) 0 0;font-weight:500;">+ ' + stbMoreCount + ' more signal types \u25BC</button>';
+    setTimeout(function() {
+      var sbtn = document.getElementById('stbToggleBtn');
+      var smore = document.getElementById('stbChartMore');
+      if (sbtn && smore) {
+        sbtn.addEventListener('click', function() {
+          if (smore.style.display === 'none') {
+            smore.style.display = 'block';
+            sbtn.textContent = 'Show fewer \u25B2';
+          } else {
+            smore.style.display = 'none';
+            sbtn.textContent = '+ ' + stbMoreCount + ' more signal types \u25BC';
+          }
+        });
+      }
+    }, 0);
+  }
+  document.getElementById('signalTypeChart').innerHTML = stbChartHtml;
 
   // Attach hover listeners for custom tooltip
   initStbTooltips();
@@ -3249,9 +3399,22 @@ function buildCompanyProfileHTML(companyName, side) {
   var signals = detail.top_signals || [];
   var uid = side || 'L'; // unique prefix for this profile panel
 
+  var isPrivate = co.public_or_private === 'Private';
+  var estTag = ' <span style="font-size:9px;color:var(--color-text-faint);" title="Estimated based on publicly available industry data">est.</span>';
   var revenue = co.annual_revenue ? (co.annual_revenue >= 1000 ? '$' + (co.annual_revenue / 1000).toFixed(1) + 'B' : '$' + co.annual_revenue + 'M') : '\u2014';
+  if (co.annual_revenue && isPrivate) revenue += estTag;
+  else if (co.annual_revenue && !isPrivate) {
+    var rUrl = co.ticker ? 'https://www.google.com/finance/quote/' + co.ticker + ':' + (co.exchange || 'NYSE') : 'https://www.google.com/search?q=' + encodeURIComponent(companyName + ' latest earnings report');
+    revenue = '<a href="' + rUrl + '" target="_blank" rel="noopener" style="color:var(--color-primary);text-decoration:none;">' + revenue + '</a>';
+  }
   var marketCap = co.market_cap ? (co.market_cap >= 1000 ? '$' + (co.market_cap / 1000).toFixed(1) + 'B' : '$' + co.market_cap + 'M') : '\u2014';
+  if (co.market_cap && isPrivate) marketCap += estTag;
+  else if (co.market_cap && !isPrivate) {
+    var mcUrl = co.ticker ? 'https://www.google.com/finance/quote/' + co.ticker + ':' + (co.exchange || 'NYSE') : 'https://www.google.com/search?q=' + encodeURIComponent(companyName + ' market cap');
+    marketCap = '<a href="' + mcUrl + '" target="_blank" rel="noopener" style="color:var(--color-primary);text-decoration:none;">' + marketCap + '</a>';
+  }
   var empCount = co.employee_count ? co.employee_count.toLocaleString() : '\u2014';
+  if (co.employee_count && isPrivate) empCount += estTag;
 
   // --- HEADER ---
   var html = '<div class="profile-header">';
