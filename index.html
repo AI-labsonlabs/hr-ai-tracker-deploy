@@ -1681,7 +1681,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 
       <div class="two-col">
         <div class="section-block">
-          <h2 class="section-title">Industry Avg Maturity</h2>
+          <h2 class="section-title">Industry Median Maturity</h2>
           <div class="bar-chart" id="industryChart"></div>
         </div>
         <div class="section-block">
@@ -2424,15 +2424,17 @@ function renderOverview() {
   document.getElementById('kpiGrid').innerHTML =
     kpiCard('Companies Tracked', s.total_companies, Object.keys(D.industries).length + ' industries') +
     kpiCard('Total Signals', s.total_signals, 'Across all companies') +
-    kpiCard('Avg Maturity', fmt((s.avg_maturity_finserv * s.finserv_companies + s.avg_maturity_benchmark * s.benchmark_companies) / s.total_companies), 'Score 0\u2013100 scale') +
-    kpiCard('Highest Industry', (function(){ var best='',bv=0; for(var ind in D.industries){ var arr=D.industries[ind], av=arr.reduce(function(s,c){return s+c.maturity},0)/arr.length; if(av>bv){bv=av;best=ind;}} return fmt(bv); })(), (function(){ var best=''; var bv=0; for(var ind in D.industries){ var arr=D.industries[ind], av=arr.reduce(function(s,c){return s+c.maturity},0)/arr.length; if(av>bv){bv=av;best=ind;}} return best; })()) +
+    kpiCard('Median Maturity', (function(){ var allScores = []; for(var ind in D.industries) D.industries[ind].forEach(function(c){ allScores.push(c.maturity); }); allScores.sort(function(a,b){return a-b;}); var mid=Math.floor(allScores.length/2); return fmt(allScores.length%2?allScores[mid]:(allScores[mid-1]+allScores[mid])/2); })(), 'Score 0\u2013100 scale') +
+    kpiCard('Highest Industry', (function(){ var best='',bv=0; for(var ind in D.industries){ var arr=D.industries[ind].map(function(c){return c.maturity;}).sort(function(a,b){return a-b;}), mid=Math.floor(arr.length/2), med=arr.length%2?arr[mid]:(arr[mid-1]+arr[mid])/2; if(med>bv){bv=med;best=ind;}} return fmt(bv); })(), (function(){ var best=''; var bv=0; for(var ind in D.industries){ var arr=D.industries[ind].map(function(c){return c.maturity;}).sort(function(a,b){return a-b;}), mid=Math.floor(arr.length/2), med=arr.length%2?arr[mid]:(arr[mid-1]+arr[mid])/2; if(med>bv){bv=med;best=ind;}} return best; })()) +
     kpiCard('Top Movers', topMoversCount, 'Positive momentum');
 
-  // Industry chart — show top 6, collapse rest
+  // Industry chart — show top 6, collapse rest (using median)
   const industryAvgs = {};
   for (const [ind, companies] of Object.entries(D.industries)) {
-    const avg = companies.reduce((s, c) => s + c.maturity, 0) / companies.length;
-    industryAvgs[ind] = avg;
+    const scores = companies.map(c => c.maturity).sort((a, b) => a - b);
+    const mid = Math.floor(scores.length / 2);
+    const median = scores.length % 2 ? scores[mid] : (scores[mid - 1] + scores[mid]) / 2;
+    industryAvgs[ind] = median;
   }
   const sorted = Object.entries(industryAvgs).sort((a, b) => b[1] - a[1]);
   const maxInd = sorted[0][1];
