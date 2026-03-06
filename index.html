@@ -297,10 +297,15 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  overflow: visible;
 }
 .data-table-scroll {
   overflow-x: auto;
+  border-radius: var(--radius-lg);
+}
+.data-table-scroll.dd-overflow-visible,
+.admin-table-scroll.dd-overflow-visible {
+  overflow: visible !important;
 }
 .data-table {
   width: 100%;
@@ -1504,7 +1509,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  overflow: visible;
 }
 .admin-table-header {
   display: flex;
@@ -1592,6 +1597,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   max-height: 520px;
   overflow-y: auto;
   overscroll-behavior: contain;
+  border-radius: var(--radius-lg);
 }
 
 /* Status msg */
@@ -1789,7 +1795,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             <tbody></tbody>
           </table>
         </div>
-        <div id="heatmapCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) 0;"></div>
+        <div id="heatmapCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) var(--space-3);"></div>
       </div>
     </section>
 
@@ -1803,7 +1809,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             <tbody></tbody>
           </table>
         </div>
-        <div id="moversCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) 0;"></div>
+        <div id="moversCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) var(--space-3);"></div>
       </div>
     </section>
 
@@ -1818,7 +1824,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             <tbody></tbody>
           </table>
         </div>
-        <div id="govCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) 0;"></div>
+        <div id="govCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) var(--space-3);"></div>
       </div>
     </section>
 
@@ -1840,7 +1846,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);font-size:var(--text-xs);line-height:1.6;">
             <div>
               <p style="margin-bottom:var(--space-2);"><strong>Signal Type</strong> and <strong>Confirmation Level</strong> are independent dimensions. Signal Type captures <em>what kind</em> of evidence was found (a deployment vs. a job post vs. a press release). Confirmation Level captures <em>how verified</em> that evidence is (confirmed vs. pilot vs. just exploring).</p>
-              <p>For example, the name &ldquo;Confirmed Deployment&rdquo; appears in both &mdash; but they mean different things. The <em>signal type</em> &ldquo;Confirmed Deployment&rdquo; (base weight 10.0) means the evidence itself is about a real deployment. The <em>confirmation level</em> &ldquo;Confirmed Deployment&rdquo; (&times;1.0) means that evidence has been verified as real.</p>
+              <p>For example, a signal type of &ldquo;Deployment&rdquo; (base weight 10.0) means the evidence itself is about a real deployment, while the <em>confirmation level</em> &ldquo;Confirmed Deployment&rdquo; (&times;1.0) means that evidence has been verified as real. These are independent dimensions.</p>
             </div>
             <div>
               <p style="margin-bottom:var(--space-2);"><strong>Why this matters:</strong> A vendor case study (type weight 5.0) with Confirmed Deployment verification (&times;1.0) from an earnings call (source 1.0) scores much higher than a PR mention (type weight 1.0) at Exploration level (&times;0.4) from social media (source 0.3).</p>
@@ -1867,7 +1873,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
               <table class="data-table" style="font-size:var(--text-xs);">
                 <thead><tr><th>Type</th><th>Weight</th><th>Example</th></tr></thead>
                 <tbody>
-                  <tr><td>Confirmed Deployment</td><td class="mono">10.0</td><td>Enterprise-wide rollout of Workday AI</td></tr>
+                  <tr><td>Deployment</td><td class="mono">10.0</td><td>Enterprise-wide rollout of Workday AI</td></tr>
                   <tr><td>Procurement</td><td class="mono">7.0</td><td>Purchasing Eightfold AI platform</td></tr>
                   <tr><td>Pilot / Limited Rollout</td><td class="mono">6.0</td><td>Testing AI recruiting tool in one division</td></tr>
                   <tr><td>Governance / AI Oversight</td><td class="mono">6.0</td><td>AI ethics board covering HR</td></tr>
@@ -2087,7 +2093,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 <label>Signal Type</label>
                 <select id="afSignalType">
                   <option value="">-- Select --</option>
-                  <option value="A">A — Confirmed Deployment</option>
+                  <option value="A">A — Deployment</option>
                   <option value="B">B — Pilot</option>
                   <option value="C">C — Procurement</option>
                   <option value="D">D — Leadership Hire</option>
@@ -2783,7 +2789,13 @@ document.addEventListener('click', function(e) {
 });
 
 function closeAllDropdowns() {
-  document.querySelectorAll('.col-dropdown.open').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.col-dropdown.open').forEach(function(d) {
+    d.classList.remove('open');
+  });
+  // Restore overflow on scroll containers that were set to visible
+  document.querySelectorAll('.data-table-scroll.dd-overflow-visible, .admin-table-scroll.dd-overflow-visible').forEach(function(el) {
+    el.classList.remove('dd-overflow-visible');
+  });
   ovState.openDropdown = null;
 }
 
@@ -2833,6 +2845,8 @@ function initOverviewThead() {
       if (!isOpen && dd) {
         dd.classList.add('open');
         ovState.openDropdown = col.key;
+        var scrollParent = th.closest('.data-table-scroll') || th.closest('.admin-table-scroll');
+        if (scrollParent) scrollParent.classList.add('dd-overflow-visible');
       }
     });
 
@@ -3082,7 +3096,11 @@ function buildInteractiveTable(config) {
       var dd = th.querySelector('.col-dropdown');
       var isOpen = dd && dd.classList.contains('open');
       closeAllDropdowns();
-      if (!isOpen && dd) { dd.classList.add('open'); }
+      if (!isOpen && dd) {
+        dd.classList.add('open');
+        var scrollParent = th.closest('.data-table-scroll') || th.closest('.admin-table-scroll');
+        if (scrollParent) scrollParent.classList.add('dd-overflow-visible');
+      }
     });
 
     th.appendChild(btn);
@@ -3810,7 +3828,7 @@ function initAdmin() {
 
   // ---- Signal type labels ----
   var SIG_LABELS = {
-    A:'Confirmed Deployment', B:'Pilot', C:'Procurement',
+    A:'Deployment', B:'Pilot', C:'Procurement',
     D:'Leadership Hire', E:'Governance', F:'Upskilling',
     G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
   };
@@ -4022,7 +4040,13 @@ function initAdmin() {
   function showAdminFilterMenu(colKey, th, triggerBtn) {
     // Remove any existing
     var existing = document.getElementById('adminFilterDropdown');
-    if (existing) { existing.remove(); }
+    if (existing) {
+      existing.remove();
+      // Restore overflow on previous scroll parent
+      document.querySelectorAll('.admin-table-scroll.dd-overflow-visible, .data-table-scroll.dd-overflow-visible').forEach(function(el) {
+        el.classList.remove('dd-overflow-visible');
+      });
+    }
     if (_filterMenuActive === colKey) { _filterMenuActive = null; return; }
     _filterMenuActive = colKey;
 
@@ -4067,6 +4091,7 @@ function initAdmin() {
         refreshAdminThead();
         renderAdminTable();
         menu.remove(); _filterMenuActive = null;
+        if (adminScrollParent) adminScrollParent.classList.remove('dd-overflow-visible');
       });
     });
     // Filter checkboxes
@@ -4098,12 +4123,15 @@ function initAdmin() {
     // Position below the th
     th.style.position = 'relative';
     th.appendChild(menu);
+    var adminScrollParent = th.closest('.admin-table-scroll') || th.closest('.data-table-scroll');
+    if (adminScrollParent) adminScrollParent.classList.add('dd-overflow-visible');
 
     // Close on outside click
     setTimeout(function() {
       function clickOutside(e) {
         if (!menu.contains(e.target) && e.target !== triggerBtn) {
           menu.remove(); _filterMenuActive = null;
+          if (adminScrollParent) adminScrollParent.classList.remove('dd-overflow-visible');
           document.removeEventListener('click', clickOutside);
         }
       }
