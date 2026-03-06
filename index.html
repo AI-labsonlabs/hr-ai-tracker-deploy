@@ -926,16 +926,55 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   margin-bottom: 2px;
 }
 
+/* Overview Top Row - About + KPIs in one row */
+.overview-top-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  align-items: stretch;
+}
+.overview-top-row .about-section {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+.overview-top-row .kpi-grid {
+  display: contents;
+  margin-bottom: 0;
+}
+.overview-top-row .kpi-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 150px;
+}
+@media (max-width: 1100px) {
+  .overview-top-row {
+    grid-template-columns: 1fr;
+  }
+  .overview-top-row .kpi-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .overview-top-row .kpi-card {
+    flex: 1 1 140px;
+    min-width: 140px;
+  }
+}
+
 /* About Section */
 .about-section {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--space-4);
-  margin-bottom: var(--space-4);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-4);
+  min-height: 0;
 }
 .about-photo-wrap {
   display: flex;
@@ -1665,19 +1704,21 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 
     <!-- OVERVIEW TAB -->
     <section class="tab-panel active" id="tab-overview">
-      <!-- About Section -->
-      <div class="about-section" id="aboutSection">
-        <div class="about-photo-wrap">
-          <a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">
-            <img src="andrew-helms.jpg" alt="Andrew Helms" class="about-photo" />
-          </a>
-          <div class="about-byline">Created & maintained by<br><a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">Andrew Helms</a></div>
+      <!-- About + KPI Row -->
+      <div class="overview-top-row">
+        <div class="about-section" id="aboutSection">
+          <div class="about-photo-wrap">
+            <a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">
+              <img src="andrew-helms.jpg" alt="Andrew Helms" class="about-photo" />
+            </a>
+            <div class="about-byline">Created & maintained by<br><a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">Andrew Helms</a></div>
+          </div>
+          <div class="about-text">
+            <p>An independent research tool tracking AI adoption across HR functions. Scores companies across 7 domains using public signals — earnings calls, job postings, vendor case studies, governance announcements, and more. This reflects only what’s publicly visible, not the full picture. Use it as a starting point for your own analysis and a reason to reach out to peers. No company sponsors or endorses this tool. Spot an error? Use the flag button on any signal.</p>
+          </div>
         </div>
-        <div class="about-text">
-          <p>An independent research tool tracking AI adoption across HR functions. Scores companies across 7 domains using public signals — earnings calls, job postings, vendor case studies, governance announcements, and more. This reflects only what’s publicly visible, not the full picture. Use it as a starting point for your own analysis and a reason to reach out to peers. No company sponsors or endorses this tool. Spot an error? Use the flag button on any signal.</p>
-        </div>
+        <div class="kpi-grid" id="kpiGrid"></div>
       </div>
-      <div class="kpi-grid" id="kpiGrid"></div>
 
       <div class="two-col">
         <div class="section-block">
