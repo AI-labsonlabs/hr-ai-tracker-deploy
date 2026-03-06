@@ -4861,6 +4861,7 @@ function renderSignalCards(signals) {
       '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>' +
       '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' +
       confirmBadge(s.confirmation_level) +
+      flagBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain) +
       '</div>' +
       '<div class="signal-feed-summary">' + s.summary + '</div>' +
       sourcesHTML +
