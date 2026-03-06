@@ -710,6 +710,8 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 }
 @media (max-width: 1024px) {
   .two-col { grid-template-columns: 1fr; }
+  .kpi-grid[style*="repeat(5"] { grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)) !important; }
+  .kpi-grid[style*="repeat(5"] .kpi-card[style*="span 2"] { grid-column: 1 / -1; }
 }
 
 /* ============================================
@@ -1675,10 +1677,15 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
         </div>
         <div class="about-text">
           <p>An independent research tool tracking how companies are adopting artificial intelligence across HR functions. Built by monitoring public signals (earnings calls, vendor case studies, job postings, governance announcements, and more) and scoring them across 7 HR domains to surface real adoption patterns. Keep in mind that this reflects only what's publicly visible. It's part of the story, not the whole picture. Use what you find here as a starting point for your own analysis, a way to spark conversations, and a reason to reach out to peers at other companies you want to learn from.</p>
-          <div class="about-disclaimer">This is an independent research project. No company sponsors, funds, or endorses this tool. All signals are derived from publicly available sources — earnings calls, SEC filings, press releases, public company announcements, job postings, and vendor case studies. The tracker cites publicly announced facts and does not republish source content or collect any personal profile data. If you spot something that needs correction, use the flag button on any signal.</div>
         </div>
       </div>
-      <div class="kpi-grid" id="kpiGrid"></div>
+      <div class="kpi-grid" style="grid-template-columns: repeat(5, 1fr);margin-bottom:var(--space-4);">
+        <div class="kpi-card" style="grid-column: span 2;">
+          <div class="kpi-label" style="margin-bottom:var(--space-1);">Disclaimer</div>
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;">This is an independent research project. No company sponsors, funds, or endorses this tool. The tracker cites publicly announced facts and does not republish source content or collect any personal profile data. If you spot something that needs correction, use the flag button on any signal.</div>
+        </div>
+        <div id="kpiGrid" style="display:contents;"></div>
+      </div>
 
       <div class="two-col">
         <div class="section-block">
@@ -1687,7 +1694,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
         </div>
         <div class="section-block">
           <h2 class="section-title">Signal Type Breakdown</h2>
-          <p class="section-subtitle" style="margin-bottom:var(--space-3);">Distribution of all signals by type across all tracked companies.</p>
           <div class="bar-chart" id="signalTypeChart"></div>
         </div>
       </div>
@@ -1959,9 +1965,9 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 Company attributes (revenue, employee count, market cap) come from different sources depending on whether the company is public or private:
               </p>
               <div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;">
-                <p style="margin-bottom:var(--space-2);"><strong>Public companies:</strong> Revenue and employee count are sourced from the most recent earnings report or SEC filing (10-K/10-Q). Market cap is sourced from live financial data and updated regularly. These values link directly to the source.</p>
+                <p style="margin-bottom:var(--space-2);"><strong>Public companies:</strong> Revenue and employee count are sourced from the most recent earnings report or SEC filing (10-K/10-Q). Market cap is sourced from financial data providers. All public company attributes are refreshed weekly. These values link directly to the source.</p>
                 <p style="margin-bottom:var(--space-2);"><strong>Private companies:</strong> Revenue, employee count, and market cap (where applicable) are estimated using publicly available data &mdash; press reports, industry analyses, LinkedIn headcount, and comparable public peer multiples. These values are marked with an <span style="color:var(--color-text-faint);">est.</span> tag.</p>
-                <p style="margin-bottom:var(--space-2);"><strong>Update frequency:</strong> Market cap for public companies is updated daily. Revenue and employee counts are refreshed weekly from the latest available filings and reports. Private company estimates are reviewed periodically as new data becomes available.</p>
+                <p style="margin-bottom:var(--space-2);"><strong>Update frequency:</strong> Revenue, employee counts, and market cap for public companies are refreshed weekly from the latest available filings, reports, and financial data. Private company estimates are reviewed periodically as new data becomes available.</p>
                 <p>All estimated figures should be treated as approximations. If you spot an inaccuracy, use the flag button on any signal or reach out directly.</p>
               </div>
             </div>
@@ -2479,7 +2485,9 @@ function openProfile(companyName) {
     '<div><span style="color:var(--color-text-muted);">Revenue</span><br><strong>' + revenueHTML + '</strong></div>' +
     '<div><span style="color:var(--color-text-muted);">Market Cap</span><br><strong>' + mktCapHTML + '</strong></div>' +
     '<div><span style="color:var(--color-text-muted);">Geography</span><br><strong>' + (co.geographic_footprint || '\u2014') + '</strong></div>' +
-    '</div></div>' +
+    '</div>' +
+    '<div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-faint);">Attributes last updated: ' + (D.attributes_last_updated || '\u2014') + '</div>' +
+    '</div>' +
     '<div class="profile-card"><div class="profile-card-title"><span style="color:var(--color-primary);">Deployment</span> vs <span style="color:var(--color-warning);">PR</span></div>' +
     '<div style="display:flex;align-items:center;gap:var(--space-4);margin-bottom:var(--space-2);">' +
     '<div style="flex:1;"><div style="display:flex;height:12px;border-radius:var(--radius-full);overflow:hidden;background:var(--color-surface-offset);"><div style="width:' + (pr.deploy_pct || 0) + '%;background:var(--color-primary);"></div><div style="width:' + (pr.pr_pct || 0) + '%;background:var(--color-warning);"></div></div></div>' +
@@ -2543,13 +2551,10 @@ window.closeProfile = closeProfile;
 // ============================================
 function renderOverview() {
   const s = D.summary;
-  const topMoversCount = D.top_movers.filter(m => m.momentum > 0).length;
   document.getElementById('kpiGrid').innerHTML =
     kpiCard('Companies Tracked', s.total_companies, Object.keys(D.industries).length + ' industries') +
     kpiCard('Total Signals', s.total_signals, 'Across all companies') +
-    kpiCard('Median Maturity', (function(){ var allScores = []; for(var ind in D.industries) D.industries[ind].forEach(function(c){ allScores.push(c.maturity); }); allScores.sort(function(a,b){return a-b;}); var mid=Math.floor(allScores.length/2); return fmt(allScores.length%2?allScores[mid]:(allScores[mid-1]+allScores[mid])/2); })(), 'Score 0\u2013100 scale') +
-    kpiCard('Highest Industry', (function(){ var best='',bv=0; for(var ind in D.industries){ var arr=D.industries[ind].map(function(c){return c.maturity;}).sort(function(a,b){return a-b;}), mid=Math.floor(arr.length/2), med=arr.length%2?arr[mid]:(arr[mid-1]+arr[mid])/2; if(med>bv){bv=med;best=ind;}} return fmt(bv); })(), (function(){ var best=''; var bv=0; for(var ind in D.industries){ var arr=D.industries[ind].map(function(c){return c.maturity;}).sort(function(a,b){return a-b;}), mid=Math.floor(arr.length/2), med=arr.length%2?arr[mid]:(arr[mid-1]+arr[mid])/2; if(med>bv){bv=med;best=ind;}} return best; })()) +
-    kpiCard('Top Movers', topMoversCount, 'Positive momentum');
+    kpiCard('Median Maturity', (function(){ var allScores = []; for(var ind in D.industries) D.industries[ind].forEach(function(c){ allScores.push(c.maturity); }); allScores.sort(function(a,b){return a-b;}); var mid=Math.floor(allScores.length/2); return fmt(allScores.length%2?allScores[mid]:(allScores[mid-1]+allScores[mid])/2); })(), 'Score 0\u2013100 scale');
 
   // Industry chart — show top 6, collapse rest (using median); exclude Conglomerate
   const industryAvgs = {};
