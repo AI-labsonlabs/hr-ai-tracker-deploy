@@ -2823,9 +2823,14 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                   <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">base = (avg_all_6 &times; 0.6) + (avg_top_3 &times; 0.4)</code><br>
                   60% rewards breadth across domains, 40% rewards depth in strongest areas.
                 </div>
+                <div style="margin-bottom:var(--space-3);">
+                  <strong>Step 4: Coverage adjustment</strong><br>
+                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">adjusted = base &times; (domains_covered / 6)<sup>0.3</sup></code><br>
+                  Companies with gaps in domain coverage receive a gentle penalty. Covering 6/6 domains = no penalty. Covering 3/6 = &times;0.81.
+                </div>
                 <div>
-                  <strong>Step 4: Company adjustments</strong><br>
-                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">final = base &times; &radic;(size_norm) &times; &radic;(regulatory_adj)</code><br>
+                  <strong>Step 5: Company adjustments</strong><br>
+                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">final = adjusted &times; &radic;(size_norm) &times; &radic;(regulatory_adj)</code><br>
                   Smaller firms get a boost per signal (capped at 2&times;). Highly regulated industries get credit for operating in constrained environments.
                 </div>
               </div>
@@ -3557,7 +3562,7 @@ function openProfile(companyName) {
     '<strong>Maturity Breakdown</strong><br>' +
     'Mean (all 6 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>' +
     'Base score (60% breadth + 40% depth): ' + fmt(fc.base_score, 1) + '<br>' +
-    'Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>' +
+    'Coverage: \u00d7' + fmt(fc.coverage_mult, 3) + ' (' + md.domains_covered + '/6 domains) \u00b7 Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>' +
     '<strong>Final: ' + fmt(md.score, 1) + '</strong><br><br>' +
     '<strong>Momentum Breakdown</strong><br>' +
     'Baseline: ' + fmt(mfc.w365, 1) + ' weighted signals/yr \u2192 ' + fmt(mfc.monthly_baseline, 1) + '/mo<br>' +
@@ -4800,7 +4805,7 @@ function buildCompanyProfileHTML(companyName, side) {
   html += '<strong>Maturity Breakdown</strong><br>';
   html += 'Mean (all 6 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>';
   html += 'Base score (60% breadth + 40% depth): ' + fmt(fc.base_score, 1) + '<br>';
-  html += 'Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>';
+  html += 'Coverage: \u00d7' + fmt(fc.coverage_mult, 3) + ' (' + md.domains_covered + '/6 domains) \u00b7 Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>';
   html += '<strong>Final: ' + fmt(md.score, 1) + '</strong><br><br>';
   // Momentum formula
   html += '<strong>Momentum Breakdown</strong><br>';
