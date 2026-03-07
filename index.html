@@ -2839,11 +2839,11 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
               <div class="profile-card-title">Adoption Pattern Classification</div>
               <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Classified based on where signal weight concentrates:</p>
               <div style="font-size:var(--text-xs);line-height:1.8;">
-                <div style="display:grid;grid-template-columns:100px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
+                <div style="display:grid;grid-template-columns:150px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
                   <div><strong style="color:#6366f1;">Governance</strong></div><div>Oversight signals + 30% of earnings mentions</div>
                   <div><strong style="color:#059669;">Tool</strong></div><div>Deployments + pilots + procurement</div>
-                  <div><strong style="color:#d97706;">Talent</strong></div><div>HR AI leadership hires + upskilling</div>
-                  <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>AI/ML engineer &amp; data scientist hiring &mdash; separated from Talent to prevent distortion (~48% of all signals)</div>
+                  <div><strong style="color:#d97706;">Leadership &amp; Upskilling</strong></div><div>HR AI leadership hires (Type D) + upskilling programs (Type F)</div>
+                  <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>AI/ML engineer &amp; data scientist job postings (Type J) &mdash; scored separately to prevent distortion</div>
                   <div><strong style="color:#9ca3af;">PR</strong></div><div>PR-only mentions</div>
                 </div>
                 <div style="margin-top:var(--space-2);">If PR exceeds 50% of total weight &rarr; &ldquo;PR-led&rdquo;. Otherwise, the highest category wins. If two categories are within 10% of each other, both are listed (e.g., &ldquo;Governance &amp; Tool-led&rdquo;).</div>
@@ -3516,7 +3516,7 @@ function openProfile(companyName) {
         '<div class="signal-meta"><span>' + (s.date_event || s.date_found || '') + '</span>' +
         '<span class="badge badge-blue">' + (s.HR_domain || '') + '</span>' +
         '<span class="badge badge-gray">' + signalTypeBadge(s.signal_type) + '</span>' +
-        (s.signal_type === 'J' ? '<span class="badge badge-teal">AI Talent</span>' : '') +
+        (s.signal_type === 'J' ? '<span class="badge badge-teal">AI Hiring</span>' : '') +
         flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
         '</div>' +
         '<div class="signal-summary">' +
@@ -3541,20 +3541,21 @@ function openProfile(companyName) {
   // --- Collapsible Maturity & Momentum Breakdown ---
   var accelPct = mfc.monthly_baseline > 0 ? Math.round(mfc.acceleration * 100) : 0;
   var patternNames = ['Governance', 'Tool', 'Talent', 'AI Hiring', 'PR'];
+  var patternDisplayNames = {'Governance':'Governance', 'Tool':'Tool', 'Talent':'Leadership & Upskilling', 'AI Hiring':'AI Hiring', 'PR':'PR'};
   var maxPw = Math.max.apply(null, patternNames.map(function(p) { return pw[p] || 0; }));
   var patternBarsHTML = '';
   patternNames.forEach(function(p) {
     var val = pw[p] || 0;
     var pct = maxPw > 0 ? (val / maxPw * 100) : 0;
     patternBarsHTML += '<div style="display:flex;align-items:center;gap:6px;margin:2px 0;">' +
-      '<span style="min-width:70px;">' + p + '</span>' +
+      '<span style="min-width:130px;">' + (patternDisplayNames[p] || p) + '</span>' +
       '<div style="flex:1;height:6px;background:var(--color-surface-offset);border-radius:3px;overflow:hidden;">' +
       '<div style="height:100%;width:' + pct + '%;background:var(--color-primary);border-radius:3px;"></div></div>' +
       '<span class="mono" style="min-width:28px;text-align:right;">' + fmt(val, 1) + '</span></div>';
   });
 
   var detailsHTML = '<details style="margin-top:var(--space-3);font-size:var(--text-xs);">' +
-    '<summary style="cursor:pointer;font-weight:600;padding:var(--space-2) 0;color:var(--color-text-muted);border-top:1px solid var(--color-border);margin-top:var(--space-2);">Maturity & Momentum Details</summary>' +
+    '<summary style="cursor:pointer;font-weight:600;padding:var(--space-2) 0;color:var(--color-text-muted);border-top:1px solid var(--color-border);margin-top:var(--space-2);">Scoring Details</summary>' +
     '<div style="padding:var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-md);margin-top:var(--space-1);">' +
     '<strong>Maturity Breakdown</strong><br>' +
     'Mean (all 6 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>' +
@@ -4796,7 +4797,7 @@ function buildCompanyProfileHTML(companyName, side) {
 
   // --- COLLAPSIBLE DETAILS (Maturity & Momentum) ---
   html += '<details style="margin-top:var(--space-3);font-size:var(--text-xs);">';
-  html += '<summary style="cursor:pointer;font-weight:600;padding:var(--space-1) 0;color:var(--color-text-muted);">Maturity & Momentum Details</summary>';
+  html += '<summary style="cursor:pointer;font-weight:600;padding:var(--space-1) 0;color:var(--color-text-muted);">Scoring Details</summary>';
   html += '<div style="padding:var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-md);margin-top:var(--space-1);">';
   // Score formula
   html += '<strong>Maturity Breakdown</strong><br>';
@@ -4816,12 +4817,13 @@ function buildCompanyProfileHTML(companyName, side) {
   // Adoption pattern
   html += '<strong>Adoption Pattern: ' + pattern + '</strong><br>';
   var patternNames = ['Governance', 'Tool', 'Talent', 'AI Hiring', 'PR'];
+  var patternDisplayNames2 = {'Governance':'Governance', 'Tool':'Tool', 'Talent':'Leadership & Upskilling', 'AI Hiring':'AI Hiring', 'PR':'PR'};
   var maxPw = Math.max.apply(null, patternNames.map(function(p) { return pw[p] || 0; }));
   patternNames.forEach(function(p) {
     var val = pw[p] || 0;
     var pct = maxPw > 0 ? (val / maxPw * 100) : 0;
     html += '<div style="display:flex;align-items:center;gap:6px;margin:2px 0;">';
-    html += '<span style="min-width:70px;">' + p + '</span>';
+    html += '<span style="min-width:130px;">' + (patternDisplayNames2[p] || p) + '</span>';
     html += '<div style="flex:1;height:6px;background:var(--color-surface);border-radius:3px;overflow:hidden;">';
     html += '<div style="height:100%;width:' + pct + '%;background:var(--color-primary);border-radius:3px;"></div></div>';
     html += '<span class="mono" style="min-width:28px;text-align:right;">' + fmt(val, 1) + '</span></div>';
@@ -4871,7 +4873,7 @@ function buildCompanyProfileHTML(companyName, side) {
       html += '<span style="color:var(--color-text-muted);">' + (s.date_event || s.date_found || '') + '</span>';
       html += '<span class="badge badge-blue" style="font-size:10px;">' + (s.HR_domain || '') + '</span>';
       html += '<span class="badge badge-gray" style="font-size:10px;">' + signalTypeBadge(s.signal_type) + '</span>';
-      if (s.signal_type === 'J') html += '<span class="badge badge-teal" style="font-size:10px;">AI Talent</span>';
+      if (s.signal_type === 'J') html += '<span class="badge badge-teal" style="font-size:10px;">AI Hiring</span>';
       html += flagBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'');
       html += '</div>';
       html += '<div class="signal-summary" style="line-height:1.4;">' +
