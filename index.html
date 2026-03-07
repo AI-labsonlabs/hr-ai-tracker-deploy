@@ -2787,6 +2787,19 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
               <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Companies are ranked relative to the current filter selection. If you filter by industry or sub-industry, ranks recalculate within that subset. Use the column header filters on any table to focus on specific segments.</p>
             </div>
 
+            <!-- Data Estimation -->
+            <div class="profile-card">
+              <div class="profile-card-title">Company Data &amp; Estimation</div>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;margin-bottom:var(--space-2);">
+                Company attributes (revenue, employee count, market cap) come from different sources depending on whether the company is public or private:
+              </p>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;">
+                <p style="margin-bottom:var(--space-2);"><strong>Public companies:</strong> Revenue and employee count are sourced from the most recent earnings report or SEC filing (10-K/10-Q). Market cap is sourced from financial data providers. All public company attributes are refreshed weekly.</p>
+                <p style="margin-bottom:var(--space-2);"><strong>Private companies:</strong> Revenue, employee count, and market cap (where applicable) are estimated using publicly available data &mdash; press reports, industry analyses, LinkedIn headcount, and comparable public peer multiples. These values are marked with an <span style="color:var(--color-text-faint);">est.</span> tag.</p>
+                <p>All estimated figures should be treated as approximations. If you spot an inaccuracy, use the flag button on any signal or reach out directly.</p>
+              </div>
+            </div>
+
           </div>
 
           <!-- RIGHT COLUMN -->
@@ -2858,19 +2871,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                   <div><strong style="color:#9ca3af;">PR</strong></div><div>Announcements and press coverage without specific deployment details</div>
                 </div>
                 <div style="margin-top:var(--space-2);">If two categories are close in weight, both are shown (e.g., &ldquo;Tool &amp; AI Hiring-led&rdquo;). If three or more are tied, the pattern is labeled &ldquo;Balanced.&rdquo; If PR exceeds 50% of total weight, the company is labeled &ldquo;PR-led.&rdquo;</div>
-              </div>
-            </div>
-
-            <!-- Data Estimation -->
-            <div class="profile-card">
-              <div class="profile-card-title">Company Data &amp; Estimation</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;margin-bottom:var(--space-2);">
-                Company attributes (revenue, employee count, market cap) come from different sources depending on whether the company is public or private:
-              </p>
-              <div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;">
-                <p style="margin-bottom:var(--space-2);"><strong>Public companies:</strong> Revenue and employee count are sourced from the most recent earnings report or SEC filing (10-K/10-Q). Market cap is sourced from financial data providers. All public company attributes are refreshed weekly.</p>
-                <p style="margin-bottom:var(--space-2);"><strong>Private companies:</strong> Revenue, employee count, and market cap (where applicable) are estimated using publicly available data &mdash; press reports, industry analyses, LinkedIn headcount, and comparable public peer multiples. These values are marked with an <span style="color:var(--color-text-faint);">est.</span> tag.</p>
-                <p>All estimated figures should be treated as approximations. If you spot an inaccuracy, use the flag button on any signal or reach out directly.</p>
               </div>
             </div>
 
