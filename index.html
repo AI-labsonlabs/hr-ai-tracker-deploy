@@ -1663,7 +1663,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 /* Multi-select filter component for signals page */
 .sig-multiselect {
   position: relative;
-  width: 100%;
 }
 .sig-multiselect-trigger {
   display: flex;
@@ -1711,7 +1710,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
-  right: 0;
+  min-width: 100%;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -1730,6 +1729,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   font-size: var(--text-sm);
   cursor: pointer;
   color: var(--color-text);
+  white-space: nowrap;
 }
 .sig-multiselect-option:hover {
   background: var(--color-surface-offset);
@@ -1743,6 +1743,57 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   font-weight: 500;
 }
 
+/* Signals company search (matches peer comparison style) */
+.sig-company-search-wrap {
+  position: relative;
+}
+.sig-company-search {
+  width: 100%;
+  min-width: 180px;
+  padding: 4px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  transition: border-color 180ms;
+  box-sizing: border-box;
+  height: 34px;
+}
+.sig-company-search::placeholder { color: var(--color-text-muted); }
+.sig-company-search:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+.sig-company-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgb(0 0 0 / .12);
+  max-height: 240px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin-top: 4px;
+  display: none;
+}
+.sig-company-dropdown-item {
+  padding: 6px 12px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: background 120ms;
+  white-space: nowrap;
+}
+.sig-company-dropdown-item:hover,
+.sig-company-dropdown-item.highlighted {
+  background: var(--color-primary-highlight, color-mix(in oklch, var(--color-primary) 8%, transparent));
+}
+
 .signals-filter-bar {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -1751,9 +1802,13 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   margin-bottom: var(--space-4);
 }
 .signals-filter-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-3);
+}
+.signals-filter-group {
+  flex: 0 1 auto;
+  min-width: 0;
 }
 .signals-filter-group label {
   display: block;
@@ -1765,7 +1820,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   margin-bottom: var(--space-1);
 }
 .signals-filter-group select {
-  width: 100%;
+  width: auto;
   padding: 6px 8px;
   font-size: var(--text-sm);
   border: 1px solid var(--color-border);
@@ -2320,10 +2375,14 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 
   /* --- Signals Explorer --- */
   .signals-filter-row {
-    grid-template-columns: 1fr 1fr;
+    flex-direction: column;
     gap: var(--space-2);
   }
-  .signals-filter-group select {
+  .signals-filter-group {
+    width: 100%;
+  }
+  .signals-filter-group select,
+  .sig-company-search {
     font-size: 16px; /* prevent iOS zoom */
   }
   .signal-feed-card {
@@ -2546,12 +2605,19 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
       <div class="signals-filter-bar" id="signalsFilterBar">
         <div class="signals-filter-row">
           <div class="signals-filter-group">
+            <label>Company</label>
+            <div class="sig-company-search-wrap">
+              <input type="text" class="sig-company-search" id="sigCompanySearch" placeholder="All Companies" autocomplete="off">
+              <div class="sig-company-dropdown" id="sigCompanyDropdown"></div>
+            </div>
+          </div>
+          <div class="signals-filter-group">
             <label>Industry</label>
             <div class="sig-multiselect" id="sigMultiIndustry" data-filter="industry"></div>
           </div>
           <div class="signals-filter-group">
-            <label>Company</label>
-            <select id="sigFilterCompany" onchange="renderSignalsFeed()"><option value="">All Companies</option></select>
+            <label>Sub-Industry</label>
+            <div class="sig-multiselect" id="sigMultiSubIndustry" data-filter="sub_industry"></div>
           </div>
           <div class="signals-filter-group">
             <label>Signal Type</label>
@@ -2564,18 +2630,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
           <div class="signals-filter-group">
             <label>Confirmation</label>
             <div class="sig-multiselect" id="sigMultiConfirm" data-filter="confirmation_level"></div>
-          </div>
-          <div class="signals-filter-group">
-            <label>Date Range</label>
-            <select id="sigFilterDate" onchange="renderSignalsFeed()">
-              <option value="">All Time</option>
-              <option value="7">Last 7 days</option>
-              <option value="30">Last 30 days</option>
-              <option value="60">Last 60 days</option>
-              <option value="90">Last 90 days</option>
-              <option value="180">Last 6 months</option>
-              <option value="365">Last year</option>
-            </select>
           </div>
         </div>
         <div class="signals-filter-actions">
@@ -2658,6 +2712,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
               <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Independent of signal type &mdash; this multiplier reflects how verified the evidence is:</p>
               <div style="display:flex;flex-direction:column;gap:var(--space-2);font-size:var(--text-xs);">
                 <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Confirmed Deployment</strong> &mdash; &times;1.0<br><span style="color:var(--color-text-muted);">A specific AI tool or platform is verified as running in production at meaningful scale (e.g., enterprise-wide rollout, confirmed in earnings call or vendor case study).</span></div>
+                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Inferred Deployment</strong> &mdash; &times;0.8<br><span style="color:var(--color-text-muted);">The company builds and sells HR AI products. A product announcement (new AI features, agents, or capabilities for customers) is strong evidence the company is also using those capabilities internally. Applied to HR product builders like SAP, Oracle, Workday, ServiceNow, Microsoft, Google, IBM, and Salesforce.</span></div>
                 <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Pilot</strong> &mdash; &times;0.7<br><span style="color:var(--color-text-muted);">A named tool is actively being tested in limited scope &mdash; one business unit, region, or use case &mdash; with intent to evaluate for broader rollout.</span></div>
                 <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Preparing</strong> &mdash; &times;0.5<br><span style="color:var(--color-text-muted);">The company is building toward AI adoption through infrastructure, hiring, or vendor procurement, but no specific tool is confirmed as deployed or piloted yet. Includes roles focused on building AI for HR.</span></div>
                 <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Exploration</strong> &mdash; &times;0.4<br><span style="color:var(--color-text-muted);">The company has expressed interest in HR AI through public statements, conference appearances, or generic leadership hires, but no concrete tool, vendor, or timeline has been identified.</span></div>
@@ -2888,6 +2943,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 <select id="afConfirmLevel">
                   <option value="">-- Select --</option>
                   <option value="Confirmed Deployment">Confirmed Deployment</option>
+                  <option value="Inferred Deployment">Inferred Deployment</option>
                   <option value="Pilot">Pilot</option>
                   <option value="Preparing">Preparing</option>
                   <option value="Exploration">Exploration</option>
@@ -3228,6 +3284,7 @@ function patternBadge(p) { return '<span class="badge badge-blue">' + (p || '—
 function confirmBadge(level) {
   var cls = 'badge-gray';
   if (level === 'Confirmed Deployment') cls = 'badge-green';
+  else if (level === 'Inferred Deployment') cls = 'badge-green';
   else if (level === 'Pilot') cls = 'badge-blue';
   else if (level === 'Preparing') cls = 'badge-teal';
   else if (level === 'Exploration') cls = 'badge-yellow';
@@ -4990,10 +5047,14 @@ function initSignalsExplorer() {
 // Multi-select filter state for signals page
 var sigMultiFilters = {
   industry: new Set(),
+  sub_industry: new Set(),
   signal_type: new Set(),
   HR_domain: new Set(),
   confirmation_level: new Set()
 };
+
+// Company search state for signals page
+var sigCompanyFilter = '';
 
 var SIG_LABELS = {
   A:'Deployment', B:'Pilot', C:'Procurement',
@@ -5079,10 +5140,16 @@ document.addEventListener('click', function(e) {
       d.classList.remove('open');
     });
   }
+  // Close company search dropdown on outside click
+  if (!e.target.closest('.sig-company-search-wrap')) {
+    var dd = document.getElementById('sigCompanyDropdown');
+    if (dd) dd.style.display = 'none';
+  }
 });
 
 function populateSignalsFilters() {
   var industries = new Set();
+  var subIndustries = new Set();
   var companies = new Set();
   var types = new Set();
   var domains = new Set();
@@ -5090,6 +5157,7 @@ function populateSignalsFilters() {
   
   sigAllSignals.forEach(function(s) {
     if (s.industry) industries.add(s.industry);
+    if (s.sub_industry) subIndustries.add(s.sub_industry);
     if (s.company_name) companies.add(s.company_name);
     if (s.signal_type) types.add(s.signal_type);
     if (s.HR_domain) domains.add(s.HR_domain);
@@ -5098,12 +5166,13 @@ function populateSignalsFilters() {
   
   // Build multi-selects
   buildSigMultiselect('sigMultiIndustry', Array.from(industries).sort(), function(v) { return v; }, 'industry');
+  buildSigMultiselect('sigMultiSubIndustry', Array.from(subIndustries).sort(), function(v) { return v; }, 'sub_industry');
   buildSigMultiselect('sigMultiType', Array.from(types).sort(), function(v) { return SIG_LABELS[v] || v; }, 'signal_type');
   buildSigMultiselect('sigMultiDomain', Array.from(domains).sort(), function(v) { return v; }, 'HR_domain');
   buildSigMultiselect('sigMultiConfirm', Array.from(confirms).sort(), function(v) { return v; }, 'confirmation_level');
   
-  // Company stays as single select
-  fillSelect('sigFilterCompany', Array.from(companies).sort(), function(v) { return v; });
+  // Company search
+  initSigCompanySearch(Array.from(companies).sort());
 }
 
 function fillSelect(id, values, labelFn) {
@@ -5121,23 +5190,141 @@ function fillSelect(id, values, labelFn) {
   sel.value = current; // restore selection if still valid
 }
 
+// Company search for signals page (similar to peer comparison)
+var sigAllCompanyNames = [];
+function initSigCompanySearch(companyNames) {
+  sigAllCompanyNames = companyNames;
+  var searchEl = document.getElementById('sigCompanySearch');
+  var dropdownEl = document.getElementById('sigCompanyDropdown');
+  if (!searchEl || !dropdownEl) return;
+
+  // Restore current filter
+  searchEl.value = sigCompanyFilter;
+
+  var highlightIdx = -1;
+
+  function renderDropdown(filter) {
+    var filtered = filter
+      ? sigAllCompanyNames.filter(function(n) { return n.toLowerCase().indexOf(filter.toLowerCase()) >= 0; })
+      : sigAllCompanyNames;
+    // If industry filter is active, further restrict
+    if (sigMultiFilters.industry.size > 0) {
+      var companiesInIndustry = new Set();
+      sigAllSignals.forEach(function(s) {
+        if (sigMultiFilters.industry.has(s.industry)) companiesInIndustry.add(s.company_name);
+      });
+      filtered = filtered.filter(function(n) { return companiesInIndustry.has(n); });
+    }
+    if (sigMultiFilters.sub_industry.size > 0) {
+      var companiesInSub = new Set();
+      sigAllSignals.forEach(function(s) {
+        if (sigMultiFilters.sub_industry.has(s.sub_industry)) companiesInSub.add(s.company_name);
+      });
+      filtered = filtered.filter(function(n) { return companiesInSub.has(n); });
+    }
+    highlightIdx = -1;
+    dropdownEl.innerHTML = filtered.map(function(n, i) {
+      return '<div class="sig-company-dropdown-item" data-value="' + n.replace(/"/g, '&quot;') + '" data-idx="' + i + '">' + n + '</div>';
+    }).join('');
+    dropdownEl.style.display = filtered.length > 0 ? 'block' : 'none';
+
+    dropdownEl.querySelectorAll('.sig-company-dropdown-item').forEach(function(el) {
+      el.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        selectSigCompany(this.dataset.value);
+      });
+    });
+  }
+
+  function selectSigCompany(name) {
+    sigCompanyFilter = name;
+    searchEl.value = name;
+    dropdownEl.style.display = 'none';
+    renderSignalsFeed();
+  }
+
+  searchEl.addEventListener('focus', function() {
+    renderDropdown(this.value);
+  });
+  searchEl.addEventListener('input', function() {
+    // If field is cleared, reset company filter
+    if (!this.value) {
+      sigCompanyFilter = '';
+      renderSignalsFeed();
+    }
+    renderDropdown(this.value);
+  });
+  searchEl.addEventListener('blur', function() {
+    setTimeout(function() { dropdownEl.style.display = 'none'; }, 200);
+    // If typed value doesn't match any company, clear
+    if (searchEl.value && sigAllCompanyNames.indexOf(searchEl.value) === -1) {
+      searchEl.value = sigCompanyFilter; // restore to last valid selection
+    }
+  });
+  searchEl.addEventListener('keydown', function(e) {
+    var items = dropdownEl.querySelectorAll('.sig-company-dropdown-item');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      highlightIdx = Math.min(highlightIdx + 1, items.length - 1);
+      items.forEach(function(el, i) { el.classList.toggle('highlighted', i === highlightIdx); });
+      if (items[highlightIdx]) items[highlightIdx].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      highlightIdx = Math.max(highlightIdx - 1, 0);
+      items.forEach(function(el, i) { el.classList.toggle('highlighted', i === highlightIdx); });
+      if (items[highlightIdx]) items[highlightIdx].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (highlightIdx >= 0 && items[highlightIdx]) {
+        selectSigCompany(items[highlightIdx].dataset.value);
+      }
+    } else if (e.key === 'Escape') {
+      dropdownEl.style.display = 'none';
+    }
+  });
+}
+
 function getFilteredSignals() {
-  var filterCompany = document.getElementById('sigFilterCompany').value;
-  var filterDate = document.getElementById('sigFilterDate').value;
-  
-  var now = new Date();
-  var cutoff = filterDate ? new Date(now.getTime() - parseInt(filterDate) * 86400000) : null;
-  var cutoffStr = cutoff ? cutoff.toISOString().slice(0, 10) : '';
-  
   return sigAllSignals.filter(function(s) {
+    if (sigCompanyFilter && s.company_name !== sigCompanyFilter) return false;
     if (sigMultiFilters.industry.size > 0 && !sigMultiFilters.industry.has(s.industry)) return false;
-    if (filterCompany && s.company_name !== filterCompany) return false;
+    if (sigMultiFilters.sub_industry.size > 0 && !sigMultiFilters.sub_industry.has(s.sub_industry)) return false;
     if (sigMultiFilters.signal_type.size > 0 && !sigMultiFilters.signal_type.has(s.signal_type)) return false;
     if (sigMultiFilters.HR_domain.size > 0 && !sigMultiFilters.HR_domain.has(s.HR_domain)) return false;
     if (sigMultiFilters.confirmation_level.size > 0 && !sigMultiFilters.confirmation_level.has(s.confirmation_level)) return false;
-    if (cutoffStr && s.date < cutoffStr) return false;
     return true;
   });
+}
+
+// Cascade industry <-> sub_industry filters on signals page
+function updateSigSubIndustryCascade() {
+  // If industry is selected, restrict sub_industry options to those industries
+  if (sigMultiFilters.industry.size > 0) {
+    var validSubs = new Set();
+    sigAllSignals.forEach(function(s) {
+      if (sigMultiFilters.industry.has(s.industry) && s.sub_industry) validSubs.add(s.sub_industry);
+    });
+    buildSigMultiselect('sigMultiSubIndustry', Array.from(validSubs).sort(), function(v) { return v; }, 'sub_industry');
+  }
+  // If sub_industry is selected but industry is not, restrict industry options
+  if (sigMultiFilters.sub_industry.size > 0 && sigMultiFilters.industry.size === 0) {
+    var validIndustries = new Set();
+    sigAllSignals.forEach(function(s) {
+      if (sigMultiFilters.sub_industry.has(s.sub_industry) && s.industry) validIndustries.add(s.industry);
+    });
+    buildSigMultiselect('sigMultiIndustry', Array.from(validIndustries).sort(), function(v) { return v; }, 'industry');
+  }
+  // If neither is filtered, show all for both
+  if (sigMultiFilters.industry.size === 0 && sigMultiFilters.sub_industry.size === 0) {
+    var allIndustries = new Set();
+    var allSubs = new Set();
+    sigAllSignals.forEach(function(s) {
+      if (s.industry) allIndustries.add(s.industry);
+      if (s.sub_industry) allSubs.add(s.sub_industry);
+    });
+    buildSigMultiselect('sigMultiIndustry', Array.from(allIndustries).sort(), function(v) { return v; }, 'industry');
+    buildSigMultiselect('sigMultiSubIndustry', Array.from(allSubs).sort(), function(v) { return v; }, 'sub_industry');
+  }
 }
 
 window.renderSignalsFeed = function() {
@@ -5154,24 +5341,8 @@ window.renderSignalsFeed = function() {
   var loadMore = document.getElementById('signalsLoadMore');
   loadMore.style.display = filtered.length > sigPageSize ? '' : 'none';
   
-  // Update company dropdown based on industry multi-filter
-  if (sigMultiFilters.industry.size > 0) {
-    var companiesInIndustry = [];
-    sigAllSignals.forEach(function(s) {
-      if (sigMultiFilters.industry.has(s.industry) && companiesInIndustry.indexOf(s.company_name) === -1) {
-        companiesInIndustry.push(s.company_name);
-      }
-    });
-    companiesInIndustry.sort();
-    fillSelect('sigFilterCompany', companiesInIndustry, function(v) { return v; });
-  } else {
-    var allCompanyNames = [];
-    sigAllSignals.forEach(function(s) {
-      if (allCompanyNames.indexOf(s.company_name) === -1) allCompanyNames.push(s.company_name);
-    });
-    allCompanyNames.sort();
-    fillSelect('sigFilterCompany', allCompanyNames, function(v) { return v; });
-  }
+  // Cascade: industry <-> sub_industry
+  updateSigSubIndustryCascade();
 };
 
 window.loadMoreSignals = function() {
@@ -5237,21 +5408,16 @@ function renderSignalCards(signals) {
 window.clearSignalsFilters = function() {
   // Reset multi-select filters
   sigMultiFilters.industry.clear();
+  sigMultiFilters.sub_industry.clear();
   sigMultiFilters.signal_type.clear();
   sigMultiFilters.HR_domain.clear();
   sigMultiFilters.confirmation_level.clear();
-  // Reset single selects
-  document.getElementById('sigFilterCompany').value = '';
-  document.getElementById('sigFilterDate').value = '';
+  // Reset company search
+  sigCompanyFilter = '';
+  var searchEl = document.getElementById('sigCompanySearch');
+  if (searchEl) searchEl.value = '';
   // Re-populate to reset UI
   populateSignalsFilters();
-  // Re-populate company list (no industry restriction)
-  var allCompanyNames = [];
-  sigAllSignals.forEach(function(s) {
-    if (allCompanyNames.indexOf(s.company_name) === -1) allCompanyNames.push(s.company_name);
-  });
-  allCompanyNames.sort();
-  fillSelect('sigFilterCompany', allCompanyNames, function(v) { return v; });
   renderSignalsFeed();
 };
 
