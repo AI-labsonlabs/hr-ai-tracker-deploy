@@ -3292,9 +3292,9 @@ function openProfile(companyName) {
     '<strong>Final: ' + fmt(md.score, 1) + '</strong><br><br>' +
     '<strong>Momentum Breakdown</strong><br>' +
     'Baseline: ' + fmt(mfc.w365, 1) + ' weighted signals/yr \u2192 ' + fmt(mfc.monthly_baseline, 1) + '/mo<br>' +
-    'Recent: w30=' + fmt(mfc.w30, 1) + ' \u00d7 size ' + fmt(mfc.size_factor, 2) + ' = ' + fmt(mfc.recent_monthly, 1) + '/mo<br>' +
-    'Growth rate: (' + fmt(mfc.recent_monthly,1) + ' \u2212 ' + fmt(mfc.monthly_baseline,1) + ') / ' + fmt(mfc.monthly_baseline,1) + ' = ' + fmt(mfc.acceleration, 2) + ' (' + accelPct + '% above)<br>' +
-    'Recency score: ' + fmt(mfc.velocity, 2) + ' (3\u00d7/2\u00d7/1\u00d7 weighted 30/60/90d vs baseline)<br>' +
+    'Weighted signals (last 30 days): ' + fmt(mfc.w30, 1) + ' \u00d7 size factor ' + fmt(mfc.size_factor, 2) + ' = ' + fmt(mfc.recent_monthly, 1) + '/mo<br>' +
+    'Growth rate: (' + fmt(mfc.recent_monthly,1) + ' \u2212 baseline ' + fmt(mfc.monthly_baseline,1) + ') / ' + fmt(mfc.monthly_baseline,1) + ' = ' + fmt(mfc.acceleration, 2) + ' (' + accelPct + '% above baseline)<br>' +
+    'Recency score: ' + fmt(mfc.velocity, 2) + ' (signals weighted 3\u00d7 for last 30d, 2\u00d7 for 30\u201360d, 1\u00d7 for 60\u201390d)<br>' +
     'Raw = ' + fmt(mfc.acceleration,2) + '\u00d70.6 + ' + fmt(mfc.velocity,2) + '\u00d70.4 = ' + fmt(mfc.raw_momentum, 2) + '<br>' +
     '<strong>Final: ' + fmtMomentum(mom.score || detail.momentum_score) + '</strong> (tanh scaled)<br><br>' +
     '<strong>Adoption Pattern: ' + pattern + '</strong><br>' + patternBarsHTML +
@@ -4447,10 +4447,10 @@ function buildCompanyProfileHTML(companyName, side) {
   // Momentum formula
   html += '<strong>Momentum Breakdown</strong><br>';
   html += 'Baseline: ' + fmt(mfc.w365, 1) + ' weighted signals/yr \u2192 ' + fmt(mfc.monthly_baseline, 1) + '/mo<br>';
-  html += 'Recent: w30=' + fmt(mfc.w30, 1) + ' \u00d7 size ' + fmt(mfc.size_factor, 2) + ' = ' + fmt(mfc.recent_monthly, 1) + '/mo<br>';
+  html += 'Weighted signals (last 30 days): ' + fmt(mfc.w30, 1) + ' \u00d7 size factor ' + fmt(mfc.size_factor, 2) + ' = ' + fmt(mfc.recent_monthly, 1) + '/mo<br>';
   var accelPct = mfc.monthly_baseline > 0 ? Math.round(mfc.acceleration * 100) : 0;
-  html += 'Growth rate: (' + fmt(mfc.recent_monthly,1) + ' \u2212 ' + fmt(mfc.monthly_baseline,1) + ') / ' + fmt(mfc.monthly_baseline,1) + ' = ' + fmt(mfc.acceleration, 2) + ' (' + accelPct + '% above)<br>';
-  html += 'Recency score: ' + fmt(mfc.velocity, 2) + ' (3\u00d7/2\u00d7/1\u00d7 weighted 30/60/90d vs baseline)<br>';
+  html += 'Growth rate: (' + fmt(mfc.recent_monthly,1) + ' \u2212 baseline ' + fmt(mfc.monthly_baseline,1) + ') / ' + fmt(mfc.monthly_baseline,1) + ' = ' + fmt(mfc.acceleration, 2) + ' (' + accelPct + '% above baseline)<br>';
+  html += 'Recency score: ' + fmt(mfc.velocity, 2) + ' (signals weighted 3\u00d7 for last 30d, 2\u00d7 for 30\u201360d, 1\u00d7 for 60\u201390d)<br>';
   html += 'Raw = ' + fmt(mfc.acceleration,2) + '\u00d70.6 + ' + fmt(mfc.velocity,2) + '\u00d70.4 = ' + fmt(mfc.raw_momentum, 2) + '<br>';
   html += '<strong>Final: ' + fmtMomentum(mom.score || detail.momentum_score) + '</strong> (tanh scaled)<br><br>';
   // Adoption pattern
