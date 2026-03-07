@@ -522,6 +522,32 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   border-color: var(--color-primary);
 }
 .signal-item .signal-summary { margin-bottom: var(--space-2); }
+.signal-item .signal-summary .summary-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+.signal-item .signal-summary .summary-text.expanded {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  display: block;
+}
+.signal-item .signal-summary .show-more-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  cursor: pointer;
+  padding: 2px 0;
+  margin-top: 2px;
+}
+.signal-item .signal-summary .show-more-btn:hover {
+  text-decoration: underline;
+}
 .signal-item .signal-sources {
   display: flex;
   gap: var(--space-3);
@@ -1898,6 +1924,33 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   color: var(--color-text);
   margin-bottom: var(--space-2);
 }
+.signal-feed-summary .summary-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  transition: all 200ms ease;
+}
+.signal-feed-summary .summary-text.expanded {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  display: block;
+}
+.signal-feed-summary .show-more-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  cursor: pointer;
+  padding: 2px 0;
+  margin-top: 2px;
+}
+.signal-feed-summary .show-more-btn:hover {
+  text-decoration: underline;
+}
 .signal-feed-sources {
   display: flex;
   flex-wrap: wrap;
@@ -2387,6 +2440,10 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   }
   .signal-feed-card {
     padding: var(--space-3);
+  }
+  .signal-feed-summary .summary-text {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
   }
 }
 
@@ -3462,7 +3519,10 @@ function openProfile(companyName) {
         (s.signal_type === 'J' ? '<span class="badge badge-teal">AI Talent</span>' : '') +
         flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
         '</div>' +
-        '<div class="signal-summary">' + (s.summary || '') + '</div>' +
+        '<div class="signal-summary">' +
+        '<div class="summary-text">' + (s.summary || '') + '</div>' +
+        '<button class="show-more-btn" onclick="toggleSummary(this)">Show more</button>' +
+        '</div>' +
         sourcesHTML + '</div>';
     }
   }
@@ -3544,6 +3604,7 @@ function openProfile(companyName) {
   document.getElementById('profileContent').innerHTML = html;
   profileOverlay.classList.add('active');
   profileOverlay.scrollTop = 0;
+  requestAnimationFrame(initShowMoreButtons);
 
   // Attach domain bar click handlers for filtering
   var activeDomainFilter = null;
@@ -4811,7 +4872,9 @@ function buildCompanyProfileHTML(companyName, side) {
       if (s.signal_type === 'J') html += '<span class="badge badge-teal" style="font-size:10px;">AI Talent</span>';
       html += flagBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'');
       html += '</div>';
-      html += '<div style="line-height:1.4;">' + (s.summary || '') + '</div>';
+      html += '<div class="signal-summary" style="line-height:1.4;">' +
+        '<div class="summary-text">' + (s.summary || '') + '</div>' +
+        '<button class="show-more-btn" onclick="event.stopPropagation();toggleSummary(this)">Show more</button></div>';
       html += sourcesHTML + '</div>';
     });
   }
@@ -4873,6 +4936,7 @@ function initCompareSelector(selectId, searchId, profileId, side) {
       profile.innerHTML = buildCompanyProfileHTML(name, side);
       profile.classList.add('visible');
       initDomainFiltering(side);
+      requestAnimationFrame(initShowMoreButtons);
     }
   }
 
@@ -5292,6 +5356,7 @@ window.renderSignalsFeed = function() {
   
   var feedEl = document.getElementById('signalsFeed');
   feedEl.innerHTML = renderSignalCards(showing);
+  requestAnimationFrame(initShowMoreButtons);
   
   var loadMore = document.getElementById('signalsLoadMore');
   loadMore.style.display = filtered.length > sigPageSize ? '' : 'none';
@@ -5309,6 +5374,7 @@ window.loadMoreSignals = function() {
     'Showing ' + showing.length + ' of ' + filtered.length + ' signals';
   
   document.getElementById('signalsFeed').innerHTML = renderSignalCards(showing);
+  requestAnimationFrame(initShowMoreButtons);
   
   var loadMore = document.getElementById('signalsLoadMore');
   loadMore.style.display = showing.length < filtered.length ? '' : 'none';
@@ -5352,12 +5418,38 @@ function renderSignalCards(signals) {
       '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' +
       flagBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain) +
       '</div>' +
-      '<div class="signal-feed-summary">' + s.summary + '</div>' +
+      '<div class="signal-feed-summary">' +
+        '<div class="summary-text">' + s.summary + '</div>' +
+        '<button class="show-more-btn" onclick="toggleSummary(this)">Show more</button>' +
+      '</div>' +
       sourcesHTML +
       '</div>';
   });
   return html;
 }
+
+// Toggle show more/less on signal summaries
+window.toggleSummary = function(btn) {
+  var textEl = btn.previousElementSibling;
+  var isExpanded = textEl.classList.toggle('expanded');
+  btn.textContent = isExpanded ? 'Show less' : 'Show more';
+};
+
+// After rendering signal cards, detect which ones are actually truncated
+// and only show the "Show more" button for those
+window.initShowMoreButtons = function() {
+  var summaryEls = document.querySelectorAll('.signal-feed-summary .summary-text');
+  summaryEls.forEach(function(el) {
+    var btn = el.nextElementSibling;
+    if (!btn) return;
+    // Compare scrollHeight to clientHeight — if content overflows, show button
+    if (el.scrollHeight > el.clientHeight + 2) {
+      btn.style.display = 'inline-block';
+    } else {
+      btn.style.display = 'none';
+    }
+  });
+};
 
 window.clearSignalsFilters = function() {
   // Reset multi-select filters
