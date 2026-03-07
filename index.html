@@ -1833,7 +1833,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   gap: var(--space-3);
 }
 .signals-filter-group {
-  flex: 0 1 auto;
+  flex: 1 1 0;
   min-width: 0;
 }
 .signals-filter-group label {
@@ -2752,7 +2752,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                   <tr><td>Governance</td><td class="mono">6.0</td><td>AI ethics board or policy covering HR</td></tr>
                   <tr><td>Leadership Hire</td><td class="mono">5.0</td><td>Hiring VP of AI for HR</td></tr>
                   <tr><td>Upskilling</td><td class="mono">4.0</td><td>Company-wide AI training for HR team</td></tr>
-                  <tr><td>AI Talent Hiring</td><td class="mono">3.0</td><td>Job posts for ML engineers, data scientists</td></tr>
+                  <tr><td>AI Hiring</td><td class="mono">3.0</td><td>Job posts for ML engineers, data scientists</td></tr>
                   <tr><td>Announcement</td><td class="mono">1.0</td><td>Press release or mention without concrete action</td></tr>
                 </tbody>
               </table>
@@ -2793,7 +2793,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 2: Group by HR domain</strong><br>
-                  6 domains: Recruiting, L&amp;D, HR Service Delivery, Comp/Benefits, Governance, AI Hiring. Each scored 0&ndash;100 independently with diminishing returns within a domain (1/&radic;rank). Domains with at least one signal score a minimum of 1.
+                  6 domains: Recruiting, Talent Development, HR Service Delivery, Comp/Benefits, Governance, AI Hiring. Each scored 0&ndash;100 independently with diminishing returns within a domain (1/&radic;rank). Domains with at least one signal score a minimum of 1.
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 3: Blend for overall score</strong><br>
@@ -2823,7 +2823,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                   <strong>Change vs. baseline</strong> &mdash; How much the last 30 days exceeds or trails the 12-month average. Positive = accelerating.
                 </div>
                 <div style="margin-bottom:var(--space-2);">
-                  <strong>Recent activity trend</strong> &mdash; Weighted across 30/60/90-day windows (30d &times;3, 60d &times;2, 90d &times;1), emphasizing the most recent activity.
+                  <strong>Recent activity trend</strong> &mdash; Weighted across signal recency windows (&lt;30d &times;3, 30&ndash;60d &times;2, 60&ndash;90d &times;1), emphasizing the most recent activity.
                 </div>
                 <div>
                   <strong>Final mapping</strong><br>
@@ -2960,7 +2960,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                   <option value="E">Governance</option>
                   <option value="F">Upskilling</option>
                   <option value="I">Announcement</option>
-                  <option value="J">AI Talent Hiring</option>
+                  <option value="J">AI Hiring</option>
                 </select>
               </div>
               <div class="admin-form-field">
@@ -2968,7 +2968,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 <select id="afHRDomain">
                   <option value="">-- Select --</option>
                   <option value="Recruiting">Recruiting</option>
-                  <option value="L&D">L&amp;D</option>
+                  <option value="Talent Development">Talent Development</option>
                   <option value="HR Service Delivery">HR Service Delivery</option>
                   <option value="Comp/Benefits">Comp/Benefits</option>
                   
@@ -3309,7 +3309,7 @@ function fmt(v, d) { return (typeof v === 'number') ? v.toFixed(d === undefined 
 function fmtMomentum(v) { return v > 0 ? '+' + fmt(v) : fmt(v); }
 function patternBadge(p) { return '<span class="badge badge-blue">' + (p || '—') + '</span>'; }
 function signalTypeBadge(type) {
-  var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',E:'Governance',F:'Upskilling',I:'Announcement',J:'AI Talent Hiring'};
+  var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',E:'Governance',F:'Upskilling',I:'Announcement',J:'AI Hiring'};
   return labels[type] || type || '';
 }
 function prRatioBar(pr) {
@@ -3459,7 +3459,7 @@ function openProfile(companyName) {
   const mfc = (mom).formula_components || {};
   const pw = md.pattern_weights || {};
   const pattern = md.adoption_pattern || detail.adoption_pattern || '\u2014';
-  const allDomains = ['Recruiting', 'L&D', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring'];
+  const allDomains = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring'];
   const isPrivate = co.public_or_private === 'Private';
   const estTag = ' <span style="font-size:var(--text-xs);color:var(--color-text-faint);font-weight:400;" title="Estimated based on publicly available industry data">est.</span>';
 
@@ -3565,7 +3565,7 @@ function openProfile(companyName) {
     'Baseline: ' + fmt(mfc.w365, 1) + ' weighted signals/yr \u2192 ' + fmt(mfc.monthly_baseline, 1) + '/mo<br>' +
     'Weighted signals (last 30 days): ' + fmt(mfc.w30, 1) + ' \u00d7 size factor ' + fmt(mfc.size_factor, 2) + ' = ' + fmt(mfc.recent_monthly, 1) + '/mo<br>' +
     'Growth rate: (' + fmt(mfc.recent_monthly,1) + ' \u2212 baseline ' + fmt(mfc.monthly_baseline,1) + ') / ' + fmt(mfc.monthly_baseline,1) + ' = ' + fmt(mfc.acceleration, 2) + ' (' + accelPct + '% above baseline)<br>' +
-    'Recency score: ' + fmt(mfc.velocity, 2) + ' (signals weighted 3\u00d7 for last 30d, 2\u00d7 for 30\u201360d, 1\u00d7 for 60\u201390d)<br>' +
+    'Recency score: ' + fmt(mfc.velocity, 2) + ' (signals weighted 3\u00d7 for &lt;30d, 2\u00d7 for 30\u201360d, 1\u00d7 for 60\u201390d)<br>' +
     'Raw = ' + fmt(mfc.acceleration,2) + '\u00d70.6 + ' + fmt(mfc.velocity,2) + '\u00d70.4 = ' + fmt(mfc.raw_momentum, 2) + '<br>' +
     '<strong>Final: ' + fmtMomentum(mom.score || detail.momentum_score) + '</strong> (tanh scaled)<br><br>' +
     '<strong>Adoption Pattern: ' + pattern + '</strong><br>' + patternBarsHTML +
@@ -3581,7 +3581,8 @@ function openProfile(companyName) {
     '<div class="profile-grid">' +
     '<div class="profile-card"><div class="profile-card-title">Maturity Score</div><div class="gauge-container">' + gaugeSVG + '<div><div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);">/100</span></div><div class="gauge-label">' + (md.adoption_pattern || '') + '</div></div></div></div>' +
     '<div class="profile-card"><div class="profile-card-title">Momentum</div><div class="gauge-value" style="margin-bottom:var(--space-2);"><span class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span></div>' +
-    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-2);font-size:var(--text-xs);"><div><div style="color:var(--color-text-muted);">30d signals</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">60d signals</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_60d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">90d signals</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_90d || 0) + '</div></div></div></div>' +
+    '<div style="font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);margin-bottom:var(--space-1);">Signals</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-2);font-size:var(--text-xs);"><div><div style="color:var(--color-text-muted);">&lt;30d</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">30\u201360d</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_60d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">60\u201390d</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_90d || 0) + '</div></div></div></div>' +
     '<div class="profile-card"><div class="profile-card-title">Company Info</div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);font-size:var(--text-sm);">' +
     '<div><span style="color:var(--color-text-muted);">Employees</span><br><strong>' + empHTML + '</strong></div>' +
@@ -3821,7 +3822,7 @@ const OV_COLS = [
   { key: 'industry',     label: 'Industry',     type: 'multi-filter' },
   { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter' },
   { key: 'maturity',     label: 'Maturity',     type: 'metric',
-    tooltip: '<strong>Maturity Score (0–100)</strong>Each of 6 HR domains (Recruiting, L&D, HR Service Delivery, Comp/Benefits, Governance, AI Hiring) is scored 0–100 independently. Overall = 60% mean of all 6 domains + 40% mean of top 3, adjusted for company size and regulatory complexity. Rewards breadth across categories.' },
+    tooltip: '<strong>Maturity Score (0–100)</strong>Each of 6 HR domains (Recruiting, Talent Development, HR Service Delivery, Comp/Benefits, Governance, AI Hiring) is scored 0–100 independently. Overall = 60% mean of all 6 domains + 40% mean of top 3, adjusted for company size and regulatory complexity. Rewards breadth across categories.' },
   { key: 'momentum',     label: 'Momentum',     type: 'metric',
     tooltip: '<strong>Momentum (−10 to +10)</strong>Measures recent acceleration of HR AI signals. Compares 30-day weighted signal velocity to a 12-month baseline, normalized by company size.' },
   { key: 'signals',      label: 'Signals',      type: 'metric',
@@ -4246,7 +4247,7 @@ function kpiCard(label, value, sub, extraClass) {
 
 const DOMAIN_TOOLTIPS = {
   'Recruiting': 'Signals related to AI in talent acquisition: AI resume screening, chatbot interviews, automated candidate matching, programmatic job advertising, and predictive hiring tools.',
-  'L&D': 'Signals for AI in Learning & Development: personalized learning paths, AI content curation, skills gap analysis, adaptive training platforms, and intelligent coaching tools.',
+  'Talent Development': 'Signals for AI in Talent Development: personalized learning paths, AI content curation, skills gap analysis, adaptive training platforms, intelligent coaching tools, AI-driven performance management, succession planning, career pathing, and employee development.',
   'HR Service Delivery': 'Signals for AI in HR operations and employee service: workflow automation, document processing, employee data analytics, HRIS AI features (Workday AI, ServiceNow), HR chatbots, AI help desks, automated case routing, self-service portals, and employee experience platforms.',
   'Comp/Benefits': 'Signals for AI in Compensation & Benefits: automated pay equity analysis, benefits optimization, comp benchmarking tools, and total rewards modeling.',
   'Governance': 'Signals for AI Governance in HR: responsible AI policies, bias auditing frameworks, ethics boards overseeing HR AI, regulatory compliance, and algorithmic accountability.',
@@ -4556,12 +4557,12 @@ var MOVERS_COLS = [
     tooltip: '<strong>Maturity Score (0\u2013100)</strong>Overall HR AI adoption maturity.' },
   { key: 'momentum', label: 'Momentum', type: 'sort-only',
     tooltip: '<strong>Momentum (\u221210 to +10)</strong>Recent acceleration of activity. Higher = faster recent adoption.' },
-  { key: 'signals_30d', label: '30d Signals', type: 'sort-only',
-    tooltip: '<strong>30-Day Signals</strong>Number of new HR AI signals detected in the last 30 days.' },
-  { key: 'signals_60d', label: '60d Signals', type: 'sort-only',
-    tooltip: '<strong>60-Day Signals</strong>Signals detected in the last 60 days.' },
-  { key: 'signals_90d_val', label: '90d Signals', type: 'sort-only',
-    tooltip: '<strong>90-Day Signals</strong>Signals detected in the last 90 days.' },
+  { key: 'signals_30d', label: '<30d', type: 'sort-only',
+    tooltip: '<strong>&lt;30 Day Signals</strong>Number of new HR AI signals detected in the last 30 days.' },
+  { key: 'signals_60d', label: '30\u201360d', type: 'sort-only',
+    tooltip: '<strong>30\u201360 Day Signals</strong>Signals detected between 30 and 60 days ago.' },
+  { key: 'signals_90d_val', label: '60\u201390d', type: 'sort-only',
+    tooltip: '<strong>60\u201390 Day Signals</strong>Signals detected between 60 and 90 days ago.' },
   { key: 'momentum_bar', label: 'Momentum Bar', type: 'static' }
 ];
 
@@ -4596,7 +4597,7 @@ function renderMovers() {
         '<div class="mobile-card-metrics">' +
         '<div class="mobile-card-metric"><span class="mobile-card-metric-label">Maturity</span><span class="mobile-card-metric-value ' + maturityClass(m.maturity) + '">' + fmt(m.maturity) + '</span></div>' +
         '<div class="mobile-card-metric"><span class="mobile-card-metric-label">Momentum</span><span class="mobile-card-metric-value momentum-pos" style="font-weight:600;">+' + fmt(m.momentum) + '</span></div>' +
-        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">30d</span><span class="mobile-card-metric-value">' + m.signals_30d + '</span></div>' +
+        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">&lt;30d</span><span class="mobile-card-metric-value">' + m.signals_30d + '</span></div>' +
         '</div>' +
         '</div>';
     });
@@ -4786,10 +4787,11 @@ function buildCompanyProfileHTML(companyName, side) {
   html += '<div style="flex:1;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-3);text-align:center;">';
   html += '<div style="font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);margin-bottom:var(--space-1);">Momentum</div>';
   html += '<div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);" class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</div>';
-  html += '<div style="display:flex;justify-content:center;gap:var(--space-3);font-size:var(--text-xs);margin-top:var(--space-2);">';
-  html += '<div><span style="color:var(--color-text-muted);">30d</span> <strong>' + (mom.signals_30d || 0) + '</strong></div>';
-  html += '<div><span style="color:var(--color-text-muted);">60d</span> <strong>' + (mom.signals_60d || 0) + '</strong></div>';
-  html += '<div><span style="color:var(--color-text-muted);">90d</span> <strong>' + (mom.signals_90d || 0) + '</strong></div>';
+  html += '<div style="font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);margin-top:var(--space-2);">Signals</div>';
+  html += '<div style="display:flex;justify-content:center;gap:var(--space-3);font-size:var(--text-xs);margin-top:var(--space-1);">';
+  html += '<div><span style="color:var(--color-text-muted);">&lt;30d</span> <strong>' + (mom.signals_30d || 0) + '</strong></div>';
+  html += '<div><span style="color:var(--color-text-muted);">30\u201360d</span> <strong>' + (mom.signals_60d || 0) + '</strong></div>';
+  html += '<div><span style="color:var(--color-text-muted);">60\u201390d</span> <strong>' + (mom.signals_90d || 0) + '</strong></div>';
   html += '</div></div></div>';
 
   // --- COLLAPSIBLE DETAILS (Maturity & Momentum) ---
@@ -4808,7 +4810,7 @@ function buildCompanyProfileHTML(companyName, side) {
   html += 'Weighted signals (last 30 days): ' + fmt(mfc.w30, 1) + ' \u00d7 size factor ' + fmt(mfc.size_factor, 2) + ' = ' + fmt(mfc.recent_monthly, 1) + '/mo<br>';
   var accelPct = mfc.monthly_baseline > 0 ? Math.round(mfc.acceleration * 100) : 0;
   html += 'Growth rate: (' + fmt(mfc.recent_monthly,1) + ' \u2212 baseline ' + fmt(mfc.monthly_baseline,1) + ') / ' + fmt(mfc.monthly_baseline,1) + ' = ' + fmt(mfc.acceleration, 2) + ' (' + accelPct + '% above baseline)<br>';
-  html += 'Recency score: ' + fmt(mfc.velocity, 2) + ' (signals weighted 3\u00d7 for last 30d, 2\u00d7 for 30\u201360d, 1\u00d7 for 60\u201390d)<br>';
+  html += 'Recency score: ' + fmt(mfc.velocity, 2) + ' (signals weighted 3\u00d7 for &lt;30d, 2\u00d7 for 30\u201360d, 1\u00d7 for 60\u201390d)<br>';
   html += 'Raw = ' + fmt(mfc.acceleration,2) + '\u00d70.6 + ' + fmt(mfc.velocity,2) + '\u00d70.4 = ' + fmt(mfc.raw_momentum, 2) + '<br>';
   html += '<strong>Final: ' + fmtMomentum(mom.score || detail.momentum_score) + '</strong> (tanh scaled)<br><br>';
   // Adoption pattern
@@ -4829,7 +4831,7 @@ function buildCompanyProfileHTML(companyName, side) {
   // --- DOMAIN SCORES (clickable to filter signals) ---
   html += '<div style="margin-top:var(--space-4);">';
   html += '<h4 style="margin:0 0 var(--space-2) 0;font-size:var(--text-sm);font-weight:600;">Domain Scores <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(click to filter signals)</span></h4>';
-  var domains = ['Recruiting', 'L&D', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring'];
+  var domains = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring'];
   domains.forEach(function(d) {
     var score = ds[d] || 0;
     var tip = DOMAIN_TOOLTIPS[d] || '';
@@ -5082,7 +5084,7 @@ var sigCompanyFilter = '';
 var SIG_LABELS = {
   A:'Deployment', B:'Pilot', C:'Procurement',
   D:'Leadership Hire', E:'Governance', F:'Upskilling',
-  I:'Announcement', J:'AI Talent Hiring'
+  I:'Announcement', J:'AI Hiring'
 };
 
 function buildSigMultiselect(containerId, values, labelFn, filterKey) {
@@ -5384,7 +5386,7 @@ function renderSignalCards(signals) {
   var SIG_LABELS = {
     A:'Deployment', B:'Pilot', C:'Procurement',
     D:'Leadership Hire', E:'Governance', F:'Upskilling',
-    I:'Announcement', J:'AI Talent Hiring'
+    I:'Announcement', J:'AI Hiring'
   };
   var linkIcon = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
   
@@ -5558,7 +5560,7 @@ function initAdmin() {
   var SIG_LABELS = {
     A:'Deployment', B:'Pilot', C:'Procurement',
     D:'Leadership Hire', E:'Governance', F:'Upskilling',
-    I:'Announcement', J:'AI Talent Hiring'
+    I:'Announcement', J:'AI Hiring'
   };
 
   // ---- Table state ----
@@ -5962,7 +5964,7 @@ function initAdmin() {
         tr.appendChild(tdTy);
         // Domain
         var tdDo = document.createElement('td');
-        var domOpts = ['Recruiting','L&D','HR Service Delivery','Comp/Benefits','Governance','AI Hiring'].map(function(d) {
+        var domOpts = ['Recruiting','Talent Development','HR Service Delivery','Comp/Benefits','Governance','AI Hiring'].map(function(d) {
           return '<option value="'+d+'"'+(sig.HR_domain===d?' selected':'')+'>'+d+'</option>';
         }).join('');
         tdDo.innerHTML = '<select class="ae-domain"><option value="">--</option>'+domOpts+'</select>';
