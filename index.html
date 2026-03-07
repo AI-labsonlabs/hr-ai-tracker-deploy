@@ -229,6 +229,17 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   gap: var(--space-3);
   padding: 3px 0;
 }
+/* Ensure expanded chart rows match initial row spacing */
+#industryChartMore .bar-row,
+#stbChartMore .bar-row {
+  padding: 3px 0;
+}
+#industryChartMore,
+#stbChartMore {
+  display: flex;
+  flex-direction: column;
+}
+
 .bar-row-clickable {
   cursor: pointer;
   border-radius: var(--radius-sm);
@@ -1645,6 +1656,90 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 /* ============================================
    SIGNALS EXPLORER
    ============================================ */
+
+/* Multi-select filter component for signals page */
+.sig-multiselect {
+  position: relative;
+  width: 100%;
+}
+.sig-multiselect-trigger {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 34px;
+  padding: 4px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  align-items: center;
+}
+.sig-multiselect-trigger:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+.sig-multiselect-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  background: color-mix(in oklch, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  line-height: 1.6;
+}
+.sig-multiselect-pill .pill-x {
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.6;
+}
+.sig-multiselect-pill .pill-x:hover { opacity: 1; }
+.sig-multiselect-placeholder {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+.sig-multiselect-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+.sig-multiselect-dropdown.open { display: block; }
+.sig-multiselect-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  color: var(--color-text);
+}
+.sig-multiselect-option:hover {
+  background: var(--color-surface-offset);
+}
+.sig-multiselect-option input[type="checkbox"] {
+  margin: 0;
+  flex-shrink: 0;
+}
+.sig-multiselect-option.selected {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
 .signals-filter-bar {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -2449,7 +2544,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
         <div class="signals-filter-row">
           <div class="signals-filter-group">
             <label>Industry</label>
-            <select id="sigFilterIndustry" onchange="renderSignalsFeed()"><option value="">All Industries</option></select>
+            <div class="sig-multiselect" id="sigMultiIndustry" data-filter="industry"></div>
           </div>
           <div class="signals-filter-group">
             <label>Company</label>
@@ -2457,15 +2552,15 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
           </div>
           <div class="signals-filter-group">
             <label>Signal Type</label>
-            <select id="sigFilterType" onchange="renderSignalsFeed()"><option value="">All Types</option></select>
+            <div class="sig-multiselect" id="sigMultiType" data-filter="signal_type"></div>
           </div>
           <div class="signals-filter-group">
             <label>HR Domain</label>
-            <select id="sigFilterDomain" onchange="renderSignalsFeed()"><option value="">All Domains</option></select>
+            <div class="sig-multiselect" id="sigMultiDomain" data-filter="HR_domain"></div>
           </div>
           <div class="signals-filter-group">
             <label>Confirmation</label>
-            <select id="sigFilterConfirm" onchange="renderSignalsFeed()"><option value="">All Levels</option></select>
+            <div class="sig-multiselect" id="sigMultiConfirm" data-filter="confirmation_level"></div>
           </div>
           <div class="signals-filter-group">
             <label>Date Range</label>
@@ -3174,6 +3269,101 @@ function getAllCompanies() {
 }
 const allCompanies = getAllCompanies();
 
+// Build industry -> sub-industry mapping for cascading filters
+const INDUSTRY_SUB_MAP = {};
+const SUB_INDUSTRY_MAP = {};  // reverse: sub_industry -> [industries]
+allCompanies.forEach(function(c) {
+  if (!c.industry || !c.sub_industry) return;
+  if (!INDUSTRY_SUB_MAP[c.industry]) INDUSTRY_SUB_MAP[c.industry] = new Set();
+  INDUSTRY_SUB_MAP[c.industry].add(c.sub_industry);
+  if (!SUB_INDUSTRY_MAP[c.sub_industry]) SUB_INDUSTRY_MAP[c.sub_industry] = new Set();
+  SUB_INDUSTRY_MAP[c.sub_industry].add(c.industry);
+});
+
+// Cascade filter: rebuild sub-industry checkboxes based on selected industries (and vice versa)
+function cascadeFilters(config) {
+  var st = config.state;
+  if (!st.filters.industry || !st.filters.sub_industry) return;
+  var theadEl = document.getElementById(config.theadId);
+  if (!theadEl) return;
+  
+  // Determine which sub-industries are valid given selected industries
+  var selectedIndustries = st.filters.industry;
+  var validSubs = new Set();
+  if (selectedIndustries.size > 0) {
+    selectedIndustries.forEach(function(ind) {
+      (INDUSTRY_SUB_MAP[ind] || new Set()).forEach(function(si) { validSubs.add(si); });
+    });
+  } else {
+    // No industry filter — all sub-industries valid
+    allCompanies.forEach(function(c) { if (c.sub_industry) validSubs.add(c.sub_industry); });
+  }
+  
+  // Determine which industries are valid given selected sub-industries
+  var selectedSubs = st.filters.sub_industry;
+  var validIndustries = new Set();
+  if (selectedSubs.size > 0) {
+    selectedSubs.forEach(function(si) {
+      (SUB_INDUSTRY_MAP[si] || new Set()).forEach(function(ind) { validIndustries.add(ind); });
+    });
+  } else {
+    allCompanies.forEach(function(c) { if (c.industry) validIndustries.add(c.industry); });
+  }
+  
+  // Rebuild sub_industry checkbox list
+  var subList = theadEl.querySelector('.dd-filter-list[data-filter-col="sub_industry"]');
+  if (subList) {
+    var sortedSubs = Array.from(validSubs).sort();
+    // Remove any selected sub_industries that are no longer valid
+    st.filters.sub_industry.forEach(function(si) {
+      if (!validSubs.has(si)) st.filters.sub_industry.delete(si);
+    });
+    var subHTML = '';
+    sortedSubs.forEach(function(v) {
+      var checked = st.filters.sub_industry.has(v) ? ' checked' : '';
+      var display = v.charAt(0).toUpperCase() + v.slice(1);
+      subHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + v.replace(/"/g, '&quot;') + '"' + checked + '> ' + display + '</label>';
+    });
+    subList.innerHTML = subHTML;
+    // Re-wire checkboxes
+    subList.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+      cb.addEventListener('change', function(e) {
+        e.stopPropagation();
+        if (this.checked) { st.filters.sub_industry.add(this.value); }
+        else { st.filters.sub_industry.delete(this.value); }
+        cascadeFilters(config);
+        refreshTableHeaders(config);
+        config.render();
+      });
+    });
+  }
+  
+  // Rebuild industry checkbox list (only if sub-industry filter is active)
+  if (selectedSubs.size > 0) {
+    var indList = theadEl.querySelector('.dd-filter-list[data-filter-col="industry"]');
+    if (indList) {
+      var sortedInds = Array.from(validIndustries).sort();
+      var indHTML = '';
+      sortedInds.forEach(function(v) {
+        var checked = st.filters.industry.has(v) ? ' checked' : '';
+        indHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + v.replace(/"/g, '&quot;') + '"' + checked + '> ' + v + '</label>';
+      });
+      indList.innerHTML = indHTML;
+      indList.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+        cb.addEventListener('change', function(e) {
+          e.stopPropagation();
+          if (this.checked) { st.filters.industry.add(this.value); }
+          else { st.filters.industry.delete(this.value); }
+          cascadeFilters(config);
+          refreshTableHeaders(config);
+          config.render();
+        });
+      });
+    }
+  }
+}
+
+
 function openProfile(companyName) {
   const detail = D.company_details[companyName];
   if (!detail) return;
@@ -3418,7 +3608,7 @@ function renderOverview() {
       if (btn && more) {
         btn.addEventListener('click', function() {
           if (more.style.display === 'none') {
-            more.style.display = 'block';
+            more.style.display = 'flex'; more.style.flexDirection = 'column';
             btn.textContent = 'Show fewer \u25B2';
           } else {
             more.style.display = 'none';
@@ -3468,7 +3658,7 @@ function renderOverview() {
       if (sbtn && smore) {
         sbtn.addEventListener('click', function() {
           if (smore.style.display === 'none') {
-            smore.style.display = 'block';
+            smore.style.display = 'flex'; smore.style.flexDirection = 'column';
             sbtn.textContent = 'Show fewer \u25B2';
           } else {
             smore.style.display = 'none';
@@ -3709,6 +3899,7 @@ function initOverviewThead() {
         } else {
           ovState.filters[colKey].delete(this.value);
         }
+        if (colKey === 'industry' || colKey === 'sub_industry') cascadeOverviewFilters();
         refreshOverviewHeaders();
         renderOverviewTable();
       });
@@ -3747,11 +3938,93 @@ function refreshOverviewHeaders() {
   });
 }
 
+
+// Cascade overview table industry <-> sub-industry filters
+function cascadeOverviewFilters() {
+  var thead = document.getElementById('overviewThead');
+  if (!thead) return;
+  
+  var selectedIndustries = ovState.filters.industry;
+  var selectedSubs = ovState.filters.sub_industry;
+  
+  // Determine valid sub-industries
+  var validSubs = new Set();
+  if (selectedIndustries.size > 0) {
+    selectedIndustries.forEach(function(ind) {
+      (INDUSTRY_SUB_MAP[ind] || new Set()).forEach(function(si) { validSubs.add(si); });
+    });
+  } else {
+    allCompanies.forEach(function(c) { if (c.sub_industry) validSubs.add(c.sub_industry); });
+  }
+  
+  // Remove invalid sub selections
+  ovState.filters.sub_industry.forEach(function(si) {
+    if (!validSubs.has(si)) ovState.filters.sub_industry.delete(si);
+  });
+  
+  // Rebuild sub_industry checkbox list
+  var subList = thead.querySelector('.dd-filter-list[data-filter-col="sub_industry"]');
+  if (subList) {
+    var sortedSubs = Array.from(validSubs).sort();
+    var subHTML = '';
+    sortedSubs.forEach(function(v) {
+      var checked = ovState.filters.sub_industry.has(v) ? ' checked' : '';
+      var display = v.charAt(0).toUpperCase() + v.slice(1);
+      subHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + display + '</label>';
+    });
+    subList.innerHTML = subHTML;
+    subList.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+      cb.addEventListener('change', function(e) {
+        e.stopPropagation();
+        if (this.checked) { ovState.filters.sub_industry.add(this.value); }
+        else { ovState.filters.sub_industry.delete(this.value); }
+        cascadeOverviewFilters();
+        refreshOverviewHeaders();
+        renderOverviewTable();
+      });
+    });
+  }
+  
+  // If sub-industries are selected, rebuild industry list to show only related industries
+  var validIndustries = new Set();
+  if (selectedSubs.size > 0) {
+    selectedSubs.forEach(function(si) {
+      (SUB_INDUSTRY_MAP[si] || new Set()).forEach(function(ind) { validIndustries.add(ind); });
+    });
+  } else {
+    allCompanies.forEach(function(c) { if (c.industry) validIndustries.add(c.industry); });
+  }
+  
+  if (selectedSubs.size > 0) {
+    var indList = thead.querySelector('.dd-filter-list[data-filter-col="industry"]');
+    if (indList) {
+      var sortedInds = Array.from(validIndustries).sort();
+      var indHTML = '';
+      sortedInds.forEach(function(v) {
+        var checked = ovState.filters.industry.has(v) ? ' checked' : '';
+        indHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + v + '</label>';
+      });
+      indList.innerHTML = indHTML;
+      indList.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+        cb.addEventListener('change', function(e) {
+          e.stopPropagation();
+          if (this.checked) { ovState.filters.industry.add(this.value); }
+          else { ovState.filters.industry.delete(this.value); }
+          cascadeOverviewFilters();
+          refreshOverviewHeaders();
+          renderOverviewTable();
+        });
+      });
+    }
+  }
+}
+
 // Clear filter for a column
 window.ovClearFilter = function(colKey) {
   ovState.filters[colKey].clear();
   // Uncheck all boxes
-  document.querySelectorAll('.dd-filter-list[data-filter-col="' + colKey + '"] input').forEach(cb => cb.checked = false);
+  document.querySelectorAll('#overviewThead .dd-filter-list[data-filter-col="' + colKey + '"] input').forEach(cb => cb.checked = false);
+  if (colKey === 'industry' || colKey === 'sub_industry') cascadeOverviewFilters();
   refreshOverviewHeaders();
   renderOverviewTable();
 };
@@ -3760,7 +4033,8 @@ window.ovClearFilter = function(colKey) {
 window.ovSelectAllFilter = function(colKey) {
   const values = ovUniqueValues(colKey);
   ovState.filters[colKey] = new Set(values);
-  document.querySelectorAll('.dd-filter-list[data-filter-col="' + colKey + '"] input').forEach(cb => cb.checked = true);
+  document.querySelectorAll('#overviewThead .dd-filter-list[data-filter-col="' + colKey + '"] input').forEach(cb => cb.checked = true);
+  if (colKey === 'industry' || colKey === 'sub_industry') cascadeOverviewFilters();
   refreshOverviewHeaders();
   renderOverviewTable();
 };
@@ -4016,6 +4290,7 @@ function buildInteractiveTable(config) {
         var colKey = this.closest('.dd-filter-list').dataset.filterCol;
         if (this.checked) { st.filters[colKey].add(this.value); }
         else { st.filters[colKey].delete(this.value); }
+        if (colKey === 'industry' || colKey === 'sub_industry') cascadeFilters(config);
         refreshTableHeaders(config);
         config.render();
       });
@@ -4028,6 +4303,7 @@ function buildInteractiveTable(config) {
         var colKey = this.dataset.col;
         st.filters[colKey].clear();
         this.closest('.col-header').querySelectorAll('.dd-filter-list input').forEach(function(cb) { cb.checked = false; });
+        if (colKey === 'industry' || colKey === 'sub_industry') cascadeFilters(config);
         refreshTableHeaders(config);
         config.render();
       });
@@ -4038,6 +4314,7 @@ function buildInteractiveTable(config) {
         var colKey = this.dataset.col;
         st.filters[colKey] = new Set(config.uniqueValues(colKey));
         this.closest('.col-header').querySelectorAll('.dd-filter-list input').forEach(function(cb) { cb.checked = true; });
+        if (colKey === 'industry' || colKey === 'sub_industry') cascadeFilters(config);
         refreshTableHeaders(config);
         config.render();
       });
@@ -4708,6 +4985,100 @@ function initSignalsExplorer() {
   renderSignalsFeed();
 }
 
+// Multi-select filter state for signals page
+var sigMultiFilters = {
+  industry: new Set(),
+  signal_type: new Set(),
+  HR_domain: new Set(),
+  confirmation_level: new Set()
+};
+
+var SIG_LABELS = {
+  A:'Deployment', B:'Pilot', C:'Procurement',
+  D:'Leadership Hire', E:'Governance', F:'Upskilling',
+  G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
+};
+
+function buildSigMultiselect(containerId, values, labelFn, filterKey) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  
+  var triggerHTML = '<div class="sig-multiselect-trigger" tabindex="0"></div>';
+  triggerHTML += '<div class="sig-multiselect-dropdown">';
+  values.forEach(function(v) {
+    var label = labelFn(v);
+    var checked = sigMultiFilters[filterKey].has(v) ? ' checked' : '';
+    var selectedClass = sigMultiFilters[filterKey].has(v) ? ' selected' : '';
+    triggerHTML += '<label class="sig-multiselect-option' + selectedClass + '"><input type="checkbox" value="' + v.replace(/"/g, '&quot;') + '"' + checked + '> ' + label + '</label>';
+  });
+  triggerHTML += '</div>';
+  container.innerHTML = triggerHTML;
+  
+  var trigger = container.querySelector('.sig-multiselect-trigger');
+  var dropdown = container.querySelector('.sig-multiselect-dropdown');
+  
+  updateSigTriggerDisplay(trigger, filterKey, labelFn);
+  
+  // Toggle dropdown
+  trigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    // Close all other dropdowns
+    document.querySelectorAll('.sig-multiselect-dropdown.open').forEach(function(d) {
+      if (d !== dropdown) d.classList.remove('open');
+    });
+    dropdown.classList.toggle('open');
+  });
+  
+  // Checkbox changes
+  dropdown.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+    cb.addEventListener('change', function(e) {
+      e.stopPropagation();
+      if (this.checked) { sigMultiFilters[filterKey].add(this.value); }
+      else { sigMultiFilters[filterKey].delete(this.value); }
+      this.closest('.sig-multiselect-option').classList.toggle('selected', this.checked);
+      updateSigTriggerDisplay(trigger, filterKey, labelFn);
+      renderSignalsFeed();
+    });
+    cb.addEventListener('click', function(e) { e.stopPropagation(); });
+  });
+}
+
+function updateSigTriggerDisplay(trigger, filterKey, labelFn) {
+  var selected = sigMultiFilters[filterKey];
+  if (selected.size === 0) {
+    trigger.innerHTML = '<span class="sig-multiselect-placeholder">All</span>';
+  } else {
+    var pillsHTML = '';
+    selected.forEach(function(v) {
+      var label = labelFn(v);
+      pillsHTML += '<span class="sig-multiselect-pill">' + label + ' <span class="pill-x" data-val="' + v.replace(/"/g, '&quot;') + '" data-filter="' + filterKey + '">&times;</span></span>';
+    });
+    trigger.innerHTML = pillsHTML;
+    // Wire pill remove buttons
+    trigger.querySelectorAll('.pill-x').forEach(function(x) {
+      x.addEventListener('click', function(e) {
+        e.stopPropagation();
+        sigMultiFilters[this.dataset.filter].delete(this.dataset.val);
+        // Update checkbox
+        var container = this.closest('.sig-multiselect');
+        var cb = container.querySelector('input[value="' + CSS.escape(this.dataset.val) + '"]');
+        if (cb) { cb.checked = false; cb.closest('.sig-multiselect-option').classList.remove('selected'); }
+        updateSigTriggerDisplay(trigger, filterKey, labelFn);
+        renderSignalsFeed();
+      });
+    });
+  }
+}
+
+// Close multi-select dropdowns on outside click
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.sig-multiselect')) {
+    document.querySelectorAll('.sig-multiselect-dropdown.open').forEach(function(d) {
+      d.classList.remove('open');
+    });
+  }
+});
+
 function populateSignalsFilters() {
   var industries = new Set();
   var companies = new Set();
@@ -4723,17 +5094,14 @@ function populateSignalsFilters() {
     if (s.confirmation_level) confirms.add(s.confirmation_level);
   });
   
-  var SIG_LABELS = {
-    A:'Deployment', B:'Pilot', C:'Procurement',
-    D:'Leadership Hire', E:'Governance', F:'Upskilling',
-    G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
-  };
+  // Build multi-selects
+  buildSigMultiselect('sigMultiIndustry', Array.from(industries).sort(), function(v) { return v; }, 'industry');
+  buildSigMultiselect('sigMultiType', Array.from(types).sort(), function(v) { return SIG_LABELS[v] || v; }, 'signal_type');
+  buildSigMultiselect('sigMultiDomain', Array.from(domains).sort(), function(v) { return v; }, 'HR_domain');
+  buildSigMultiselect('sigMultiConfirm', Array.from(confirms).sort(), function(v) { return v; }, 'confirmation_level');
   
-  fillSelect('sigFilterIndustry', Array.from(industries).sort(), function(v) { return v; });
+  // Company stays as single select
   fillSelect('sigFilterCompany', Array.from(companies).sort(), function(v) { return v; });
-  fillSelect('sigFilterType', Array.from(types).sort(), function(v) { return SIG_LABELS[v] || v; });
-  fillSelect('sigFilterDomain', Array.from(domains).sort(), function(v) { return v; });
-  fillSelect('sigFilterConfirm', Array.from(confirms).sort(), function(v) { return v; });
 }
 
 function fillSelect(id, values, labelFn) {
@@ -4752,11 +5120,7 @@ function fillSelect(id, values, labelFn) {
 }
 
 function getFilteredSignals() {
-  var filterIndustry = document.getElementById('sigFilterIndustry').value;
   var filterCompany = document.getElementById('sigFilterCompany').value;
-  var filterType = document.getElementById('sigFilterType').value;
-  var filterDomain = document.getElementById('sigFilterDomain').value;
-  var filterConfirm = document.getElementById('sigFilterConfirm').value;
   var filterDate = document.getElementById('sigFilterDate').value;
   
   var now = new Date();
@@ -4764,11 +5128,11 @@ function getFilteredSignals() {
   var cutoffStr = cutoff ? cutoff.toISOString().slice(0, 10) : '';
   
   return sigAllSignals.filter(function(s) {
-    if (filterIndustry && s.industry !== filterIndustry) return false;
+    if (sigMultiFilters.industry.size > 0 && !sigMultiFilters.industry.has(s.industry)) return false;
     if (filterCompany && s.company_name !== filterCompany) return false;
-    if (filterType && s.signal_type !== filterType) return false;
-    if (filterDomain && s.HR_domain !== filterDomain) return false;
-    if (filterConfirm && s.confirmation_level !== filterConfirm) return false;
+    if (sigMultiFilters.signal_type.size > 0 && !sigMultiFilters.signal_type.has(s.signal_type)) return false;
+    if (sigMultiFilters.HR_domain.size > 0 && !sigMultiFilters.HR_domain.has(s.HR_domain)) return false;
+    if (sigMultiFilters.confirmation_level.size > 0 && !sigMultiFilters.confirmation_level.has(s.confirmation_level)) return false;
     if (cutoffStr && s.date < cutoffStr) return false;
     return true;
   });
@@ -4788,12 +5152,11 @@ window.renderSignalsFeed = function() {
   var loadMore = document.getElementById('signalsLoadMore');
   loadMore.style.display = filtered.length > sigPageSize ? '' : 'none';
   
-  // Update company dropdown based on industry filter
-  var filterIndustry = document.getElementById('sigFilterIndustry').value;
-  if (filterIndustry) {
+  // Update company dropdown based on industry multi-filter
+  if (sigMultiFilters.industry.size > 0) {
     var companiesInIndustry = [];
     sigAllSignals.forEach(function(s) {
-      if (s.industry === filterIndustry && companiesInIndustry.indexOf(s.company_name) === -1) {
+      if (sigMultiFilters.industry.has(s.industry) && companiesInIndustry.indexOf(s.company_name) === -1) {
         companiesInIndustry.push(s.company_name);
       }
     });
@@ -4870,12 +5233,16 @@ function renderSignalCards(signals) {
 }
 
 window.clearSignalsFilters = function() {
-  document.getElementById('sigFilterIndustry').value = '';
+  // Reset multi-select filters
+  sigMultiFilters.industry.clear();
+  sigMultiFilters.signal_type.clear();
+  sigMultiFilters.HR_domain.clear();
+  sigMultiFilters.confirmation_level.clear();
+  // Reset single selects
   document.getElementById('sigFilterCompany').value = '';
-  document.getElementById('sigFilterType').value = '';
-  document.getElementById('sigFilterDomain').value = '';
-  document.getElementById('sigFilterConfirm').value = '';
   document.getElementById('sigFilterDate').value = '';
+  // Re-populate to reset UI
+  populateSignalsFilters();
   // Re-populate company list (no industry restriction)
   var allCompanyNames = [];
   sigAllSignals.forEach(function(s) {
