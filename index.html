@@ -3518,8 +3518,7 @@ function openProfile(companyName) {
       signalsHTML += '<div class="signal-item profile-signal-item" data-domain="' + (s.HR_domain || '') + '">' +
         '<div class="signal-meta"><span>' + (s.date_event || s.date_found || '') + '</span>' +
         '<span class="badge badge-blue">' + (s.HR_domain || '') + '</span>' +
-        '<span class="badge badge-gray">' + signalTypeBadge(s.signal_type) + '</span>' +
-        (s.signal_type === 'J' ? '<span class="badge badge-teal">AI Hiring</span>' : '') +
+        ((s.HR_domain || '') !== signalTypeBadge(s.signal_type) ? '<span class="badge badge-gray">' + signalTypeBadge(s.signal_type) + '</span>' : '') +
         flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
         '</div>' +
         '<div class="signal-summary">' +
@@ -4873,8 +4872,7 @@ function buildCompanyProfileHTML(companyName, side) {
       html += '<div style="display:flex;gap:var(--space-2);flex-wrap:wrap;align-items:center;margin-bottom:2px;">';
       html += '<span style="color:var(--color-text-muted);">' + (s.date_event || s.date_found || '') + '</span>';
       html += '<span class="badge badge-blue" style="font-size:10px;">' + (s.HR_domain || '') + '</span>';
-      html += '<span class="badge badge-gray" style="font-size:10px;">' + signalTypeBadge(s.signal_type) + '</span>';
-      if (s.signal_type === 'J') html += '<span class="badge badge-teal" style="font-size:10px;">AI Hiring</span>';
+      if ((s.HR_domain || '') !== signalTypeBadge(s.signal_type)) html += '<span class="badge badge-gray" style="font-size:10px;">' + signalTypeBadge(s.signal_type) + '</span>';
       html += flagBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'');
       html += '</div>';
       html += '<div class="signal-summary" style="line-height:1.4;">' +
@@ -5420,7 +5418,7 @@ function renderSignalCards(signals) {
       '</div>' +
       '<div class="signal-feed-card-header">' +
       '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>' +
-      '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' +
+      (s.HR_domain !== typeLabel ? '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' : '') +
       flagBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain) +
       '</div>' +
       '<div class="signal-feed-summary">' +
