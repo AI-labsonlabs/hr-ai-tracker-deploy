@@ -2837,16 +2837,16 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             <!-- Adoption Pattern -->
             <div class="profile-card">
               <div class="profile-card-title">Adoption Pattern Classification</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Classified based on where signal weight concentrates:</p>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Each company&rsquo;s signals are grouped into five categories. The category with the most weight determines the pattern label.</p>
               <div style="font-size:var(--text-xs);line-height:1.8;">
                 <div style="display:grid;grid-template-columns:150px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
-                  <div><strong style="color:#6366f1;">Governance</strong></div><div>Oversight signals + 30% of earnings mentions</div>
-                  <div><strong style="color:#059669;">Tool</strong></div><div>Deployments + pilots + procurement</div>
-                  <div><strong style="color:#d97706;">Leadership &amp; Upskilling</strong></div><div>HR AI leadership hires (Type D) + upskilling programs (Type F)</div>
-                  <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>AI/ML engineer &amp; data scientist job postings (Type J) &mdash; scored separately to prevent distortion</div>
-                  <div><strong style="color:#9ca3af;">PR</strong></div><div>PR-only mentions</div>
+                  <div><strong style="color:#059669;">Tool</strong></div><div>Deployments, pilots, and procurement of specific AI tools</div>
+                  <div><strong style="color:#d97706;">Leadership &amp; Upskilling</strong></div><div>Senior AI leadership hires and company-wide AI training programs</div>
+                  <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>Job postings for AI/ML engineers and data scientists</div>
+                  <div><strong style="color:#6366f1;">Governance</strong></div><div>AI ethics policies, oversight boards, and responsible AI frameworks</div>
+                  <div><strong style="color:#9ca3af;">PR</strong></div><div>Announcements and press coverage without specific deployment details</div>
                 </div>
-                <div style="margin-top:var(--space-2);">If PR exceeds 50% of total weight &rarr; &ldquo;PR-led&rdquo;. Otherwise, the highest category wins. If two categories are within 10% of each other, both are listed (e.g., &ldquo;Governance &amp; Tool-led&rdquo;).</div>
+                <div style="margin-top:var(--space-2);">If two categories are close in weight, both are shown (e.g., &ldquo;Tool &amp; AI Hiring-led&rdquo;). If three or more are tied, the pattern is labeled &ldquo;Balanced.&rdquo; If PR exceeds 50% of total weight, the company is labeled &ldquo;PR-led.&rdquo;</div>
               </div>
             </div>
 
