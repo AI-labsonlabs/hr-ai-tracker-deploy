@@ -2758,8 +2758,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
               </table>
             </div>
 
-
-
             <!-- Source Credibility -->
             <div class="profile-card">
               <div class="profile-card-title">Source Credibility Weights</div>
@@ -2775,6 +2773,18 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);">Blog post &mdash; <strong>0.4</strong></div>
                 <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);grid-column:span 2;">Social media &mdash; <strong>0.3</strong></div>
               </div>
+            </div>
+
+            <!-- Time Decay -->
+            <div class="profile-card">
+              <div class="profile-card-title">Time Decay</div>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Signals lose relevance over time using exponential decay with a 180-day half-life. A signal from 6 months ago contributes half the weight of an identical signal from today. This ensures the tracker reflects current adoption posture rather than historical activity.</p>
+            </div>
+
+            <!-- How Ranks Work -->
+            <div class="profile-card">
+              <div class="profile-card-title">How Ranks Work</div>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Companies are ranked relative to the current filter selection. If you filter by industry or sub-industry, ranks recalculate within that subset. Use the column header filters on any table to focus on specific segments.</p>
             </div>
 
           </div>
@@ -2837,29 +2847,18 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             <!-- Adoption Pattern -->
             <div class="profile-card">
               <div class="profile-card-title">Adoption Pattern Classification</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Each company&rsquo;s signals are grouped into five categories. The category with the most weight determines the pattern label.</p>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Each company&rsquo;s signals are grouped into six categories. The category with the most weight determines the pattern label.</p>
               <div style="font-size:var(--text-xs);line-height:1.8;">
-                <div style="display:grid;grid-template-columns:150px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
+                <div style="display:grid;grid-template-columns:110px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
                   <div><strong style="color:#059669;">Tool</strong></div><div>Deployments, pilots, and procurement of specific AI tools</div>
-                  <div><strong style="color:#d97706;">Leadership &amp; Upskilling</strong></div><div>Senior AI leadership hires and company-wide AI training programs</div>
+                  <div><strong style="color:#d97706;">Leadership</strong></div><div>Senior AI leadership hires signaling strategic commitment</div>
+                  <div><strong style="color:#f59e0b;">Upskilling</strong></div><div>Company-wide AI training and capability-building programs</div>
                   <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>Job postings for AI/ML engineers and data scientists</div>
                   <div><strong style="color:#6366f1;">Governance</strong></div><div>AI ethics policies, oversight boards, and responsible AI frameworks</div>
                   <div><strong style="color:#9ca3af;">PR</strong></div><div>Announcements and press coverage without specific deployment details</div>
                 </div>
                 <div style="margin-top:var(--space-2);">If two categories are close in weight, both are shown (e.g., &ldquo;Tool &amp; AI Hiring-led&rdquo;). If three or more are tied, the pattern is labeled &ldquo;Balanced.&rdquo; If PR exceeds 50% of total weight, the company is labeled &ldquo;PR-led.&rdquo;</div>
               </div>
-            </div>
-
-            <!-- Time Decay -->
-            <div class="profile-card">
-              <div class="profile-card-title">Time Decay</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Signals lose relevance over time using exponential decay with a 180-day half-life. A signal from 6 months ago contributes half the weight of an identical signal from today. This ensures the tracker reflects current adoption posture rather than historical activity.</p>
-            </div>
-
-            <!-- General Note -->
-            <div class="profile-card">
-              <div class="profile-card-title">How Ranks Work</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Companies are ranked relative to the current filter selection. If you filter by industry or sub-industry, ranks recalculate within that subset. Use the column header filters on any table to focus on specific segments.</p>
             </div>
 
             <!-- Data Estimation -->
@@ -2869,9 +2868,8 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 Company attributes (revenue, employee count, market cap) come from different sources depending on whether the company is public or private:
               </p>
               <div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;">
-                <p style="margin-bottom:var(--space-2);"><strong>Public companies:</strong> Revenue and employee count are sourced from the most recent earnings report or SEC filing (10-K/10-Q). Market cap is sourced from financial data providers. All public company attributes are refreshed weekly. These values link directly to the source.</p>
+                <p style="margin-bottom:var(--space-2);"><strong>Public companies:</strong> Revenue and employee count are sourced from the most recent earnings report or SEC filing (10-K/10-Q). Market cap is sourced from financial data providers. All public company attributes are refreshed weekly.</p>
                 <p style="margin-bottom:var(--space-2);"><strong>Private companies:</strong> Revenue, employee count, and market cap (where applicable) are estimated using publicly available data &mdash; press reports, industry analyses, LinkedIn headcount, and comparable public peer multiples. These values are marked with an <span style="color:var(--color-text-faint);">est.</span> tag.</p>
-                <p style="margin-bottom:var(--space-2);"><strong>Update frequency:</strong> Revenue, employee counts, and market cap for public companies are refreshed weekly from the latest available filings, reports, and financial data. Private company estimates are reviewed periodically as new data becomes available.</p>
                 <p>All estimated figures should be treated as approximations. If you spot an inaccuracy, use the flag button on any signal or reach out directly.</p>
               </div>
             </div>
@@ -3540,15 +3538,14 @@ function openProfile(companyName) {
 
   // --- Collapsible Maturity & Momentum Breakdown ---
   var accelPct = mfc.monthly_baseline > 0 ? Math.round(mfc.acceleration * 100) : 0;
-  var patternNames = ['Governance', 'Tool', 'Talent', 'AI Hiring', 'PR'];
-  var patternDisplayNames = {'Governance':'Governance', 'Tool':'Tool', 'Talent':'Leadership & Upskilling', 'AI Hiring':'AI Hiring', 'PR':'PR'};
+  var patternNames = ['Tool', 'Leadership', 'Upskilling', 'AI Hiring', 'Governance', 'PR'];
   var maxPw = Math.max.apply(null, patternNames.map(function(p) { return pw[p] || 0; }));
   var patternBarsHTML = '';
   patternNames.forEach(function(p) {
     var val = pw[p] || 0;
     var pct = maxPw > 0 ? (val / maxPw * 100) : 0;
     patternBarsHTML += '<div style="display:flex;align-items:center;gap:6px;margin:2px 0;">' +
-      '<span style="min-width:130px;">' + (patternDisplayNames[p] || p) + '</span>' +
+      '<span style="min-width:90px;">' + p + '</span>' +
       '<div style="flex:1;height:6px;background:var(--color-surface-offset);border-radius:3px;overflow:hidden;">' +
       '<div style="height:100%;width:' + pct + '%;background:var(--color-primary);border-radius:3px;"></div></div>' +
       '<span class="mono" style="min-width:28px;text-align:right;">' + fmt(val, 1) + '</span></div>';
@@ -4816,14 +4813,13 @@ function buildCompanyProfileHTML(companyName, side) {
   html += '<strong>Final: ' + fmtMomentum(mom.score || detail.momentum_score) + '</strong> (tanh scaled)<br><br>';
   // Adoption pattern
   html += '<strong>Adoption Pattern: ' + pattern + '</strong><br>';
-  var patternNames = ['Governance', 'Tool', 'Talent', 'AI Hiring', 'PR'];
-  var patternDisplayNames2 = {'Governance':'Governance', 'Tool':'Tool', 'Talent':'Leadership & Upskilling', 'AI Hiring':'AI Hiring', 'PR':'PR'};
+  var patternNames = ['Tool', 'Leadership', 'Upskilling', 'AI Hiring', 'Governance', 'PR'];
   var maxPw = Math.max.apply(null, patternNames.map(function(p) { return pw[p] || 0; }));
   patternNames.forEach(function(p) {
     var val = pw[p] || 0;
     var pct = maxPw > 0 ? (val / maxPw * 100) : 0;
     html += '<div style="display:flex;align-items:center;gap:6px;margin:2px 0;">';
-    html += '<span style="min-width:130px;">' + (patternDisplayNames2[p] || p) + '</span>';
+    html += '<span style="min-width:90px;">' + p + '</span>';
     html += '<div style="flex:1;height:6px;background:var(--color-surface);border-radius:3px;overflow:hidden;">';
     html += '<div style="height:100%;width:' + pct + '%;background:var(--color-primary);border-radius:3px;"></div></div>';
     html += '<span class="mono" style="min-width:28px;text-align:right;">' + fmt(val, 1) + '</span></div>';
