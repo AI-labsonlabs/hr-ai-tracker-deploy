@@ -2709,6 +2709,56 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
           This tracker evaluates HR AI adoption across companies by collecting, classifying, and scoring public signals. Below is a complete breakdown of how scores are computed.
         </p>
 
+        <!-- WHAT'S INCLUDED / RESEARCH FILTERING -->
+        <div class="profile-card" style="margin-bottom:var(--space-6);">
+          <div class="profile-card-title">What&rsquo;s Included &amp; What&rsquo;s Not</div>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-4);line-height:1.7;">
+            Not every mention of AI at a company counts as an HR AI signal. We apply a series of filters to ensure the tracker only reflects genuine AI adoption within HR and workforce functions.
+          </p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);font-size:var(--text-xs);line-height:1.7;">
+
+            <!-- INCLUDED -->
+            <div>
+              <div style="font-weight:600;color:#059669;margin-bottom:var(--space-2);display:flex;align-items:center;gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Included
+              </div>
+              <ul style="padding-left:var(--space-3);color:var(--color-text-muted);display:flex;flex-direction:column;gap:var(--space-2);">
+                <li><strong>AI tools deployed in HR processes</strong> &mdash; recruiting, onboarding, learning, employee service, compensation analytics, people operations</li>
+                <li><strong>Pilots and procurement</strong> of HR-specific AI platforms (e.g., Eightfold, Paradox, Phenom, HireVue, Textio, Beamery)</li>
+                <li><strong>HR AI leadership hires</strong> &mdash; roles explicitly tied to AI strategy within HR or workforce technology</li>
+                <li><strong>AI hiring activity</strong> &mdash; job posts for AI/ML engineers, data scientists, and similar technical roles</li>
+                <li><strong>AI governance</strong> with HR relevance &mdash; responsible AI policies, ethics boards, bias auditing frameworks</li>
+                <li><strong>AI upskilling</strong> &mdash; programs to build AI literacy or capability across the workforce</li>
+                <li><strong>HR product builder signals</strong> &mdash; when companies that build HR software (e.g., Workday, SAP, Oracle) ship AI features in their HR products</li>
+              </ul>
+            </div>
+
+            <!-- NOT INCLUDED -->
+            <div>
+              <div style="font-weight:600;color:#ef4444;margin-bottom:var(--space-2);display:flex;align-items:center;gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Filtered Out
+              </div>
+              <ul style="padding-left:var(--space-3);color:var(--color-text-muted);display:flex;flex-direction:column;gap:var(--space-2);">
+                <li><strong>General enterprise AI tools</strong> &mdash; company-wide Copilot rollouts, coding assistants, meeting transcription, and &ldquo;X% of employees use AI&rdquo; statistics are IT productivity stories, not HR adoption</li>
+                <li><strong>Customer-facing AI products</strong> &mdash; chatbots for customers, AI for clients or plan participants, and contact center automation are business products, not internal HR tools</li>
+                <li><strong>Operational AI</strong> &mdash; fleet optimization, fraud detection, manufacturing automation, cybersecurity AI, and supply chain intelligence</li>
+                <li><strong>Standard HR technology</strong> &mdash; running Workday, SuccessFactors, or ADP as your HRIS is table stakes, not an AI signal</li>
+                <li><strong>Generic HR job postings</strong> &mdash; HR Generalist, Benefits Coordinator, and similar roles without AI focus</li>
+                <li><strong>Standard benefits and compensation</strong> &mdash; tuition reimbursement, 401k programs, annual pay raises, and wellness perks</li>
+                <li><strong>SEC boilerplate</strong> &mdash; generic risk factor language about &ldquo;failure to adopt new technologies&rdquo; that appears in every annual report</li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div style="margin-top:var(--space-4);padding:var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.7;">
+            <strong>The core test:</strong> Does this signal show a company applying AI, machine learning, or intelligent automation specifically to how it manages, hires, develops, serves, or governs its own workforce? If the answer is no &mdash; even if AI is involved &mdash; the signal is filtered out.
+          </div>
+        </div>
+
         <!-- HOW SCORING WORKS (explainer) -->
         <div class="profile-card" style="margin-bottom:var(--space-6);">
           <div class="profile-card-title">How Signal Scoring Works</div>
