@@ -2627,10 +2627,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             <label>HR Domain</label>
             <div class="sig-multiselect" id="sigMultiDomain" data-filter="HR_domain"></div>
           </div>
-          <div class="signals-filter-group">
-            <label>Confirmation</label>
-            <div class="sig-multiselect" id="sigMultiConfirm" data-filter="confirmation_level"></div>
-          </div>
+
         </div>
         <div class="signals-filter-actions">
           <span id="signalsCount" style="font-size:var(--text-xs);color:var(--color-text-muted);"></span>
@@ -2658,22 +2655,22 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
         <!-- HOW SCORING WORKS (explainer) -->
         <div class="profile-card" style="margin-bottom:var(--space-6);">
           <div class="profile-card-title">How Signal Scoring Works</div>
-          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.6;">Every signal gets a point value calculated from five independent factors multiplied together:</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.6;">Every signal gets a point value calculated from four independent factors multiplied together:</p>
           <div style="background:var(--color-surface-offset);border-radius:var(--radius-md);padding:var(--space-3);margin-bottom:var(--space-3);text-align:center;">
-            <code style="font-size:var(--text-sm);letter-spacing:0.02em;">points = <strong>Signal Type</strong> &times; <strong>Confirmation Level</strong> &times; <strong>Source Credibility</strong> &times; <strong>Time Decay</strong> &times; <strong>Confidence</strong></code>
+            <code style="font-size:var(--text-sm);letter-spacing:0.02em;">points = <strong>Signal Type</strong> &times; <strong>Source Credibility</strong> &times; <strong>Time Decay</strong> &times; <strong>Confidence</strong></code>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);font-size:var(--text-xs);line-height:1.6;">
             <div>
-              <p style="margin-bottom:var(--space-2);"><strong>Signal Type</strong> and <strong>Confirmation Level</strong> are independent dimensions. Signal Type captures <em>what kind</em> of evidence was found (a deployment vs. a job post vs. a press release). Confirmation Level captures <em>how verified</em> that evidence is (confirmed vs. pilot vs. just exploring).</p>
-              <p>For example, a signal type of &ldquo;Deployment&rdquo; (base weight 10.0) means the evidence itself is about a real deployment, while the <em>confirmation level</em> &ldquo;Confirmed Deployment&rdquo; (&times;1.0) means that evidence has been verified as real. These are independent dimensions.</p>
+              <p style="margin-bottom:var(--space-2);"><strong>Signal Type</strong> captures <em>what a company actually did</em> &mdash; deployed an AI tool, hired a leader, ran a pilot, or just made an announcement. <strong>Source Credibility</strong> captures <em>how trustworthy the evidence is</em> &mdash; an earnings call is more reliable than a social media post.</p>
+              <p>These two dimensions are fully independent: a Deployment discovered via a news article scores differently than a Deployment confirmed on an earnings call.</p>
             </div>
             <div>
-              <p style="margin-bottom:var(--space-2);"><strong>Why this matters:</strong> A vendor case study (type weight 5.0) with Confirmed Deployment verification (&times;1.0) from an earnings call (source 1.0) scores much higher than a PR mention (type weight 1.0) at Exploration level (&times;0.4) from social media (source 0.3).</p>
+              <p style="margin-bottom:var(--space-2);"><strong>Why this matters:</strong> A Deployment (weight 10.0) from an earnings call (source 1.0) scores 33&times; higher than an Announcement (weight 1.0) from social media (source 0.3).</p>
               <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:var(--space-2);margin-top:var(--space-2);">
                 <div style="color:var(--color-text-muted);margin-bottom:4px;">Example comparison:</div>
-                <div>Vendor case study, Confirmed: 5.0 &times; 1.0 &times; 0.85 = <strong>4.25</strong></div>
-                <div>PR mention, Exploration: 1.0 &times; 0.4 &times; 0.3 = <strong>0.12</strong></div>
-                <div style="color:var(--color-text-muted);margin-top:4px;">35&times; difference before time decay and confidence.</div>
+                <div>Deployment via earnings call: 10.0 &times; 1.0 = <strong>10.0</strong></div>
+                <div>Announcement via social media: 1.0 &times; 0.3 = <strong>0.3</strong></div>
+                <div style="color:var(--color-text-muted);margin-top:4px;">33&times; difference before time decay and confidence.</div>
               </div>
             </div>
           </div>
@@ -2688,37 +2685,23 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             <!-- Signal Taxonomy -->
             <div class="profile-card">
               <div class="profile-card-title">Signal Taxonomy</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Each signal is classified by type. The base weight reflects how strong this type of evidence is as proof of real adoption:</p>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Each signal is classified by what actually happened. The base weight reflects how strong this type of evidence is as proof of real adoption:</p>
               <table class="data-table" style="font-size:var(--text-xs);">
                 <thead><tr><th>Type</th><th>Weight</th><th>Example</th></tr></thead>
                 <tbody>
                   <tr><td>Deployment</td><td class="mono">10.0</td><td>Enterprise-wide rollout of Workday AI</td></tr>
                   <tr><td>Procurement</td><td class="mono">7.0</td><td>Purchasing Eightfold AI platform</td></tr>
-                  <tr><td>Pilot / Limited Rollout</td><td class="mono">6.0</td><td>Testing AI recruiting tool in one division</td></tr>
-                  <tr><td>Governance / AI Oversight</td><td class="mono">6.0</td><td>AI ethics board covering HR</td></tr>
-                  <tr><td>HR AI Leadership Hire</td><td class="mono">5.0</td><td>Hiring VP of AI for HR</td></tr>
-                  <tr><td>Vendor Case Study</td><td class="mono">5.0</td><td>Named in vendor success story</td></tr>
-                  <tr><td>AI Upskilling for HR</td><td class="mono">4.0</td><td>Company-wide AI training for HR team</td></tr>
-                  <tr><td>Earnings / Annual Report</td><td class="mono">4.0</td><td>CEO mentions HR AI on earnings call</td></tr>
+                  <tr><td>Pilot</td><td class="mono">6.0</td><td>Testing AI recruiting tool in one division</td></tr>
+                  <tr><td>Governance</td><td class="mono">6.0</td><td>AI ethics board or policy covering HR</td></tr>
+                  <tr><td>Leadership Hire</td><td class="mono">5.0</td><td>Hiring VP of AI for HR</td></tr>
+                  <tr><td>Upskilling</td><td class="mono">4.0</td><td>Company-wide AI training for HR team</td></tr>
                   <tr><td>AI Talent Hiring</td><td class="mono">3.0</td><td>Job posts for ML engineers, data scientists</td></tr>
-                  <tr><td>PR Mention</td><td class="mono">1.0</td><td>Press release about AI strategy</td></tr>
+                  <tr><td>Announcement</td><td class="mono">1.0</td><td>Press release or mention without concrete action</td></tr>
                 </tbody>
               </table>
             </div>
 
-            <!-- Confirmation Levels -->
-            <div class="profile-card">
-              <div class="profile-card-title">Confirmation Levels</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Independent of signal type &mdash; this multiplier reflects how verified the evidence is:</p>
-              <div style="display:flex;flex-direction:column;gap:var(--space-2);font-size:var(--text-xs);">
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Confirmed Deployment</strong> &mdash; &times;1.0<br><span style="color:var(--color-text-muted);">A specific AI tool or platform is verified as running in production at meaningful scale (e.g., enterprise-wide rollout, confirmed in earnings call or vendor case study).</span></div>
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Inferred Deployment</strong> &mdash; &times;0.8<br><span style="color:var(--color-text-muted);">The company builds and sells HR AI products. A product announcement (new AI features, agents, or capabilities for customers) is strong evidence the company is also using those capabilities internally. Applied to HR product builders like SAP, Oracle, Workday, ServiceNow, Microsoft, Google, IBM, and Salesforce.</span></div>
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Pilot</strong> &mdash; &times;0.7<br><span style="color:var(--color-text-muted);">A named tool is actively being tested in limited scope &mdash; one business unit, region, or use case &mdash; with intent to evaluate for broader rollout.</span></div>
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Preparing</strong> &mdash; &times;0.5<br><span style="color:var(--color-text-muted);">The company is building toward AI adoption through infrastructure, hiring, or vendor procurement, but no specific tool is confirmed as deployed or piloted yet. Includes roles focused on building AI for HR.</span></div>
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Exploration</strong> &mdash; &times;0.4<br><span style="color:var(--color-text-muted);">The company has expressed interest in HR AI through public statements, conference appearances, or generic leadership hires, but no concrete tool, vendor, or timeline has been identified.</span></div>
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>PR Mention</strong> &mdash; &times;0.15<br><span style="color:var(--color-text-muted);">AI is mentioned in press materials or blog posts without specifics about tools, timelines, or measurable outcomes. Often aspirational language without evidence of real activity.</span></div>
-              </div>
-            </div>
+
 
             <!-- Source Credibility -->
             <div class="profile-card">
@@ -2749,7 +2732,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
               <div style="font-size:var(--text-xs);line-height:1.8;">
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 1: Score each signal</strong><br>
-                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">points = base_weight &times; confirmation &times; source &times; decay &times; confidence</code>
+                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">points = base_weight &times; source_credibility &times; time_decay &times; confidence</code>
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 2: Group by HR domain</strong><br>
@@ -2913,16 +2896,14 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 <label>Signal Type</label>
                 <select id="afSignalType">
                   <option value="">-- Select --</option>
-                  <option value="A">A — Deployment</option>
-                  <option value="B">B — Pilot</option>
-                  <option value="C">C — Procurement</option>
-                  <option value="D">D — Leadership Hire</option>
-                  <option value="E">E — Governance/Oversight</option>
-                  <option value="F">F — AI Upskilling</option>
-                  <option value="G">G — Vendor Case Study</option>
-                  <option value="H">H — Earnings/Report</option>
-                  <option value="I">I — PR Mention</option>
-                  <option value="J">J — AI Talent Hiring</option>
+                  <option value="A">Deployment</option>
+                  <option value="B">Pilot</option>
+                  <option value="C">Procurement</option>
+                  <option value="D">Leadership Hire</option>
+                  <option value="E">Governance</option>
+                  <option value="F">Upskilling</option>
+                  <option value="I">Announcement</option>
+                  <option value="J">AI Talent Hiring</option>
                 </select>
               </div>
               <div class="admin-form-field">
@@ -2938,18 +2919,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                   <option value="AI Hiring">AI Hiring</option>
                 </select>
               </div>
-              <div class="admin-form-field">
-                <label>Confirmation Level</label>
-                <select id="afConfirmLevel">
-                  <option value="">-- Select --</option>
-                  <option value="Confirmed Deployment">Confirmed Deployment</option>
-                  <option value="Inferred Deployment">Inferred Deployment</option>
-                  <option value="Pilot">Pilot</option>
-                  <option value="Preparing">Preparing</option>
-                  <option value="Exploration">Exploration</option>
-                  <option value="PR Mention">PR Mention</option>
-                </select>
-              </div>
+
               <div class="admin-form-field">
                 <label>Source Type</label>
                 <select id="afSourceType">
@@ -3070,7 +3040,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
       </label>
       <label class="flag-modal-option" onclick="selectFlagReason(this, 'wrong_categorization')">
         <input type="radio" name="flag_reason" value="wrong_categorization">
-        <span>A categorization is wrong (type, domain, or confirmation level)</span>
+        <span>A categorization is wrong (type, domain, or source)</span>
       </label>
       <label class="flag-modal-option" onclick="selectFlagReason(this, 'wrong_company')">
         <input type="radio" name="flag_reason" value="wrong_company">
@@ -3281,17 +3251,8 @@ function momentumClass(v) { return v > 0 ? 'momentum-pos' : v < 0 ? 'momentum-ne
 function fmt(v, d) { return (typeof v === 'number') ? v.toFixed(d === undefined ? 1 : d) : v || '—'; }
 function fmtMomentum(v) { return v > 0 ? '+' + fmt(v) : fmt(v); }
 function patternBadge(p) { return '<span class="badge badge-blue">' + (p || '—') + '</span>'; }
-function confirmBadge(level) {
-  var cls = 'badge-gray';
-  if (level === 'Confirmed Deployment') cls = 'badge-green';
-  else if (level === 'Inferred Deployment') cls = 'badge-green';
-  else if (level === 'Pilot') cls = 'badge-blue';
-  else if (level === 'Preparing') cls = 'badge-teal';
-  else if (level === 'Exploration') cls = 'badge-yellow';
-  return '<span class="badge ' + cls + '">' + (level || '—') + '</span>';
-}
 function signalTypeBadge(type) {
-  var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',E:'Governance',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'PR Mention',J:'AI Talent Hiring'};
+  var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',E:'Governance',F:'Upskilling',I:'Announcement',J:'AI Talent Hiring'};
   return labels[type] || type || '';
 }
 function prRatioBar(pr) {
@@ -3497,7 +3458,7 @@ function openProfile(companyName) {
       signalsHTML += '<div class="signal-item profile-signal-item" data-domain="' + (s.HR_domain || '') + '">' +
         '<div class="signal-meta"><span>' + (s.date_event || s.date_found || '') + '</span>' +
         '<span class="badge badge-blue">' + (s.HR_domain || '') + '</span>' +
-        confirmBadge(s.confirmation_level || '') +
+        '<span class="badge badge-gray">' + signalTypeBadge(s.signal_type) + '</span>' +
         (s.signal_type === 'J' ? '<span class="badge badge-teal">AI Talent</span>' : '') +
         flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
         '</div>' +
@@ -4846,7 +4807,7 @@ function buildCompanyProfileHTML(companyName, side) {
       html += '<div style="display:flex;gap:var(--space-2);flex-wrap:wrap;align-items:center;margin-bottom:2px;">';
       html += '<span style="color:var(--color-text-muted);">' + (s.date_event || s.date_found || '') + '</span>';
       html += '<span class="badge badge-blue" style="font-size:10px;">' + (s.HR_domain || '') + '</span>';
-      html += confirmBadge(s.confirmation_level || '');
+      html += '<span class="badge badge-gray" style="font-size:10px;">' + signalTypeBadge(s.signal_type) + '</span>';
       if (s.signal_type === 'J') html += '<span class="badge badge-teal" style="font-size:10px;">AI Talent</span>';
       html += flagBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'');
       html += '</div>';
@@ -5027,7 +4988,6 @@ function initSignalsExplorer() {
         date: s.date_event || s.date_found || '',
         signal_type: s.signal_type || '',
         HR_domain: s.HR_domain || '',
-        confirmation_level: s.confirmation_level || '',
         summary: s.summary || '',
         source_urls: s.source_urls || []
       });
@@ -5049,8 +5009,7 @@ var sigMultiFilters = {
   industry: new Set(),
   sub_industry: new Set(),
   signal_type: new Set(),
-  HR_domain: new Set(),
-  confirmation_level: new Set()
+  HR_domain: new Set()
 };
 
 // Company search state for signals page
@@ -5059,7 +5018,7 @@ var sigCompanyFilter = '';
 var SIG_LABELS = {
   A:'Deployment', B:'Pilot', C:'Procurement',
   D:'Leadership Hire', E:'Governance', F:'Upskilling',
-  G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
+  I:'Announcement', J:'AI Talent Hiring'
 };
 
 function buildSigMultiselect(containerId, values, labelFn, filterKey) {
@@ -5153,7 +5112,6 @@ function populateSignalsFilters() {
   var companies = new Set();
   var types = new Set();
   var domains = new Set();
-  var confirms = new Set();
   
   sigAllSignals.forEach(function(s) {
     if (s.industry) industries.add(s.industry);
@@ -5161,7 +5119,6 @@ function populateSignalsFilters() {
     if (s.company_name) companies.add(s.company_name);
     if (s.signal_type) types.add(s.signal_type);
     if (s.HR_domain) domains.add(s.HR_domain);
-    if (s.confirmation_level) confirms.add(s.confirmation_level);
   });
   
   // Build multi-selects
@@ -5169,7 +5126,6 @@ function populateSignalsFilters() {
   buildSigMultiselect('sigMultiSubIndustry', Array.from(subIndustries).sort(), function(v) { return v; }, 'sub_industry');
   buildSigMultiselect('sigMultiType', Array.from(types).sort(), function(v) { return SIG_LABELS[v] || v; }, 'signal_type');
   buildSigMultiselect('sigMultiDomain', Array.from(domains).sort(), function(v) { return v; }, 'HR_domain');
-  buildSigMultiselect('sigMultiConfirm', Array.from(confirms).sort(), function(v) { return v; }, 'confirmation_level');
   
   // Company search
   initSigCompanySearch(Array.from(companies).sort());
@@ -5291,7 +5247,6 @@ function getFilteredSignals() {
     if (sigMultiFilters.sub_industry.size > 0 && !sigMultiFilters.sub_industry.has(s.sub_industry)) return false;
     if (sigMultiFilters.signal_type.size > 0 && !sigMultiFilters.signal_type.has(s.signal_type)) return false;
     if (sigMultiFilters.HR_domain.size > 0 && !sigMultiFilters.HR_domain.has(s.HR_domain)) return false;
-    if (sigMultiFilters.confirmation_level.size > 0 && !sigMultiFilters.confirmation_level.has(s.confirmation_level)) return false;
     return true;
   });
 }
@@ -5363,7 +5318,7 @@ function renderSignalCards(signals) {
   var SIG_LABELS = {
     A:'Deployment', B:'Pilot', C:'Procurement',
     D:'Leadership Hire', E:'Governance', F:'Upskilling',
-    G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
+    I:'Announcement', J:'AI Talent Hiring'
   };
   var linkIcon = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
   
@@ -5395,7 +5350,6 @@ function renderSignalCards(signals) {
       '<div class="signal-feed-card-header">' +
       '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>' +
       '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' +
-      confirmBadge(s.confirmation_level) +
       flagBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain) +
       '</div>' +
       '<div class="signal-feed-summary">' + s.summary + '</div>' +
@@ -5411,7 +5365,6 @@ window.clearSignalsFilters = function() {
   sigMultiFilters.sub_industry.clear();
   sigMultiFilters.signal_type.clear();
   sigMultiFilters.HR_domain.clear();
-  sigMultiFilters.confirmation_level.clear();
   // Reset company search
   sigCompanyFilter = '';
   var searchEl = document.getElementById('sigCompanySearch');
@@ -5513,13 +5466,13 @@ function initAdmin() {
   var SIG_LABELS = {
     A:'Deployment', B:'Pilot', C:'Procurement',
     D:'Leadership Hire', E:'Governance', F:'Upskilling',
-    G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
+    I:'Announcement', J:'AI Talent Hiring'
   };
 
   // ---- Table state ----
   var tState = {
     sort: { col: 'date', dir: -1 },
-    filters: { company_name: new Set(), signal_type: new Set(), HR_domain: new Set(), confirmation_level: new Set() },
+    filters: { company_name: new Set(), signal_type: new Set(), source_type: new Set(), HR_domain: new Set() },
     search: '',
     editIdx: null  // index in allSignals being edited
   };
@@ -5569,7 +5522,7 @@ function initAdmin() {
       date_event:         document.getElementById('afDateEvent').value || '',
       signal_type:        document.getElementById('afSignalType').value || '',
       HR_domain:          document.getElementById('afHRDomain').value || '',
-      confirmation_level: document.getElementById('afConfirmLevel').value || '',
+
       source_type:        document.getElementById('afSourceType').value || '',
       confidence_score:   parseFloat(document.getElementById('afConfidence').value) || 0.5,
       summary:            (document.getElementById('afSummary').value || '').trim(),
@@ -5648,8 +5601,9 @@ function initAdmin() {
       { key: 'company_name',        label: 'Company',      sortable: true, filterable: true  },
       { key: 'date',                label: 'Date',         sortable: true, filterable: false },
       { key: 'signal_type',         label: 'Type',         sortable: true, filterable: true  },
+      { key: 'source_type',          label: 'Source',       sortable: true, filterable: true  },
       { key: 'HR_domain',           label: 'Domain',       sortable: true, filterable: true  },
-      { key: 'confirmation_level',  label: 'Confirmation', sortable: true, filterable: true  },
+
       { key: 'summary',             label: 'Summary',      sortable: false,filterable: false },
       { key: '_actions',            label: 'Actions',      sortable: false,filterable: false }
     ];
@@ -5837,7 +5791,6 @@ function initAdmin() {
           (s.signal_type||'').toLowerCase().indexOf(q) >= 0 ||
           (SIG_LABELS[s.signal_type]||'').toLowerCase().indexOf(q) >= 0 ||
           (s.HR_domain||'').toLowerCase().indexOf(q) >= 0 ||
-          (s.confirmation_level||'').toLowerCase().indexOf(q) >= 0 ||
           (s.summary||'').toLowerCase().indexOf(q) >= 0 ||
           (s.source_type||'').toLowerCase().indexOf(q) >= 0
         );
@@ -5845,7 +5798,7 @@ function initAdmin() {
     }
 
     // Filters
-    ['company_name','signal_type','HR_domain','confirmation_level'].forEach(function(k) {
+    ['company_name','signal_type','source_type','HR_domain'].forEach(function(k) {
       if (tState.filters[k] && tState.filters[k].size > 0) {
         rows = rows.filter(function(s) { return tState.filters[k].has(s[k] || ''); });
       }
@@ -5922,13 +5875,13 @@ function initAdmin() {
         }).join('');
         tdDo.innerHTML = '<select class="ae-domain"><option value="">--</option>'+domOpts+'</select>';
         tr.appendChild(tdDo);
-        // Confirmation
-        var tdCf = document.createElement('td');
-        var cfOpts = ['Confirmed Deployment','Pilot','Preparing','Exploration','PR Mention'].map(function(c) {
-          return '<option value="'+c+'"'+(sig.confirmation_level===c?' selected':'')+'>'+c+'</option>';
+        // Source Type
+        var tdSrc = document.createElement('td');
+        var srcOpts = ['earnings call','SEC filing','vendor case study','job post','conference presentation','industry report','press release','news article','blog post','social media'].map(function(st) {
+          return '<option value="'+st+'"'+(sig.source_type===st?' selected':'')+'>'+st+'</option>';
         }).join('');
-        tdCf.innerHTML = '<select class="ae-confirm"><option value="">--</option>'+cfOpts+'</select>';
-        tr.appendChild(tdCf);
+        tdSrc.innerHTML = '<select class="ae-source"><option value="">--</option>'+srcOpts+'</select>';
+        tr.appendChild(tdSrc);
         // Summary
         var tdSu = document.createElement('td');
         tdSu.innerHTML = '<textarea class="ae-summary" rows="2" style="min-width:160px;">'+esc(sig.summary||'')+'</textarea>';
@@ -5947,7 +5900,7 @@ function initAdmin() {
           else s.date_found = newDate;
           s.signal_type        = tr.querySelector('.ae-type').value;
           s.HR_domain          = tr.querySelector('.ae-domain').value;
-          s.confirmation_level = tr.querySelector('.ae-confirm').value;
+          s.source_type        = tr.querySelector('.ae-source').value;
           s.summary            = tr.querySelector('.ae-summary').value.trim();
           tState.editIdx = null;
           renderAdminTable();
@@ -5989,9 +5942,9 @@ function initAdmin() {
         tdDo.textContent = sig.HR_domain || '—';
         tr.appendChild(tdDo);
 
-        var tdCf = document.createElement('td');
-        tdCf.textContent = sig.confirmation_level || '—';
-        tr.appendChild(tdCf);
+        var tdSrc = document.createElement('td');
+        tdSrc.textContent = sig.source_type || '—';
+        tr.appendChild(tdSrc);
 
         var tdSu = document.createElement('td');
         tdSu.className = 'admin-summary-cell';
