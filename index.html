@@ -2353,7 +2353,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
     height: 52px;
   }
 
-  /* --- AI Tech Landscape --- */
+  /* --- HR AI Tech Landscape --- */
   #tab-techlandscape .table-container { overflow-x: auto; }
   #tab-techlandscape th:nth-child(3),
   #tab-techlandscape td:nth-child(3),
@@ -2485,6 +2485,10 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         <span>Signals</span>
       </li>
+      <li class="nav-item" data-tab="techlandscape" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
+        <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        <span>HR AI Tech</span>
+      </li>
       <li class="nav-item" data-tab="peers" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
         <span>Peer Comparison</span>
@@ -2500,10 +2504,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
       <li class="nav-item" data-tab="governance" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         <span>Governance</span>
-      </li>
-      <li class="nav-item" data-tab="techlandscape" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
-        <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        <span>AI Tech</span>
       </li>
       <li class="nav-item" data-tab="methodology" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
@@ -2715,7 +2715,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
     <!-- AI TECH LANDSCAPE TAB -->
     <section class="tab-panel" id="tab-techlandscape">
       <div style="max-width:1200px;">
-        <h1 class="page-title">AI Tech Landscape</h1>
+        <h1 class="page-title">HR AI Tech Landscape</h1>
         <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-4);max-width:720px;">HR AI technologies detected across company signals, ranked by deployment adoption. Click any technology to see which companies have deployed or piloted it.</p>
         <!-- Summary cards -->
         <div id="techSummaryCards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-3);margin-bottom:var(--space-5);"></div>
@@ -3146,6 +3146,10 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       <span>Signals</span>
     </button>
+    <button class="mobile-tab-item" data-mobile-tab="techlandscape" onclick="switchTabMobile('techlandscape')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      <span>HR AI Tech</span>
+    </button>
     <button class="mobile-tab-item" data-mobile-tab="more" onclick="toggleMoreMenu()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
       <span>More</span>
@@ -3166,10 +3170,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
     <button class="mobile-more-item" onclick="switchTabMobile('governance');closeMoreMenu()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       <span>Governance</span>
-    </button>
-    <button class="mobile-more-item" onclick="switchTabMobile('techlandscape');closeMoreMenu()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-      <span>AI Tech</span>
     </button>
     <button class="mobile-more-item" onclick="switchTabMobile('methodology');closeMoreMenu()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -3234,7 +3234,7 @@ window.switchTabMobile = function(tabId) {
     var isMore = t.dataset.mobileTab === 'more';
     var isActive = t.dataset.mobileTab === tabId;
     // For methodology/admin, highlight "more"
-    if ((tabId === 'methodology' || tabId === 'admin' || tabId === 'techlandscape' || tabId === 'movers' || tabId === 'governance') && isMore) isActive = true;
+    if ((tabId === 'methodology' || tabId === 'admin' || tabId === 'movers' || tabId === 'governance') && isMore) isActive = true;
     t.classList.toggle('active', isActive);
   });
 };
@@ -3373,7 +3373,7 @@ function switchTab(tabId) {
   document.querySelectorAll('.mobile-tab-item').forEach(function(t) {
     var isMore = t.dataset.mobileTab === 'more';
     var isActive = t.dataset.mobileTab === tabId;
-    if ((tabId === 'methodology' || tabId === 'admin' || tabId === 'techlandscape' || tabId === 'movers' || tabId === 'governance') && isMore) isActive = true;
+    if ((tabId === 'methodology' || tabId === 'admin' || tabId === 'movers' || tabId === 'governance') && isMore) isActive = true;
     t.classList.toggle('active', isActive);
   });
   // Close more menu if open
@@ -3709,7 +3709,7 @@ function openProfile(companyName) {
           '<span style="font-size:10px;font-weight:600;color:' + sc + ';">' + t.status + '</span>' +
           '</div>';
       }).join('');
-      return '<div class="section-block"><h2 class="section-title">AI Tech Stack <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + ts.length + ' technologies detected)</span></h2>' +
+      return '<div class="section-block"><h2 class="section-title">HR AI Tech Stack <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + ts.length + ' technologies detected)</span></h2>' +
         '<div style="display:flex;flex-wrap:wrap;gap:var(--space-2);">' + techHTML + '</div></div>';
     })() +
     '<div class="section-block"><h2 class="section-title">Signals <span id="profileSignalCount" style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + detail.total_signals + ' total)</span> <span id="profileFilterLabel" style="display:none;font-weight:400;font-size:var(--text-xs);color:var(--color-primary);cursor:pointer;"></span></h2><div id="profileSignalsList">' + signalsHTML + '</div></div>';
@@ -4852,7 +4852,7 @@ function renderTechLandscape() {
       '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-primary);">' + totalTechs + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Technologies Tracked</div></div>' +
       '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#059669;">' + totalDeploys + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Deployment Signals</div></div>' +
       '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#d97706;">' + totalPilots + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Pilot Signals</div></div>' +
-      '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-text);">' + totalCos.size + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Companies Using AI Tech</div></div>';
+      '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-text);">' + totalCos.size + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Companies Using HR AI Tech</div></div>';
   }
 
   // Build filter options
@@ -5060,7 +5060,7 @@ function openTechDetail(techName) {
   var pilotingCount = filteredCos.filter(function(c) { return c.status === 'Piloting'; }).length;
   var mentionedCount = filteredCos.filter(function(c) { return c.status === 'Mentioned'; }).length;
 
-  var html = '<div class="profile-back" onclick="closeTechDetail()" role="button" tabindex="0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to AI Tech</div>' +
+  var html = '<div class="profile-back" onclick="closeTechDetail()" role="button" tabindex="0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to HR AI Tech</div>' +
     '<div class="profile-header"><span class="profile-company-name">' + tech.name + '</span>' +
     '<div class="profile-tags-row">' +
     '<span class="badge badge-blue">' + tech.category + '</span>' +
