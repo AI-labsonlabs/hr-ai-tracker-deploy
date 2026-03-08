@@ -2553,7 +2553,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             </a>
           </div>
           <div class="about-text">
-            <p>An independent research tool tracking AI adoption across HR functions. Scores companies across 6 domains using public signals — earnings calls, job postings, vendor case studies, governance announcements, and more. This reflects only what’s publicly visible, not the full picture. Use it as a starting point for your own analysis and a reason to reach out to peers. No company sponsors or endorses this tool. Created & maintained by <a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">Andrew Helms</a>.</p>
+            <p>An independent research tool tracking AI adoption across HR functions. Scores companies across 7 domains using public signals — earnings calls, job postings, vendor case studies, governance announcements, and more. This reflects only what’s publicly visible, not the full picture. Use it as a starting point for your own analysis and a reason to reach out to peers. No company sponsors or endorses this tool. Created & maintained by <a href="https://www.linkedin.com/in/andrewmhelms" target="_blank" rel="noopener noreferrer">Andrew Helms</a>.</p>
             <p class="about-flag-note">Spot an error? Use the flag button on any signal.</p>
           </div>
         </div>
@@ -2905,17 +2905,17 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 2: Group by HR domain</strong><br>
-                  6 domains: Recruiting, Talent Development, HR Service Delivery, Comp/Benefits, Governance, AI Hiring. Each scored 0&ndash;100 independently with diminishing returns within a domain (1/&radic;rank). Domains with at least one signal score a minimum of 1.
+                  7 domains: Recruiting, Talent Development, HR Service Delivery, Comp/Benefits, Governance, AI Hiring, People Analytics. Each scored 0&ndash;100 independently with diminishing returns within a domain (1/&radic;rank). Domains with at least one signal score a minimum of 1.
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 3: Blend for overall score</strong><br>
-                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">base = (avg_all_6 &times; 0.6) + (avg_top_3 &times; 0.4)</code><br>
+                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">base = (avg_all_7 &times; 0.6) + (avg_top_3 &times; 0.4)</code><br>
                   60% rewards breadth across domains, 40% rewards depth in strongest areas.
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 4: Coverage adjustment</strong><br>
-                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">adjusted = base &times; (domains_covered / 6)<sup>0.3</sup></code><br>
-                  Companies with gaps in domain coverage receive a gentle penalty. Covering 6/6 domains = no penalty. Covering 3/6 = &times;0.81.
+                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">adjusted = base &times; (domains_covered / 7)<sup>0.3</sup></code><br>
+                  Companies with gaps in domain coverage receive a gentle penalty. Covering 7/7 domains = no penalty. Covering 3/7 = &times;0.81.
                 </div>
                 <div>
                   <strong>Step 5: Company adjustments</strong><br>
@@ -3066,6 +3066,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                   
                   <option value="Governance">Governance</option>
                   <option value="AI Hiring">AI Hiring</option>
+                  <option value="People Analytics">People Analytics</option>
                 </select>
               </div>
 
@@ -3555,7 +3556,7 @@ function openProfile(companyName) {
   const mfc = (mom).formula_components || {};
   const pw = md.pattern_weights || {};
   const pattern = md.adoption_pattern || detail.adoption_pattern || '\u2014';
-  const allDomains = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring'];
+  const allDomains = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring', 'People Analytics'];
   const isPrivate = co.public_or_private === 'Private';
   const estTag = ' <span style="font-size:var(--text-xs);color:var(--color-text-faint);font-weight:400;" title="Estimated based on publicly available industry data">est.</span>';
 
@@ -3652,9 +3653,9 @@ function openProfile(companyName) {
     '<summary style="cursor:pointer;font-weight:600;padding:var(--space-2) 0;color:var(--color-text-muted);border-top:1px solid var(--color-border);margin-top:var(--space-2);">Scoring Details</summary>' +
     '<div style="padding:var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-md);margin-top:var(--space-1);">' +
     '<strong>Maturity Breakdown</strong><br>' +
-    'Mean (all 6 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>' +
+    'Mean (all 7 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>' +
     'Base score (60% breadth + 40% depth): ' + fmt(fc.base_score, 1) + '<br>' +
-    'Coverage: \u00d7' + fmt(fc.coverage_mult, 3) + ' (' + md.domains_covered + '/6 domains) \u00b7 Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>' +
+    'Coverage: \u00d7' + fmt(fc.coverage_mult, 3) + ' (' + md.domains_covered + '/7 domains) \u00b7 Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>' +
     '<strong>Final: ' + fmt(md.score, 1) + '</strong><br><br>' +
     '<strong>Momentum Breakdown</strong><br>' +
     'Baseline: ' + fmt(mfc.w365, 1) + ' weighted signals/yr \u2192 ' + fmt(mfc.monthly_baseline, 1) + '/mo<br>' +
@@ -3933,7 +3934,7 @@ const OV_COLS = [
   { key: 'industry',     label: 'Industry',     type: 'multi-filter' },
   { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter' },
   { key: 'maturity',     label: 'Maturity',     type: 'metric',
-    tooltip: '<strong>Maturity Score (0–100)</strong>Each of 6 HR domains (Recruiting, Talent Development, HR Service Delivery, Comp/Benefits, Governance, AI Hiring) is scored 0–100 independently. Overall = 60% mean of all 6 domains + 40% mean of top 3, adjusted for company size and regulatory complexity. Rewards breadth across categories.' },
+    tooltip: '<strong>Maturity Score (0–100)</strong>Each of 7 HR domains (Recruiting, Talent Development, HR Service Delivery, Comp/Benefits, Governance, AI Hiring, People Analytics) is scored 0–100 independently. Overall = 60% mean of all 7 domains + 40% mean of top 3, adjusted for company size and regulatory complexity. Rewards breadth across categories.' },
   { key: 'momentum',     label: 'Momentum',     type: 'metric',
     tooltip: '<strong>Momentum (−10 to +10)</strong>Measures recent acceleration of HR AI signals. Compares 30-day weighted signal velocity to a 12-month baseline, normalized by company size.' },
   { key: 'signals',      label: 'Signals',      type: 'metric',
@@ -4362,7 +4363,8 @@ const DOMAIN_TOOLTIPS = {
   'HR Service Delivery': 'Signals for AI in HR operations and employee service: workflow automation, document processing, employee data analytics, HRIS AI features (Workday AI, ServiceNow), HR chatbots, AI help desks, automated case routing, self-service portals, and employee experience platforms.',
   'Comp/Benefits': 'Signals for AI in Compensation & Benefits: automated pay equity analysis, benefits optimization, comp benchmarking tools, and total rewards modeling.',
   'Governance': 'Signals for AI Governance in HR: responsible AI policies, bias auditing frameworks, ethics boards overseeing HR AI, regulatory compliance, and algorithmic accountability.',
-  'AI Hiring': 'Signals for AI talent hiring intensity: job postings for AI/ML engineers, data scientists, AI product managers, and other AI-focused roles that indicate investment in building AI capabilities.'
+  'AI Hiring': 'Signals for AI talent hiring intensity: job postings for AI/ML engineers, data scientists, AI product managers, and other AI-focused roles that indicate investment in building AI capabilities.',
+  'People Analytics': 'Signals for AI-powered people analytics: workforce analytics platforms, predictive attrition/retention modeling, sentiment analysis, employee survey insights, organizational network analysis, and HR data science initiatives.'
 };
 
 
@@ -4596,7 +4598,7 @@ HEAT_DOMAINS.forEach(function(d) {
     tooltip: DOMAIN_TOOLTIPS[d] ? ('<strong>' + d + '</strong>' + DOMAIN_TOOLTIPS[d]) : '' });
 });
 HEAT_COLS.push({ key: 'total', label: 'Total', type: 'sort-only',
-  tooltip: '<strong>Total Domain Score</strong>Sum of all 6 HR domain scores for this company.' });
+  tooltip: '<strong>Total Domain Score</strong>Sum of all 7 HR domain scores for this company.' });
 
 // Add domain sort keys to heatmap data
 heatmapData.forEach(function(entry) {
@@ -5180,9 +5182,9 @@ function buildCompanyProfileHTML(companyName, side) {
   html += '<div style="padding:var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-md);margin-top:var(--space-1);">';
   // Score formula
   html += '<strong>Maturity Breakdown</strong><br>';
-  html += 'Mean (all 6 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>';
+  html += 'Mean (all 7 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>';
   html += 'Base score (60% breadth + 40% depth): ' + fmt(fc.base_score, 1) + '<br>';
-  html += 'Coverage: \u00d7' + fmt(fc.coverage_mult, 3) + ' (' + md.domains_covered + '/6 domains) \u00b7 Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>';
+  html += 'Coverage: \u00d7' + fmt(fc.coverage_mult, 3) + ' (' + md.domains_covered + '/7 domains) \u00b7 Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>';
   html += '<strong>Final: ' + fmt(md.score, 1) + '</strong><br><br>';
   // Momentum formula
   html += '<strong>Momentum Breakdown</strong><br>';
