@@ -3569,7 +3569,7 @@ function openProfile(companyName) {
   const mfc = (mom).formula_components || {};
   const pw = md.pattern_weights || {};
   const pattern = md.adoption_pattern || detail.adoption_pattern || '\u2014';
-  const allDomains = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring', 'People Analytics'];
+  const allDomains = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring', 'People Analytics'].sort(function(a, b) { return (domains[b] || 0) - (domains[a] || 0); });
   const isPrivate = co.public_or_private === 'Private';
   const estTag = ' <span style="font-size:var(--text-xs);color:var(--color-text-faint);font-weight:400;" title="Estimated based on publicly available industry data">est.</span>';
 
@@ -5226,7 +5226,7 @@ function buildCompanyProfileHTML(companyName, side) {
   // --- DOMAIN SCORES (clickable to filter signals) ---
   html += '<div style="margin-top:var(--space-4);">';
   html += '<h4 style="margin:0 0 var(--space-2) 0;font-size:var(--text-sm);font-weight:600;">Domain Scores <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(click to filter signals)</span></h4>';
-  var domains = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring'];
+  var domains = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring', 'People Analytics'].sort(function(a, b) { return (ds[b] || 0) - (ds[a] || 0); });
   domains.forEach(function(d) {
     var score = ds[d] || 0;
     var tip = DOMAIN_TOOLTIPS[d] || '';
