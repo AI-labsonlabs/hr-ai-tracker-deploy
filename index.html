@@ -2730,8 +2730,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 <th style="text-align:left;">Vendor</th>
                 <th style="text-align:left;">Category</th>
                 <th style="text-align:left;">Primary Domain</th>
-                <th style="text-align:right;">Deployments</th>
-                <th style="text-align:right;">Pilots</th>
                 <th style="text-align:right;">Companies</th>
               </tr>
             </thead>
@@ -4193,7 +4191,7 @@ function cascadeOverviewFilters() {
     });
   }
   
-  // If sub-industries are selected, rebuild industry list to show only related industries
+  // Rebuild industry list based on selected sub-industries (or show all if none selected)
   var validIndustries = new Set();
   if (selectedSubs.size > 0) {
     selectedSubs.forEach(function(si) {
@@ -4203,27 +4201,30 @@ function cascadeOverviewFilters() {
     allCompanies.forEach(function(c) { if (c.industry) validIndustries.add(c.industry); });
   }
   
-  if (selectedSubs.size > 0) {
-    var indList = thead.querySelector('.dd-filter-list[data-filter-col="industry"]');
-    if (indList) {
-      var sortedInds = Array.from(validIndustries).sort();
-      var indHTML = '';
-      sortedInds.forEach(function(v) {
-        var checked = ovState.filters.industry.has(v) ? ' checked' : '';
-        indHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + v + '</label>';
+  // Always rebuild industry list to reflect current valid options
+  var indList = thead.querySelector('.dd-filter-list[data-filter-col="industry"]');
+  if (indList) {
+    // Remove industry selections that are no longer valid
+    ovState.filters.industry.forEach(function(ind) {
+      if (!validIndustries.has(ind)) ovState.filters.industry.delete(ind);
+    });
+    var sortedInds = Array.from(validIndustries).sort();
+    var indHTML = '';
+    sortedInds.forEach(function(v) {
+      var checked = ovState.filters.industry.has(v) ? ' checked' : '';
+      indHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + v + '</label>';
+    });
+    indList.innerHTML = indHTML;
+    indList.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+      cb.addEventListener('change', function(e) {
+        e.stopPropagation();
+        if (this.checked) { ovState.filters.industry.add(this.value); }
+        else { ovState.filters.industry.delete(this.value); }
+        cascadeOverviewFilters();
+        refreshOverviewHeaders();
+        renderOverviewTable();
       });
-      indList.innerHTML = indHTML;
-      indList.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
-        cb.addEventListener('change', function(e) {
-          e.stopPropagation();
-          if (this.checked) { ovState.filters.industry.add(this.value); }
-          else { ovState.filters.industry.delete(this.value); }
-          cascadeOverviewFilters();
-          refreshOverviewHeaders();
-          renderOverviewTable();
-        });
-      });
-    }
+    });
   }
 }
 
@@ -4986,24 +4987,19 @@ function renderTechTable() {
   if (!tbody) return;
 
   if (tl.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--color-text-muted);padding:var(--space-6);">No technologies match the selected filters.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--color-text-muted);padding:var(--space-6);">No technologies match the selected filters.</td></tr>';
     return;
   }
 
   // If industry filter active, recalculate counts for that industry
   var rows = tl.map(function(t) {
-    var deploys = t.deployments;
-    var pilots = t.pilots;
     var coCount = t.company_count;
 
     if (f.industry.length) {
-      // Recalculate for filtered industries
       var filteredCos = (t.companies || []).filter(function(c) {
         return f.industry.indexOf(c.industry) >= 0;
       });
       coCount = filteredCos.length;
-      deploys = filteredCos.filter(function(c) { return c.status === 'Deployed'; }).length;
-      pilots = filteredCos.filter(function(c) { return c.status === 'Piloting'; }).length;
     }
 
     return '<tr style="cursor:pointer;" onclick="openTechDetail(\'' + esc(t.name) + '\')">' +
@@ -5011,8 +5007,6 @@ function renderTechTable() {
       '<td>' + t.vendor + '</td>' +
       '<td><span class="badge badge-blue" style="font-size:10px;">' + t.category + '</span></td>' +
       '<td>' + t.primary_domain + '</td>' +
-      '<td style="text-align:right;font-family:var(--font-mono);">' + deploys + '</td>' +
-      '<td style="text-align:right;font-family:var(--font-mono);">' + pilots + '</td>' +
       '<td style="text-align:right;font-family:var(--font-mono);">' + coCount + '</td>' +
       '</tr>';
   });
@@ -5058,21 +5052,15 @@ function openTechDetail(techName) {
   }
   var statusColors = { 'Deployed': '#059669', 'Piloting': '#d97706', 'Mentioned': 'var(--color-text-muted)' };
   var companiesHTML = filteredCos.map(function(c) {
-    var statusColor = statusColors[c.status] || 'var(--color-text-muted)';
     return '<tr style="cursor:pointer;" onclick="openProfile(\'' + esc(c.name) + '\')">' +
       '<td style="font-weight:500;">' + c.name + '</td>' +
       '<td><span class="badge badge-gray" style="font-size:10px;">' + c.industry + '</span></td>' +
       '<td><span class="badge badge-gray" style="font-size:10px;">' + c.sub_industry + '</span></td>' +
-      '<td><span style="color:' + statusColor + ';font-weight:600;font-size:var(--text-xs);">' + c.status + '</span></td>' +
       '<td style="text-align:right;font-family:var(--font-mono);font-size:var(--text-xs);">' + c.signal_count + '</td>' +
       '<td style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);">' + c.latest_date + '</td>' +
       '</tr>';
   }).join('');
-  if (!companiesHTML) companiesHTML = '<tr><td colspan="6" style="text-align:center;color:var(--color-text-muted);padding:var(--space-4);">No companies match the current filters.</td></tr>';
-
-  var deployedCount = filteredCos.filter(function(c) { return c.status === 'Deployed'; }).length;
-  var pilotingCount = filteredCos.filter(function(c) { return c.status === 'Piloting'; }).length;
-  var mentionedCount = filteredCos.filter(function(c) { return c.status === 'Mentioned'; }).length;
+  if (!companiesHTML) companiesHTML = '<tr><td colspan="5" style="text-align:center;color:var(--color-text-muted);padding:var(--space-4);">No companies match the current filters.</td></tr>';
 
   var html = '<div class="profile-back" onclick="closeTechDetail()" role="button" tabindex="0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to HR AI Tech</div>' +
     '<div class="profile-header"><span class="profile-company-name">' + tech.name + '</span>' +
@@ -5082,9 +5070,7 @@ function openTechDetail(techName) {
     '<span class="badge badge-gray">' + tech.primary_domain + '</span>' +
     '</div></div>' +
     '<div class="profile-grid">' +
-    '<div class="profile-card" style="text-align:center;"><div class="profile-card-title">Deployed At</div><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#059669;">' + deployedCount + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">companies</div></div>' +
-    '<div class="profile-card" style="text-align:center;"><div class="profile-card-title">Piloting At</div><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#d97706;">' + pilotingCount + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">companies</div></div>' +
-    '<div class="profile-card" style="text-align:center;"><div class="profile-card-title">Mentioned By</div><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-text-muted);">' + mentionedCount + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">companies</div></div>' +
+    '<div class="profile-card" style="text-align:center;"><div class="profile-card-title">Deployed At</div><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#059669;">' + filteredCos.length + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">companies</div></div>' +
     '<div class="profile-card" style="text-align:center;"><div class="profile-card-title">Total Signals</div><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-primary);">' + tech.total_mentions + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">across all companies</div></div>' +
     '</div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-top:var(--space-4);">' +
@@ -5096,7 +5082,6 @@ function openTechDetail(techName) {
     '<th style="text-align:left;">Company</th>' +
     '<th style="text-align:left;">Industry</th>' +
     '<th style="text-align:left;">Sub-Industry</th>' +
-    '<th style="text-align:left;">Status</th>' +
     '<th style="text-align:right;">Signals</th>' +
     '<th style="text-align:left;">Latest</th>' +
     '</tr></thead><tbody>' + companiesHTML + '</tbody></table></div></div>';
@@ -5231,7 +5216,7 @@ function buildCompanyProfileHTML(companyName, side) {
     var score = ds[d] || 0;
     var tip = DOMAIN_TOOLTIPS[d] || '';
     html += '<div class="cmp-domain-bar" data-domain="' + d + '" data-panel="' + uid + '" style="display:flex;align-items:center;gap:8px;padding:4px 6px;margin:1px 0;border-radius:var(--radius-sm);cursor:pointer;transition:background 0.15s;" title="' + tip.replace(/"/g, '&quot;') + '">';
-    html += '<span style="font-size:var(--text-xs);min-width:100px;flex-shrink:0;">' + d + '</span>';
+    html += '<span style="font-size:var(--text-xs);min-width:130px;width:130px;flex-shrink:0;">' + d + '</span>';
     html += '<div style="flex:1;height:8px;background:var(--color-surface-offset);border-radius:4px;overflow:hidden;">';
     html += '<div style="height:100%;width:' + score + '%;background:var(--color-primary);border-radius:4px;"></div></div>';
     html += '<span class="mono" style="font-size:var(--text-xs);min-width:28px;text-align:right;flex-shrink:0;">' + fmt(score, 0) + '</span></div>';
