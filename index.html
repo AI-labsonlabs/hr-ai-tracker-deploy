@@ -2766,7 +2766,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
               </div>
               <ul style="padding-left:var(--space-3);color:var(--color-text-muted);display:flex;flex-direction:column;gap:var(--space-2);">
                 <li><strong>AI tools deployed in HR processes</strong> &mdash; recruiting, onboarding, learning, employee service, compensation analytics, people operations</li>
-                <li><strong>Pilots and procurement</strong> of HR-specific AI platforms (e.g., Eightfold, Paradox, Phenom, HireVue, Textio, Beamery)</li>
+                <li><strong>Pilots and deployments</strong> of HR-specific AI platforms (e.g., Eightfold, Paradox, Phenom, HireVue, Textio, Beamery)</li>
                 <li><strong>HR AI leadership hires</strong> &mdash; roles explicitly tied to AI strategy within HR or workforce technology</li>
                 <li><strong>AI hiring activity</strong> &mdash; job posts for AI/ML engineers, data scientists, and similar technical roles</li>
                 <li><strong>AI governance</strong> with HR relevance &mdash; responsible AI policies, ethics boards, bias auditing frameworks</li>
@@ -2837,7 +2837,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 <thead><tr><th>Type</th><th>Weight</th><th>Example</th></tr></thead>
                 <tbody>
                   <tr><td>Deployment</td><td class="mono">10.0</td><td>Enterprise-wide rollout of Workday AI</td></tr>
-                  <tr><td>Procurement</td><td class="mono">7.0</td><td>Purchasing Eightfold AI platform</td></tr>
                   <tr><td>Pilot</td><td class="mono">6.0</td><td>Testing AI recruiting tool in one division</td></tr>
                   <tr><td>Governance</td><td class="mono">6.0</td><td>AI ethics board or policy covering HR</td></tr>
                   <tr><td>Leadership Hire</td><td class="mono">5.0</td><td>Hiring VP of AI for HR</td></tr>
@@ -2958,7 +2957,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
               <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Each company&rsquo;s signals are grouped into six categories. The category with the most weight determines the pattern label.</p>
               <div style="font-size:var(--text-xs);line-height:1.8;">
                 <div style="display:grid;grid-template-columns:110px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
-                  <div><strong style="color:#059669;">Tool</strong></div><div>Deployments, pilots, and procurement of specific AI tools</div>
+                  <div><strong style="color:#059669;">Tool</strong></div><div>Deployments and pilots of specific AI tools</div>
                   <div><strong style="color:#d97706;">Leadership</strong></div><div>Senior AI leadership hires signaling strategic commitment</div>
                   <div><strong style="color:#f59e0b;">Upskilling</strong></div><div>Company-wide AI training and capability-building programs</div>
                   <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>Job postings for AI/ML engineers and data scientists</div>
@@ -3048,7 +3047,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                   <option value="">-- Select --</option>
                   <option value="A">Deployment</option>
                   <option value="B">Pilot</option>
-                  <option value="C">Procurement</option>
+
                   <option value="D">Leadership Hire</option>
                   <option value="E">Governance</option>
                   <option value="F">Upskilling</option>
@@ -3406,7 +3405,7 @@ function fmt(v, d) { return (typeof v === 'number') ? v.toFixed(d === undefined 
 function fmtMomentum(v) { return v > 0 ? '+' + fmt(v) : fmt(v); }
 function patternBadge(p) { return '<span class="badge badge-blue">' + (p || '—') + '</span>'; }
 function signalTypeBadge(type) {
-  var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',E:'Governance',F:'Upskilling',I:'Announcement',J:'AI Hiring'};
+  var labels = {A:'Deployment',B:'Pilot',D:'Leadership Hire',E:'Governance',F:'Upskilling',I:'Announcement',J:'AI Hiring'};
   return labels[type] || type || '';
 }
 function prRatioBar(pr) {
@@ -5462,7 +5461,7 @@ var sigMultiFilters = {
 var sigCompanyFilter = '';
 
 var SIG_LABELS = {
-  A:'Deployment', B:'Pilot', C:'Procurement',
+  A:'Deployment', B:'Pilot',
   D:'Leadership Hire', E:'Governance', F:'Upskilling',
   I:'Announcement', J:'AI Hiring'
 };
@@ -5764,7 +5763,7 @@ window.loadMoreSignals = function() {
 
 function renderSignalCards(signals) {
   var SIG_LABELS = {
-    A:'Deployment', B:'Pilot', C:'Procurement',
+    A:'Deployment', B:'Pilot',
     D:'Leadership Hire', E:'Governance', F:'Upskilling',
     I:'Announcement', J:'AI Hiring'
   };
@@ -5939,7 +5938,7 @@ function initAdmin() {
 
   // ---- Signal type labels ----
   var SIG_LABELS = {
-    A:'Deployment', B:'Pilot', C:'Procurement',
+    A:'Deployment', B:'Pilot',
     D:'Leadership Hire', E:'Governance', F:'Upskilling',
     I:'Announcement', J:'AI Hiring'
   };
