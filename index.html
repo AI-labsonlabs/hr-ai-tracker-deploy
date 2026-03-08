@@ -523,11 +523,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 }
 .signal-item .signal-summary { margin-bottom: var(--space-2); }
 .signal-item .signal-summary .summary-text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  /* No truncation on desktop — signals expand to fit */
 }
 .signal-item .signal-summary .summary-text.expanded {
   -webkit-line-clamp: unset;
@@ -539,14 +535,17 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   background: none;
   border: none;
   color: var(--color-primary);
-  font-size: var(--text-xs);
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
   cursor: pointer;
-  padding: 2px 0;
-  margin-top: 2px;
+  padding: 2px 8px;
+  margin-top: 4px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-highlight);
+  letter-spacing: 0.01em;
 }
 .signal-item .signal-summary .show-more-btn:hover {
-  text-decoration: underline;
+  background: color-mix(in srgb, var(--color-primary) 18%, transparent);
 }
 .signal-item .signal-sources {
   display: flex;
@@ -719,6 +718,31 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 }
 .cmp-signal-item.hidden {
   display: none !important;
+}
+.cmp-signal-item .signal-summary .summary-text {
+  /* No truncation on desktop — signals expand to fit */
+}
+.cmp-signal-item .signal-summary .summary-text.expanded {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  display: block;
+}
+.cmp-signal-item .signal-summary .show-more-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 8px;
+  margin-top: 4px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-highlight);
+  letter-spacing: 0.01em;
+}
+.cmp-signal-item .signal-summary .show-more-btn:hover {
+  background: color-mix(in srgb, var(--color-primary) 18%, transparent);
 }
 @media (max-width: 900px) {
   .compare-layout {
@@ -1942,14 +1966,17 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   background: none;
   border: none;
   color: var(--color-primary);
-  font-size: var(--text-xs);
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
   cursor: pointer;
-  padding: 2px 0;
-  margin-top: 2px;
+  padding: 2px 8px;
+  margin-top: 4px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-highlight);
+  letter-spacing: 0.01em;
 }
 .signal-feed-summary .show-more-btn:hover {
-  text-decoration: underline;
+  background: color-mix(in srgb, var(--color-primary) 18%, transparent);
 }
 .signal-feed-sources {
   display: flex;
@@ -2449,6 +2476,15 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
     padding: var(--space-3);
   }
   .signal-feed-summary .summary-text {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+  /* Truncate signal text on mobile for company profiles and peer comparison */
+  .signal-item .signal-summary .summary-text,
+  .cmp-signal-item .signal-summary .summary-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     -webkit-line-clamp: 3;
     line-clamp: 3;
   }
@@ -5879,12 +5915,16 @@ window.toggleSummary = function(btn) {
 };
 
 // After rendering signal cards, detect which ones are actually truncated
-// and only show the "Show more" button for those
+// and only show the "Show more" button for those.
+// Targets all signal summary contexts: Signals feed, company profiles, and peer comparison.
 window.initShowMoreButtons = function() {
-  var summaryEls = document.querySelectorAll('.signal-feed-summary .summary-text');
+  var summaryEls = document.querySelectorAll('.signal-feed-summary .summary-text, .signal-item .signal-summary .summary-text, .cmp-signal-item .signal-summary .summary-text');
   summaryEls.forEach(function(el) {
     var btn = el.nextElementSibling;
-    if (!btn) return;
+    if (!btn || !btn.classList.contains('show-more-btn')) return;
+    // Reset expanded state
+    el.classList.remove('expanded');
+    btn.textContent = 'Show more';
     // Compare scrollHeight to clientHeight — if content overflows, show button
     if (el.scrollHeight > el.clientHeight + 2) {
       btn.style.display = 'inline-block';
