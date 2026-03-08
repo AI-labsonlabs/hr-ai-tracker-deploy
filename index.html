@@ -4854,10 +4854,21 @@ function renderTechTable() {
 // ============================================
 // TECH DETAIL OVERLAY
 // ============================================
+var _techDetailState = {
+  techName: null,
+  sort: { key: 'signal_count', dir: -1 },
+  filters: { industry: new Set(), sub_industry: new Set() }
+};
+
 function openTechDetail(techName) {
   var tl = D.tech_landscape || [];
   var tech = tl.find(function(t) { return t.name === techName; });
   if (!tech) return;
+
+  // Reset detail state for this tech
+  _techDetailState.techName = techName;
+  _techDetailState.sort = { key: 'signal_count', dir: -1 };
+  _techDetailState.filters = { industry: new Set(), sub_industry: new Set() };
 
   // Build industry breakdown
   var industries = Object.entries(tech.industries || {}).sort(function(a, b) { return b[1] - a[1]; });
@@ -4879,26 +4890,14 @@ function openTechDetail(techName) {
       '<div class="bar-value">' + entry[1] + '</div></div>';
   }).join('');
 
-  // Build company list
+  // Get base companies (applying tech landscape industry filter if active)
   var companies = tech.companies || [];
-  // Apply industry filter if active from tech landscape page
-  var filteredCos = companies;
+  var baseCos = companies;
   if (_techFiltersState.industry.length) {
-    filteredCos = companies.filter(function(c) {
+    baseCos = companies.filter(function(c) {
       return _techFiltersState.industry.indexOf(c.industry) >= 0;
     });
   }
-  var statusColors = { 'Deployed': '#059669' };
-  var companiesHTML = filteredCos.map(function(c) {
-    return '<tr style="cursor:pointer;" onclick="openProfile(\'' + esc(c.name) + '\')">' +
-      '<td style="font-weight:500;">' + c.name + '</td>' +
-      '<td><span class="badge badge-gray" style="font-size:10px;">' + c.industry + '</span></td>' +
-      '<td><span class="badge badge-gray" style="font-size:10px;">' + c.sub_industry + '</span></td>' +
-      '<td style="text-align:right;font-family:var(--font-mono);font-size:var(--text-xs);">' + c.signal_count + '</td>' +
-      '<td style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);">' + c.latest_date + '</td>' +
-      '</tr>';
-  }).join('');
-  if (!companiesHTML) companiesHTML = '<tr><td colspan="5" style="text-align:center;color:var(--color-text-muted);padding:var(--space-4);">No companies match the current filters.</td></tr>';
 
   var html = '<div class="profile-back" onclick="closeTechDetail()" role="button" tabindex="0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to HR AI Tech</div>' +
     '<div class="profile-header"><span class="profile-company-name">' + tech.name + '</span>' +
@@ -4908,28 +4907,253 @@ function openTechDetail(techName) {
     '<span class="badge badge-gray">' + tech.primary_domain + '</span>' +
     '</div></div>' +
     '<div class="profile-grid">' +
-    '<div class="profile-card" style="text-align:center;"><div class="profile-card-title">Deployed At</div><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#059669;">' + filteredCos.length + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">companies</div></div>' +
+    '<div class="profile-card" style="text-align:center;"><div class="profile-card-title">Deployed At</div><div id="tdDeployedCount" style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#059669;">' + baseCos.length + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">companies</div></div>' +
     '<div class="profile-card" style="text-align:center;"><div class="profile-card-title">Total Signals</div><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-primary);">' + tech.total_mentions + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">across all companies</div></div>' +
     '</div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-top:var(--space-4);">' +
     '<div class="section-block"><h2 class="section-title">Industry Breakdown</h2><div class="bar-chart" style="max-width:100%;">' + industryBarsHTML + '</div></div>' +
     '<div class="section-block"><h2 class="section-title">HR Domains</h2><div class="bar-chart" style="max-width:100%;">' + domainBarsHTML + '</div></div>' +
     '</div>' +
-    '<div class="section-block" style="margin-top:var(--space-4);"><h2 class="section-title">Companies <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + filteredCos.length + ')</span></h2>' +
-    '<div class="table-container"><table class="data-table"><thead><tr>' +
-    '<th style="text-align:left;">Company</th>' +
-    '<th style="text-align:left;">Industry</th>' +
-    '<th style="text-align:left;">Sub-Industry</th>' +
-    '<th style="text-align:right;">Signals</th>' +
-    '<th style="text-align:left;">Latest</th>' +
-    '</tr></thead><tbody>' + companiesHTML + '</tbody></table></div></div>';
+    '<div class="section-block" style="margin-top:var(--space-4);"><h2 class="section-title">Companies <span id="tdCompanyCount" style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + baseCos.length + ')</span></h2>' +
+    '<div class="table-container"><table class="data-table" id="techDetailTable"><thead id="techDetailThead"><tr></tr></thead><tbody id="techDetailTbody"></tbody></table></div></div>';
 
-  // Use the profile overlay
   document.getElementById('profileContent').innerHTML = html;
+  buildTechDetailHeaders();
+  renderTechDetailTable();
   profileOverlay.classList.add('active');
   profileOverlay.scrollTop = 0;
 }
 window.openTechDetail = openTechDetail;
+
+var TD_COLS = [
+  { key: 'name', label: 'Company', type: 'sort-only', align: 'left', isText: true },
+  { key: 'industry', label: 'Industry', type: 'multi-filter', align: 'left', isText: true },
+  { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter', align: 'left', isText: true },
+  { key: 'signal_count', label: 'Signals', type: 'sort-only', align: 'right', isText: false },
+  { key: 'latest_date', label: 'Latest', type: 'sort-only', align: 'left', isText: false }
+];
+
+function getTechDetailBaseCos() {
+  var tl = D.tech_landscape || [];
+  var tech = tl.find(function(t) { return t.name === _techDetailState.techName; });
+  if (!tech) return [];
+  var companies = tech.companies || [];
+  if (_techFiltersState.industry.length) {
+    return companies.filter(function(c) {
+      return _techFiltersState.industry.indexOf(c.industry) >= 0;
+    });
+  }
+  return companies;
+}
+
+function tdUniqueValues(key) {
+  var cos = getTechDetailBaseCos();
+  var vals = cos.map(function(c) { return c[key] || ''; });
+  return Array.from(new Set(vals)).sort();
+}
+
+function buildTechDetailHeaders() {
+  var thead = document.getElementById('techDetailThead');
+  if (!thead) return;
+  var tr = thead.querySelector('tr');
+  tr.innerHTML = '';
+
+  TD_COLS.forEach(function(col, ci) {
+    var th = document.createElement('th');
+    th.className = 'col-header';
+    th.style.textAlign = col.align;
+
+    var sortIcon = '<span class="sort-icon">\u25BC</span>';
+    var filterDot = '<span class="filter-dot"></span>';
+    var btn = document.createElement('button');
+    btn.className = 'col-header-btn';
+    btn.dataset.colKey = col.key;
+    btn.innerHTML = col.label + ' ' + sortIcon + ' ' + filterDot;
+
+    if (_techDetailState.sort.key === col.key) {
+      btn.classList.add('sorted');
+      btn.querySelector('.sort-icon').textContent = _techDetailState.sort.dir === 1 ? '\u25B2' : '\u25BC';
+    }
+    if (_techDetailState.filters[col.key] && _techDetailState.filters[col.key].size > 0) {
+      btn.classList.add('has-filter');
+    }
+
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var dd = th.querySelector('.col-dropdown');
+      var isOpen = dd && dd.classList.contains('open');
+      closeAllDropdowns();
+      if (!isOpen && dd) {
+        dd.classList.add('open');
+      }
+    });
+    th.appendChild(btn);
+
+    // Build dropdown
+    var dd = document.createElement('div');
+    dd.className = 'col-dropdown';
+    if (ci >= TD_COLS.length - 2) dd.classList.add('align-right');
+
+    var ddHTML = '';
+    var ascLabel = col.isText ? 'Sort A \u2192 Z' : 'Sort Low \u2192 High';
+    var descLabel = col.isText ? 'Sort Z \u2192 A' : 'Sort High \u2192 Low';
+    ddHTML += '<div class="dd-section">';
+    ddHTML += '<div class="dd-section-label">Sort</div>';
+    ddHTML += '<button class="dd-sort-btn" data-sort-col="' + col.key + '" data-sort-dir="1">' + ascLabel + '</button>';
+    ddHTML += '<button class="dd-sort-btn" data-sort-col="' + col.key + '" data-sort-dir="-1">' + descLabel + '</button>';
+    ddHTML += '</div>';
+
+    if (col.type === 'multi-filter') {
+      var values = tdUniqueValues(col.key);
+      ddHTML += '<div class="dd-divider"></div>';
+      ddHTML += '<div class="dd-section"><div class="dd-section-label">Filter</div></div>';
+      ddHTML += '<div class="dd-filter-list" data-filter-col="' + col.key + '">';
+      values.forEach(function(v) {
+        var checked = _techDetailState.filters[col.key].has(v) ? ' checked' : '';
+        ddHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + v + '</label>';
+      });
+      ddHTML += '</div>';
+      ddHTML += '<div class="dd-filter-actions">';
+      ddHTML += '<button onclick="tdClearFilter(\'' + col.key + '\')" title="Clear filter">Clear</button>';
+      ddHTML += '<button class="primary" onclick="tdSelectAllFilter(\'' + col.key + '\')" title="Select all">All</button>';
+      ddHTML += '</div>';
+    }
+
+    dd.innerHTML = ddHTML;
+    th.appendChild(dd);
+
+    // Wire sort buttons
+    dd.querySelectorAll('.dd-sort-btn').forEach(function(sbtn) {
+      sbtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        _techDetailState.sort.key = this.dataset.sortCol;
+        _techDetailState.sort.dir = parseInt(this.dataset.sortDir);
+        closeAllDropdowns();
+        refreshTechDetailHeaders();
+        renderTechDetailTable();
+      });
+    });
+
+    // Wire filter checkboxes
+    dd.querySelectorAll('.dd-filter-list input[type="checkbox"]').forEach(function(cb) {
+      cb.addEventListener('change', function(e) {
+        e.stopPropagation();
+        var colKey = this.closest('.dd-filter-list').dataset.filterCol;
+        if (this.checked) {
+          _techDetailState.filters[colKey].add(this.value);
+        } else {
+          _techDetailState.filters[colKey].delete(this.value);
+        }
+        refreshTechDetailHeaders();
+        renderTechDetailTable();
+      });
+    });
+
+    tr.appendChild(th);
+  });
+}
+
+function refreshTechDetailHeaders() {
+  var thead = document.getElementById('techDetailThead');
+  if (!thead) return;
+  thead.querySelectorAll('.col-header-btn').forEach(function(btn) {
+    var key = btn.dataset.colKey;
+    if (!key) return;
+    var icon = btn.querySelector('.sort-icon');
+    if (_techDetailState.sort.key === key) {
+      btn.classList.add('sorted');
+      if (icon) icon.textContent = _techDetailState.sort.dir === 1 ? '\u25B2' : '\u25BC';
+    } else {
+      btn.classList.remove('sorted');
+      if (icon) icon.textContent = '\u25BC';
+    }
+    var th = btn.closest('.col-header');
+    if (th) {
+      th.querySelectorAll('.dd-sort-btn').forEach(function(sb) {
+        var isActive = sb.dataset.sortCol === _techDetailState.sort.key && parseInt(sb.dataset.sortDir) === _techDetailState.sort.dir;
+        sb.classList.toggle('active', isActive);
+      });
+    }
+    if (_techDetailState.filters[key]) {
+      btn.classList.toggle('has-filter', _techDetailState.filters[key].size > 0);
+    }
+  });
+}
+
+function renderTechDetailTable() {
+  var tbody = document.getElementById('techDetailTbody');
+  if (!tbody) return;
+  var cos = getTechDetailBaseCos().slice();
+  var f = _techDetailState;
+
+  // Apply filters
+  if (f.filters.industry.size > 0) {
+    cos = cos.filter(function(c) { return f.filters.industry.has(c.industry); });
+  }
+  if (f.filters.sub_industry.size > 0) {
+    cos = cos.filter(function(c) { return f.filters.sub_industry.has(c.sub_industry); });
+  }
+
+  // Sort
+  var sk = f.sort.key;
+  var sd = f.sort.dir;
+  cos.sort(function(a, b) {
+    var va = a[sk], vb = b[sk];
+    if (va == null) va = '';
+    if (vb == null) vb = '';
+    if (typeof va === 'string') va = va.toLowerCase();
+    if (typeof vb === 'string') vb = vb.toLowerCase();
+    if (va < vb) return -1 * sd;
+    if (va > vb) return 1 * sd;
+    return 0;
+  });
+
+  // Update count displays
+  var countEl = document.getElementById('tdCompanyCount');
+  if (countEl) countEl.textContent = '(' + cos.length + ')';
+  var deployEl = document.getElementById('tdDeployedCount');
+  if (deployEl) deployEl.textContent = cos.length;
+
+  if (cos.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--color-text-muted);padding:var(--space-4);">No companies match the current filters.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = cos.map(function(c) {
+    return '<tr style="cursor:pointer;" onclick="openProfile(\'' + esc(c.name) + '\')">' +
+      '<td style="font-weight:500;">' + c.name + '</td>' +
+      '<td><span class="badge badge-gray" style="font-size:10px;">' + c.industry + '</span></td>' +
+      '<td><span class="badge badge-gray" style="font-size:10px;">' + c.sub_industry + '</span></td>' +
+      '<td style="text-align:right;font-family:var(--font-mono);font-size:var(--text-xs);">' + c.signal_count + '</td>' +
+      '<td style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);">' + c.latest_date + '</td>' +
+      '</tr>';
+  }).join('');
+}
+
+function tdClearFilter(key) {
+  _techDetailState.filters[key].clear();
+  var list = document.querySelector('#techDetailThead .dd-filter-list[data-filter-col="' + key + '"]');
+  if (list) list.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
+  refreshTechDetailHeaders();
+  renderTechDetailTable();
+}
+window.tdClearFilter = tdClearFilter;
+
+function tdSelectAllFilter(key) {
+  var list = document.querySelector('#techDetailThead .dd-filter-list[data-filter-col="' + key + '"]');
+  if (list) {
+    list.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+      cb.checked = true;
+      _techDetailState.filters[key].add(cb.value);
+    });
+  }
+  // Selecting all is equivalent to no filter, so clear
+  _techDetailState.filters[key].clear();
+  if (list) list.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
+  refreshTechDetailHeaders();
+  renderTechDetailTable();
+}
+window.tdSelectAllFilter = tdSelectAllFilter;
 
 function closeTechDetail() {
   profileOverlay.classList.remove('active');
