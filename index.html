@@ -3411,7 +3411,7 @@ function signalTypeBadge(type) {
 }
 function prRatioBar(pr) {
   if (!pr) return '—';
-  return '<div style="display:flex;align-items:center;gap:6px;"><div class="pr-ratio-bar"><div class="pr-ratio-deploy" style="width:' + pr.deploy_pct + '%"></div><div class="pr-ratio-pr" style="width:' + pr.pr_pct + '%"></div></div><span style="font-size:var(--text-xs);font-family:var(--font-mono);color:var(--color-primary);">' + fmt(pr.deploy_pct || 0, 0) + '%</span></div>';
+  return '<div style="display:flex;align-items:center;gap:6px;"><div class="pr-ratio-bar"><div class="pr-ratio-deploy" style="width:' + pr.deploy_pct + '%"></div><div class="pr-ratio-pr" style="width:' + pr.pr_pct + '%"></div></div><span style="font-size:var(--text-xs);font-family:var(--font-mono);font-weight:600;color:var(--color-primary);">' + fmt(pr.deploy_pct || 0, 0) + '%</span></div>';
 }
 function domainHeatColor(v) {
   if (!v || v === 0) return 'background: transparent;';
