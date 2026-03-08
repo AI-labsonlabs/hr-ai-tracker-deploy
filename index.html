@@ -2713,6 +2713,71 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
           This tracker evaluates HR AI adoption across companies by collecting, classifying, and scoring public signals. Below is a complete breakdown of how scores are computed.
         </p>
 
+        <!-- HOW DATA IS COLLECTED -->
+        <div class="profile-card" style="margin-bottom:var(--space-6);">
+          <div class="profile-card-title">How Data Is Collected</div>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-4);line-height:1.7;">
+            Signals are gathered through automated monitoring on a recurring schedule, supplemented by periodic manual research. All data comes from publicly available sources &mdash; no proprietary databases, no insider access, no company cooperation.
+          </p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);font-size:var(--text-xs);line-height:1.7;">
+
+            <!-- LEFT: Collection Schedule -->
+            <div>
+              <div style="font-weight:600;color:var(--color-primary);margin-bottom:var(--space-3);display:flex;align-items:center;gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Collection Schedule
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);border-left:3px solid #059669;">
+                  <div style="font-weight:600;margin-bottom:2px;">Daily &mdash; Light Scan</div>
+                  <div style="color:var(--color-text-muted);">Mon&ndash;Fri. Broad web search for breaking HR AI news, tool deployments, earnings disclosures, and governance announcements across all 12 industries. 4 targeted queries designed to catch headlines.</div>
+                </div>
+
+                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);border-left:3px solid var(--color-primary);">
+                  <div style="font-weight:600;margin-bottom:2px;">Weekly &mdash; Deep Scan</div>
+                  <div style="color:var(--color-text-muted);">Saturdays. Systematic sweep: industry-by-industry searches across all 12 sectors, vendor-specific queries for 30+ named HR AI tools, thematic searches (governance, upskilling, people analytics), and social media monitoring. ~20 targeted queries.</div>
+                </div>
+
+                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);border-left:3px solid #d97706;">
+                  <div style="font-weight:600;margin-bottom:2px;">Monthly &mdash; Job Board Scan</div>
+                  <div style="color:var(--color-text-muted);">1st of each month. Browses job boards for AI/ML hiring activity at the top 50 companies by maturity. Captures AI Hiring signals that don&rsquo;t surface in news searches.</div>
+                </div>
+
+                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);border-left:3px solid var(--color-text-muted);">
+                  <div style="font-weight:600;margin-bottom:2px;">Weekly &mdash; Company Attributes</div>
+                  <div style="color:var(--color-text-muted);">Mondays. Validates company data (revenue, employee count, market cap) against recent signals and financial disclosures. Catches layoffs, acquisitions, and major financial changes.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Source Types -->
+            <div>
+              <div style="font-weight:600;color:var(--color-primary);margin-bottom:var(--space-3);display:flex;align-items:center;gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                Source Types
+              </div>
+              <div style="display:flex;flex-direction:column;gap:var(--space-2);color:var(--color-text-muted);">
+                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>News articles</strong></span><span style="font-family:var(--font-mono);">42%</span></div>
+                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Job postings</strong></span><span style="font-family:var(--font-mono);">26%</span></div>
+                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Social media</strong></span><span style="font-family:var(--font-mono);">14%</span></div>
+                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Vendor case studies</strong></span><span style="font-family:var(--font-mono);">6%</span></div>
+                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Blog posts</strong></span><span style="font-family:var(--font-mono);">4%</span></div>
+                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Earnings calls</strong></span><span style="font-family:var(--font-mono);">3%</span></div>
+                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Press releases</strong></span><span style="font-family:var(--font-mono);">3%</span></div>
+                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Conference talks, reports, SEC filings</strong></span><span style="font-family:var(--font-mono);">2%</span></div>
+              </div>
+
+              <div style="margin-top:var(--space-3);padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);">
+                <div style="font-weight:600;margin-bottom:4px;">What&rsquo;s Not Searched</div>
+                <div style="color:var(--color-text-muted);">This tracker does not have access to proprietary databases, paid research platforms, or private company communications. LinkedIn profiles and posts are only captured when they surface in public web search results. Some signals &mdash; particularly those shared only in closed communities or paywalled content &mdash; will be missed.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         <!-- WHAT'S INCLUDED / RESEARCH FILTERING -->
         <div class="profile-card" style="margin-bottom:var(--space-6);">
           <div class="profile-card-title">What&rsquo;s Included &amp; What&rsquo;s Not</div>
