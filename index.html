@@ -2497,14 +2497,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
         <span>Heatmap</span>
       </li>
-      <li class="nav-item" data-tab="movers" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
-        <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        <span>Top Movers</span>
-      </li>
-      <li class="nav-item" data-tab="governance" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
-        <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span>Governance</span>
-      </li>
+
       <li class="nav-item" data-tab="methodology" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         <span>Methodology</span>
@@ -2635,34 +2628,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
       </div>
     </section>
 
-    <!-- TOP MOVERS TAB -->
-    <section class="tab-panel" id="tab-movers">
-      <h2 class="section-title">Highest Positive Momentum</h2>
-      <div class="data-table-wrap">
-        <div class="data-table-scroll">
-          <table class="data-table" id="moversTable">
-            <thead><tr id="moversThead"></tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-        <div id="moversCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) var(--space-3);"></div>
-      </div>
-    </section>
 
-    <!-- GOVERNANCE TAB -->
-    <section class="tab-panel" id="tab-governance">
-      <h2 class="section-title">Governance Leaders</h2>
-      <p class="section-subtitle">Companies ranked by HR AI governance activity score.</p>
-      <div class="data-table-wrap">
-        <div class="data-table-scroll">
-          <table class="data-table" id="governanceTable">
-            <thead><tr id="governanceThead"></tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-        <div id="govCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) var(--space-3);"></div>
-      </div>
-    </section>
 
     <!-- SIGNALS EXPLORER TAB -->
     <section class="tab-panel" id="tab-signals">
@@ -2716,7 +2682,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
     <section class="tab-panel" id="tab-techlandscape">
       <div style="max-width:1200px;">
         <h1 class="page-title">HR AI Tech Landscape</h1>
-        <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-4);max-width:720px;">HR AI technologies detected across company signals, ranked by deployment adoption. Click any technology to see which companies have deployed or piloted it.</p>
+        <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-4);max-width:720px;">HR AI technologies detected across company signals, ranked by deployment adoption. Click any technology to see which companies have deployed it.</p>
         <!-- Summary cards -->
         <div id="techSummaryCards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-3);margin-bottom:var(--space-5);"></div>
         <!-- Filters -->
@@ -3174,14 +3140,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
       <span>More</span>
       <button onclick="closeMoreMenu()" aria-label="Close" style="background:none;border:none;color:var(--color-text);font-size:20px;cursor:pointer;padding:4px 8px;">✕</button>
     </div>
-    <button class="mobile-more-item" onclick="switchTabMobile('movers');closeMoreMenu()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-      <span>Top Movers</span>
-    </button>
-    <button class="mobile-more-item" onclick="switchTabMobile('governance');closeMoreMenu()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span>Governance</span>
-    </button>
+
     <button class="mobile-more-item" onclick="switchTabMobile('methodology');closeMoreMenu()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       <span>Methodology</span>
@@ -3710,8 +3669,8 @@ function openProfile(companyName) {
     (function() {
       var ts = detail.tech_stack || [];
       if (!ts.length) return '';
-      var statusColors = { 'Deployed': '#059669', 'Piloting': '#d97706', 'Mentioned': 'var(--color-text-muted)' };
-      var statusBg = { 'Deployed': 'rgba(5,150,105,0.1)', 'Piloting': 'rgba(217,119,6,0.1)', 'Mentioned': 'var(--color-surface-offset)' };
+      var statusColors = { 'Deployed': '#059669' };
+      var statusBg = { 'Deployed': 'rgba(5,150,105,0.1)' };
       var techHTML = ts.map(function(t) {
         var sc = statusColors[t.status] || 'var(--color-text-muted)';
         var sb = statusBg[t.status] || 'var(--color-surface-offset)';
@@ -4657,191 +4616,7 @@ function renderHeatmap() {
   }).join('');
 }
 
-// ============================================
-// TOP MOVERS TAB
-// ============================================
-var moversPositive = D.top_movers.filter(function(m) { return m.momentum > 0; });
-// Enrich with momentum details
-moversPositive.forEach(function(m) {
-  var detail = D.company_details[m.name];
-  var mom = detail ? detail.momentum_details || {} : {};
-  m.signals_30d = mom.signals_30d || 0;
-  m.signals_60d = mom.signals_60d || 0;
-  m.signals_90d_val = m.signals_90d || mom.signals_90d || 0;
-});
 
-var moversState = {
-  sort: { key: 'momentum', dir: -1 },
-  filters: { industry: new Set(), sub_industry: new Set() }
-};
-
-var MOVERS_COLS = [
-  { key: 'rank', label: '#', type: 'static', width: '44px' },
-  { key: 'name', label: 'Company', type: 'sort-only', sortType: 'text' },
-  { key: 'industry', label: 'Industry', type: 'multi-filter', sortType: 'text' },
-  { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter', sortType: 'text' },
-  { key: 'maturity', label: 'Maturity', type: 'sort-only',
-    tooltip: '<strong>Maturity Score (0\u2013100)</strong>Overall HR AI adoption maturity.' },
-  { key: 'momentum', label: 'Momentum', type: 'sort-only',
-    tooltip: '<strong>Momentum (\u221210 to +10)</strong>Recent acceleration of activity. Higher = faster recent adoption.' },
-  { key: 'signals_30d', label: '<30d', type: 'sort-only',
-    tooltip: '<strong>&lt;30 Day Signals</strong>Number of new HR AI signals detected in the last 30 days.' },
-  { key: 'signals_60d', label: '30\u201360d', type: 'sort-only',
-    tooltip: '<strong>30\u201360 Day Signals</strong>Signals detected between 30 and 60 days ago.' },
-  { key: 'signals_90d_val', label: '60\u201390d', type: 'sort-only',
-    tooltip: '<strong>60\u201390 Day Signals</strong>Signals detected between 60 and 90 days ago.' },
-  { key: 'momentum_bar', label: 'Momentum Bar', type: 'static' }
-];
-
-var moversConfig = {
-  theadId: 'moversThead',
-  state: moversState,
-  columns: MOVERS_COLS,
-  uniqueValues: function(key) {
-    return [...new Set(moversPositive.map(function(m) { return m[key]; }).filter(Boolean))].sort();
-  },
-  render: renderMovers
-};
-
-function initMovers() {
-  buildInteractiveTable(moversConfig);
-}
-
-function renderMovers() {
-  var filtered = applyTableFiltersAndSort(moversPositive, moversConfig);
-  var countEl = document.getElementById('moversCount');
-  if (countEl) countEl.textContent = filtered.length + ' of ' + moversPositive.length + ' companies';
-
-  if (isMobile()) {
-    var cardsHTML = '';
-    filtered.forEach(function(m, i) {
-      cardsHTML += '<div class="mobile-card" onclick="openProfile(\'' + esc(m.name) + '\')">' +
-        '<div class="mobile-card-header">' +
-        '<span class="mobile-card-rank">#' + (i+1) + '</span>' +
-        '<span class="mobile-card-name">' + m.name + '</span>' +
-        '</div>' +
-        '<div class="mobile-card-meta">' + m.industry + (m.sub_industry ? ' · ' + m.sub_industry : '') + '</div>' +
-        '<div class="mobile-card-metrics">' +
-        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">Maturity</span><span class="mobile-card-metric-value ' + maturityClass(m.maturity) + '">' + fmt(m.maturity) + '</span></div>' +
-        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">Momentum</span><span class="mobile-card-metric-value momentum-pos" style="font-weight:600;">+' + fmt(m.momentum) + '</span></div>' +
-        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">&lt;30d</span><span class="mobile-card-metric-value">' + m.signals_30d + '</span></div>' +
-        '</div>' +
-        '</div>';
-    });
-    var tableWrap = document.querySelector('#moversTable').closest('.data-table-wrap');
-    var cardList = document.getElementById('moversMobileCards');
-    if (!cardList) {
-      cardList = document.createElement('div');
-      cardList.id = 'moversMobileCards';
-      cardList.className = 'mobile-card-list';
-      tableWrap.parentNode.insertBefore(cardList, tableWrap.nextSibling);
-    }
-    cardList.innerHTML = cardsHTML;
-    cardList.style.display = '';
-    tableWrap.style.display = 'none';
-  } else {
-    var tableWrap = document.querySelector('#moversTable').closest('.data-table-wrap');
-    var cardList = document.getElementById('moversMobileCards');
-    if (cardList) cardList.style.display = 'none';
-    tableWrap.style.display = '';
-
-    document.querySelector('#moversTable tbody').innerHTML = filtered.map(function(m, i) {
-      return '<tr onclick="openProfile(\'' + esc(m.name) + '\')">' +
-        '<td class="mono">' + (i+1) + '</td>' +
-        '<td class="company-name">' + m.name + '</td>' +
-        '<td style="font-size:var(--text-xs);">' + m.industry + '</td>' +
-        '<td style="font-size:var(--text-xs);text-transform:capitalize;">' + (m.sub_industry || '\u2014') + '</td>' +
-        '<td class="mono ' + maturityClass(m.maturity) + '">' + fmt(m.maturity) + '</td>' +
-        '<td class="mono momentum-pos" style="font-weight:600;">+' + fmt(m.momentum) + '</td>' +
-        '<td class="mono">' + m.signals_30d + '</td>' +
-        '<td class="mono">' + m.signals_60d + '</td>' +
-        '<td class="mono">' + m.signals_90d_val + '</td>' +
-        '<td>' + momentumBar(m.momentum) + '</td></tr>';
-    }).join('');
-  }
-}
-
-// ============================================
-// GOVERNANCE TAB
-// ============================================
-var govState = {
-  sort: { key: 'governance_score', dir: -1 },
-  filters: { industry: new Set(), sub_industry: new Set() }
-};
-
-var GOV_COLS = [
-  { key: 'rank', label: '#', type: 'static', width: '44px' },
-  { key: 'name', label: 'Company', type: 'sort-only', sortType: 'text' },
-  { key: 'industry', label: 'Industry', type: 'multi-filter', sortType: 'text' },
-  { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter', sortType: 'text' },
-  { key: 'governance_score', label: 'Governance Score', type: 'sort-only',
-    tooltip: '<strong>Governance Score (0\u2013100)</strong>Measures formal AI oversight: ethics boards, responsible AI policies, bias auditing, and compliance frameworks covering HR.' },
-  { key: 'maturity', label: 'Overall Maturity', type: 'sort-only',
-    tooltip: '<strong>Overall Maturity (0\u2013100)</strong>Full HR AI maturity score for context.' }
-];
-
-var govConfig = {
-  theadId: 'governanceThead',
-  state: govState,
-  columns: GOV_COLS,
-  uniqueValues: function(key) {
-    return [...new Set(D.governance_leaders.map(function(g) { return g[key]; }).filter(Boolean))].sort();
-  },
-  render: renderGovernance
-};
-
-function initGovernance() {
-  buildInteractiveTable(govConfig);
-}
-
-function renderGovernance() {
-  var filtered = applyTableFiltersAndSort(D.governance_leaders, govConfig);
-  var countEl = document.getElementById('govCount');
-  if (countEl) countEl.textContent = filtered.length + ' of ' + D.governance_leaders.length + ' companies';
-
-  if (isMobile()) {
-    var cardsHTML = '';
-    filtered.forEach(function(g, i) {
-      cardsHTML += '<div class="mobile-card" onclick="openProfile(\'' + esc(g.name) + '\')">' +
-        '<div class="mobile-card-header">' +
-        '<span class="mobile-card-rank">#' + (i+1) + '</span>' +
-        '<span class="mobile-card-name">' + g.name + '</span>' +
-        '</div>' +
-        '<div class="mobile-card-meta">' + g.industry + (g.sub_industry ? ' · ' + g.sub_industry : '') + '</div>' +
-        '<div class="mobile-card-metrics">' +
-        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">Governance</span><span class="mobile-card-metric-value" style="color:var(--color-blue-500);font-weight:600;">' + fmt(g.governance_score, 0) + '</span></div>' +
-        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">Maturity</span><span class="mobile-card-metric-value ' + maturityClass(g.maturity) + '">' + fmt(g.maturity) + '</span></div>' +
-        '</div>' +
-        '</div>';
-    });
-    var tableWrap = document.querySelector('#governanceTable').closest('.data-table-wrap');
-    var cardList = document.getElementById('governanceMobileCards');
-    if (!cardList) {
-      cardList = document.createElement('div');
-      cardList.id = 'governanceMobileCards';
-      cardList.className = 'mobile-card-list';
-      tableWrap.parentNode.insertBefore(cardList, tableWrap.nextSibling);
-    }
-    cardList.innerHTML = cardsHTML;
-    cardList.style.display = '';
-    tableWrap.style.display = 'none';
-  } else {
-    var tableWrap = document.querySelector('#governanceTable').closest('.data-table-wrap');
-    var cardList = document.getElementById('governanceMobileCards');
-    if (cardList) cardList.style.display = 'none';
-    tableWrap.style.display = '';
-
-    document.querySelector('#governanceTable tbody').innerHTML = filtered.map(function(g, i) {
-      return '<tr onclick="openProfile(\'' + esc(g.name) + '\')">' +
-        '<td class="mono">' + (i+1) + '</td>' +
-        '<td class="company-name">' + g.name + '</td>' +
-        '<td style="font-size:var(--text-xs);">' + g.industry + '</td>' +
-        '<td style="font-size:var(--text-xs);text-transform:capitalize;">' + (g.sub_industry || '\u2014') + '</td>' +
-        '<td><div style="display:flex;align-items:center;gap:var(--space-2);"><div style="width:60px;height:8px;background:var(--color-surface-offset);border-radius:var(--radius-full);overflow:hidden;"><div style="height:100%;width:' + g.governance_score + '%;background:var(--color-blue-500);border-radius:var(--radius-full);"></div></div><span class="mono" style="font-weight:600;">' + fmt(g.governance_score, 0) + '</span></div></td>' +
-        '<td class="mono ' + maturityClass(g.maturity) + '">' + fmt(g.maturity) + '</td></tr>';
-    }).join('');
-  }
-}
 
 
 
@@ -4858,7 +4633,6 @@ function renderTechLandscape() {
   // Summary cards
   var totalTechs = tl.length;
   var totalDeploys = tl.reduce(function(s, t) { return s + t.deployments; }, 0);
-  var totalPilots = tl.reduce(function(s, t) { return s + t.pilots; }, 0);
   var totalCos = new Set();
   tl.forEach(function(t) { (t.companies || []).forEach(function(c) { totalCos.add(c.name); }); });
   var cardsEl = document.getElementById('techSummaryCards');
@@ -4866,7 +4640,6 @@ function renderTechLandscape() {
     cardsEl.innerHTML =
       '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-primary);">' + totalTechs + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Technologies Tracked</div></div>' +
       '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#059669;">' + totalDeploys + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Deployment Signals</div></div>' +
-      '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#d97706;">' + totalPilots + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Pilot Signals</div></div>' +
       '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-text);">' + totalCos.size + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Companies Using HR AI Tech</div></div>';
   }
 
@@ -4933,7 +4706,7 @@ function renderTechLandscape() {
     sortWrapper.style.cssText = 'margin-left:auto;';
     var sortSelect = document.createElement('select');
     sortSelect.style.cssText = 'padding:6px 10px;border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-size:var(--text-xs);cursor:pointer;';
-    [['deployments','Sort: Deployments'],['company_count','Sort: Companies'],['pilots','Sort: Pilots'],['total_mentions','Sort: Total Mentions']].forEach(function(o) {
+    [['deployments','Sort: Deployments'],['company_count','Sort: Companies']].forEach(function(o) {
       var opt = document.createElement('option');
       opt.value = o[0]; opt.textContent = o[1];
       if (_techFiltersState.sort === o[0]) opt.selected = true;
@@ -5050,7 +4823,7 @@ function openTechDetail(techName) {
       return _techFiltersState.industry.indexOf(c.industry) >= 0;
     });
   }
-  var statusColors = { 'Deployed': '#059669', 'Piloting': '#d97706', 'Mentioned': 'var(--color-text-muted)' };
+  var statusColors = { 'Deployed': '#059669' };
   var companiesHTML = filteredCos.map(function(c) {
     return '<tr style="cursor:pointer;" onclick="openProfile(\'' + esc(c.name) + '\')">' +
       '<td style="font-weight:500;">' + c.name + '</td>' +
@@ -5855,10 +5628,6 @@ initOverviewThead();
 initMobileIndustryFilter();
 initHeatmap();
 renderHeatmap();
-initMovers();
-renderMovers();
-initGovernance();
-renderGovernance();
 renderTechLandscape();
 initPeerComparison();
 initSignalsExplorer();
@@ -5869,8 +5638,6 @@ window.addEventListener('resize', function() {
   clearTimeout(_resizeTimer);
   _resizeTimer = setTimeout(function() {
     renderOverviewTable();
-    renderMovers();
-    renderGovernance();
   }, 200);
 });
 
