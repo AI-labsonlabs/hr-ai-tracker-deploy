@@ -1228,6 +1228,136 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 .flag-success p { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); margin: 0 0 var(--space-1) 0; }
 .flag-success span { font-size: var(--text-xs); color: var(--color-text-muted); }
 
+/* Admin Edit Signal Button (only visible when admin unlocked) */
+.admin-edit-signal-btn {
+  display: none; /* hidden by default */
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-faint);
+  font-size: var(--text-xs);
+  padding: 2px 4px;
+  border-radius: var(--radius-sm);
+  transition: all 180ms;
+}
+body.admin-mode .admin-edit-signal-btn {
+  display: inline-flex;
+}
+.admin-edit-signal-btn:hover {
+  color: var(--color-primary);
+  background: color-mix(in oklch, var(--color-primary) 10%, transparent);
+}
+.admin-edit-signal-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+/* Admin Edit Signal Modal */
+.edit-signal-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+.edit-signal-modal-overlay.active { display: flex; }
+.edit-signal-modal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+  animation: dropIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.edit-signal-modal h3 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  margin: 0 0 var(--space-1) 0;
+  color: var(--color-text);
+}
+.edit-signal-modal-sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+.edit-signal-field {
+  margin-bottom: var(--space-3);
+}
+.edit-signal-field label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+.edit-signal-field select,
+.edit-signal-field input,
+.edit-signal-field textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  font-family: inherit;
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-sizing: border-box;
+}
+.edit-signal-field select:focus,
+.edit-signal-field input:focus,
+.edit-signal-field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--color-primary) 20%, transparent);
+}
+.edit-signal-field textarea {
+  resize: vertical;
+  min-height: 48px;
+}
+.edit-signal-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.edit-signal-actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  margin-top: var(--space-4);
+}
+.edit-signal-actions button {
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: all 180ms;
+}
+.edit-signal-actions button:hover { background: var(--color-surface-offset); }
+.edit-signal-actions button.primary {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.edit-signal-actions button.primary:hover { opacity: 0.88; }
+.edit-signal-success {
+  display: none;
+  text-align: center;
+  padding: var(--space-4) 0;
+}
+.edit-signal-success.active { display: block; }
+.edit-signal-success svg { color: var(--color-success); margin-bottom: var(--space-2); }
+.edit-signal-success p { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); margin: 0 0 var(--space-1) 0; }
+.edit-signal-success span { font-size: var(--text-xs); color: var(--color-text-muted); }
+
 /* Flagged signals in admin */
 .admin-flagged-section {
   margin-bottom: var(--space-5);
@@ -2037,34 +2167,10 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   margin-bottom: var(--space-2);
 }
 .signal-feed-summary .summary-text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  transition: all 200ms ease;
-}
-.signal-feed-summary .summary-text.expanded {
-  -webkit-line-clamp: unset;
-  line-clamp: unset;
   display: block;
 }
 .signal-feed-summary .show-more-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--color-primary);
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 2px 8px;
-  margin-top: 4px;
-  border-radius: var(--radius-sm);
-  background: var(--color-primary-highlight);
-  letter-spacing: 0.01em;
-}
-.signal-feed-summary .show-more-btn:hover {
-  background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+  display: none !important;
 }
 .signal-feed-sources {
   display: flex;
@@ -2564,8 +2670,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
     padding: var(--space-3);
   }
   .signal-feed-summary .summary-text {
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    display: block;
   }
   /* Truncate signal text on mobile for company profiles and peer comparison */
   .signal-item .signal-summary .summary-text,
@@ -3389,11 +3494,87 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   </div>
 </div>
 
+<!-- Admin Edit Signal Modal -->
+<div class="edit-signal-modal-overlay" id="editSignalModalOverlay">
+  <div class="edit-signal-modal">
+    <div id="editSignalFormContent">
+      <h3>Edit Signal Classification</h3>
+      <div class="edit-signal-modal-sub" id="editSignalInfo"></div>
+      <div class="edit-signal-field-row">
+        <div class="edit-signal-field">
+          <label>Signal Type</label>
+          <select id="esType">
+            <option value="">-- Select --</option>
+            <option value="A">Deployment</option>
+            <option value="B">Pilot</option>
+            <option value="D">Leadership Hire</option>
+            <option value="E">Governance</option>
+            <option value="F">Upskilling</option>
+            <option value="I">Announcement</option>
+            <option value="J">AI Hiring</option>
+          </select>
+        </div>
+        <div class="edit-signal-field">
+          <label>HR Domain</label>
+          <select id="esDomain">
+            <option value="">-- Select --</option>
+            <option value="Recruiting">Recruiting</option>
+            <option value="Talent Development">Talent Development</option>
+            <option value="HR Service Delivery">HR Service Delivery</option>
+            <option value="Comp/Benefits">Comp/Benefits</option>
+            <option value="Governance">Governance</option>
+            <option value="AI Hiring">AI Hiring</option>
+          </select>
+        </div>
+      </div>
+      <div class="edit-signal-field-row">
+        <div class="edit-signal-field">
+          <label>Source Type</label>
+          <select id="esSourceType">
+            <option value="">-- Select --</option>
+            <option value="earnings call">Earnings Call</option>
+            <option value="SEC filing">SEC Filing</option>
+            <option value="vendor case study">Vendor Case Study</option>
+            <option value="job post">Job Post</option>
+            <option value="conference presentation">Conference Presentation</option>
+            <option value="industry report">Industry Report</option>
+            <option value="press release">Press Release</option>
+            <option value="news article">News Article</option>
+            <option value="blog post">Blog Post</option>
+            <option value="social media">Social Media</option>
+          </select>
+        </div>
+        <div class="edit-signal-field">
+          <label>Confidence</label>
+          <input type="number" id="esConfidence" min="0" max="1" step="0.05" value="0.5">
+        </div>
+      </div>
+      <div class="edit-signal-field">
+        <label>Summary</label>
+        <textarea id="esSummary" rows="3"></textarea>
+      </div>
+      <div class="edit-signal-actions">
+        <button onclick="closeEditSignalModal()">Cancel</button>
+        <button class="primary" id="editSignalSaveBtn" onclick="saveEditSignal()">Save Changes</button>
+      </div>
+    </div>
+    <div class="edit-signal-success" id="editSignalSuccess">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <p>Signal updated</p>
+      <span>Change has been logged to the admin changelog.</span>
+      <div style="margin-top:var(--space-4);"><button onclick="closeEditSignalModal()" style="padding:6px 14px;border-radius:var(--radius-md);font-size:var(--text-xs);font-weight:600;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);">Close</button></div>
+    </div>
+  </div>
+</div>
+
 <script src="data.js"></script>
 <script>
 (function() {
 'use strict';
 const D = DASHBOARD_DATA;
+
+// Apply admin mode class if previously unlocked
+if (window.__adminUnlocked === true) document.body.classList.add('admin-mode');
 
 // ============================================
 // MOBILE HELPERS
@@ -3788,6 +3969,7 @@ function openProfile(companyName) {
         '<span class="badge badge-blue">' + (s.HR_domain || '') + '</span>' +
         ((s.HR_domain || '') !== signalTypeBadge(s.signal_type) ? '<span class="badge badge-gray">' + signalTypeBadge(s.signal_type) + '</span>' : '') +
         flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
+        editBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_type||'', s.confidence_score||'') +
         '</div>' +
         '<div class="signal-summary">' +
         '<div class="summary-text">' + (s.summary || '') + '</div>' +
@@ -5495,6 +5677,7 @@ function buildCompanyProfileHTML(companyName, side) {
       html += '<span class="badge badge-blue" style="font-size:10px;">' + (s.HR_domain || '') + '</span>';
       if ((s.HR_domain || '') !== signalTypeBadge(s.signal_type)) html += '<span class="badge badge-gray" style="font-size:10px;">' + signalTypeBadge(s.signal_type) + '</span>';
       html += flagBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'');
+      html += editBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_type||'', s.confidence_score||'');
       html += '</div>';
       html += '<div class="signal-summary" style="line-height:1.4;">' +
         '<div class="summary-text">' + (s.summary || '') + '</div>' +
@@ -6041,10 +6224,9 @@ function renderSignalCards(signals) {
       '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>' +
       (s.HR_domain !== typeLabel ? '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' : '') +
       flagBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain) +
+      editBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain, s.source_type||'', s.confidence_score||'') +
       '</div>' +
-      '<div class="signal-feed-summary">' +
-        '<div class="summary-text">' + s.summary + '</div>' +
-        '<button class="show-more-btn" onclick="toggleSummary(this)">Show more</button>' +
+      '<div class="signal-feed-summary">' + s.summary +
       '</div>' +
       sourcesHTML +
       '</div>';
@@ -6133,6 +6315,7 @@ function initAdmin() {
   function showContent() {
     gateEl.style.display = 'none';
     contentEl.style.display = 'block';
+    document.body.classList.add('admin-mode');
     initAdminContent();
   }
 
@@ -6581,7 +6764,7 @@ function initAdmin() {
         // Type
         var tdTy = document.createElement('td');
         var typeOpts = Object.keys(SIG_LABELS).map(function(k) {
-          return '<option value="'+k+'"'+(sig.signal_type===k?' selected':'')+'>'+k+' — '+SIG_LABELS[k]+'</option>';
+          return '<option value="'+k+'"'+(sig.signal_type===k?' selected':'')+'>'+SIG_LABELS[k]+'</option>';
         }).join('');
         tdTy.innerHTML = '<select class="ae-type"><option value="">--</option>'+typeOpts+'</select>';
         tr.appendChild(tdTy);
@@ -6640,7 +6823,7 @@ function initAdmin() {
       } else {
         // --- READ ROW ---
         var date = getDateVal(sig);
-        var typeLabel = sig.signal_type ? (sig.signal_type + ' – ' + (SIG_LABELS[sig.signal_type]||sig.signal_type)) : '—';
+        var typeLabel = sig.signal_type ? (SIG_LABELS[sig.signal_type]||sig.signal_type) : '—';
         var summaryText = (sig.summary || '—');
         var summaryTrunc = summaryText.length > 80 ? summaryText.substring(0,80) + '\u2026' : summaryText;
 
@@ -6735,6 +6918,8 @@ function initAdmin() {
     buildAdminThead();
     renderAdminTable();
     loadFlags();
+    loadChangelog();
+    renderChangelog();
   }
 
   // ---- Flagged Signals Management ----
@@ -6936,6 +7121,132 @@ window.submitFlag = function() {
 // Close modal on overlay click
 document.getElementById('flagModalOverlay').addEventListener('click', function(e) {
   if (e.target === this) closeFlagModal();
+});
+
+// ============================================
+// ADMIN INLINE EDIT SIGNAL SYSTEM
+// ============================================
+var _editTarget = null; // { company, summary, date, signal_type, HR_domain, source_type, confidence_score, _signalRef }
+
+function editBtnHTML(company, summary, date, signalType, domain, sourceType, confidence) {
+  var c = esc(company||''), s = esc((summary||'').substring(0,200)), d = esc(date||''),
+      t = esc(signalType||''), dm = esc(domain||''), st = esc(sourceType||''), cf = esc(String(confidence||''));
+  return '<button class="admin-edit-signal-btn" data-ec="' + c + '" data-es="' + s + '" data-ed="' + d + '" data-et="' + t + '" data-edm="' + dm + '" data-est="' + st + '" data-ecf="' + cf + '" onclick="event.stopPropagation();openEditSignalFromBtn(this)" title="Edit this signal (admin)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit</button>';
+}
+window.editBtnHTML = editBtnHTML;
+
+window.openEditSignalFromBtn = function(btn) {
+  if (window.__adminUnlocked !== true) return;
+  _editTarget = {
+    company: btn.dataset.ec || '',
+    summary: btn.dataset.es || '',
+    date: btn.dataset.ed || '',
+    signal_type: btn.dataset.et || '',
+    HR_domain: btn.dataset.edm || '',
+    source_type: btn.dataset.est || '',
+    confidence: btn.dataset.ecf || ''
+  };
+
+  var overlay = document.getElementById('editSignalModalOverlay');
+  var info = document.getElementById('editSignalInfo');
+  var form = document.getElementById('editSignalFormContent');
+  var success = document.getElementById('editSignalSuccess');
+
+  if (info) info.textContent = _editTarget.company + ' \u2014 ' + (_editTarget.summary.length > 80 ? _editTarget.summary.substring(0,80) + '...' : _editTarget.summary);
+
+  // Populate fields with current values
+  var typeEl = document.getElementById('esType');
+  var domEl = document.getElementById('esDomain');
+  var srcEl = document.getElementById('esSourceType');
+  var confEl = document.getElementById('esConfidence');
+  var sumEl = document.getElementById('esSummary');
+
+  if (typeEl) typeEl.value = _editTarget.signal_type;
+  if (domEl) domEl.value = _editTarget.HR_domain;
+  if (srcEl) srcEl.value = _editTarget.source_type;
+  if (confEl) confEl.value = _editTarget.confidence || '0.5';
+  // Fetch the full summary from D.company_details
+  var fullSummary = _editTarget.summary;
+  var details = D.company_details || {};
+  var detail = details[_editTarget.company];
+  if (detail) {
+    var sigs = detail.top_signals || [];
+    for (var i = 0; i < sigs.length; i++) {
+      if ((sigs[i].date_event || sigs[i].date_found || '') === _editTarget.date &&
+          sigs[i].signal_type === _editTarget.signal_type &&
+          (sigs[i].summary || '').substring(0,200) === _editTarget.summary) {
+        fullSummary = sigs[i].summary || '';
+        break;
+      }
+    }
+  }
+  if (sumEl) sumEl.value = fullSummary;
+
+  if (form) form.style.display = 'block';
+  if (success) success.classList.remove('active');
+  if (overlay) overlay.classList.add('active');
+};
+
+window.closeEditSignalModal = function() {
+  document.getElementById('editSignalModalOverlay').classList.remove('active');
+  _editTarget = null;
+};
+
+window.saveEditSignal = function() {
+  if (!_editTarget) return;
+
+  var newType = document.getElementById('esType').value;
+  var newDomain = document.getElementById('esDomain').value;
+  var newSourceType = document.getElementById('esSourceType').value;
+  var newConfidence = parseFloat(document.getElementById('esConfidence').value) || 0.5;
+  var newSummary = (document.getElementById('esSummary').value || '').trim();
+
+  if (!newType) { alert('Signal type is required.'); return; }
+  if (!newDomain) { alert('HR domain is required.'); return; }
+
+  // Find the signal in D.company_details and update it
+  var details = D.company_details || {};
+  var detail = details[_editTarget.company];
+  var found = false;
+  if (detail) {
+    var sigs = detail.top_signals || [];
+    for (var i = 0; i < sigs.length; i++) {
+      var s = sigs[i];
+      var sigDate = s.date_event || s.date_found || '';
+      if (sigDate === _editTarget.date &&
+          s.signal_type === _editTarget.signal_type &&
+          (s.summary || '').substring(0,200) === _editTarget.summary) {
+        // Found it — log before state
+        var before = JSON.parse(JSON.stringify(s));
+
+        // Update the signal
+        s.signal_type = newType;
+        s.HR_domain = newDomain;
+        s.source_type = newSourceType;
+        s.confidence_score = newConfidence;
+        s.summary = newSummary;
+
+        var after = JSON.parse(JSON.stringify(s));
+        logChange('edit', _editTarget.company, before, after);
+        found = true;
+        break;
+      }
+    }
+  }
+
+  if (!found) {
+    alert('Could not locate the signal to update. It may have been modified or removed.');
+    return;
+  }
+
+  // Show success
+  document.getElementById('editSignalFormContent').style.display = 'none';
+  document.getElementById('editSignalSuccess').classList.add('active');
+};
+
+// Close edit modal on overlay click
+document.getElementById('editSignalModalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeEditSignalModal();
 });
 
 // ============================================
