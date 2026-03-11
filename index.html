@@ -3305,6 +3305,9 @@ body.admin-mode .admin-edit-signal-btn {
               </button>
             </div>
           </div>
+          <div id="persistedEditsNote" style="display:none;padding:var(--space-2) var(--space-3);background:var(--color-bg-accent);border-radius:var(--radius-sm);margin-bottom:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);">
+            <strong style="color:var(--color-primary);">&#10003;</strong> <span id="persistedEditsCount">0</span> signal edit(s) saved locally and will persist across page reloads. Clear changelog to reset.
+          </div>
           <div class="admin-changelog-list" id="changelogList">
             <div class="changelog-empty">No changes recorded yet. Add, edit, or delete signals to see a log here.</div>
           </div>
@@ -3572,6 +3575,54 @@ body.admin-mode .admin-edit-signal-btn {
 (function() {
 'use strict';
 const D = DASHBOARD_DATA;
+
+// ============================================
+// ADMIN SIGNAL EDIT PERSISTENCE (OVERLAY)
+// ============================================
+var SIGNAL_EDITS_KEY = 'hr_ai_tracker_signal_edits';
+
+function loadSignalEdits() {
+  try {
+    var raw = localStorage.getItem(SIGNAL_EDITS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+
+function saveSignalEdits(edits) {
+  try { localStorage.setItem(SIGNAL_EDITS_KEY, JSON.stringify(edits)); } catch(e) {}
+}
+
+function applySignalEdits() {
+  var edits = loadSignalEdits();
+  if (!edits.length) return;
+  var details = D.company_details || {};
+  edits.forEach(function(edit) {
+    var detail = details[edit.company];
+    if (!detail || !detail.top_signals) return;
+    for (var i = 0; i < detail.top_signals.length; i++) {
+      var s = detail.top_signals[i];
+      var sigDate = s.date_event || s.date_found || '';
+      // Match by original values stored in the edit
+      if (sigDate === edit.match_date &&
+          s.signal_type === edit.match_type &&
+          (s.summary || '').substring(0,200) === edit.match_summary) {
+        // Apply the edit
+        if (edit.new_type !== undefined) s.signal_type = edit.new_type;
+        if (edit.new_domain !== undefined) s.HR_domain = edit.new_domain;
+        if (edit.new_source_type !== undefined) s.source_type = edit.new_source_type;
+        if (edit.new_confidence !== undefined) s.confidence_score = edit.new_confidence;
+        if (edit.new_summary !== undefined) s.summary = edit.new_summary;
+        // Update match keys so subsequent edits find the updated signal
+        edit.match_type = s.signal_type;
+        edit.match_summary = (s.summary || '').substring(0,200);
+        break;
+      }
+    }
+  });
+}
+
+// Apply persisted edits before anything renders
+applySignalEdits();
 
 // Apply admin mode class if previously unlocked
 if (window.__adminUnlocked === true) document.body.classList.add('admin-mode');
@@ -7228,6 +7279,23 @@ window.saveEditSignal = function() {
 
         var after = JSON.parse(JSON.stringify(s));
         logChange('edit', _editTarget.company, before, after);
+
+        // Persist this edit to localStorage so it survives page reloads
+        var edits = loadSignalEdits();
+        edits.push({
+          company: _editTarget.company,
+          match_date: _editTarget.date,
+          match_type: _editTarget.signal_type,
+          match_summary: _editTarget.summary,
+          new_type: newType,
+          new_domain: newDomain,
+          new_source_type: newSourceType,
+          new_confidence: newConfidence,
+          new_summary: newSummary,
+          edited_at: new Date().toISOString()
+        });
+        saveSignalEdits(edits);
+
         found = true;
         break;
       }
@@ -7242,6 +7310,7 @@ window.saveEditSignal = function() {
   // Show success
   document.getElementById('editSignalFormContent').style.display = 'none';
   document.getElementById('editSignalSuccess').classList.add('active');
+  renderChangelog();
 };
 
 // Close edit modal on overlay click
@@ -7309,6 +7378,20 @@ function renderChangelog() {
   var list = document.getElementById('changelogList');
   var countEl = document.getElementById('changelogCount');
   if (!list) return;
+
+  // Update persisted edits indicator
+  var peNote = document.getElementById('persistedEditsNote');
+  var peCount = document.getElementById('persistedEditsCount');
+  var persistedEdits = loadSignalEdits();
+  if (peNote && peCount) {
+    if (persistedEdits.length > 0) {
+      peNote.style.display = 'block';
+      peCount.textContent = persistedEdits.length;
+    } else {
+      peNote.style.display = 'none';
+    }
+  }
+
   if (_changelog.length === 0) {
     list.innerHTML = '<div class="changelog-empty">No changes recorded yet. Add, edit, or delete signals to see a log here.</div>';
     if (countEl) countEl.textContent = '';
@@ -7372,8 +7455,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var exportBtn = document.getElementById('changelogExportBtn');
   if (exportBtn) {
     exportBtn.addEventListener('click', function() {
-      if (_changelog.length === 0) { alert('No changes to export.'); return; }
-      var json = JSON.stringify(_changelog, null, 2);
+      var persistedEdits = loadSignalEdits();
+      if (_changelog.length === 0 && persistedEdits.length === 0) { alert('No changes to export.'); return; }
+      var exportData = { changelog: _changelog, persisted_signal_edits: persistedEdits };
+      var json = JSON.stringify(exportData, null, 2);
       var blob = new Blob([json], { type: 'application/json' });
       var url = URL.createObjectURL(blob);
       var a = document.createElement('a');
@@ -7385,9 +7470,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var clearBtn = document.getElementById('changelogClearBtn');
   if (clearBtn) {
     clearBtn.addEventListener('click', function() {
-      if (!confirm('Clear all changelog entries?')) return;
+      if (!confirm('Clear all changelog entries and persisted signal edits? Signal edits will revert to their original values on next page reload.')) return;
       _changelog = [];
       saveChangelog();
+      saveSignalEdits([]);
       renderChangelog();
     });
   }
