@@ -222,25 +222,22 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 /* ============================================
    BAR CHART
    ============================================ */
-.bar-chart { display: flex; flex-direction: column; gap: 6px; }
+.bar-chart { display: flex; flex-direction: column; gap: var(--space-2); }
 .bar-row {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  height: 28px;
-  padding: 0;
+  padding: 3px 0;
 }
 /* Ensure expanded chart rows match initial row spacing */
 #industryChartMore .bar-row,
 #stbChartMore .bar-row {
-  height: 28px;
-  padding: 0;
+  padding: 3px 0;
 }
 #industryChartMore,
 #stbChartMore {
   display: flex;
   flex-direction: column;
-  gap: 6px;
 }
 
 .bar-row-clickable {
@@ -522,31 +519,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   border-color: var(--color-primary);
 }
 .signal-item .signal-summary { margin-bottom: var(--space-2); }
-.signal-item .signal-summary .summary-text {
-  /* No truncation on desktop — signals expand to fit */
-}
-.signal-item .signal-summary .summary-text.expanded {
-  -webkit-line-clamp: unset;
-  line-clamp: unset;
-  display: block;
-}
-.signal-item .signal-summary .show-more-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--color-primary);
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 2px 8px;
-  margin-top: 4px;
-  border-radius: var(--radius-sm);
-  background: var(--color-primary-highlight);
-  letter-spacing: 0.01em;
-}
-.signal-item .signal-summary .show-more-btn:hover {
-  background: color-mix(in srgb, var(--color-primary) 18%, transparent);
-}
 .signal-item .signal-sources {
   display: flex;
   gap: var(--space-3);
@@ -718,31 +690,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 }
 .cmp-signal-item.hidden {
   display: none !important;
-}
-.cmp-signal-item .signal-summary .summary-text {
-  /* No truncation on desktop — signals expand to fit */
-}
-.cmp-signal-item .signal-summary .summary-text.expanded {
-  -webkit-line-clamp: unset;
-  line-clamp: unset;
-  display: block;
-}
-.cmp-signal-item .signal-summary .show-more-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--color-primary);
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 2px 8px;
-  margin-top: 4px;
-  border-radius: var(--radius-sm);
-  background: var(--color-primary-highlight);
-  letter-spacing: 0.01em;
-}
-.cmp-signal-item .signal-summary .show-more-btn:hover {
-  background: color-mix(in srgb, var(--color-primary) 18%, transparent);
 }
 @media (max-width: 900px) {
   .compare-layout {
@@ -1228,136 +1175,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 .flag-success p { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); margin: 0 0 var(--space-1) 0; }
 .flag-success span { font-size: var(--text-xs); color: var(--color-text-muted); }
 
-/* Admin Edit Signal Button (only visible when admin unlocked) */
-.admin-edit-signal-btn {
-  display: none; /* hidden by default */
-  align-items: center;
-  gap: 3px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--color-text-faint);
-  font-size: var(--text-xs);
-  padding: 2px 4px;
-  border-radius: var(--radius-sm);
-  transition: all 180ms;
-}
-body.admin-mode .admin-edit-signal-btn {
-  display: inline-flex;
-}
-.admin-edit-signal-btn:hover {
-  color: var(--color-primary);
-  background: color-mix(in oklch, var(--color-primary) 10%, transparent);
-}
-.admin-edit-signal-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
-
-/* Admin Edit Signal Modal */
-.edit-signal-modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-}
-.edit-signal-modal-overlay.active { display: flex; }
-.edit-signal-modal {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  width: 100%;
-  max-width: 480px;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.2);
-  animation: dropIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  max-height: 90vh;
-  overflow-y: auto;
-}
-.edit-signal-modal h3 {
-  font-size: var(--text-sm);
-  font-weight: 700;
-  margin: 0 0 var(--space-1) 0;
-  color: var(--color-text);
-}
-.edit-signal-modal-sub {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-4);
-}
-.edit-signal-field {
-  margin-bottom: var(--space-3);
-}
-.edit-signal-field label {
-  display: block;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--color-text-muted);
-  margin-bottom: 4px;
-}
-.edit-signal-field select,
-.edit-signal-field input,
-.edit-signal-field textarea {
-  width: 100%;
-  padding: 6px 8px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: var(--text-xs);
-  font-family: inherit;
-  background: var(--color-bg);
-  color: var(--color-text);
-  box-sizing: border-box;
-}
-.edit-signal-field select:focus,
-.edit-signal-field input:focus,
-.edit-signal-field textarea:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px color-mix(in oklch, var(--color-primary) 20%, transparent);
-}
-.edit-signal-field textarea {
-  resize: vertical;
-  min-height: 48px;
-}
-.edit-signal-field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
-}
-.edit-signal-actions {
-  display: flex;
-  gap: var(--space-2);
-  justify-content: flex-end;
-  margin-top: var(--space-4);
-}
-.edit-signal-actions button {
-  padding: 6px 14px;
-  border-radius: var(--radius-md);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text);
-  transition: all 180ms;
-}
-.edit-signal-actions button:hover { background: var(--color-surface-offset); }
-.edit-signal-actions button.primary {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #fff;
-}
-.edit-signal-actions button.primary:hover { opacity: 0.88; }
-.edit-signal-success {
-  display: none;
-  text-align: center;
-  padding: var(--space-4) 0;
-}
-.edit-signal-success.active { display: block; }
-.edit-signal-success svg { color: var(--color-success); margin-bottom: var(--space-2); }
-.edit-signal-success p { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); margin: 0 0 var(--space-1) 0; }
-.edit-signal-success span { font-size: var(--text-xs); color: var(--color-text-muted); }
-
 /* Flagged signals in admin */
 .admin-flagged-section {
   margin-bottom: var(--space-5);
@@ -1404,94 +1221,6 @@ body.admin-mode .admin-edit-signal-btn {
 .admin-flagged-actions {
   display: flex;
   gap: var(--space-2);
-}
-
-/* Admin Changelog */
-.admin-changelog-section {
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-4);
-}
-.admin-changelog-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--space-3);
-}
-.admin-changelog-header h3 {
-  font-size: var(--text-sm);
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin: 0;
-}
-.admin-changelog-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  max-height: 400px;
-  overflow-y: auto;
-}
-.admin-changelog-entry {
-  background: var(--color-surface);
-  border: 1px solid var(--color-divider);
-  border-radius: var(--radius-md);
-  padding: var(--space-3);
-  font-size: var(--text-xs);
-}
-.admin-changelog-entry.action-add { border-left: 3px solid #059669; }
-.admin-changelog-entry.action-edit { border-left: 3px solid #2563eb; }
-.admin-changelog-entry.action-delete { border-left: 3px solid #dc2626; }
-.changelog-action-badge {
-  display: inline-block;
-  padding: 1px 8px;
-  border-radius: 999px;
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.changelog-action-badge.add { background: #dcfce7; color: #166534; }
-.changelog-action-badge.edit { background: #dbeafe; color: #1e40af; }
-.changelog-action-badge.delete { background: #fee2e2; color: #991b1b; }
-[data-theme="dark"] .changelog-action-badge.add { background: rgba(5,150,105,0.2); color: #6ee7b7; }
-[data-theme="dark"] .changelog-action-badge.edit { background: rgba(37,99,235,0.2); color: #93c5fd; }
-[data-theme="dark"] .changelog-action-badge.delete { background: rgba(220,38,38,0.2); color: #fca5a5; }
-.changelog-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-bottom: var(--space-1);
-}
-.changelog-meta .timestamp {
-  color: var(--color-text-muted);
-  font-size: 10px;
-}
-.changelog-company {
-  font-weight: 600;
-  color: var(--color-text);
-}
-.changelog-detail {
-  color: var(--color-text-muted);
-  line-height: 1.5;
-  margin-top: var(--space-1);
-}
-.changelog-detail .field-label {
-  font-weight: 600;
-  color: var(--color-text-faint);
-}
-.changelog-detail .old-val {
-  text-decoration: line-through;
-  color: #dc2626;
-}
-.changelog-detail .new-val {
-  color: #059669;
-}
-.changelog-empty {
-  text-align: center;
-  color: var(--color-text-muted);
-  padding: var(--space-4);
-  font-size: var(--text-xs);
 }
 
 /* Custom floating tooltip for signal type bars */
@@ -1931,6 +1660,7 @@ body.admin-mode .admin-edit-signal-btn {
 /* Multi-select filter component for signals page */
 .sig-multiselect {
   position: relative;
+  width: 100%;
 }
 .sig-multiselect-trigger {
   display: flex;
@@ -1978,7 +1708,7 @@ body.admin-mode .admin-edit-signal-btn {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
-  min-width: 100%;
+  right: 0;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -1997,7 +1727,6 @@ body.admin-mode .admin-edit-signal-btn {
   font-size: var(--text-sm);
   cursor: pointer;
   color: var(--color-text);
-  white-space: nowrap;
 }
 .sig-multiselect-option:hover {
   background: var(--color-surface-offset);
@@ -2011,57 +1740,6 @@ body.admin-mode .admin-edit-signal-btn {
   font-weight: 500;
 }
 
-/* Signals company search (matches peer comparison style) */
-.sig-company-search-wrap {
-  position: relative;
-}
-.sig-company-search {
-  width: 100%;
-  min-width: 180px;
-  padding: 4px 8px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-bg);
-  font-size: var(--text-sm);
-  color: var(--color-text);
-  transition: border-color 180ms;
-  box-sizing: border-box;
-  height: 34px;
-}
-.sig-company-search::placeholder { color: var(--color-text-muted); }
-.sig-company-search:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
-}
-.sig-company-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  box-shadow: 0 8px 24px rgb(0 0 0 / .12);
-  max-height: 240px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  margin-top: 4px;
-  display: none;
-}
-.sig-company-dropdown-item {
-  padding: 6px 12px;
-  font-size: var(--text-sm);
-  cursor: pointer;
-  transition: background 120ms;
-  white-space: nowrap;
-}
-.sig-company-dropdown-item:hover,
-.sig-company-dropdown-item.highlighted {
-  background: var(--color-primary-highlight, color-mix(in oklch, var(--color-primary) 8%, transparent));
-}
-
 .signals-filter-bar {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -2070,13 +1748,9 @@ body.admin-mode .admin-edit-signal-btn {
   margin-bottom: var(--space-4);
 }
 .signals-filter-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: var(--space-3);
-}
-.signals-filter-group {
-  flex: 1 1 0;
-  min-width: 0;
 }
 .signals-filter-group label {
   display: block;
@@ -2088,7 +1762,7 @@ body.admin-mode .admin-edit-signal-btn {
   margin-bottom: var(--space-1);
 }
 .signals-filter-group select {
-  width: auto;
+  width: 100%;
   padding: 6px 8px;
   font-size: var(--text-sm);
   border: 1px solid var(--color-border);
@@ -2165,12 +1839,6 @@ body.admin-mode .admin-edit-signal-btn {
   line-height: 1.6;
   color: var(--color-text);
   margin-bottom: var(--space-2);
-}
-.signal-feed-summary .summary-text {
-  display: block;
-}
-.signal-feed-summary .show-more-btn {
-  display: none !important;
 }
 .signal-feed-sources {
   display: flex;
@@ -2574,13 +2242,6 @@ body.admin-mode .admin-edit-signal-btn {
     height: 52px;
   }
 
-  /* --- HR AI Tech Landscape --- */
-  #tab-techlandscape .table-container { overflow-x: auto; }
-  #tab-techlandscape th:nth-child(3),
-  #tab-techlandscape td:nth-child(3),
-  #tab-techlandscape th:nth-child(4),
-  #tab-techlandscape td:nth-child(4) { display: none; }
-
   /* --- Methodology --- */
   #tab-methodology div[style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
@@ -2656,30 +2317,14 @@ body.admin-mode .admin-edit-signal-btn {
 
   /* --- Signals Explorer --- */
   .signals-filter-row {
-    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-2);
   }
-  .signals-filter-group {
-    width: 100%;
-  }
-  .signals-filter-group select,
-  .sig-company-search {
+  .signals-filter-group select {
     font-size: 16px; /* prevent iOS zoom */
   }
   .signal-feed-card {
     padding: var(--space-3);
-  }
-  .signal-feed-summary .summary-text {
-    display: block;
-  }
-  /* Truncate signal text on mobile for company profiles and peer comparison */
-  .signal-item .signal-summary .summary-text,
-  .cmp-signal-item .signal-summary .summary-text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
   }
 }
 
@@ -2714,10 +2359,6 @@ body.admin-mode .admin-edit-signal-btn {
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         <span>Signals</span>
       </li>
-      <li class="nav-item" data-tab="techlandscape" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
-        <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        <span>HR AI Tech</span>
-      </li>
       <li class="nav-item" data-tab="peers" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
         <span>Peer Comparison</span>
@@ -2726,7 +2367,14 @@ body.admin-mode .admin-edit-signal-btn {
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
         <span>Heatmap</span>
       </li>
-
+      <li class="nav-item" data-tab="movers" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
+        <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        <span>Top Movers</span>
+      </li>
+      <li class="nav-item" data-tab="governance" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
+        <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Governance</span>
+      </li>
       <li class="nav-item" data-tab="methodology" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         <span>Methodology</span>
@@ -2857,7 +2505,34 @@ body.admin-mode .admin-edit-signal-btn {
       </div>
     </section>
 
+    <!-- TOP MOVERS TAB -->
+    <section class="tab-panel" id="tab-movers">
+      <h2 class="section-title">Highest Positive Momentum</h2>
+      <div class="data-table-wrap">
+        <div class="data-table-scroll">
+          <table class="data-table" id="moversTable">
+            <thead><tr id="moversThead"></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="moversCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) var(--space-3);"></div>
+      </div>
+    </section>
 
+    <!-- GOVERNANCE TAB -->
+    <section class="tab-panel" id="tab-governance">
+      <h2 class="section-title">Governance Leaders</h2>
+      <p class="section-subtitle">Companies ranked by HR AI governance activity score.</p>
+      <div class="data-table-wrap">
+        <div class="data-table-scroll">
+          <table class="data-table" id="governanceTable">
+            <thead><tr id="governanceThead"></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="govCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) var(--space-3);"></div>
+      </div>
+    </section>
 
     <!-- SIGNALS EXPLORER TAB -->
     <section class="tab-panel" id="tab-signals">
@@ -2868,19 +2543,12 @@ body.admin-mode .admin-edit-signal-btn {
       <div class="signals-filter-bar" id="signalsFilterBar">
         <div class="signals-filter-row">
           <div class="signals-filter-group">
-            <label>Company</label>
-            <div class="sig-company-search-wrap">
-              <input type="text" class="sig-company-search" id="sigCompanySearch" placeholder="All Companies" autocomplete="off">
-              <div class="sig-company-dropdown" id="sigCompanyDropdown"></div>
-            </div>
-          </div>
-          <div class="signals-filter-group">
             <label>Industry</label>
             <div class="sig-multiselect" id="sigMultiIndustry" data-filter="industry"></div>
           </div>
           <div class="signals-filter-group">
-            <label>Sub-Industry</label>
-            <div class="sig-multiselect" id="sigMultiSubIndustry" data-filter="sub_industry"></div>
+            <label>Company</label>
+            <select id="sigFilterCompany" onchange="renderSignalsFeed()"><option value="">All Companies</option></select>
           </div>
           <div class="signals-filter-group">
             <label>Signal Type</label>
@@ -2890,7 +2558,22 @@ body.admin-mode .admin-edit-signal-btn {
             <label>HR Domain</label>
             <div class="sig-multiselect" id="sigMultiDomain" data-filter="HR_domain"></div>
           </div>
-
+          <div class="signals-filter-group">
+            <label>Confirmation</label>
+            <div class="sig-multiselect" id="sigMultiConfirm" data-filter="confirmation_level"></div>
+          </div>
+          <div class="signals-filter-group">
+            <label>Date Range</label>
+            <select id="sigFilterDate" onchange="renderSignalsFeed()">
+              <option value="">All Time</option>
+              <option value="7">Last 7 days</option>
+              <option value="30">Last 30 days</option>
+              <option value="60">Last 60 days</option>
+              <option value="90">Last 90 days</option>
+              <option value="180">Last 6 months</option>
+              <option value="365">Last year</option>
+            </select>
+          </div>
         </div>
         <div class="signals-filter-actions">
           <span id="signalsCount" style="font-size:var(--text-xs);color:var(--color-text-muted);"></span>
@@ -2907,25 +2590,6 @@ body.admin-mode .admin-edit-signal-btn {
       </div>
     </section>
 
-    <!-- AI TECH LANDSCAPE TAB -->
-    <section class="tab-panel" id="tab-techlandscape">
-      <div style="max-width:1200px;">
-        <h1 class="page-title">HR AI Tech Landscape</h1>
-        <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-4);max-width:720px;">HR AI technologies detected across company signals, ranked by deployment adoption. Click any technology to see which companies have deployed it.</p>
-        <!-- Summary cards -->
-        <div id="techSummaryCards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-3);margin-bottom:var(--space-5);"></div>
-        <!-- Table -->
-        <div class="table-container" style="margin-top:var(--space-2);">
-          <table id="techTable" class="data-table">
-            <thead>
-              <tr id="techThead"></tr>
-            </thead>
-            <tbody id="techTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
     <!-- METHODOLOGY TAB -->
     <section class="tab-panel" id="tab-methodology">
       <div style="max-width:1100px;">
@@ -2934,140 +2598,25 @@ body.admin-mode .admin-edit-signal-btn {
           This tracker evaluates HR AI adoption across companies by collecting, classifying, and scoring public signals. Below is a complete breakdown of how scores are computed.
         </p>
 
-        <!-- HOW DATA IS COLLECTED -->
-        <div class="profile-card" style="margin-bottom:var(--space-6);">
-          <div class="profile-card-title">How Data Is Collected</div>
-          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-4);line-height:1.7;">
-            Signals are gathered through automated monitoring on a recurring schedule, supplemented by periodic manual research. All data comes from publicly available sources &mdash; no proprietary databases, no insider access, no company cooperation.
-          </p>
-
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);font-size:var(--text-xs);line-height:1.7;">
-
-            <!-- LEFT: Collection Schedule -->
-            <div>
-              <div style="font-weight:600;color:var(--color-primary);margin-bottom:var(--space-3);display:flex;align-items:center;gap:6px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Collection Schedule
-              </div>
-
-              <div style="display:flex;flex-direction:column;gap:var(--space-3);">
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);border-left:3px solid #059669;">
-                  <div style="font-weight:600;margin-bottom:2px;">Daily &mdash; Light Scan</div>
-                  <div style="color:var(--color-text-muted);">Mon&ndash;Fri. Broad web search for breaking HR AI news, tool deployments, earnings disclosures, and governance announcements across all 12 industries. 4 targeted queries designed to catch headlines.</div>
-                </div>
-
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);border-left:3px solid var(--color-primary);">
-                  <div style="font-weight:600;margin-bottom:2px;">Weekly &mdash; Deep Scan</div>
-                  <div style="color:var(--color-text-muted);">Saturdays. Systematic sweep: industry-by-industry searches across all 12 sectors, vendor-specific queries for 30+ named HR AI tools, thematic searches (governance, upskilling, people analytics), and social media monitoring. ~20 targeted queries.</div>
-                </div>
-
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);border-left:3px solid #d97706;">
-                  <div style="font-weight:600;margin-bottom:2px;">Monthly &mdash; Job Board Scan</div>
-                  <div style="color:var(--color-text-muted);">1st of each month. Browses job boards for AI/ML hiring activity at the top 50 companies by maturity. Captures AI Hiring signals that don&rsquo;t surface in news searches.</div>
-                </div>
-
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);border-left:3px solid var(--color-text-muted);">
-                  <div style="font-weight:600;margin-bottom:2px;">Weekly &mdash; Company Attributes</div>
-                  <div style="color:var(--color-text-muted);">Mondays. Validates company data (revenue, employee count, market cap) against recent signals and financial disclosures. Catches layoffs, acquisitions, and major financial changes.</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- RIGHT: Source Types -->
-            <div>
-              <div style="font-weight:600;color:var(--color-primary);margin-bottom:var(--space-3);display:flex;align-items:center;gap:6px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-                Source Types
-              </div>
-              <div style="display:flex;flex-direction:column;gap:var(--space-2);color:var(--color-text-muted);">
-                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>News articles</strong></span><span style="font-family:var(--font-mono);">42%</span></div>
-                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Job postings</strong></span><span style="font-family:var(--font-mono);">26%</span></div>
-                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Social media</strong></span><span style="font-family:var(--font-mono);">14%</span></div>
-                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Vendor case studies</strong></span><span style="font-family:var(--font-mono);">6%</span></div>
-                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Blog posts</strong></span><span style="font-family:var(--font-mono);">4%</span></div>
-                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Earnings calls</strong></span><span style="font-family:var(--font-mono);">3%</span></div>
-                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Press releases</strong></span><span style="font-family:var(--font-mono);">3%</span></div>
-                <div style="padding:var(--space-1) var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);display:flex;justify-content:space-between;"><span><strong>Conference talks, reports, SEC filings</strong></span><span style="font-family:var(--font-mono);">2%</span></div>
-              </div>
-
-              <div style="margin-top:var(--space-3);padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);">
-                <div style="font-weight:600;margin-bottom:4px;">What&rsquo;s Not Searched</div>
-                <div style="color:var(--color-text-muted);">This tracker does not have access to proprietary databases, paid research platforms, or private company communications. LinkedIn profiles and posts are only captured when they surface in public web search results. Some signals &mdash; particularly those shared only in closed communities or paywalled content &mdash; will be missed.</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- WHAT'S INCLUDED / RESEARCH FILTERING -->
-        <div class="profile-card" style="margin-bottom:var(--space-6);">
-          <div class="profile-card-title">What&rsquo;s Included &amp; What&rsquo;s Not</div>
-          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-4);line-height:1.7;">
-            Not every mention of AI at a company counts as an HR AI signal. We apply a series of filters to ensure the tracker only reflects genuine AI adoption within HR and workforce functions.
-          </p>
-
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);font-size:var(--text-xs);line-height:1.7;">
-
-            <!-- INCLUDED -->
-            <div>
-              <div style="font-weight:600;color:#059669;margin-bottom:var(--space-2);display:flex;align-items:center;gap:6px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Included
-              </div>
-              <ul style="padding-left:var(--space-3);color:var(--color-text-muted);display:flex;flex-direction:column;gap:var(--space-2);">
-                <li><strong>AI tools deployed in HR processes</strong> &mdash; recruiting, onboarding, learning, employee service, compensation analytics, people operations</li>
-                <li><strong>Pilots and deployments</strong> of HR-specific AI platforms (e.g., Eightfold, Paradox, Phenom, HireVue, Textio, Beamery)</li>
-                <li><strong>HR AI leadership hires</strong> &mdash; roles explicitly tied to AI strategy within HR or workforce technology</li>
-                <li><strong>AI hiring activity</strong> &mdash; job posts for AI/ML engineers, data scientists, and similar technical roles</li>
-                <li><strong>AI governance</strong> with HR relevance &mdash; responsible AI policies, ethics boards, bias auditing frameworks</li>
-                <li><strong>AI upskilling</strong> &mdash; programs to build AI literacy or capability across the workforce</li>
-                <li><strong>HR product builder signals</strong> &mdash; when companies that build HR software (e.g., Workday, SAP, Oracle) ship AI features in their HR products</li>
-              </ul>
-            </div>
-
-            <!-- NOT INCLUDED -->
-            <div>
-              <div style="font-weight:600;color:#ef4444;margin-bottom:var(--space-2);display:flex;align-items:center;gap:6px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                Filtered Out
-              </div>
-              <ul style="padding-left:var(--space-3);color:var(--color-text-muted);display:flex;flex-direction:column;gap:var(--space-2);">
-                <li><strong>General enterprise AI tools</strong> &mdash; company-wide Copilot rollouts, coding assistants, meeting transcription, and &ldquo;X% of employees use AI&rdquo; statistics are IT productivity stories, not HR adoption</li>
-                <li><strong>Customer-facing AI products</strong> &mdash; chatbots for customers, AI for clients or plan participants, and contact center automation are business products, not internal HR tools</li>
-                <li><strong>Operational AI</strong> &mdash; fleet optimization, fraud detection, manufacturing automation, cybersecurity AI, and supply chain intelligence</li>
-                <li><strong>Standard HR technology</strong> &mdash; running Workday, SuccessFactors, or ADP as your HRIS is table stakes, not an AI signal</li>
-                <li><strong>Generic HR job postings</strong> &mdash; HR Generalist, Benefits Coordinator, and similar roles without AI focus</li>
-                <li><strong>Standard benefits and compensation</strong> &mdash; tuition reimbursement, 401k programs, annual pay raises, and wellness perks</li>
-                <li><strong>SEC boilerplate</strong> &mdash; generic risk factor language about &ldquo;failure to adopt new technologies&rdquo; that appears in every annual report</li>
-              </ul>
-            </div>
-
-          </div>
-
-          <div style="margin-top:var(--space-4);padding:var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.7;">
-            <strong>The core test:</strong> Does this signal show a company applying AI, machine learning, or intelligent automation specifically to how it manages, hires, develops, serves, or governs its own workforce? If the answer is no &mdash; even if AI is involved &mdash; the signal is filtered out.
-          </div>
-        </div>
-
         <!-- HOW SCORING WORKS (explainer) -->
         <div class="profile-card" style="margin-bottom:var(--space-6);">
           <div class="profile-card-title">How Signal Scoring Works</div>
-          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.6;">Every signal gets a point value calculated from four independent factors multiplied together:</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.6;">Every signal gets a point value calculated from three independent factors multiplied together:</p>
           <div style="background:var(--color-surface-offset);border-radius:var(--radius-md);padding:var(--space-3);margin-bottom:var(--space-3);text-align:center;">
-            <code style="font-size:var(--text-sm);letter-spacing:0.02em;">points = <strong>Signal Type</strong> &times; <strong>Source Credibility</strong> &times; <strong>Time Decay</strong> &times; <strong>Confidence</strong></code>
+            <code style="font-size:var(--text-sm);letter-spacing:0.02em;">points = <strong>Signal Type</strong> &times; <strong>Source Credibility</strong> &times; <strong>Time Decay</strong></code>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);font-size:var(--text-xs);line-height:1.6;">
             <div>
-              <p style="margin-bottom:var(--space-2);"><strong>Signal Type</strong> captures <em>what a company actually did</em> &mdash; deployed an AI tool, hired a leader, ran a pilot, or just made an announcement. <strong>Source Credibility</strong> captures <em>how trustworthy the evidence is</em> &mdash; an earnings call is more reliable than a social media post.</p>
-              <p>These two dimensions are fully independent: a Deployment discovered via a news article scores differently than a Deployment confirmed on an earnings call.</p>
+              <p style="margin-bottom:var(--space-2);"><strong>Signal Type</strong> and <strong>Confirmation Level</strong> are independent dimensions. Signal Type captures <em>what kind</em> of evidence was found (a deployment vs. a job post vs. a press release). Confirmation Level captures <em>how verified</em> that evidence is (confirmed vs. pilot vs. just exploring).</p>
+              <p>For example, a signal type of &ldquo;Deployment&rdquo; (base weight 10.0) means the evidence itself is about a real deployment, while the <em>confirmation level</em> &ldquo;Confirmed Deployment&rdquo; (&times;1.0) means that evidence has been verified as real. These are independent dimensions.</p>
             </div>
             <div>
-              <p style="margin-bottom:var(--space-2);"><strong>Why this matters:</strong> A Deployment (weight 10.0) from an earnings call (source 1.0) scores 33&times; higher than an Announcement (weight 1.0) from social media (source 0.3).</p>
+              <p style="margin-bottom:var(--space-2);"><strong>Why this matters:</strong> A vendor case study (type weight 5.0) with Confirmed Deployment verification (&times;1.0) from an earnings call (source 1.0) scores much higher than a PR mention (type weight 1.0) at Exploration level (&times;0.4) from social media (source 0.3).</p>
               <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:var(--space-2);margin-top:var(--space-2);">
                 <div style="color:var(--color-text-muted);margin-bottom:4px;">Example comparison:</div>
-                <div>Deployment via earnings call: 10.0 &times; 1.0 = <strong>10.0</strong></div>
-                <div>Announcement via social media: 1.0 &times; 0.3 = <strong>0.3</strong></div>
-                <div style="color:var(--color-text-muted);margin-top:4px;">33&times; difference before time decay and confidence.</div>
+                <div>Vendor case study, Confirmed: 5.0 &times; 1.0 &times; 0.85 = <strong>4.25</strong></div>
+                <div>PR mention, Exploration: 1.0 &times; 0.4 &times; 0.3 = <strong>0.12</strong></div>
+                <div style="color:var(--color-text-muted);margin-top:4px;">35&times; difference before time decay.</div>
               </div>
             </div>
           </div>
@@ -3082,19 +2631,35 @@ body.admin-mode .admin-edit-signal-btn {
             <!-- Signal Taxonomy -->
             <div class="profile-card">
               <div class="profile-card-title">Signal Taxonomy</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Each signal is classified by what actually happened. The base weight reflects how strong this type of evidence is as proof of real adoption:</p>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Each signal is classified by type. The base weight reflects how strong this type of evidence is as proof of real adoption:</p>
               <table class="data-table" style="font-size:var(--text-xs);">
                 <thead><tr><th>Type</th><th>Weight</th><th>Example</th></tr></thead>
                 <tbody>
                   <tr><td>Deployment</td><td class="mono">10.0</td><td>Enterprise-wide rollout of Workday AI</td></tr>
-                  <tr><td>Pilot</td><td class="mono">6.0</td><td>Testing AI recruiting tool in one division</td></tr>
-                  <tr><td>Governance</td><td class="mono">6.0</td><td>AI ethics board or policy covering HR</td></tr>
-                  <tr><td>Leadership Hire</td><td class="mono">5.0</td><td>Hiring VP of AI for HR</td></tr>
-                  <tr><td>Upskilling</td><td class="mono">4.0</td><td>Company-wide AI training for HR team</td></tr>
-                  <tr><td>AI Hiring</td><td class="mono">3.0</td><td>Job posts for ML engineers, data scientists</td></tr>
-                  <tr><td>Announcement</td><td class="mono">1.0</td><td>Press release or mention without concrete action</td></tr>
+                  <tr><td>Procurement</td><td class="mono">7.0</td><td>Purchasing Eightfold AI platform</td></tr>
+                  <tr><td>Pilot / Limited Rollout</td><td class="mono">6.0</td><td>Testing AI recruiting tool in one division</td></tr>
+                  <tr><td>Governance / AI Oversight</td><td class="mono">6.0</td><td>AI ethics board covering HR</td></tr>
+                  <tr><td>HR AI Leadership Hire</td><td class="mono">5.0</td><td>Hiring VP of AI for HR</td></tr>
+                  <tr><td>Vendor Case Study</td><td class="mono">5.0</td><td>Named in vendor success story</td></tr>
+                  <tr><td>AI Upskilling for HR</td><td class="mono">4.0</td><td>Company-wide AI training for HR team</td></tr>
+                  <tr><td>Earnings / Annual Report</td><td class="mono">4.0</td><td>CEO mentions HR AI on earnings call</td></tr>
+                  <tr><td>AI Talent Hiring</td><td class="mono">3.0</td><td>Job posts for ML engineers, data scientists</td></tr>
+                  <tr><td>PR Mention</td><td class="mono">1.0</td><td>Press release about AI strategy</td></tr>
                 </tbody>
               </table>
+            </div>
+
+            <!-- Confirmation Levels -->
+            <div class="profile-card">
+              <div class="profile-card-title">Confirmation Levels</div>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Independent of signal type &mdash; this multiplier reflects how verified the evidence is:</p>
+              <div style="display:flex;flex-direction:column;gap:var(--space-2);font-size:var(--text-xs);">
+                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Confirmed Deployment</strong> &mdash; &times;1.0<br><span style="color:var(--color-text-muted);">A specific AI tool or platform is verified as running in production at meaningful scale (e.g., enterprise-wide rollout, confirmed in earnings call or vendor case study).</span></div>
+                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Pilot</strong> &mdash; &times;0.7<br><span style="color:var(--color-text-muted);">A named tool is actively being tested in limited scope &mdash; one business unit, region, or use case &mdash; with intent to evaluate for broader rollout.</span></div>
+                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Preparing</strong> &mdash; &times;0.5<br><span style="color:var(--color-text-muted);">The company is building toward AI adoption through infrastructure, hiring, or vendor procurement, but no specific tool is confirmed as deployed or piloted yet. Includes roles focused on building AI for HR.</span></div>
+                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Exploration</strong> &mdash; &times;0.4<br><span style="color:var(--color-text-muted);">The company has expressed interest in HR AI through public statements, conference appearances, or generic leadership hires, but no concrete tool, vendor, or timeline has been identified.</span></div>
+                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>PR Mention</strong> &mdash; &times;0.15<br><span style="color:var(--color-text-muted);">AI is mentioned in press materials or blog posts without specifics about tools, timelines, or measurable outcomes. Often aspirational language without evidence of real activity.</span></div>
+              </div>
             </div>
 
             <!-- Source Credibility -->
@@ -3114,44 +2679,6 @@ body.admin-mode .admin-edit-signal-btn {
               </div>
             </div>
 
-            <!-- Time Decay -->
-            <div class="profile-card">
-              <div class="profile-card-title">Time Decay</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;margin-bottom:var(--space-3);">Signals lose relevance over time using exponential decay. The half-life varies by signal type to reflect the durability of different evidence:</p>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);margin-bottom:var(--space-3);">
-                <div style="padding:var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);">
-                  <div style="font-size:var(--text-xs);font-weight:600;margin-bottom:4px;">Deployments</div>
-                  <div style="font-size:20px;font-weight:700;color:var(--color-accent);">730 days</div>
-                  <div style="font-size:10px;color:var(--color-text-faint);margin-top:2px;">~2 year half-life</div>
-                </div>
-                <div style="padding:var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm);">
-                  <div style="font-size:var(--text-xs);font-weight:600;margin-bottom:4px;">All Other Types</div>
-                  <div style="font-size:20px;font-weight:700;color:var(--color-text-secondary);">180 days</div>
-                  <div style="font-size:10px;color:var(--color-text-faint);margin-top:2px;">~6 month half-life</div>
-                </div>
-              </div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">A confirmed deployment is a durable fact &mdash; a company that deployed Eightfold two years ago still has it. Pilots, leadership hires, announcements, and other signals fade faster because they may not have led to lasting change.</p>
-            </div>
-
-            <!-- How Ranks Work -->
-            <div class="profile-card">
-              <div class="profile-card-title">How Ranks Work</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Companies are ranked relative to the current filter selection. If you filter by industry or sub-industry, ranks recalculate within that subset. Use the column header filters on any table to focus on specific segments.</p>
-            </div>
-
-            <!-- Data Estimation -->
-            <div class="profile-card">
-              <div class="profile-card-title">Company Data &amp; Estimation</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;margin-bottom:var(--space-2);">
-                Company attributes (revenue, employee count, market cap) come from different sources depending on whether the company is public or private:
-              </p>
-              <div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;">
-                <p style="margin-bottom:var(--space-2);"><strong>Public companies:</strong> Revenue and employee count are sourced from the most recent earnings report or SEC filing (10-K/10-Q). Market cap is sourced from financial data providers. All public company attributes are refreshed weekly.</p>
-                <p style="margin-bottom:var(--space-2);"><strong>Private companies:</strong> Revenue, employee count, and market cap (where applicable) are estimated using publicly available data &mdash; press reports, industry analyses, LinkedIn headcount, and comparable public peer multiples. These values are marked with an <span style="color:var(--color-text-faint);">est.</span> tag.</p>
-                <p>All estimated figures should be treated as approximations. If you spot an inaccuracy, use the flag button on any signal or reach out directly.</p>
-              </div>
-            </div>
-
           </div>
 
           <!-- RIGHT COLUMN -->
@@ -3164,25 +2691,20 @@ body.admin-mode .admin-edit-signal-btn {
               <div style="font-size:var(--text-xs);line-height:1.8;">
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 1: Score each signal</strong><br>
-                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">points = base_weight &times; source_credibility &times; time_decay &times; confidence</code>
+                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">points = base_weight &times; source_credibility &times; time_decay</code>
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 2: Group by HR domain</strong><br>
-                  7 domains: Recruiting, Talent Development, HR Service Delivery, Comp/Benefits, Governance, AI Hiring, People Analytics. Each scored 0&ndash;100 independently with diminishing returns within a domain (1/&radic;rank). Domains with at least one signal score a minimum of 1.
+                  7 domains: Recruiting, L&amp;D, HR Ops, Comp/Benefits, Employee Service, Governance, AI Hiring. Each scored 0&ndash;100 independently with diminishing returns within a domain (1/&radic;rank). Domains with at least one signal score a minimum of 1.
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 3: Blend for overall score</strong><br>
                   <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">base = (avg_all_7 &times; 0.6) + (avg_top_3 &times; 0.4)</code><br>
                   60% rewards breadth across domains, 40% rewards depth in strongest areas.
                 </div>
-                <div style="margin-bottom:var(--space-3);">
-                  <strong>Step 4: Coverage adjustment</strong><br>
-                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">adjusted = base &times; (domains_covered / 7)<sup>0.3</sup></code><br>
-                  Companies with gaps in domain coverage receive a gentle penalty. Covering 7/7 domains = no penalty. Covering 3/7 = &times;0.81.
-                </div>
                 <div>
-                  <strong>Step 5: Company adjustments</strong><br>
-                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">final = adjusted &times; &radic;(size_norm) &times; &radic;(regulatory_adj)</code><br>
+                  <strong>Step 4: Company adjustments</strong><br>
+                  <code style="background:var(--color-surface-offset);padding:2px 6px;border-radius:3px;font-size:10px;">final = base &times; &radic;(size_norm) &times; &radic;(regulatory_adj)</code><br>
                   Smaller firms get a boost per signal (capped at 2&times;). Highly regulated industries get credit for operating in constrained environments.
                 </div>
               </div>
@@ -3203,7 +2725,7 @@ body.admin-mode .admin-edit-signal-btn {
                   <strong>Change vs. baseline</strong> &mdash; How much the last 30 days exceeds or trails the 12-month average. Positive = accelerating.
                 </div>
                 <div style="margin-bottom:var(--space-2);">
-                  <strong>Recent activity trend</strong> &mdash; Weighted across signal recency windows (&lt;30d &times;3, 30&ndash;60d &times;2, 60&ndash;90d &times;1), emphasizing the most recent activity.
+                  <strong>Recent activity trend</strong> &mdash; Weighted across 30/60/90-day windows (30d &times;3, 60d &times;2, 90d &times;1), emphasizing the most recent activity.
                 </div>
                 <div>
                   <strong>Final mapping</strong><br>
@@ -3217,17 +2739,42 @@ body.admin-mode .admin-edit-signal-btn {
             <!-- Adoption Pattern -->
             <div class="profile-card">
               <div class="profile-card-title">Adoption Pattern Classification</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Each company&rsquo;s signals are grouped into six categories. The category with the most weight determines the pattern label.</p>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Classified based on where signal weight concentrates:</p>
               <div style="font-size:var(--text-xs);line-height:1.8;">
-                <div style="display:grid;grid-template-columns:110px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
-                  <div><strong style="color:#059669;">Tool</strong></div><div>Deployments and pilots of specific AI tools</div>
-                  <div><strong style="color:#d97706;">Leadership</strong></div><div>Senior AI leadership hires signaling strategic commitment</div>
-                  <div><strong style="color:#f59e0b;">Upskilling</strong></div><div>Company-wide AI training and capability-building programs</div>
-                  <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>Job postings for AI/ML engineers and data scientists</div>
-                  <div><strong style="color:#6366f1;">Governance</strong></div><div>AI ethics policies, oversight boards, and responsible AI frameworks</div>
-                  <div><strong style="color:#9ca3af;">PR</strong></div><div>Announcements and press coverage without specific deployment details</div>
+                <div style="display:grid;grid-template-columns:100px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
+                  <div><strong style="color:#6366f1;">Governance</strong></div><div>Oversight signals + 30% of earnings mentions</div>
+                  <div><strong style="color:#059669;">Tool</strong></div><div>Deployments + pilots + procurement</div>
+                  <div><strong style="color:#d97706;">Talent</strong></div><div>HR AI leadership hires + upskilling</div>
+                  <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>AI/ML engineer &amp; data scientist hiring &mdash; separated from Talent to prevent distortion (~48% of all signals)</div>
+                  <div><strong style="color:#9ca3af;">PR</strong></div><div>PR-only mentions</div>
                 </div>
-                <div style="margin-top:var(--space-2);">If two categories are close in weight, both are shown (e.g., &ldquo;Tool &amp; AI Hiring-led&rdquo;). If three or more are tied, the pattern is labeled &ldquo;Balanced.&rdquo; If PR exceeds 50% of total weight, the company is labeled &ldquo;PR-led.&rdquo;</div>
+                <div style="margin-top:var(--space-2);">If PR exceeds 50% of total weight &rarr; &ldquo;PR-led&rdquo;. Otherwise, the highest category wins. If two categories are within 10% of each other, both are listed (e.g., &ldquo;Governance &amp; Tool-led&rdquo;).</div>
+              </div>
+            </div>
+
+            <!-- Time Decay -->
+            <div class="profile-card">
+              <div class="profile-card-title">Time Decay</div>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Signals lose relevance over time using exponential decay with a 180-day half-life. A signal from 6 months ago contributes half the weight of an identical signal from today. This ensures the tracker reflects current adoption posture rather than historical activity.</p>
+            </div>
+
+            <!-- General Note -->
+            <div class="profile-card">
+              <div class="profile-card-title">How Ranks Work</div>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Companies are ranked relative to the current filter selection. If you filter by industry or sub-industry, ranks recalculate within that subset. Use the column header filters on any table to focus on specific segments.</p>
+            </div>
+
+            <!-- Data Estimation -->
+            <div class="profile-card">
+              <div class="profile-card-title">Company Data &amp; Estimation</div>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;margin-bottom:var(--space-2);">
+                Company attributes (revenue, employee count, market cap) come from different sources depending on whether the company is public or private:
+              </p>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;">
+                <p style="margin-bottom:var(--space-2);"><strong>Public companies:</strong> Revenue and employee count are sourced from the most recent earnings report or SEC filing (10-K/10-Q). Market cap is sourced from financial data providers. All public company attributes are refreshed weekly. These values link directly to the source.</p>
+                <p style="margin-bottom:var(--space-2);"><strong>Private companies:</strong> Revenue, employee count, and market cap (where applicable) are estimated using publicly available data &mdash; press reports, industry analyses, LinkedIn headcount, and comparable public peer multiples. These values are marked with an <span style="color:var(--color-text-faint);">est.</span> tag.</p>
+                <p style="margin-bottom:var(--space-2);"><strong>Update frequency:</strong> Revenue, employee counts, and market cap for public companies are refreshed weekly from the latest available filings, reports, and financial data. Private company estimates are reviewed periodically as new data becomes available.</p>
+                <p>All estimated figures should be treated as approximations. If you spot an inaccuracy, use the flag button on any signal or reach out directly.</p>
               </div>
             </div>
 
@@ -3287,32 +2834,6 @@ body.admin-mode .admin-edit-signal-btn {
           <div id="adminFlaggedList"></div>
         </div>
 
-        <!-- CHANGELOG SECTION -->
-        <div class="admin-changelog-section">
-          <div class="admin-changelog-header">
-            <h3>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--color-primary);"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
-              Change Log
-              <span id="changelogCount" style="font-size:var(--text-xs);font-weight:400;color:var(--color-text-muted);"></span>
-            </h3>
-            <div style="display:flex;gap:var(--space-2);">
-              <button class="admin-btn admin-btn-sm" id="changelogExportBtn" title="Export changelog as JSON">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                Export
-              </button>
-              <button class="admin-btn admin-btn-sm admin-btn-danger" id="changelogClearBtn" title="Clear changelog">
-                Clear
-              </button>
-            </div>
-          </div>
-          <div id="persistedEditsNote" style="display:none;padding:var(--space-2) var(--space-3);background:var(--color-bg-accent);border-radius:var(--radius-sm);margin-bottom:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);">
-            <strong style="color:var(--color-primary);">&#10003;</strong> <span id="persistedEditsCount">0</span> signal edit(s) saved locally and will persist across page reloads. Clear changelog to reset.
-          </div>
-          <div class="admin-changelog-list" id="changelogList">
-            <div class="changelog-empty">No changes recorded yet. Add, edit, or delete signals to see a log here.</div>
-          </div>
-        </div>
-
         <!-- ADD SIGNAL FORM (collapsible) -->
         <div class="admin-form-wrap">
           <div class="admin-form-toggle" id="adminFormToggle">
@@ -3334,14 +2855,16 @@ body.admin-mode .admin-edit-signal-btn {
                 <label>Signal Type</label>
                 <select id="afSignalType">
                   <option value="">-- Select --</option>
-                  <option value="A">Deployment</option>
-                  <option value="B">Pilot</option>
-
-                  <option value="D">Leadership Hire</option>
-                  <option value="E">Governance</option>
-                  <option value="F">Upskilling</option>
-                  <option value="I">Announcement</option>
-                  <option value="J">AI Hiring</option>
+                  <option value="A">A — Deployment</option>
+                  <option value="B">B — Pilot</option>
+                  <option value="C">C — Procurement</option>
+                  <option value="D">D — Leadership Hire</option>
+                  <option value="E">E — Governance/Oversight</option>
+                  <option value="F">F — AI Upskilling</option>
+                  <option value="G">G — Vendor Case Study</option>
+                  <option value="H">H — Earnings/Report</option>
+                  <option value="I">I — PR Mention</option>
+                  <option value="J">J — AI Talent Hiring</option>
                 </select>
               </div>
               <div class="admin-form-field">
@@ -3349,16 +2872,25 @@ body.admin-mode .admin-edit-signal-btn {
                 <select id="afHRDomain">
                   <option value="">-- Select --</option>
                   <option value="Recruiting">Recruiting</option>
-                  <option value="Talent Development">Talent Development</option>
-                  <option value="HR Service Delivery">HR Service Delivery</option>
+                  <option value="L&D">L&amp;D</option>
+                  <option value="HR Ops">HR Ops</option>
                   <option value="Comp/Benefits">Comp/Benefits</option>
-                  
+                  <option value="Employee Service">Employee Service</option>
                   <option value="Governance">Governance</option>
                   <option value="AI Hiring">AI Hiring</option>
-                  <option value="People Analytics">People Analytics</option>
                 </select>
               </div>
-
+              <div class="admin-form-field">
+                <label>Confirmation Level</label>
+                <select id="afConfirmLevel">
+                  <option value="">-- Select --</option>
+                  <option value="Confirmed Deployment">Confirmed Deployment</option>
+                  <option value="Pilot">Pilot</option>
+                  <option value="Preparing">Preparing</option>
+                  <option value="Exploration">Exploration</option>
+                  <option value="PR Mention">PR Mention</option>
+                </select>
+              </div>
               <div class="admin-form-field">
                 <label>Source Type</label>
                 <select id="afSourceType">
@@ -3375,10 +2907,7 @@ body.admin-mode .admin-edit-signal-btn {
                   <option value="social media">social media</option>
                 </select>
               </div>
-              <div class="admin-form-field">
-                <label>Confidence Score (0.0&ndash;1.0)</label>
-                <input type="number" id="afConfidence" min="0" max="1" step="0.1" value="0.5">
-              </div>
+
             </div>
             <div class="admin-form-grid">
               <div class="admin-form-field admin-form-full">
@@ -3435,10 +2964,6 @@ body.admin-mode .admin-edit-signal-btn {
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       <span>Signals</span>
     </button>
-    <button class="mobile-tab-item" data-mobile-tab="techlandscape" onclick="switchTabMobile('techlandscape')">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-      <span>HR AI Tech</span>
-    </button>
     <button class="mobile-tab-item" data-mobile-tab="more" onclick="toggleMoreMenu()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
       <span>More</span>
@@ -3452,7 +2977,14 @@ body.admin-mode .admin-edit-signal-btn {
       <span>More</span>
       <button onclick="closeMoreMenu()" aria-label="Close" style="background:none;border:none;color:var(--color-text);font-size:20px;cursor:pointer;padding:4px 8px;">✕</button>
     </div>
-
+    <button class="mobile-more-item" onclick="switchTabMobile('movers');closeMoreMenu()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      <span>Top Movers</span>
+    </button>
+    <button class="mobile-more-item" onclick="switchTabMobile('governance');closeMoreMenu()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Governance</span>
+    </button>
     <button class="mobile-more-item" onclick="switchTabMobile('methodology');closeMoreMenu()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       <span>Methodology</span>
@@ -3476,7 +3008,7 @@ body.admin-mode .admin-edit-signal-btn {
       </label>
       <label class="flag-modal-option" onclick="selectFlagReason(this, 'wrong_categorization')">
         <input type="radio" name="flag_reason" value="wrong_categorization">
-        <span>A categorization is wrong (type, domain, or source)</span>
+        <span>A categorization is wrong (type, domain, or confirmation level)</span>
       </label>
       <label class="flag-modal-option" onclick="selectFlagReason(this, 'wrong_company')">
         <input type="radio" name="flag_reason" value="wrong_company">
@@ -3497,135 +3029,11 @@ body.admin-mode .admin-edit-signal-btn {
   </div>
 </div>
 
-<!-- Admin Edit Signal Modal -->
-<div class="edit-signal-modal-overlay" id="editSignalModalOverlay">
-  <div class="edit-signal-modal">
-    <div id="editSignalFormContent">
-      <h3>Edit Signal Classification</h3>
-      <div class="edit-signal-modal-sub" id="editSignalInfo"></div>
-      <div class="edit-signal-field-row">
-        <div class="edit-signal-field">
-          <label>Signal Type</label>
-          <select id="esType">
-            <option value="">-- Select --</option>
-            <option value="A">Deployment</option>
-            <option value="B">Pilot</option>
-            <option value="D">Leadership Hire</option>
-            <option value="E">Governance</option>
-            <option value="F">Upskilling</option>
-            <option value="I">Announcement</option>
-            <option value="J">AI Hiring</option>
-          </select>
-        </div>
-        <div class="edit-signal-field">
-          <label>HR Domain</label>
-          <select id="esDomain">
-            <option value="">-- Select --</option>
-            <option value="Recruiting">Recruiting</option>
-            <option value="Talent Development">Talent Development</option>
-            <option value="HR Service Delivery">HR Service Delivery</option>
-            <option value="Comp/Benefits">Comp/Benefits</option>
-            <option value="Governance">Governance</option>
-            <option value="AI Hiring">AI Hiring</option>
-          </select>
-        </div>
-      </div>
-      <div class="edit-signal-field-row">
-        <div class="edit-signal-field">
-          <label>Source Type</label>
-          <select id="esSourceType">
-            <option value="">-- Select --</option>
-            <option value="earnings call">Earnings Call</option>
-            <option value="SEC filing">SEC Filing</option>
-            <option value="vendor case study">Vendor Case Study</option>
-            <option value="job post">Job Post</option>
-            <option value="conference presentation">Conference Presentation</option>
-            <option value="industry report">Industry Report</option>
-            <option value="press release">Press Release</option>
-            <option value="news article">News Article</option>
-            <option value="blog post">Blog Post</option>
-            <option value="social media">Social Media</option>
-          </select>
-        </div>
-        <div class="edit-signal-field">
-          <label>Confidence</label>
-          <input type="number" id="esConfidence" min="0" max="1" step="0.05" value="0.5">
-        </div>
-      </div>
-      <div class="edit-signal-field">
-        <label>Summary</label>
-        <textarea id="esSummary" rows="3"></textarea>
-      </div>
-      <div class="edit-signal-actions">
-        <button onclick="closeEditSignalModal()">Cancel</button>
-        <button class="primary" id="editSignalSaveBtn" onclick="saveEditSignal()">Save Changes</button>
-      </div>
-    </div>
-    <div class="edit-signal-success" id="editSignalSuccess">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      <p>Signal updated</p>
-      <span>Change has been logged to the admin changelog.</span>
-      <div style="margin-top:var(--space-4);"><button onclick="closeEditSignalModal()" style="padding:6px 14px;border-radius:var(--radius-md);font-size:var(--text-xs);font-weight:600;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);">Close</button></div>
-    </div>
-  </div>
-</div>
-
 <script src="data.js"></script>
 <script>
 (function() {
 'use strict';
 const D = DASHBOARD_DATA;
-
-// ============================================
-// ADMIN SIGNAL EDIT PERSISTENCE (OVERLAY)
-// ============================================
-var SIGNAL_EDITS_KEY = 'hr_ai_tracker_signal_edits';
-
-function loadSignalEdits() {
-  try {
-    var raw = localStorage.getItem(SIGNAL_EDITS_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch(e) { return []; }
-}
-
-function saveSignalEdits(edits) {
-  try { localStorage.setItem(SIGNAL_EDITS_KEY, JSON.stringify(edits)); } catch(e) {}
-}
-
-function applySignalEdits() {
-  var edits = loadSignalEdits();
-  if (!edits.length) return;
-  var details = D.company_details || {};
-  edits.forEach(function(edit) {
-    var detail = details[edit.company];
-    if (!detail || !detail.top_signals) return;
-    for (var i = 0; i < detail.top_signals.length; i++) {
-      var s = detail.top_signals[i];
-      var sigDate = s.date_event || s.date_found || '';
-      // Match by original values stored in the edit
-      if (sigDate === edit.match_date &&
-          s.signal_type === edit.match_type &&
-          (s.summary || '').substring(0,200) === edit.match_summary) {
-        // Apply the edit
-        if (edit.new_type !== undefined) s.signal_type = edit.new_type;
-        if (edit.new_domain !== undefined) s.HR_domain = edit.new_domain;
-        if (edit.new_source_type !== undefined) s.source_type = edit.new_source_type;
-        if (edit.new_confidence !== undefined) s.confidence_score = edit.new_confidence;
-        if (edit.new_summary !== undefined) s.summary = edit.new_summary;
-        // Update match keys so subsequent edits find the updated signal
-        edit.match_type = s.signal_type;
-        edit.match_summary = (s.summary || '').substring(0,200);
-        break;
-      }
-    }
-  });
-}
-
-// Apply persisted edits before anything renders
-applySignalEdits();
-
-// Apply admin mode class if previously unlocked
-if (window.__adminUnlocked === true) document.body.classList.add('admin-mode');
 
 // ============================================
 // MOBILE HELPERS
@@ -3640,7 +3048,7 @@ window.switchTabMobile = function(tabId) {
     var isMore = t.dataset.mobileTab === 'more';
     var isActive = t.dataset.mobileTab === tabId;
     // For methodology/admin, highlight "more"
-    if ((tabId === 'methodology' || tabId === 'admin' || tabId === 'movers' || tabId === 'governance') && isMore) isActive = true;
+    if ((tabId === 'methodology' || tabId === 'admin') && isMore) isActive = true;
     t.classList.toggle('active', isActive);
   });
 };
@@ -3779,7 +3187,7 @@ function switchTab(tabId) {
   document.querySelectorAll('.mobile-tab-item').forEach(function(t) {
     var isMore = t.dataset.mobileTab === 'more';
     var isActive = t.dataset.mobileTab === tabId;
-    if ((tabId === 'methodology' || tabId === 'admin' || tabId === 'movers' || tabId === 'governance') && isMore) isActive = true;
+    if ((tabId === 'methodology' || tabId === 'admin') && isMore) isActive = true;
     t.classList.toggle('active', isActive);
   });
   // Close more menu if open
@@ -3811,13 +3219,21 @@ function momentumClass(v) { return v > 0 ? 'momentum-pos' : v < 0 ? 'momentum-ne
 function fmt(v, d) { return (typeof v === 'number') ? v.toFixed(d === undefined ? 1 : d) : v || '—'; }
 function fmtMomentum(v) { return v > 0 ? '+' + fmt(v) : fmt(v); }
 function patternBadge(p) { return '<span class="badge badge-blue">' + (p || '—') + '</span>'; }
+function confirmBadge(level) {
+  var cls = 'badge-gray';
+  if (level === 'Confirmed Deployment') cls = 'badge-green';
+  else if (level === 'Pilot') cls = 'badge-blue';
+  else if (level === 'Preparing') cls = 'badge-teal';
+  else if (level === 'Exploration') cls = 'badge-yellow';
+  return '<span class="badge ' + cls + '">' + (level || '—') + '</span>';
+}
 function signalTypeBadge(type) {
-  var labels = {A:'Deployment',B:'Pilot',D:'Leadership Hire',E:'Governance',F:'Upskilling',I:'Announcement',J:'AI Hiring'};
+  var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',E:'Governance',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'PR Mention',J:'AI Talent Hiring'};
   return labels[type] || type || '';
 }
 function prRatioBar(pr) {
   if (!pr) return '—';
-  return '<div style="display:flex;align-items:center;gap:6px;"><div class="pr-ratio-bar"><div class="pr-ratio-deploy" style="width:' + pr.deploy_pct + '%"></div><div class="pr-ratio-pr" style="width:' + pr.pr_pct + '%"></div></div><span style="font-size:var(--text-xs);font-family:var(--font-mono);font-weight:600;color:var(--color-primary);">' + fmt(pr.deploy_pct || 0, 0) + '%</span></div>';
+  return '<div style="display:flex;align-items:center;gap:6px;"><div class="pr-ratio-bar"><div class="pr-ratio-deploy" style="width:' + pr.deploy_pct + '%"></div><div class="pr-ratio-pr" style="width:' + pr.pr_pct + '%"></div></div><span style="font-size:var(--text-xs);font-family:var(--font-mono);">' + fmt(pr.ratio, 1) + '</span></div>';
 }
 function domainHeatColor(v) {
   if (!v || v === 0) return 'background: transparent;';
@@ -3842,7 +3258,7 @@ function getAllCompanies() {
   const all = [];
   for (const [industry, companies] of Object.entries(D.industries)) {
     for (const c of companies) {
-      all.push({ ...c, industry, pr_ratio_val: (c.pr_ratio && c.pr_ratio.deploy_pct != null) ? c.pr_ratio.deploy_pct : 0 });
+      all.push({ ...c, industry, pr_ratio_val: (c.pr_ratio && c.pr_ratio.ratio != null) ? c.pr_ratio.ratio : 0 });
     }
   }
   all.sort((a, b) => b.maturity - a.maturity);
@@ -3962,7 +3378,7 @@ function openProfile(companyName) {
   const mfc = (mom).formula_components || {};
   const pw = md.pattern_weights || {};
   const pattern = md.adoption_pattern || detail.adoption_pattern || '\u2014';
-  const allDomains = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring', 'People Analytics'].sort(function(a, b) { return (domains[b] || 0) - (domains[a] || 0); });
+  const allDomains = ['Recruiting', 'L&D', 'HR Ops', 'Comp/Benefits', 'Employee Service', 'Governance', 'AI Hiring'];
   const isPrivate = co.public_or_private === 'Private';
   const estTag = ' <span style="font-size:var(--text-xs);color:var(--color-text-faint);font-weight:400;" title="Estimated based on publicly available industry data">est.</span>';
 
@@ -4018,14 +3434,11 @@ function openProfile(companyName) {
       signalsHTML += '<div class="signal-item profile-signal-item" data-domain="' + (s.HR_domain || '') + '">' +
         '<div class="signal-meta"><span>' + (s.date_event || s.date_found || '') + '</span>' +
         '<span class="badge badge-blue">' + (s.HR_domain || '') + '</span>' +
-        ((s.HR_domain || '') !== signalTypeBadge(s.signal_type) ? '<span class="badge badge-gray">' + signalTypeBadge(s.signal_type) + '</span>' : '') +
+        confirmBadge(s.confirmation_level || '') +
+        (s.signal_type === 'J' ? '<span class="badge badge-teal">AI Talent</span>' : '') +
         flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
-        editBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_type||'', s.confidence_score||'') +
         '</div>' +
-        '<div class="signal-summary">' +
-        '<div class="summary-text">' + (s.summary || '') + '</div>' +
-        '<button class="show-more-btn" onclick="toggleSummary(this)">Show more</button>' +
-        '</div>' +
+        '<div class="signal-summary">' + (s.summary || '') + '</div>' +
         sourcesHTML + '</div>';
     }
   }
@@ -4043,32 +3456,32 @@ function openProfile(companyName) {
 
   // --- Collapsible Maturity & Momentum Breakdown ---
   var accelPct = mfc.monthly_baseline > 0 ? Math.round(mfc.acceleration * 100) : 0;
-  var patternNames = ['Tool', 'Leadership', 'Upskilling', 'AI Hiring', 'Governance', 'PR'];
+  var patternNames = ['Governance', 'Tool', 'Talent', 'AI Hiring', 'PR'];
   var maxPw = Math.max.apply(null, patternNames.map(function(p) { return pw[p] || 0; }));
   var patternBarsHTML = '';
   patternNames.forEach(function(p) {
     var val = pw[p] || 0;
     var pct = maxPw > 0 ? (val / maxPw * 100) : 0;
     patternBarsHTML += '<div style="display:flex;align-items:center;gap:6px;margin:2px 0;">' +
-      '<span style="min-width:90px;">' + p + '</span>' +
+      '<span style="min-width:70px;">' + p + '</span>' +
       '<div style="flex:1;height:6px;background:var(--color-surface-offset);border-radius:3px;overflow:hidden;">' +
       '<div style="height:100%;width:' + pct + '%;background:var(--color-primary);border-radius:3px;"></div></div>' +
       '<span class="mono" style="min-width:28px;text-align:right;">' + fmt(val, 1) + '</span></div>';
   });
 
   var detailsHTML = '<details style="margin-top:var(--space-3);font-size:var(--text-xs);">' +
-    '<summary style="cursor:pointer;font-weight:600;padding:var(--space-2) 0;color:var(--color-text-muted);border-top:1px solid var(--color-border);margin-top:var(--space-2);">Scoring Details</summary>' +
+    '<summary style="cursor:pointer;font-weight:600;padding:var(--space-2) 0;color:var(--color-text-muted);border-top:1px solid var(--color-border);margin-top:var(--space-2);">Maturity & Momentum Details</summary>' +
     '<div style="padding:var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-md);margin-top:var(--space-1);">' +
     '<strong>Maturity Breakdown</strong><br>' +
     'Mean (all 7 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>' +
     'Base score (60% breadth + 40% depth): ' + fmt(fc.base_score, 1) + '<br>' +
-    'Coverage: \u00d7' + fmt(fc.coverage_mult, 3) + ' (' + md.domains_covered + '/7 domains) \u00b7 Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>' +
+    'Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>' +
     '<strong>Final: ' + fmt(md.score, 1) + '</strong><br><br>' +
     '<strong>Momentum Breakdown</strong><br>' +
     'Baseline: ' + fmt(mfc.w365, 1) + ' weighted signals/yr \u2192 ' + fmt(mfc.monthly_baseline, 1) + '/mo<br>' +
     'Weighted signals (last 30 days): ' + fmt(mfc.w30, 1) + ' \u00d7 size factor ' + fmt(mfc.size_factor, 2) + ' = ' + fmt(mfc.recent_monthly, 1) + '/mo<br>' +
     'Growth rate: (' + fmt(mfc.recent_monthly,1) + ' \u2212 baseline ' + fmt(mfc.monthly_baseline,1) + ') / ' + fmt(mfc.monthly_baseline,1) + ' = ' + fmt(mfc.acceleration, 2) + ' (' + accelPct + '% above baseline)<br>' +
-    'Recency score: ' + fmt(mfc.velocity, 2) + ' (signals weighted 3\u00d7 for &lt;30d, 2\u00d7 for 30\u201360d, 1\u00d7 for 60\u201390d)<br>' +
+    'Recency score: ' + fmt(mfc.velocity, 2) + ' (signals weighted 3\u00d7 for last 30d, 2\u00d7 for 30\u201360d, 1\u00d7 for 60\u201390d)<br>' +
     'Raw = ' + fmt(mfc.acceleration,2) + '\u00d70.6 + ' + fmt(mfc.velocity,2) + '\u00d70.4 = ' + fmt(mfc.raw_momentum, 2) + '<br>' +
     '<strong>Final: ' + fmtMomentum(mom.score || detail.momentum_score) + '</strong> (tanh scaled)<br><br>' +
     '<strong>Adoption Pattern: ' + pattern + '</strong><br>' + patternBarsHTML +
@@ -4084,8 +3497,7 @@ function openProfile(companyName) {
     '<div class="profile-grid">' +
     '<div class="profile-card"><div class="profile-card-title">Maturity Score</div><div class="gauge-container">' + gaugeSVG + '<div><div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);">/100</span></div><div class="gauge-label">' + (md.adoption_pattern || '') + '</div></div></div></div>' +
     '<div class="profile-card"><div class="profile-card-title">Momentum</div><div class="gauge-value" style="margin-bottom:var(--space-2);"><span class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span></div>' +
-    '<div style="font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);margin-bottom:var(--space-1);">Signals</div>' +
-    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-2);font-size:var(--text-xs);"><div><div style="color:var(--color-text-muted);">&lt;30d</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">30\u201360d</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_60d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">60\u201390d</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_90d || 0) + '</div></div></div></div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-2);font-size:var(--text-xs);"><div><div style="color:var(--color-text-muted);">30d signals</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">60d signals</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_60d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">90d signals</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_90d || 0) + '</div></div></div></div>' +
     '<div class="profile-card"><div class="profile-card-title">Company Info</div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);font-size:var(--text-sm);">' +
     '<div><span style="color:var(--color-text-muted);">Employees</span><br><strong>' + empHTML + '</strong></div>' +
@@ -4103,28 +3515,11 @@ function openProfile(companyName) {
     '</div>' +
     detailsHTML +
     '<div class="section-block"><h2 class="section-title">HR Domain Scores <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(click to filter signals)</span></h2><div style="max-width:500px;" class="bar-chart" id="profileDomainChart">' + domainBarsHTML + '</div></div>' +
-    (function() {
-      var ts = detail.tech_stack || [];
-      if (!ts.length) return '';
-      var statusColors = { 'Deployed': '#059669' };
-      var statusBg = { 'Deployed': 'rgba(5,150,105,0.1)' };
-      var techHTML = ts.map(function(t) {
-        var sc = statusColors[t.status] || 'var(--color-text-muted)';
-        var sb = statusBg[t.status] || 'var(--color-surface-offset)';
-        return '<div class="tech-stack-chip" onclick="openTechDetail(\'' + esc(t.name) + '\')" style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:' + sb + ';border:1px solid var(--color-border);border-radius:var(--radius-full);cursor:pointer;transition:box-shadow 150ms;" onmouseenter="this.style.boxShadow=\'0 2px 8px rgba(0,0,0,0.08)\'" onmouseleave="this.style.boxShadow=\'none\'">' +
-          '<span style="font-size:var(--text-xs);font-weight:600;">' + t.name + '</span>' +
-          '<span style="font-size:10px;font-weight:600;color:' + sc + ';">' + t.status + '</span>' +
-          '</div>';
-      }).join('');
-      return '<div class="section-block"><h2 class="section-title">HR AI Tech Stack <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + ts.length + ' technologies detected)</span></h2>' +
-        '<div style="display:flex;flex-wrap:wrap;gap:var(--space-2);">' + techHTML + '</div></div>';
-    })() +
     '<div class="section-block"><h2 class="section-title">Signals <span id="profileSignalCount" style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + detail.total_signals + ' total)</span> <span id="profileFilterLabel" style="display:none;font-weight:400;font-size:var(--text-xs);color:var(--color-primary);cursor:pointer;"></span></h2><div id="profileSignalsList">' + signalsHTML + '</div></div>';
 
   document.getElementById('profileContent').innerHTML = html;
   profileOverlay.classList.add('active');
   profileOverlay.scrollTop = 0;
-  requestAnimationFrame(initShowMoreButtons);
 
   // Attach domain bar click handlers for filtering
   var activeDomainFilter = null;
@@ -4341,7 +3736,7 @@ const OV_COLS = [
   { key: 'industry',     label: 'Industry',     type: 'multi-filter' },
   { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter' },
   { key: 'maturity',     label: 'Maturity',     type: 'metric',
-    tooltip: '<strong>Maturity Score (0–100)</strong>Each of 7 HR domains (Recruiting, Talent Development, HR Service Delivery, Comp/Benefits, Governance, AI Hiring, People Analytics) is scored 0–100 independently. Overall = 60% mean of all 7 domains + 40% mean of top 3, adjusted for company size and regulatory complexity. Rewards breadth across categories.' },
+    tooltip: '<strong>Maturity Score (0–100)</strong>Each of 7 HR domains (Recruiting, L&D, HR Ops, Comp/Benefits, Employee Service, Governance, AI Hiring) is scored 0–100 independently. Overall = 60% mean of all 7 domains + 40% mean of top 3, adjusted for company size and regulatory complexity. Rewards breadth across categories.' },
   { key: 'momentum',     label: 'Momentum',     type: 'metric',
     tooltip: '<strong>Momentum (−10 to +10)</strong>Measures recent acceleration of HR AI signals. Compares 30-day weighted signal velocity to a 12-month baseline, normalized by company size.' },
   { key: 'signals',      label: 'Signals',      type: 'metric',
@@ -4587,7 +3982,7 @@ function cascadeOverviewFilters() {
     });
   }
   
-  // Rebuild industry list based on selected sub-industries (or show all if none selected)
+  // If sub-industries are selected, rebuild industry list to show only related industries
   var validIndustries = new Set();
   if (selectedSubs.size > 0) {
     selectedSubs.forEach(function(si) {
@@ -4597,30 +3992,27 @@ function cascadeOverviewFilters() {
     allCompanies.forEach(function(c) { if (c.industry) validIndustries.add(c.industry); });
   }
   
-  // Always rebuild industry list to reflect current valid options
-  var indList = thead.querySelector('.dd-filter-list[data-filter-col="industry"]');
-  if (indList) {
-    // Remove industry selections that are no longer valid
-    ovState.filters.industry.forEach(function(ind) {
-      if (!validIndustries.has(ind)) ovState.filters.industry.delete(ind);
-    });
-    var sortedInds = Array.from(validIndustries).sort();
-    var indHTML = '';
-    sortedInds.forEach(function(v) {
-      var checked = ovState.filters.industry.has(v) ? ' checked' : '';
-      indHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + v + '</label>';
-    });
-    indList.innerHTML = indHTML;
-    indList.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
-      cb.addEventListener('change', function(e) {
-        e.stopPropagation();
-        if (this.checked) { ovState.filters.industry.add(this.value); }
-        else { ovState.filters.industry.delete(this.value); }
-        cascadeOverviewFilters();
-        refreshOverviewHeaders();
-        renderOverviewTable();
+  if (selectedSubs.size > 0) {
+    var indList = thead.querySelector('.dd-filter-list[data-filter-col="industry"]');
+    if (indList) {
+      var sortedInds = Array.from(validIndustries).sort();
+      var indHTML = '';
+      sortedInds.forEach(function(v) {
+        var checked = ovState.filters.industry.has(v) ? ' checked' : '';
+        indHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + v + '</label>';
       });
-    });
+      indList.innerHTML = indHTML;
+      indList.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+        cb.addEventListener('change', function(e) {
+          e.stopPropagation();
+          if (this.checked) { ovState.filters.industry.add(this.value); }
+          else { ovState.filters.industry.delete(this.value); }
+          cascadeOverviewFilters();
+          refreshOverviewHeaders();
+          renderOverviewTable();
+        });
+      });
+    }
   }
 }
 
@@ -4769,12 +4161,12 @@ function kpiCard(label, value, sub, extraClass) {
 
 const DOMAIN_TOOLTIPS = {
   'Recruiting': 'Signals related to AI in talent acquisition: AI resume screening, chatbot interviews, automated candidate matching, programmatic job advertising, and predictive hiring tools.',
-  'Talent Development': 'Signals for AI in Talent Development: personalized learning paths, AI content curation, skills gap analysis, adaptive training platforms, intelligent coaching tools, AI-driven performance management, succession planning, career pathing, and employee development.',
-  'HR Service Delivery': 'Signals for AI in HR operations and employee service: workflow automation, document processing, employee data analytics, HRIS AI features (Workday AI, ServiceNow), HR chatbots, AI help desks, automated case routing, self-service portals, and employee experience platforms.',
+  'L&D': 'Signals for AI in Learning & Development: personalized learning paths, AI content curation, skills gap analysis, adaptive training platforms, and intelligent coaching tools.',
+  'HR Ops': 'Signals for AI in HR Operations: workflow automation, document processing, employee data analytics, HRIS AI features (Workday AI, ServiceNow), and process optimization.',
   'Comp/Benefits': 'Signals for AI in Compensation & Benefits: automated pay equity analysis, benefits optimization, comp benchmarking tools, and total rewards modeling.',
+  'Employee Service': 'Signals for AI in Employee Service: HR chatbots, AI help desks, automated case routing, self-service portals with AI, and employee experience platforms.',
   'Governance': 'Signals for AI Governance in HR: responsible AI policies, bias auditing frameworks, ethics boards overseeing HR AI, regulatory compliance, and algorithmic accountability.',
-  'AI Hiring': 'Signals for AI talent hiring intensity: job postings for AI/ML engineers, data scientists, AI product managers, and other AI-focused roles that indicate investment in building AI capabilities.',
-  'People Analytics': 'Signals for AI-powered people analytics: workforce analytics platforms, predictive attrition/retention modeling, sentiment analysis, employee survey insights, organizational network analysis, and HR data science initiatives.'
+  'AI Hiring': 'Signals for AI talent hiring intensity: job postings for AI/ML engineers, data scientists, AI product managers, and other AI-focused roles that indicate investment in building AI capabilities.'
 };
 
 
@@ -4987,7 +4379,7 @@ var heatState = {
   filters: { industry: new Set(), sub_industry: new Set() }
 };
 
-var HEAT_DOMAINS = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring', 'People Analytics'];
+var HEAT_DOMAINS = ['Recruiting', 'L\u0026D', 'HR Ops', 'Comp/Benefits', 'Employee Service', 'Governance', 'AI Hiring'];
 
 // Build heatmap data array once
 var heatmapData = Object.entries(D.heatmap)
@@ -5053,526 +4445,193 @@ function renderHeatmap() {
   }).join('');
 }
 
-
-
-
-
 // ============================================
-// AI TECH LANDSCAPE
+// TOP MOVERS TAB
 // ============================================
-var _techState = {
-  sort: { key: 'company_count', dir: -1 },
-  filters: { category: new Set(), domain: new Set() },
-  openDropdown: null
-};
-var _techDetailOverlayEl = null;
-
-var TECH_COLS = [
-  { key: 'name',          label: 'Technology',     type: 'sort-only' },
-  { key: 'vendor',        label: 'Vendor',         type: 'sort-only' },
-  { key: 'category',      label: 'Category',       type: 'multi-filter' },
-  { key: 'domain',        label: 'Primary Domain', type: 'multi-filter' },
-  { key: 'company_count', label: 'Companies',      type: 'metric' }
-];
-
-function techUniqueValues(key) {
-  var tl = D.tech_landscape || [];
-  var vals = new Set();
-  tl.forEach(function(t) {
-    if (key === 'category' && t.category) vals.add(t.category);
-    if (key === 'domain' && t.primary_domain) vals.add(t.primary_domain);
-  });
-  return Array.from(vals).sort();
-}
-
-function closeTechDropdowns() {
-  document.querySelectorAll('#techThead .col-dropdown.open').forEach(function(d) { d.classList.remove('open'); });
-  _techState.openDropdown = null;
-}
-
-window.techClearFilter = function(colKey) {
-  _techState.filters[colKey] = new Set();
-  refreshTechThead();
-  renderTechTable();
-};
-window.techSelectAllFilter = function(colKey) {
-  _techState.filters[colKey] = new Set(techUniqueValues(colKey));
-  refreshTechThead();
-  renderTechTable();
-};
-
-function refreshTechThead() {
-  TECH_COLS.forEach(function(col) {
-    var btn = document.querySelector('#techThead .col-header-btn[data-col-key="' + col.key + '"]');
-    if (!btn) return;
-    btn.classList.toggle('sorted', _techState.sort.key === col.key);
-    var si = btn.querySelector('.sort-icon');
-    if (si) si.textContent = (_techState.sort.key === col.key) ? (_techState.sort.dir === 1 ? '\u25b2' : '\u25bc') : '\u25bc';
-    if (_techState.filters[col.key]) {
-      btn.classList.toggle('has-filter', _techState.filters[col.key].size > 0);
-    }
-    var th = btn.closest('th');
-    if (th) {
-      th.querySelectorAll('.dd-sort-btn').forEach(function(sb) {
-        sb.classList.toggle('active', sb.dataset.sortCol === _techState.sort.key && parseInt(sb.dataset.sortDir) === _techState.sort.dir);
-      });
-      th.querySelectorAll('.dd-filter-list input[type="checkbox"]').forEach(function(cb) {
-        if (_techState.filters[col.key]) cb.checked = _techState.filters[col.key].has(cb.value);
-      });
-    }
-  });
-}
-
-function initTechThead() {
-  var tr = document.getElementById('techThead');
-  tr.innerHTML = '';
-  TECH_COLS.forEach(function(col, ci) {
-    var th = document.createElement('th');
-    th.classList.add('col-header');
-    th.style.position = 'relative';
-    if (col.key === 'company_count') th.style.textAlign = 'right';
-
-    var btn = document.createElement('button');
-    btn.className = 'col-header-btn';
-    btn.dataset.colKey = col.key;
-    btn.innerHTML = col.label + ' <span class="sort-icon">\u25bc</span> <span class="filter-dot"></span>';
-    if (_techState.sort.key === col.key) {
-      btn.classList.add('sorted');
-      btn.querySelector('.sort-icon').textContent = _techState.sort.dir === 1 ? '\u25b2' : '\u25bc';
-    }
-    if (_techState.filters[col.key] && _techState.filters[col.key].size > 0) btn.classList.add('has-filter');
-
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var dd = th.querySelector('.col-dropdown');
-      var isOpen = dd && dd.classList.contains('open');
-      closeTechDropdowns();
-      if (!isOpen && dd) { dd.classList.add('open'); _techState.openDropdown = col.key; }
-    });
-    th.appendChild(btn);
-
-    var dd = document.createElement('div');
-    dd.className = 'col-dropdown';
-    if (ci >= TECH_COLS.length - 2) dd.classList.add('align-right');
-
-    var isText = (col.key === 'name' || col.key === 'vendor');
-    var ascLabel = isText ? 'Sort A \u2192 Z' : 'Sort Low \u2192 High';
-    var descLabel = isText ? 'Sort Z \u2192 A' : 'Sort High \u2192 Low';
-    var ddHTML = '<div class="dd-section"><div class="dd-section-label">Sort</div>';
-    ddHTML += '<button class="dd-sort-btn' + (_techState.sort.key === col.key && _techState.sort.dir === 1 ? ' active' : '') + '" data-sort-col="' + col.key + '" data-sort-dir="1">' + ascLabel + '</button>';
-    ddHTML += '<button class="dd-sort-btn' + (_techState.sort.key === col.key && _techState.sort.dir === -1 ? ' active' : '') + '" data-sort-col="' + col.key + '" data-sort-dir="-1">' + descLabel + '</button>';
-    ddHTML += '</div>';
-
-    if (col.type === 'multi-filter') {
-      var values = techUniqueValues(col.key);
-      ddHTML += '<div class="dd-divider"></div>';
-      ddHTML += '<div class="dd-section"><div class="dd-section-label">Filter</div></div>';
-      ddHTML += '<div class="dd-filter-list" data-filter-col="' + col.key + '">';
-      values.forEach(function(v) {
-        var checked = _techState.filters[col.key].has(v) ? ' checked' : '';
-        ddHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + v + '</label>';
-      });
-      ddHTML += '</div>';
-      ddHTML += '<div class="dd-filter-actions">';
-      ddHTML += '<button onclick="techClearFilter(\'' + col.key + '\')" title="Clear filter">Clear</button>';
-      ddHTML += '<button class="primary" onclick="techSelectAllFilter(\'' + col.key + '\')" title="Select all">All</button>';
-      ddHTML += '</div>';
-    }
-
-    dd.innerHTML = ddHTML;
-    th.appendChild(dd);
-
-    dd.querySelectorAll('.dd-sort-btn').forEach(function(sb) {
-      sb.addEventListener('click', function(e) {
-        e.stopPropagation();
-        _techState.sort.key = this.dataset.sortCol;
-        _techState.sort.dir = parseInt(this.dataset.sortDir);
-        closeTechDropdowns();
-        refreshTechThead();
-        renderTechTable();
-      });
-    });
-    dd.querySelectorAll('.dd-filter-list input[type="checkbox"]').forEach(function(cb) {
-      cb.addEventListener('change', function(e) {
-        e.stopPropagation();
-        var fKey = this.closest('.dd-filter-list').dataset.filterCol;
-        if (this.checked) _techState.filters[fKey].add(this.value);
-        else _techState.filters[fKey].delete(this.value);
-        refreshTechThead();
-        renderTechTable();
-      });
-    });
-
-    tr.appendChild(th);
-  });
-}
-
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('#techThead .col-header')) closeTechDropdowns();
+var moversPositive = D.top_movers.filter(function(m) { return m.momentum > 0; });
+// Enrich with momentum details
+moversPositive.forEach(function(m) {
+  var detail = D.company_details[m.name];
+  var mom = detail ? detail.momentum_details || {} : {};
+  m.signals_30d = mom.signals_30d || 0;
+  m.signals_60d = mom.signals_60d || 0;
+  m.signals_90d_val = m.signals_90d || mom.signals_90d || 0;
 });
 
-function renderTechLandscape() {
-  var tl = D.tech_landscape || [];
-  if (!tl.length) return;
-
-  var totalTechs = tl.length;
-  var totalDeploys = tl.reduce(function(s, t) { return s + t.deployments; }, 0);
-  var totalCos = new Set();
-  tl.forEach(function(t) { (t.companies || []).forEach(function(c) { totalCos.add(c.name); }); });
-  var cardsEl = document.getElementById('techSummaryCards');
-  if (cardsEl) {
-    cardsEl.innerHTML =
-      '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-primary);">' + totalTechs + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Technologies Tracked</div></div>' +
-      '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#059669;">' + totalDeploys + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Deployment Signals</div></div>' +
-      '<div class="profile-card" style="padding:var(--space-3);text-align:center;"><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-text);">' + totalCos.size + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;">Companies Using HR AI Tech</div></div>';
-  }
-
-  initTechThead();
-  renderTechTable();
-}
-
-function renderTechTable() {
-  var tl = (D.tech_landscape || []).slice();
-  var f = _techState;
-
-  if (f.filters.category.size > 0) {
-    tl = tl.filter(function(t) { return f.filters.category.has(t.category); });
-  }
-  if (f.filters.domain.size > 0) {
-    tl = tl.filter(function(t) { return f.filters.domain.has(t.primary_domain); });
-  }
-
-  var sortKey = f.sort.key;
-  var sortDir = f.sort.dir;
-  tl.sort(function(a, b) {
-    var va, vb;
-    if (sortKey === 'name') { va = (a.name || '').toLowerCase(); vb = (b.name || '').toLowerCase(); }
-    else if (sortKey === 'vendor') { va = (a.vendor || '').toLowerCase(); vb = (b.vendor || '').toLowerCase(); }
-    else if (sortKey === 'category') { va = (a.category || '').toLowerCase(); vb = (b.category || '').toLowerCase(); }
-    else if (sortKey === 'domain') { va = (a.primary_domain || '').toLowerCase(); vb = (b.primary_domain || '').toLowerCase(); }
-    else { va = a.company_count || 0; vb = b.company_count || 0; }
-    if (va < vb) return -1 * sortDir;
-    if (va > vb) return 1 * sortDir;
-    return 0;
-  });
-
-  var tbody = document.getElementById('techTableBody');
-  if (!tbody) return;
-
-  if (tl.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--color-text-muted);padding:var(--space-6);">No technologies match the selected filters.</td></tr>';
-    return;
-  }
-
-  var rows = tl.map(function(t) {
-    return '<tr style="cursor:pointer;" onclick="openTechDetail(\'' + esc(t.name) + '\')">' +
-      '<td style="font-weight:600;color:var(--color-primary);">' + t.name + '</td>' +
-      '<td>' + t.vendor + '</td>' +
-      '<td><span class="badge badge-blue" style="font-size:10px;">' + t.category + '</span></td>' +
-      '<td>' + t.primary_domain + '</td>' +
-      '<td style="text-align:right;font-family:var(--font-mono);">' + t.company_count + '</td>' +
-      '</tr>';
-  });
-  tbody.innerHTML = rows.join('');
-}
-
-// TECH DETAIL OVERLAY
-// ============================================
-var _techDetailState = {
-  techName: null,
-  sort: { key: 'signal_count', dir: -1 },
+var moversState = {
+  sort: { key: 'momentum', dir: -1 },
   filters: { industry: new Set(), sub_industry: new Set() }
 };
 
-function openTechDetail(techName) {
-  var tl = D.tech_landscape || [];
-  var tech = tl.find(function(t) { return t.name === techName; });
-  if (!tech) return;
-
-  // Reset detail state for this tech
-  _techDetailState.techName = techName;
-  _techDetailState.sort = { key: 'signal_count', dir: -1 };
-  _techDetailState.filters = { industry: new Set(), sub_industry: new Set() };
-
-  // Build industry breakdown
-  var industries = Object.entries(tech.industries || {}).sort(function(a, b) { return b[1] - a[1]; });
-  var maxInd = industries.length ? industries[0][1] : 1;
-  var industryBarsHTML = industries.map(function(entry) {
-    var pct = (entry[1] / maxInd * 100);
-    return '<div class="bar-row"><div class="bar-label">' + entry[0] + '</div>' +
-      '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%;background:var(--color-blue-500);"></div></div>' +
-      '<div class="bar-value">' + entry[1] + '</div></div>';
-  }).join('');
-
-  // Build domain breakdown
-  var domainsUsed = Object.entries(tech.domains_used || {}).sort(function(a, b) { return b[1] - a[1]; });
-  var maxDom = domainsUsed.length ? domainsUsed[0][1] : 1;
-  var domainBarsHTML = domainsUsed.map(function(entry) {
-    var pct = (entry[1] / maxDom * 100);
-    return '<div class="bar-row"><div class="bar-label">' + entry[0] + '</div>' +
-      '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%;background:#8b5cf6;"></div></div>' +
-      '<div class="bar-value">' + entry[1] + '</div></div>';
-  }).join('');
-
-  // Get base companies
-  var companies = tech.companies || [];
-  var baseCos = companies;
-
-  var html = '<div class="profile-back" onclick="closeTechDetail()" role="button" tabindex="0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to HR AI Tech</div>' +
-    '<div class="profile-header"><span class="profile-company-name">' + tech.name + '</span>' +
-    '<div class="profile-tags-row">' +
-    '<span class="badge badge-blue">' + tech.category + '</span>' +
-    '<span class="badge badge-gray">' + tech.vendor + '</span>' +
-    '<span class="badge badge-gray">' + tech.primary_domain + '</span>' +
-    '</div></div>' +
-    '<div class="profile-grid">' +
-    '<div class="profile-card" style="text-align:center;"><div class="profile-card-title">Deployed At</div><div id="tdDeployedCount" style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:#059669;">' + baseCos.length + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">companies</div></div>' +
-    '<div class="profile-card" style="text-align:center;"><div class="profile-card-title">Total Signals</div><div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--color-primary);">' + tech.total_mentions + '</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">across all companies</div></div>' +
-    '</div>' +
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-top:var(--space-4);">' +
-    '<div class="section-block"><h2 class="section-title">Industry Breakdown</h2><div class="bar-chart" style="max-width:100%;">' + industryBarsHTML + '</div></div>' +
-    '<div class="section-block"><h2 class="section-title">HR Domains</h2><div class="bar-chart" style="max-width:100%;">' + domainBarsHTML + '</div></div>' +
-    '</div>' +
-    '<div class="section-block" style="margin-top:var(--space-4);"><h2 class="section-title">Companies <span id="tdCompanyCount" style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + baseCos.length + ')</span></h2>' +
-    '<div class="table-container"><table class="data-table" id="techDetailTable"><thead id="techDetailThead"><tr></tr></thead><tbody id="techDetailTbody"></tbody></table></div></div>';
-
-  document.getElementById('profileContent').innerHTML = html;
-  buildTechDetailHeaders();
-  renderTechDetailTable();
-  profileOverlay.classList.add('active');
-  profileOverlay.scrollTop = 0;
-}
-window.openTechDetail = openTechDetail;
-
-var TD_COLS = [
-  { key: 'name', label: 'Company', type: 'sort-only', align: 'left', isText: true },
-  { key: 'industry', label: 'Industry', type: 'multi-filter', align: 'left', isText: true },
-  { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter', align: 'left', isText: true },
-  { key: 'signal_count', label: 'Signals', type: 'sort-only', align: 'right', isText: false },
-  { key: 'latest_date', label: 'Latest', type: 'sort-only', align: 'left', isText: false }
+var MOVERS_COLS = [
+  { key: 'rank', label: '#', type: 'static', width: '44px' },
+  { key: 'name', label: 'Company', type: 'sort-only', sortType: 'text' },
+  { key: 'industry', label: 'Industry', type: 'multi-filter', sortType: 'text' },
+  { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter', sortType: 'text' },
+  { key: 'maturity', label: 'Maturity', type: 'sort-only',
+    tooltip: '<strong>Maturity Score (0\u2013100)</strong>Overall HR AI adoption maturity.' },
+  { key: 'momentum', label: 'Momentum', type: 'sort-only',
+    tooltip: '<strong>Momentum (\u221210 to +10)</strong>Recent acceleration of activity. Higher = faster recent adoption.' },
+  { key: 'signals_30d', label: '30d Signals', type: 'sort-only',
+    tooltip: '<strong>30-Day Signals</strong>Number of new HR AI signals detected in the last 30 days.' },
+  { key: 'signals_60d', label: '60d Signals', type: 'sort-only',
+    tooltip: '<strong>60-Day Signals</strong>Signals detected in the last 60 days.' },
+  { key: 'signals_90d_val', label: '90d Signals', type: 'sort-only',
+    tooltip: '<strong>90-Day Signals</strong>Signals detected in the last 90 days.' },
+  { key: 'momentum_bar', label: 'Momentum Bar', type: 'static' }
 ];
 
-function getTechDetailBaseCos() {
-  var tl = D.tech_landscape || [];
-  var tech = tl.find(function(t) { return t.name === _techDetailState.techName; });
-  if (!tech) return [];
-  var companies = tech.companies || [];
-  return companies;
+var moversConfig = {
+  theadId: 'moversThead',
+  state: moversState,
+  columns: MOVERS_COLS,
+  uniqueValues: function(key) {
+    return [...new Set(moversPositive.map(function(m) { return m[key]; }).filter(Boolean))].sort();
+  },
+  render: renderMovers
+};
+
+function initMovers() {
+  buildInteractiveTable(moversConfig);
 }
 
-function tdUniqueValues(key) {
-  var cos = getTechDetailBaseCos();
-  var vals = cos.map(function(c) { return c[key] || ''; });
-  return Array.from(new Set(vals)).sort();
-}
+function renderMovers() {
+  var filtered = applyTableFiltersAndSort(moversPositive, moversConfig);
+  var countEl = document.getElementById('moversCount');
+  if (countEl) countEl.textContent = filtered.length + ' of ' + moversPositive.length + ' companies';
 
-function buildTechDetailHeaders() {
-  var thead = document.getElementById('techDetailThead');
-  if (!thead) return;
-  var tr = thead.querySelector('tr');
-  tr.innerHTML = '';
-
-  TD_COLS.forEach(function(col, ci) {
-    var th = document.createElement('th');
-    th.className = 'col-header';
-    th.style.textAlign = col.align;
-
-    var sortIcon = '<span class="sort-icon">\u25BC</span>';
-    var filterDot = '<span class="filter-dot"></span>';
-    var btn = document.createElement('button');
-    btn.className = 'col-header-btn';
-    btn.dataset.colKey = col.key;
-    btn.innerHTML = col.label + ' ' + sortIcon + ' ' + filterDot;
-
-    if (_techDetailState.sort.key === col.key) {
-      btn.classList.add('sorted');
-      btn.querySelector('.sort-icon').textContent = _techDetailState.sort.dir === 1 ? '\u25B2' : '\u25BC';
-    }
-    if (_techDetailState.filters[col.key] && _techDetailState.filters[col.key].size > 0) {
-      btn.classList.add('has-filter');
-    }
-
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var dd = th.querySelector('.col-dropdown');
-      var isOpen = dd && dd.classList.contains('open');
-      closeAllDropdowns();
-      if (!isOpen && dd) {
-        dd.classList.add('open');
-      }
+  if (isMobile()) {
+    var cardsHTML = '';
+    filtered.forEach(function(m, i) {
+      cardsHTML += '<div class="mobile-card" onclick="openProfile(\'' + esc(m.name) + '\')">' +
+        '<div class="mobile-card-header">' +
+        '<span class="mobile-card-rank">#' + (i+1) + '</span>' +
+        '<span class="mobile-card-name">' + m.name + '</span>' +
+        '</div>' +
+        '<div class="mobile-card-meta">' + m.industry + (m.sub_industry ? ' · ' + m.sub_industry : '') + '</div>' +
+        '<div class="mobile-card-metrics">' +
+        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">Maturity</span><span class="mobile-card-metric-value ' + maturityClass(m.maturity) + '">' + fmt(m.maturity) + '</span></div>' +
+        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">Momentum</span><span class="mobile-card-metric-value momentum-pos" style="font-weight:600;">+' + fmt(m.momentum) + '</span></div>' +
+        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">30d</span><span class="mobile-card-metric-value">' + m.signals_30d + '</span></div>' +
+        '</div>' +
+        '</div>';
     });
-    th.appendChild(btn);
-
-    // Build dropdown
-    var dd = document.createElement('div');
-    dd.className = 'col-dropdown';
-    if (ci >= TD_COLS.length - 2) dd.classList.add('align-right');
-
-    var ddHTML = '';
-    var ascLabel = col.isText ? 'Sort A \u2192 Z' : 'Sort Low \u2192 High';
-    var descLabel = col.isText ? 'Sort Z \u2192 A' : 'Sort High \u2192 Low';
-    ddHTML += '<div class="dd-section">';
-    ddHTML += '<div class="dd-section-label">Sort</div>';
-    ddHTML += '<button class="dd-sort-btn" data-sort-col="' + col.key + '" data-sort-dir="1">' + ascLabel + '</button>';
-    ddHTML += '<button class="dd-sort-btn" data-sort-col="' + col.key + '" data-sort-dir="-1">' + descLabel + '</button>';
-    ddHTML += '</div>';
-
-    if (col.type === 'multi-filter') {
-      var values = tdUniqueValues(col.key);
-      ddHTML += '<div class="dd-divider"></div>';
-      ddHTML += '<div class="dd-section"><div class="dd-section-label">Filter</div></div>';
-      ddHTML += '<div class="dd-filter-list" data-filter-col="' + col.key + '">';
-      values.forEach(function(v) {
-        var checked = _techDetailState.filters[col.key].has(v) ? ' checked' : '';
-        ddHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + v + '</label>';
-      });
-      ddHTML += '</div>';
-      ddHTML += '<div class="dd-filter-actions">';
-      ddHTML += '<button onclick="tdClearFilter(\'' + col.key + '\')" title="Clear filter">Clear</button>';
-      ddHTML += '<button class="primary" onclick="tdSelectAllFilter(\'' + col.key + '\')" title="Select all">All</button>';
-      ddHTML += '</div>';
+    var tableWrap = document.querySelector('#moversTable').closest('.data-table-wrap');
+    var cardList = document.getElementById('moversMobileCards');
+    if (!cardList) {
+      cardList = document.createElement('div');
+      cardList.id = 'moversMobileCards';
+      cardList.className = 'mobile-card-list';
+      tableWrap.parentNode.insertBefore(cardList, tableWrap.nextSibling);
     }
+    cardList.innerHTML = cardsHTML;
+    cardList.style.display = '';
+    tableWrap.style.display = 'none';
+  } else {
+    var tableWrap = document.querySelector('#moversTable').closest('.data-table-wrap');
+    var cardList = document.getElementById('moversMobileCards');
+    if (cardList) cardList.style.display = 'none';
+    tableWrap.style.display = '';
 
-    dd.innerHTML = ddHTML;
-    th.appendChild(dd);
+    document.querySelector('#moversTable tbody').innerHTML = filtered.map(function(m, i) {
+      return '<tr onclick="openProfile(\'' + esc(m.name) + '\')">' +
+        '<td class="mono">' + (i+1) + '</td>' +
+        '<td class="company-name">' + m.name + '</td>' +
+        '<td style="font-size:var(--text-xs);">' + m.industry + '</td>' +
+        '<td style="font-size:var(--text-xs);text-transform:capitalize;">' + (m.sub_industry || '\u2014') + '</td>' +
+        '<td class="mono ' + maturityClass(m.maturity) + '">' + fmt(m.maturity) + '</td>' +
+        '<td class="mono momentum-pos" style="font-weight:600;">+' + fmt(m.momentum) + '</td>' +
+        '<td class="mono">' + m.signals_30d + '</td>' +
+        '<td class="mono">' + m.signals_60d + '</td>' +
+        '<td class="mono">' + m.signals_90d_val + '</td>' +
+        '<td>' + momentumBar(m.momentum) + '</td></tr>';
+    }).join('');
+  }
+}
 
-    // Wire sort buttons
-    dd.querySelectorAll('.dd-sort-btn').forEach(function(sbtn) {
-      sbtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        _techDetailState.sort.key = this.dataset.sortCol;
-        _techDetailState.sort.dir = parseInt(this.dataset.sortDir);
-        closeAllDropdowns();
-        refreshTechDetailHeaders();
-        renderTechDetailTable();
-      });
+// ============================================
+// GOVERNANCE TAB
+// ============================================
+var govState = {
+  sort: { key: 'governance_score', dir: -1 },
+  filters: { industry: new Set(), sub_industry: new Set() }
+};
+
+var GOV_COLS = [
+  { key: 'rank', label: '#', type: 'static', width: '44px' },
+  { key: 'name', label: 'Company', type: 'sort-only', sortType: 'text' },
+  { key: 'industry', label: 'Industry', type: 'multi-filter', sortType: 'text' },
+  { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter', sortType: 'text' },
+  { key: 'governance_score', label: 'Governance Score', type: 'sort-only',
+    tooltip: '<strong>Governance Score (0\u2013100)</strong>Measures formal AI oversight: ethics boards, responsible AI policies, bias auditing, and compliance frameworks covering HR.' },
+  { key: 'maturity', label: 'Overall Maturity', type: 'sort-only',
+    tooltip: '<strong>Overall Maturity (0\u2013100)</strong>Full HR AI maturity score for context.' }
+];
+
+var govConfig = {
+  theadId: 'governanceThead',
+  state: govState,
+  columns: GOV_COLS,
+  uniqueValues: function(key) {
+    return [...new Set(D.governance_leaders.map(function(g) { return g[key]; }).filter(Boolean))].sort();
+  },
+  render: renderGovernance
+};
+
+function initGovernance() {
+  buildInteractiveTable(govConfig);
+}
+
+function renderGovernance() {
+  var filtered = applyTableFiltersAndSort(D.governance_leaders, govConfig);
+  var countEl = document.getElementById('govCount');
+  if (countEl) countEl.textContent = filtered.length + ' of ' + D.governance_leaders.length + ' companies';
+
+  if (isMobile()) {
+    var cardsHTML = '';
+    filtered.forEach(function(g, i) {
+      cardsHTML += '<div class="mobile-card" onclick="openProfile(\'' + esc(g.name) + '\')">' +
+        '<div class="mobile-card-header">' +
+        '<span class="mobile-card-rank">#' + (i+1) + '</span>' +
+        '<span class="mobile-card-name">' + g.name + '</span>' +
+        '</div>' +
+        '<div class="mobile-card-meta">' + g.industry + (g.sub_industry ? ' · ' + g.sub_industry : '') + '</div>' +
+        '<div class="mobile-card-metrics">' +
+        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">Governance</span><span class="mobile-card-metric-value" style="color:var(--color-blue-500);font-weight:600;">' + fmt(g.governance_score, 0) + '</span></div>' +
+        '<div class="mobile-card-metric"><span class="mobile-card-metric-label">Maturity</span><span class="mobile-card-metric-value ' + maturityClass(g.maturity) + '">' + fmt(g.maturity) + '</span></div>' +
+        '</div>' +
+        '</div>';
     });
-
-    // Wire filter checkboxes
-    dd.querySelectorAll('.dd-filter-list input[type="checkbox"]').forEach(function(cb) {
-      cb.addEventListener('change', function(e) {
-        e.stopPropagation();
-        var colKey = this.closest('.dd-filter-list').dataset.filterCol;
-        if (this.checked) {
-          _techDetailState.filters[colKey].add(this.value);
-        } else {
-          _techDetailState.filters[colKey].delete(this.value);
-        }
-        refreshTechDetailHeaders();
-        renderTechDetailTable();
-      });
-    });
-
-    tr.appendChild(th);
-  });
-}
-
-function refreshTechDetailHeaders() {
-  var thead = document.getElementById('techDetailThead');
-  if (!thead) return;
-  thead.querySelectorAll('.col-header-btn').forEach(function(btn) {
-    var key = btn.dataset.colKey;
-    if (!key) return;
-    var icon = btn.querySelector('.sort-icon');
-    if (_techDetailState.sort.key === key) {
-      btn.classList.add('sorted');
-      if (icon) icon.textContent = _techDetailState.sort.dir === 1 ? '\u25B2' : '\u25BC';
-    } else {
-      btn.classList.remove('sorted');
-      if (icon) icon.textContent = '\u25BC';
+    var tableWrap = document.querySelector('#governanceTable').closest('.data-table-wrap');
+    var cardList = document.getElementById('governanceMobileCards');
+    if (!cardList) {
+      cardList = document.createElement('div');
+      cardList.id = 'governanceMobileCards';
+      cardList.className = 'mobile-card-list';
+      tableWrap.parentNode.insertBefore(cardList, tableWrap.nextSibling);
     }
-    var th = btn.closest('.col-header');
-    if (th) {
-      th.querySelectorAll('.dd-sort-btn').forEach(function(sb) {
-        var isActive = sb.dataset.sortCol === _techDetailState.sort.key && parseInt(sb.dataset.sortDir) === _techDetailState.sort.dir;
-        sb.classList.toggle('active', isActive);
-      });
-    }
-    if (_techDetailState.filters[key]) {
-      btn.classList.toggle('has-filter', _techDetailState.filters[key].size > 0);
-    }
-  });
-}
+    cardList.innerHTML = cardsHTML;
+    cardList.style.display = '';
+    tableWrap.style.display = 'none';
+  } else {
+    var tableWrap = document.querySelector('#governanceTable').closest('.data-table-wrap');
+    var cardList = document.getElementById('governanceMobileCards');
+    if (cardList) cardList.style.display = 'none';
+    tableWrap.style.display = '';
 
-function renderTechDetailTable() {
-  var tbody = document.getElementById('techDetailTbody');
-  if (!tbody) return;
-  var cos = getTechDetailBaseCos().slice();
-  var f = _techDetailState;
-
-  // Apply filters
-  if (f.filters.industry.size > 0) {
-    cos = cos.filter(function(c) { return f.filters.industry.has(c.industry); });
+    document.querySelector('#governanceTable tbody').innerHTML = filtered.map(function(g, i) {
+      return '<tr onclick="openProfile(\'' + esc(g.name) + '\')">' +
+        '<td class="mono">' + (i+1) + '</td>' +
+        '<td class="company-name">' + g.name + '</td>' +
+        '<td style="font-size:var(--text-xs);">' + g.industry + '</td>' +
+        '<td style="font-size:var(--text-xs);text-transform:capitalize;">' + (g.sub_industry || '\u2014') + '</td>' +
+        '<td><div style="display:flex;align-items:center;gap:var(--space-2);"><div style="width:60px;height:8px;background:var(--color-surface-offset);border-radius:var(--radius-full);overflow:hidden;"><div style="height:100%;width:' + g.governance_score + '%;background:var(--color-blue-500);border-radius:var(--radius-full);"></div></div><span class="mono" style="font-weight:600;">' + fmt(g.governance_score, 0) + '</span></div></td>' +
+        '<td class="mono ' + maturityClass(g.maturity) + '">' + fmt(g.maturity) + '</td></tr>';
+    }).join('');
   }
-  if (f.filters.sub_industry.size > 0) {
-    cos = cos.filter(function(c) { return f.filters.sub_industry.has(c.sub_industry); });
-  }
-
-  // Sort
-  var sk = f.sort.key;
-  var sd = f.sort.dir;
-  cos.sort(function(a, b) {
-    var va = a[sk], vb = b[sk];
-    if (va == null) va = '';
-    if (vb == null) vb = '';
-    if (typeof va === 'string') va = va.toLowerCase();
-    if (typeof vb === 'string') vb = vb.toLowerCase();
-    if (va < vb) return -1 * sd;
-    if (va > vb) return 1 * sd;
-    return 0;
-  });
-
-  // Update count displays
-  var countEl = document.getElementById('tdCompanyCount');
-  if (countEl) countEl.textContent = '(' + cos.length + ')';
-  var deployEl = document.getElementById('tdDeployedCount');
-  if (deployEl) deployEl.textContent = cos.length;
-
-  if (cos.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--color-text-muted);padding:var(--space-4);">No companies match the current filters.</td></tr>';
-    return;
-  }
-
-  tbody.innerHTML = cos.map(function(c) {
-    return '<tr style="cursor:pointer;" onclick="openProfile(\'' + esc(c.name) + '\')">' +
-      '<td style="font-weight:500;">' + c.name + '</td>' +
-      '<td><span class="badge badge-gray" style="font-size:10px;">' + c.industry + '</span></td>' +
-      '<td><span class="badge badge-gray" style="font-size:10px;">' + c.sub_industry + '</span></td>' +
-      '<td style="text-align:right;font-family:var(--font-mono);font-size:var(--text-xs);">' + c.signal_count + '</td>' +
-      '<td style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);">' + c.latest_date + '</td>' +
-      '</tr>';
-  }).join('');
 }
 
-function tdClearFilter(key) {
-  _techDetailState.filters[key].clear();
-  var list = document.querySelector('#techDetailThead .dd-filter-list[data-filter-col="' + key + '"]');
-  if (list) list.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
-  refreshTechDetailHeaders();
-  renderTechDetailTable();
-}
-window.tdClearFilter = tdClearFilter;
 
-function tdSelectAllFilter(key) {
-  var list = document.querySelector('#techDetailThead .dd-filter-list[data-filter-col="' + key + '"]');
-  if (list) {
-    list.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
-      cb.checked = true;
-      _techDetailState.filters[key].add(cb.value);
-    });
-  }
-  // Selecting all is equivalent to no filter, so clear
-  _techDetailState.filters[key].clear();
-  if (list) list.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
-  refreshTechDetailHeaders();
-  renderTechDetailTable();
-}
-window.tdSelectAllFilter = tdSelectAllFilter;
-
-function closeTechDetail() {
-  profileOverlay.classList.remove('active');
-}
-window.closeTechDetail = closeTechDetail;
 
 // ============================================
 // PEER COMPARISON
@@ -5643,22 +4702,21 @@ function buildCompanyProfileHTML(companyName, side) {
   html += '<div style="flex:1;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-3);text-align:center;">';
   html += '<div style="font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);margin-bottom:var(--space-1);">Momentum</div>';
   html += '<div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);" class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</div>';
-  html += '<div style="font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);margin-top:var(--space-2);">Signals</div>';
-  html += '<div style="display:flex;justify-content:center;gap:var(--space-3);font-size:var(--text-xs);margin-top:var(--space-1);">';
-  html += '<div><span style="color:var(--color-text-muted);">&lt;30d</span> <strong>' + (mom.signals_30d || 0) + '</strong></div>';
-  html += '<div><span style="color:var(--color-text-muted);">30\u201360d</span> <strong>' + (mom.signals_60d || 0) + '</strong></div>';
-  html += '<div><span style="color:var(--color-text-muted);">60\u201390d</span> <strong>' + (mom.signals_90d || 0) + '</strong></div>';
+  html += '<div style="display:flex;justify-content:center;gap:var(--space-3);font-size:var(--text-xs);margin-top:var(--space-2);">';
+  html += '<div><span style="color:var(--color-text-muted);">30d</span> <strong>' + (mom.signals_30d || 0) + '</strong></div>';
+  html += '<div><span style="color:var(--color-text-muted);">60d</span> <strong>' + (mom.signals_60d || 0) + '</strong></div>';
+  html += '<div><span style="color:var(--color-text-muted);">90d</span> <strong>' + (mom.signals_90d || 0) + '</strong></div>';
   html += '</div></div></div>';
 
   // --- COLLAPSIBLE DETAILS (Maturity & Momentum) ---
   html += '<details style="margin-top:var(--space-3);font-size:var(--text-xs);">';
-  html += '<summary style="cursor:pointer;font-weight:600;padding:var(--space-1) 0;color:var(--color-text-muted);">Scoring Details</summary>';
+  html += '<summary style="cursor:pointer;font-weight:600;padding:var(--space-1) 0;color:var(--color-text-muted);">Maturity & Momentum Details</summary>';
   html += '<div style="padding:var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-md);margin-top:var(--space-1);">';
   // Score formula
   html += '<strong>Maturity Breakdown</strong><br>';
   html += 'Mean (all 7 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>';
   html += 'Base score (60% breadth + 40% depth): ' + fmt(fc.base_score, 1) + '<br>';
-  html += 'Coverage: \u00d7' + fmt(fc.coverage_mult, 3) + ' (' + md.domains_covered + '/7 domains) \u00b7 Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>';
+  html += 'Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>';
   html += '<strong>Final: ' + fmt(md.score, 1) + '</strong><br><br>';
   // Momentum formula
   html += '<strong>Momentum Breakdown</strong><br>';
@@ -5666,18 +4724,18 @@ function buildCompanyProfileHTML(companyName, side) {
   html += 'Weighted signals (last 30 days): ' + fmt(mfc.w30, 1) + ' \u00d7 size factor ' + fmt(mfc.size_factor, 2) + ' = ' + fmt(mfc.recent_monthly, 1) + '/mo<br>';
   var accelPct = mfc.monthly_baseline > 0 ? Math.round(mfc.acceleration * 100) : 0;
   html += 'Growth rate: (' + fmt(mfc.recent_monthly,1) + ' \u2212 baseline ' + fmt(mfc.monthly_baseline,1) + ') / ' + fmt(mfc.monthly_baseline,1) + ' = ' + fmt(mfc.acceleration, 2) + ' (' + accelPct + '% above baseline)<br>';
-  html += 'Recency score: ' + fmt(mfc.velocity, 2) + ' (signals weighted 3\u00d7 for &lt;30d, 2\u00d7 for 30\u201360d, 1\u00d7 for 60\u201390d)<br>';
+  html += 'Recency score: ' + fmt(mfc.velocity, 2) + ' (signals weighted 3\u00d7 for last 30d, 2\u00d7 for 30\u201360d, 1\u00d7 for 60\u201390d)<br>';
   html += 'Raw = ' + fmt(mfc.acceleration,2) + '\u00d70.6 + ' + fmt(mfc.velocity,2) + '\u00d70.4 = ' + fmt(mfc.raw_momentum, 2) + '<br>';
   html += '<strong>Final: ' + fmtMomentum(mom.score || detail.momentum_score) + '</strong> (tanh scaled)<br><br>';
   // Adoption pattern
   html += '<strong>Adoption Pattern: ' + pattern + '</strong><br>';
-  var patternNames = ['Tool', 'Leadership', 'Upskilling', 'AI Hiring', 'Governance', 'PR'];
+  var patternNames = ['Governance', 'Tool', 'Talent', 'AI Hiring', 'PR'];
   var maxPw = Math.max.apply(null, patternNames.map(function(p) { return pw[p] || 0; }));
   patternNames.forEach(function(p) {
     var val = pw[p] || 0;
     var pct = maxPw > 0 ? (val / maxPw * 100) : 0;
     html += '<div style="display:flex;align-items:center;gap:6px;margin:2px 0;">';
-    html += '<span style="min-width:90px;">' + p + '</span>';
+    html += '<span style="min-width:70px;">' + p + '</span>';
     html += '<div style="flex:1;height:6px;background:var(--color-surface);border-radius:3px;overflow:hidden;">';
     html += '<div style="height:100%;width:' + pct + '%;background:var(--color-primary);border-radius:3px;"></div></div>';
     html += '<span class="mono" style="min-width:28px;text-align:right;">' + fmt(val, 1) + '</span></div>';
@@ -5687,12 +4745,12 @@ function buildCompanyProfileHTML(companyName, side) {
   // --- DOMAIN SCORES (clickable to filter signals) ---
   html += '<div style="margin-top:var(--space-4);">';
   html += '<h4 style="margin:0 0 var(--space-2) 0;font-size:var(--text-sm);font-weight:600;">Domain Scores <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(click to filter signals)</span></h4>';
-  var domains = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring', 'People Analytics'].sort(function(a, b) { return (ds[b] || 0) - (ds[a] || 0); });
+  var domains = ['Recruiting', 'L&D', 'HR Ops', 'Comp/Benefits', 'Employee Service', 'Governance', 'AI Hiring'];
   domains.forEach(function(d) {
     var score = ds[d] || 0;
     var tip = DOMAIN_TOOLTIPS[d] || '';
     html += '<div class="cmp-domain-bar" data-domain="' + d + '" data-panel="' + uid + '" style="display:flex;align-items:center;gap:8px;padding:4px 6px;margin:1px 0;border-radius:var(--radius-sm);cursor:pointer;transition:background 0.15s;" title="' + tip.replace(/"/g, '&quot;') + '">';
-    html += '<span style="font-size:var(--text-xs);min-width:130px;width:130px;flex-shrink:0;">' + d + '</span>';
+    html += '<span style="font-size:var(--text-xs);min-width:100px;flex-shrink:0;">' + d + '</span>';
     html += '<div style="flex:1;height:8px;background:var(--color-surface-offset);border-radius:4px;overflow:hidden;">';
     html += '<div style="height:100%;width:' + score + '%;background:var(--color-primary);border-radius:4px;"></div></div>';
     html += '<span class="mono" style="font-size:var(--text-xs);min-width:28px;text-align:right;flex-shrink:0;">' + fmt(score, 0) + '</span></div>';
@@ -5726,13 +4784,11 @@ function buildCompanyProfileHTML(companyName, side) {
       html += '<div style="display:flex;gap:var(--space-2);flex-wrap:wrap;align-items:center;margin-bottom:2px;">';
       html += '<span style="color:var(--color-text-muted);">' + (s.date_event || s.date_found || '') + '</span>';
       html += '<span class="badge badge-blue" style="font-size:10px;">' + (s.HR_domain || '') + '</span>';
-      if ((s.HR_domain || '') !== signalTypeBadge(s.signal_type)) html += '<span class="badge badge-gray" style="font-size:10px;">' + signalTypeBadge(s.signal_type) + '</span>';
+      html += confirmBadge(s.confirmation_level || '');
+      if (s.signal_type === 'J') html += '<span class="badge badge-teal" style="font-size:10px;">AI Talent</span>';
       html += flagBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'');
-      html += editBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_type||'', s.confidence_score||'');
       html += '</div>';
-      html += '<div class="signal-summary" style="line-height:1.4;">' +
-        '<div class="summary-text">' + (s.summary || '') + '</div>' +
-        '<button class="show-more-btn" onclick="event.stopPropagation();toggleSummary(this)">Show more</button></div>';
+      html += '<div style="line-height:1.4;">' + (s.summary || '') + '</div>';
       html += sourcesHTML + '</div>';
     });
   }
@@ -5794,7 +4850,6 @@ function initCompareSelector(selectId, searchId, profileId, side) {
       profile.innerHTML = buildCompanyProfileHTML(name, side);
       profile.classList.add('visible');
       initDomainFiltering(side);
-      requestAnimationFrame(initShowMoreButtons);
     }
   }
 
@@ -5910,6 +4965,7 @@ function initSignalsExplorer() {
         date: s.date_event || s.date_found || '',
         signal_type: s.signal_type || '',
         HR_domain: s.HR_domain || '',
+        confirmation_level: s.confirmation_level || '',
         summary: s.summary || '',
         source_urls: s.source_urls || []
       });
@@ -5929,18 +4985,15 @@ function initSignalsExplorer() {
 // Multi-select filter state for signals page
 var sigMultiFilters = {
   industry: new Set(),
-  sub_industry: new Set(),
   signal_type: new Set(),
-  HR_domain: new Set()
+  HR_domain: new Set(),
+  confirmation_level: new Set()
 };
 
-// Company search state for signals page
-var sigCompanyFilter = '';
-
 var SIG_LABELS = {
-  A:'Deployment', B:'Pilot',
+  A:'Deployment', B:'Pilot', C:'Procurement',
   D:'Leadership Hire', E:'Governance', F:'Upskilling',
-  I:'Announcement', J:'AI Hiring'
+  G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
 };
 
 function buildSigMultiselect(containerId, values, labelFn, filterKey) {
@@ -6021,36 +5074,31 @@ document.addEventListener('click', function(e) {
       d.classList.remove('open');
     });
   }
-  // Close company search dropdown on outside click
-  if (!e.target.closest('.sig-company-search-wrap')) {
-    var dd = document.getElementById('sigCompanyDropdown');
-    if (dd) dd.style.display = 'none';
-  }
 });
 
 function populateSignalsFilters() {
   var industries = new Set();
-  var subIndustries = new Set();
   var companies = new Set();
   var types = new Set();
   var domains = new Set();
+  var confirms = new Set();
   
   sigAllSignals.forEach(function(s) {
     if (s.industry) industries.add(s.industry);
-    if (s.sub_industry) subIndustries.add(s.sub_industry);
     if (s.company_name) companies.add(s.company_name);
     if (s.signal_type) types.add(s.signal_type);
     if (s.HR_domain) domains.add(s.HR_domain);
+    if (s.confirmation_level) confirms.add(s.confirmation_level);
   });
   
   // Build multi-selects
   buildSigMultiselect('sigMultiIndustry', Array.from(industries).sort(), function(v) { return v; }, 'industry');
-  buildSigMultiselect('sigMultiSubIndustry', Array.from(subIndustries).sort(), function(v) { return v; }, 'sub_industry');
   buildSigMultiselect('sigMultiType', Array.from(types).sort(), function(v) { return SIG_LABELS[v] || v; }, 'signal_type');
   buildSigMultiselect('sigMultiDomain', Array.from(domains).sort(), function(v) { return v; }, 'HR_domain');
+  buildSigMultiselect('sigMultiConfirm', Array.from(confirms).sort(), function(v) { return v; }, 'confirmation_level');
   
-  // Company search
-  initSigCompanySearch(Array.from(companies).sort());
+  // Company stays as single select
+  fillSelect('sigFilterCompany', Array.from(companies).sort(), function(v) { return v; });
 }
 
 function fillSelect(id, values, labelFn) {
@@ -6068,140 +5116,23 @@ function fillSelect(id, values, labelFn) {
   sel.value = current; // restore selection if still valid
 }
 
-// Company search for signals page (similar to peer comparison)
-var sigAllCompanyNames = [];
-function initSigCompanySearch(companyNames) {
-  sigAllCompanyNames = companyNames;
-  var searchEl = document.getElementById('sigCompanySearch');
-  var dropdownEl = document.getElementById('sigCompanyDropdown');
-  if (!searchEl || !dropdownEl) return;
-
-  // Restore current filter
-  searchEl.value = sigCompanyFilter;
-
-  var highlightIdx = -1;
-
-  function renderDropdown(filter) {
-    var filtered = filter
-      ? sigAllCompanyNames.filter(function(n) { return n.toLowerCase().indexOf(filter.toLowerCase()) >= 0; })
-      : sigAllCompanyNames;
-    // If industry filter is active, further restrict
-    if (sigMultiFilters.industry.size > 0) {
-      var companiesInIndustry = new Set();
-      sigAllSignals.forEach(function(s) {
-        if (sigMultiFilters.industry.has(s.industry)) companiesInIndustry.add(s.company_name);
-      });
-      filtered = filtered.filter(function(n) { return companiesInIndustry.has(n); });
-    }
-    if (sigMultiFilters.sub_industry.size > 0) {
-      var companiesInSub = new Set();
-      sigAllSignals.forEach(function(s) {
-        if (sigMultiFilters.sub_industry.has(s.sub_industry)) companiesInSub.add(s.company_name);
-      });
-      filtered = filtered.filter(function(n) { return companiesInSub.has(n); });
-    }
-    highlightIdx = -1;
-    dropdownEl.innerHTML = filtered.map(function(n, i) {
-      return '<div class="sig-company-dropdown-item" data-value="' + n.replace(/"/g, '&quot;') + '" data-idx="' + i + '">' + n + '</div>';
-    }).join('');
-    dropdownEl.style.display = filtered.length > 0 ? 'block' : 'none';
-
-    dropdownEl.querySelectorAll('.sig-company-dropdown-item').forEach(function(el) {
-      el.addEventListener('mousedown', function(e) {
-        e.preventDefault();
-        selectSigCompany(this.dataset.value);
-      });
-    });
-  }
-
-  function selectSigCompany(name) {
-    sigCompanyFilter = name;
-    searchEl.value = name;
-    dropdownEl.style.display = 'none';
-    renderSignalsFeed();
-  }
-
-  searchEl.addEventListener('focus', function() {
-    renderDropdown(this.value);
-  });
-  searchEl.addEventListener('input', function() {
-    // If field is cleared, reset company filter
-    if (!this.value) {
-      sigCompanyFilter = '';
-      renderSignalsFeed();
-    }
-    renderDropdown(this.value);
-  });
-  searchEl.addEventListener('blur', function() {
-    setTimeout(function() { dropdownEl.style.display = 'none'; }, 200);
-    // If typed value doesn't match any company, clear
-    if (searchEl.value && sigAllCompanyNames.indexOf(searchEl.value) === -1) {
-      searchEl.value = sigCompanyFilter; // restore to last valid selection
-    }
-  });
-  searchEl.addEventListener('keydown', function(e) {
-    var items = dropdownEl.querySelectorAll('.sig-company-dropdown-item');
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      highlightIdx = Math.min(highlightIdx + 1, items.length - 1);
-      items.forEach(function(el, i) { el.classList.toggle('highlighted', i === highlightIdx); });
-      if (items[highlightIdx]) items[highlightIdx].scrollIntoView({ block: 'nearest' });
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      highlightIdx = Math.max(highlightIdx - 1, 0);
-      items.forEach(function(el, i) { el.classList.toggle('highlighted', i === highlightIdx); });
-      if (items[highlightIdx]) items[highlightIdx].scrollIntoView({ block: 'nearest' });
-    } else if (e.key === 'Enter') {
-      e.preventDefault();
-      if (highlightIdx >= 0 && items[highlightIdx]) {
-        selectSigCompany(items[highlightIdx].dataset.value);
-      }
-    } else if (e.key === 'Escape') {
-      dropdownEl.style.display = 'none';
-    }
-  });
-}
-
 function getFilteredSignals() {
+  var filterCompany = document.getElementById('sigFilterCompany').value;
+  var filterDate = document.getElementById('sigFilterDate').value;
+  
+  var now = new Date();
+  var cutoff = filterDate ? new Date(now.getTime() - parseInt(filterDate) * 86400000) : null;
+  var cutoffStr = cutoff ? cutoff.toISOString().slice(0, 10) : '';
+  
   return sigAllSignals.filter(function(s) {
-    if (sigCompanyFilter && s.company_name !== sigCompanyFilter) return false;
     if (sigMultiFilters.industry.size > 0 && !sigMultiFilters.industry.has(s.industry)) return false;
-    if (sigMultiFilters.sub_industry.size > 0 && !sigMultiFilters.sub_industry.has(s.sub_industry)) return false;
+    if (filterCompany && s.company_name !== filterCompany) return false;
     if (sigMultiFilters.signal_type.size > 0 && !sigMultiFilters.signal_type.has(s.signal_type)) return false;
     if (sigMultiFilters.HR_domain.size > 0 && !sigMultiFilters.HR_domain.has(s.HR_domain)) return false;
+    if (sigMultiFilters.confirmation_level.size > 0 && !sigMultiFilters.confirmation_level.has(s.confirmation_level)) return false;
+    if (cutoffStr && s.date < cutoffStr) return false;
     return true;
   });
-}
-
-// Cascade industry <-> sub_industry filters on signals page
-function updateSigSubIndustryCascade() {
-  // If industry is selected, restrict sub_industry options to those industries
-  if (sigMultiFilters.industry.size > 0) {
-    var validSubs = new Set();
-    sigAllSignals.forEach(function(s) {
-      if (sigMultiFilters.industry.has(s.industry) && s.sub_industry) validSubs.add(s.sub_industry);
-    });
-    buildSigMultiselect('sigMultiSubIndustry', Array.from(validSubs).sort(), function(v) { return v; }, 'sub_industry');
-  }
-  // If sub_industry is selected but industry is not, restrict industry options
-  if (sigMultiFilters.sub_industry.size > 0 && sigMultiFilters.industry.size === 0) {
-    var validIndustries = new Set();
-    sigAllSignals.forEach(function(s) {
-      if (sigMultiFilters.sub_industry.has(s.sub_industry) && s.industry) validIndustries.add(s.industry);
-    });
-    buildSigMultiselect('sigMultiIndustry', Array.from(validIndustries).sort(), function(v) { return v; }, 'industry');
-  }
-  // If neither is filtered, show all for both
-  if (sigMultiFilters.industry.size === 0 && sigMultiFilters.sub_industry.size === 0) {
-    var allIndustries = new Set();
-    var allSubs = new Set();
-    sigAllSignals.forEach(function(s) {
-      if (s.industry) allIndustries.add(s.industry);
-      if (s.sub_industry) allSubs.add(s.sub_industry);
-    });
-    buildSigMultiselect('sigMultiIndustry', Array.from(allIndustries).sort(), function(v) { return v; }, 'industry');
-    buildSigMultiselect('sigMultiSubIndustry', Array.from(allSubs).sort(), function(v) { return v; }, 'sub_industry');
-  }
 }
 
 window.renderSignalsFeed = function() {
@@ -6214,13 +5145,28 @@ window.renderSignalsFeed = function() {
   
   var feedEl = document.getElementById('signalsFeed');
   feedEl.innerHTML = renderSignalCards(showing);
-  requestAnimationFrame(initShowMoreButtons);
   
   var loadMore = document.getElementById('signalsLoadMore');
   loadMore.style.display = filtered.length > sigPageSize ? '' : 'none';
   
-  // Cascade: industry <-> sub_industry
-  updateSigSubIndustryCascade();
+  // Update company dropdown based on industry multi-filter
+  if (sigMultiFilters.industry.size > 0) {
+    var companiesInIndustry = [];
+    sigAllSignals.forEach(function(s) {
+      if (sigMultiFilters.industry.has(s.industry) && companiesInIndustry.indexOf(s.company_name) === -1) {
+        companiesInIndustry.push(s.company_name);
+      }
+    });
+    companiesInIndustry.sort();
+    fillSelect('sigFilterCompany', companiesInIndustry, function(v) { return v; });
+  } else {
+    var allCompanyNames = [];
+    sigAllSignals.forEach(function(s) {
+      if (allCompanyNames.indexOf(s.company_name) === -1) allCompanyNames.push(s.company_name);
+    });
+    allCompanyNames.sort();
+    fillSelect('sigFilterCompany', allCompanyNames, function(v) { return v; });
+  }
 };
 
 window.loadMoreSignals = function() {
@@ -6232,7 +5178,6 @@ window.loadMoreSignals = function() {
     'Showing ' + showing.length + ' of ' + filtered.length + ' signals';
   
   document.getElementById('signalsFeed').innerHTML = renderSignalCards(showing);
-  requestAnimationFrame(initShowMoreButtons);
   
   var loadMore = document.getElementById('signalsLoadMore');
   loadMore.style.display = showing.length < filtered.length ? '' : 'none';
@@ -6240,9 +5185,9 @@ window.loadMoreSignals = function() {
 
 function renderSignalCards(signals) {
   var SIG_LABELS = {
-    A:'Deployment', B:'Pilot',
+    A:'Deployment', B:'Pilot', C:'Procurement',
     D:'Leadership Hire', E:'Governance', F:'Upskilling',
-    I:'Announcement', J:'AI Hiring'
+    G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
   };
   var linkIcon = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
   
@@ -6273,57 +5218,35 @@ function renderSignalCards(signals) {
       '</div>' +
       '<div class="signal-feed-card-header">' +
       '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>' +
-      (s.HR_domain !== typeLabel ? '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' : '') +
+      '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' +
+      confirmBadge(s.confirmation_level) +
       flagBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain) +
-      editBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain, s.source_type||'', s.confidence_score||'') +
       '</div>' +
-      '<div class="signal-feed-summary">' + s.summary +
-      '</div>' +
+      '<div class="signal-feed-summary">' + s.summary + '</div>' +
       sourcesHTML +
       '</div>';
   });
   return html;
 }
 
-// Toggle show more/less on signal summaries
-window.toggleSummary = function(btn) {
-  var textEl = btn.previousElementSibling;
-  var isExpanded = textEl.classList.toggle('expanded');
-  btn.textContent = isExpanded ? 'Show less' : 'Show more';
-};
-
-// After rendering signal cards, detect which ones are actually truncated
-// and only show the "Show more" button for those.
-// Targets all signal summary contexts: Signals feed, company profiles, and peer comparison.
-window.initShowMoreButtons = function() {
-  var summaryEls = document.querySelectorAll('.signal-feed-summary .summary-text, .signal-item .signal-summary .summary-text, .cmp-signal-item .signal-summary .summary-text');
-  summaryEls.forEach(function(el) {
-    var btn = el.nextElementSibling;
-    if (!btn || !btn.classList.contains('show-more-btn')) return;
-    // Reset expanded state
-    el.classList.remove('expanded');
-    btn.textContent = 'Show more';
-    // Compare scrollHeight to clientHeight — if content overflows, show button
-    if (el.scrollHeight > el.clientHeight + 2) {
-      btn.style.display = 'inline-block';
-    } else {
-      btn.style.display = 'none';
-    }
-  });
-};
-
 window.clearSignalsFilters = function() {
   // Reset multi-select filters
   sigMultiFilters.industry.clear();
-  sigMultiFilters.sub_industry.clear();
   sigMultiFilters.signal_type.clear();
   sigMultiFilters.HR_domain.clear();
-  // Reset company search
-  sigCompanyFilter = '';
-  var searchEl = document.getElementById('sigCompanySearch');
-  if (searchEl) searchEl.value = '';
+  sigMultiFilters.confirmation_level.clear();
+  // Reset single selects
+  document.getElementById('sigFilterCompany').value = '';
+  document.getElementById('sigFilterDate').value = '';
   // Re-populate to reset UI
   populateSignalsFilters();
+  // Re-populate company list (no industry restriction)
+  var allCompanyNames = [];
+  sigAllSignals.forEach(function(s) {
+    if (allCompanyNames.indexOf(s.company_name) === -1) allCompanyNames.push(s.company_name);
+  });
+  allCompanyNames.sort();
+  fillSelect('sigFilterCompany', allCompanyNames, function(v) { return v; });
   renderSignalsFeed();
 };
 
@@ -6335,7 +5258,10 @@ initOverviewThead();
 initMobileIndustryFilter();
 initHeatmap();
 renderHeatmap();
-renderTechLandscape();
+initMovers();
+renderMovers();
+initGovernance();
+renderGovernance();
 initPeerComparison();
 initSignalsExplorer();
 
@@ -6345,6 +5271,8 @@ window.addEventListener('resize', function() {
   clearTimeout(_resizeTimer);
   _resizeTimer = setTimeout(function() {
     renderOverviewTable();
+    renderMovers();
+    renderGovernance();
   }, 200);
 });
 
@@ -6366,7 +5294,6 @@ function initAdmin() {
   function showContent() {
     gateEl.style.display = 'none';
     contentEl.style.display = 'block';
-    document.body.classList.add('admin-mode');
     initAdminContent();
   }
 
@@ -6413,15 +5340,15 @@ function initAdmin() {
 
   // ---- Signal type labels ----
   var SIG_LABELS = {
-    A:'Deployment', B:'Pilot',
+    A:'Deployment', B:'Pilot', C:'Procurement',
     D:'Leadership Hire', E:'Governance', F:'Upskilling',
-    I:'Announcement', J:'AI Hiring'
+    G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
   };
 
   // ---- Table state ----
   var tState = {
     sort: { col: 'date', dir: -1 },
-    filters: { company_name: new Set(), signal_type: new Set(), source_type: new Set(), HR_domain: new Set() },
+    filters: { company_name: new Set(), signal_type: new Set(), HR_domain: new Set(), confirmation_level: new Set() },
     search: '',
     editIdx: null  // index in allSignals being edited
   };
@@ -6471,9 +5398,8 @@ function initAdmin() {
       date_event:         document.getElementById('afDateEvent').value || '',
       signal_type:        document.getElementById('afSignalType').value || '',
       HR_domain:          document.getElementById('afHRDomain').value || '',
-
+      confirmation_level: document.getElementById('afConfirmLevel').value || '',
       source_type:        document.getElementById('afSourceType').value || '',
-      confidence_score:   parseFloat(document.getElementById('afConfidence').value) || 0.5,
       summary:            (document.getElementById('afSummary').value || '').trim(),
       source_urls:        (document.getElementById('afSourceURLs').value || '').split('\n').map(function(u){ return u.trim(); }).filter(Boolean),
       date_found:         new Date().toISOString().split('T')[0]
@@ -6487,7 +5413,7 @@ function initAdmin() {
     ['afSignalType','afHRDomain','afConfirmLevel','afSourceType'].forEach(function(id) {
       var el = document.getElementById(id); if (el) el.value = '';
     });
-    var conf = document.getElementById('afConfidence'); if (conf) conf.value = '0.5';
+
   }
 
   if (formSubmit) {
@@ -6496,10 +5422,8 @@ function initAdmin() {
       if (!vals.company_name) { alert('Company name is required.'); return; }
       if (!vals.signal_type)  { alert('Signal type is required.'); return; }
       allSignals.push(vals);
-      logChange('add', vals.company_name, null, vals);
       clearForm();
       renderAdminTable();
-      renderChangelog();
       showStatus('Signal added successfully.');
     });
   }
@@ -6552,9 +5476,8 @@ function initAdmin() {
       { key: 'company_name',        label: 'Company',      sortable: true, filterable: true  },
       { key: 'date',                label: 'Date',         sortable: true, filterable: false },
       { key: 'signal_type',         label: 'Type',         sortable: true, filterable: true  },
-      { key: 'source_type',          label: 'Source',       sortable: true, filterable: true  },
       { key: 'HR_domain',           label: 'Domain',       sortable: true, filterable: true  },
-
+      { key: 'confirmation_level',  label: 'Confirmation', sortable: true, filterable: true  },
       { key: 'summary',             label: 'Summary',      sortable: false,filterable: false },
       { key: '_actions',            label: 'Actions',      sortable: false,filterable: false }
     ];
@@ -6742,6 +5665,7 @@ function initAdmin() {
           (s.signal_type||'').toLowerCase().indexOf(q) >= 0 ||
           (SIG_LABELS[s.signal_type]||'').toLowerCase().indexOf(q) >= 0 ||
           (s.HR_domain||'').toLowerCase().indexOf(q) >= 0 ||
+          (s.confirmation_level||'').toLowerCase().indexOf(q) >= 0 ||
           (s.summary||'').toLowerCase().indexOf(q) >= 0 ||
           (s.source_type||'').toLowerCase().indexOf(q) >= 0
         );
@@ -6749,7 +5673,7 @@ function initAdmin() {
     }
 
     // Filters
-    ['company_name','signal_type','source_type','HR_domain'].forEach(function(k) {
+    ['company_name','signal_type','HR_domain','confirmation_level'].forEach(function(k) {
       if (tState.filters[k] && tState.filters[k].size > 0) {
         rows = rows.filter(function(s) { return tState.filters[k].has(s[k] || ''); });
       }
@@ -6815,24 +5739,24 @@ function initAdmin() {
         // Type
         var tdTy = document.createElement('td');
         var typeOpts = Object.keys(SIG_LABELS).map(function(k) {
-          return '<option value="'+k+'"'+(sig.signal_type===k?' selected':'')+'>'+SIG_LABELS[k]+'</option>';
+          return '<option value="'+k+'"'+(sig.signal_type===k?' selected':'')+'>'+k+' — '+SIG_LABELS[k]+'</option>';
         }).join('');
         tdTy.innerHTML = '<select class="ae-type"><option value="">--</option>'+typeOpts+'</select>';
         tr.appendChild(tdTy);
         // Domain
         var tdDo = document.createElement('td');
-        var domOpts = ['Recruiting','Talent Development','HR Service Delivery','Comp/Benefits','Governance','AI Hiring'].map(function(d) {
+        var domOpts = ['Recruiting','L&D','HR Ops','Comp/Benefits','Employee Service','Governance','AI Hiring'].map(function(d) {
           return '<option value="'+d+'"'+(sig.HR_domain===d?' selected':'')+'>'+d+'</option>';
         }).join('');
         tdDo.innerHTML = '<select class="ae-domain"><option value="">--</option>'+domOpts+'</select>';
         tr.appendChild(tdDo);
-        // Source Type
-        var tdSrc = document.createElement('td');
-        var srcOpts = ['earnings call','SEC filing','vendor case study','job post','conference presentation','industry report','press release','news article','blog post','social media'].map(function(st) {
-          return '<option value="'+st+'"'+(sig.source_type===st?' selected':'')+'>'+st+'</option>';
+        // Confirmation
+        var tdCf = document.createElement('td');
+        var cfOpts = ['Confirmed Deployment','Pilot','Preparing','Exploration','PR Mention'].map(function(c) {
+          return '<option value="'+c+'"'+(sig.confirmation_level===c?' selected':'')+'>'+c+'</option>';
         }).join('');
-        tdSrc.innerHTML = '<select class="ae-source"><option value="">--</option>'+srcOpts+'</select>';
-        tr.appendChild(tdSrc);
+        tdCf.innerHTML = '<select class="ae-confirm"><option value="">--</option>'+cfOpts+'</select>';
+        tr.appendChild(tdCf);
         // Summary
         var tdSu = document.createElement('td');
         tdSu.innerHTML = '<textarea class="ae-summary" rows="2" style="min-width:160px;">'+esc(sig.summary||'')+'</textarea>';
@@ -6845,19 +5769,16 @@ function initAdmin() {
         saveBtn.textContent = 'Save';
         saveBtn.addEventListener('click', function() {
           var s = allSignals[actualIdx];
-          var before = JSON.parse(JSON.stringify(s));
           s.company_name       = tr.querySelector('.ae-company').value.trim();
           var newDate          = tr.querySelector('.ae-date').value;
           if (s.date_event !== undefined) s.date_event = newDate;
           else s.date_found = newDate;
           s.signal_type        = tr.querySelector('.ae-type').value;
           s.HR_domain          = tr.querySelector('.ae-domain').value;
-          s.source_type        = tr.querySelector('.ae-source').value;
+          s.confirmation_level = tr.querySelector('.ae-confirm').value;
           s.summary            = tr.querySelector('.ae-summary').value.trim();
-          logChange('edit', s.company_name, before, JSON.parse(JSON.stringify(s)));
           tState.editIdx = null;
           renderAdminTable();
-          renderChangelog();
           showStatus('Signal updated.');
         });
         var cancelBtn = document.createElement('button');
@@ -6874,7 +5795,7 @@ function initAdmin() {
       } else {
         // --- READ ROW ---
         var date = getDateVal(sig);
-        var typeLabel = sig.signal_type ? (SIG_LABELS[sig.signal_type]||sig.signal_type) : '—';
+        var typeLabel = sig.signal_type ? (sig.signal_type + ' – ' + (SIG_LABELS[sig.signal_type]||sig.signal_type)) : '—';
         var summaryText = (sig.summary || '—');
         var summaryTrunc = summaryText.length > 80 ? summaryText.substring(0,80) + '\u2026' : summaryText;
 
@@ -6896,9 +5817,9 @@ function initAdmin() {
         tdDo.textContent = sig.HR_domain || '—';
         tr.appendChild(tdDo);
 
-        var tdSrc = document.createElement('td');
-        tdSrc.textContent = sig.source_type || '—';
-        tr.appendChild(tdSrc);
+        var tdCf = document.createElement('td');
+        tdCf.textContent = sig.confirmation_level || '—';
+        tr.appendChild(tdCf);
 
         var tdSu = document.createElement('td');
         tdSu.className = 'admin-summary-cell';
@@ -6935,12 +5856,9 @@ function initAdmin() {
         delBtn.addEventListener('click', function() {
           var co = allSignals[actualIdx] ? (allSignals[actualIdx].company_name || 'this signal') : 'this signal';
           if (!confirm('Delete signal for ' + co + '?\nThis cannot be undone.')) return;
-          var deleted = allSignals[actualIdx];
-          logChange('delete', deleted.company_name || 'Unknown', deleted, null);
           allSignals.splice(actualIdx, 1);
           if (tState.editIdx === actualIdx) tState.editIdx = null;
           renderAdminTable();
-          renderChangelog();
           showStatus('Signal deleted.');
         });
 
@@ -6969,8 +5887,6 @@ function initAdmin() {
     buildAdminThead();
     renderAdminTable();
     loadFlags();
-    loadChangelog();
-    renderChangelog();
   }
 
   // ---- Flagged Signals Management ----
@@ -7173,314 +6089,6 @@ window.submitFlag = function() {
 document.getElementById('flagModalOverlay').addEventListener('click', function(e) {
   if (e.target === this) closeFlagModal();
 });
-
-// ============================================
-// ADMIN INLINE EDIT SIGNAL SYSTEM
-// ============================================
-var _editTarget = null; // { company, summary, date, signal_type, HR_domain, source_type, confidence_score, _signalRef }
-
-function editBtnHTML(company, summary, date, signalType, domain, sourceType, confidence) {
-  var c = esc(company||''), s = esc((summary||'').substring(0,200)), d = esc(date||''),
-      t = esc(signalType||''), dm = esc(domain||''), st = esc(sourceType||''), cf = esc(String(confidence||''));
-  return '<button class="admin-edit-signal-btn" data-ec="' + c + '" data-es="' + s + '" data-ed="' + d + '" data-et="' + t + '" data-edm="' + dm + '" data-est="' + st + '" data-ecf="' + cf + '" onclick="event.stopPropagation();openEditSignalFromBtn(this)" title="Edit this signal (admin)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit</button>';
-}
-window.editBtnHTML = editBtnHTML;
-
-window.openEditSignalFromBtn = function(btn) {
-  if (window.__adminUnlocked !== true) return;
-  _editTarget = {
-    company: btn.dataset.ec || '',
-    summary: btn.dataset.es || '',
-    date: btn.dataset.ed || '',
-    signal_type: btn.dataset.et || '',
-    HR_domain: btn.dataset.edm || '',
-    source_type: btn.dataset.est || '',
-    confidence: btn.dataset.ecf || ''
-  };
-
-  var overlay = document.getElementById('editSignalModalOverlay');
-  var info = document.getElementById('editSignalInfo');
-  var form = document.getElementById('editSignalFormContent');
-  var success = document.getElementById('editSignalSuccess');
-
-  if (info) info.textContent = _editTarget.company + ' \u2014 ' + (_editTarget.summary.length > 80 ? _editTarget.summary.substring(0,80) + '...' : _editTarget.summary);
-
-  // Populate fields with current values
-  var typeEl = document.getElementById('esType');
-  var domEl = document.getElementById('esDomain');
-  var srcEl = document.getElementById('esSourceType');
-  var confEl = document.getElementById('esConfidence');
-  var sumEl = document.getElementById('esSummary');
-
-  if (typeEl) typeEl.value = _editTarget.signal_type;
-  if (domEl) domEl.value = _editTarget.HR_domain;
-  if (srcEl) srcEl.value = _editTarget.source_type;
-  if (confEl) confEl.value = _editTarget.confidence || '0.5';
-  // Fetch the full summary from D.company_details
-  var fullSummary = _editTarget.summary;
-  var details = D.company_details || {};
-  var detail = details[_editTarget.company];
-  if (detail) {
-    var sigs = detail.top_signals || [];
-    for (var i = 0; i < sigs.length; i++) {
-      if ((sigs[i].date_event || sigs[i].date_found || '') === _editTarget.date &&
-          sigs[i].signal_type === _editTarget.signal_type &&
-          (sigs[i].summary || '').substring(0,200) === _editTarget.summary) {
-        fullSummary = sigs[i].summary || '';
-        break;
-      }
-    }
-  }
-  if (sumEl) sumEl.value = fullSummary;
-
-  if (form) form.style.display = 'block';
-  if (success) success.classList.remove('active');
-  if (overlay) overlay.classList.add('active');
-};
-
-window.closeEditSignalModal = function() {
-  document.getElementById('editSignalModalOverlay').classList.remove('active');
-  _editTarget = null;
-};
-
-window.saveEditSignal = function() {
-  if (!_editTarget) return;
-
-  var newType = document.getElementById('esType').value;
-  var newDomain = document.getElementById('esDomain').value;
-  var newSourceType = document.getElementById('esSourceType').value;
-  var newConfidence = parseFloat(document.getElementById('esConfidence').value) || 0.5;
-  var newSummary = (document.getElementById('esSummary').value || '').trim();
-
-  if (!newType) { alert('Signal type is required.'); return; }
-  if (!newDomain) { alert('HR domain is required.'); return; }
-
-  // Find the signal in D.company_details and update it
-  var details = D.company_details || {};
-  var detail = details[_editTarget.company];
-  var found = false;
-  if (detail) {
-    var sigs = detail.top_signals || [];
-    for (var i = 0; i < sigs.length; i++) {
-      var s = sigs[i];
-      var sigDate = s.date_event || s.date_found || '';
-      if (sigDate === _editTarget.date &&
-          s.signal_type === _editTarget.signal_type &&
-          (s.summary || '').substring(0,200) === _editTarget.summary) {
-        // Found it — log before state
-        var before = JSON.parse(JSON.stringify(s));
-
-        // Update the signal
-        s.signal_type = newType;
-        s.HR_domain = newDomain;
-        s.source_type = newSourceType;
-        s.confidence_score = newConfidence;
-        s.summary = newSummary;
-
-        var after = JSON.parse(JSON.stringify(s));
-        logChange('edit', _editTarget.company, before, after);
-
-        // Persist this edit to localStorage so it survives page reloads
-        var edits = loadSignalEdits();
-        edits.push({
-          company: _editTarget.company,
-          match_date: _editTarget.date,
-          match_type: _editTarget.signal_type,
-          match_summary: _editTarget.summary,
-          new_type: newType,
-          new_domain: newDomain,
-          new_source_type: newSourceType,
-          new_confidence: newConfidence,
-          new_summary: newSummary,
-          edited_at: new Date().toISOString()
-        });
-        saveSignalEdits(edits);
-
-        found = true;
-        break;
-      }
-    }
-  }
-
-  if (!found) {
-    alert('Could not locate the signal to update. It may have been modified or removed.');
-    return;
-  }
-
-  // Show success
-  document.getElementById('editSignalFormContent').style.display = 'none';
-  document.getElementById('editSignalSuccess').classList.add('active');
-  renderChangelog();
-};
-
-// Close edit modal on overlay click
-document.getElementById('editSignalModalOverlay').addEventListener('click', function(e) {
-  if (e.target === this) closeEditSignalModal();
-});
-
-// ============================================
-// CHANGELOG SYSTEM
-// ============================================
-var _changelog = [];
-var CHANGELOG_KEY = 'hr_ai_tracker_changelog';
-
-function loadChangelog() {
-  try {
-    var raw = localStorage.getItem(CHANGELOG_KEY);
-    if (raw) _changelog = JSON.parse(raw);
-  } catch(e) { _changelog = []; }
-}
-
-function saveChangelog() {
-  try { localStorage.setItem(CHANGELOG_KEY, JSON.stringify(_changelog)); } catch(e) {}
-}
-
-function logChange(action, company, before, after) {
-  var entry = {
-    action: action,
-    company: company,
-    timestamp: new Date().toISOString(),
-    before: before || null,
-    after: after || null,
-    changes: []
-  };
-  if (action === 'edit' && before && after) {
-    var fields = ['company_name','signal_type','HR_domain','summary','source_type','date_event','date_found','confidence_score'];
-    fields.forEach(function(f) {
-      var bv = before[f] !== undefined ? String(before[f]) : '';
-      var av = after[f] !== undefined ? String(after[f]) : '';
-      if (bv !== av) {
-        entry.changes.push({ field: f, from: bv, to: av });
-      }
-    });
-    // Also check source_urls
-    var bUrls = (before.source_urls || []).join(', ');
-    var aUrls = (after.source_urls || []).join(', ');
-    if (bUrls !== aUrls) entry.changes.push({ field: 'source_urls', from: bUrls, to: aUrls });
-  }
-  _changelog.unshift(entry);
-  saveChangelog();
-}
-
-var CHANGE_FIELD_LABELS = {
-  company_name: 'Company',
-  signal_type: 'Type',
-  HR_domain: 'Domain',
-  summary: 'Summary',
-  source_type: 'Source Type',
-  date_event: 'Date',
-  date_found: 'Date Found',
-  confidence_score: 'Confidence',
-  source_urls: 'Source URLs'
-};
-
-function renderChangelog() {
-  var list = document.getElementById('changelogList');
-  var countEl = document.getElementById('changelogCount');
-  if (!list) return;
-
-  // Update persisted edits indicator
-  var peNote = document.getElementById('persistedEditsNote');
-  var peCount = document.getElementById('persistedEditsCount');
-  var persistedEdits = loadSignalEdits();
-  if (peNote && peCount) {
-    if (persistedEdits.length > 0) {
-      peNote.style.display = 'block';
-      peCount.textContent = persistedEdits.length;
-    } else {
-      peNote.style.display = 'none';
-    }
-  }
-
-  if (_changelog.length === 0) {
-    list.innerHTML = '<div class="changelog-empty">No changes recorded yet. Add, edit, or delete signals to see a log here.</div>';
-    if (countEl) countEl.textContent = '';
-    return;
-  }
-  if (countEl) countEl.textContent = '(' + _changelog.length + ')';
-  var html = '';
-  _changelog.forEach(function(entry) {
-    var ts = '';
-    try { ts = new Date(entry.timestamp).toLocaleString(); } catch(e) { ts = entry.timestamp; }
-    var actionClass = entry.action;
-    var actionLabel = entry.action.charAt(0).toUpperCase() + entry.action.slice(1);
-    if (entry.action === 'add') actionLabel = 'Added';
-    if (entry.action === 'edit') actionLabel = 'Edited';
-    if (entry.action === 'delete') actionLabel = 'Deleted';
-
-    html += '<div class="admin-changelog-entry action-' + actionClass + '">';
-    html += '<div class="changelog-meta">';
-    html += '<span class="changelog-action-badge ' + actionClass + '">' + actionLabel + '</span>';
-    html += '<span class="changelog-company">' + esc(entry.company || '') + '</span>';
-    html += '<span class="timestamp">' + ts + '</span>';
-    html += '</div>';
-
-    if (entry.action === 'add' && entry.after) {
-      html += '<div class="changelog-detail">';
-      html += '<span class="field-label">Type:</span> ' + (entry.after.signal_type || '') + ' &middot; ';
-      html += '<span class="field-label">Domain:</span> ' + (entry.after.HR_domain || '') + '<br>';
-      var summ = (entry.after.summary || ''); if (summ.length > 120) summ = summ.substring(0, 120) + '\u2026';
-      html += summ;
-      html += '</div>';
-    }
-    if (entry.action === 'edit' && entry.changes && entry.changes.length) {
-      html += '<div class="changelog-detail">';
-      entry.changes.forEach(function(c) {
-        var label = CHANGE_FIELD_LABELS[c.field] || c.field;
-        var fromVal = c.from || '(empty)';
-        var toVal = c.to || '(empty)';
-        if (c.field === 'summary') {
-          fromVal = fromVal.length > 60 ? fromVal.substring(0,60) + '\u2026' : fromVal;
-          toVal = toVal.length > 60 ? toVal.substring(0,60) + '\u2026' : toVal;
-        }
-        html += '<span class="field-label">' + label + ':</span> <span class="old-val">' + esc(fromVal) + '</span> \u2192 <span class="new-val">' + esc(toVal) + '</span><br>';
-      });
-      html += '</div>';
-    }
-    if (entry.action === 'delete' && entry.before) {
-      html += '<div class="changelog-detail">';
-      html += '<span class="field-label">Type:</span> ' + (entry.before.signal_type || '') + ' &middot; ';
-      html += '<span class="field-label">Domain:</span> ' + (entry.before.HR_domain || '') + '<br>';
-      var summ = (entry.before.summary || ''); if (summ.length > 120) summ = summ.substring(0, 120) + '\u2026';
-      html += summ;
-      html += '</div>';
-    }
-    html += '</div>';
-  });
-  list.innerHTML = html;
-}
-
-// Wire changelog export + clear buttons
-document.addEventListener('DOMContentLoaded', function() {
-  var exportBtn = document.getElementById('changelogExportBtn');
-  if (exportBtn) {
-    exportBtn.addEventListener('click', function() {
-      var persistedEdits = loadSignalEdits();
-      if (_changelog.length === 0 && persistedEdits.length === 0) { alert('No changes to export.'); return; }
-      var exportData = { changelog: _changelog, persisted_signal_edits: persistedEdits };
-      var json = JSON.stringify(exportData, null, 2);
-      var blob = new Blob([json], { type: 'application/json' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url; a.download = 'changelog_' + new Date().toISOString().split('T')[0] + '.json';
-      document.body.appendChild(a); a.click();
-      setTimeout(function() { document.body.removeChild(a); URL.revokeObjectURL(url); }, 300);
-    });
-  }
-  var clearBtn = document.getElementById('changelogClearBtn');
-  if (clearBtn) {
-    clearBtn.addEventListener('click', function() {
-      if (!confirm('Clear all changelog entries and persisted signal edits? Signal edits will revert to their original values on next page reload.')) return;
-      _changelog = [];
-      saveChangelog();
-      saveSignalEdits([]);
-      renderChangelog();
-    });
-  }
-});
-
-loadChangelog();
-renderChangelog();
 
 initAdmin();
 
