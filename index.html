@@ -1623,6 +1623,16 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   display: none;
 }
 .admin-status.visible { display: block; }
+.admin-status.error {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #991b1b;
+  cursor: pointer;
+}
+.admin-status.error::after {
+  content: ' (click to dismiss)';
+  opacity: 0.6;
+}
 
 /* Col header sort in admin table */
 .admin-table th.sortable { cursor: pointer; user-select: none; }
@@ -5370,16 +5380,15 @@ function initAdmin() {
   function showStatus(msg, isError) {
     if (!statusEl) return;
     statusEl.textContent = msg;
-    statusEl.style.background = isError ? '#b91c1c' : '';
-    statusEl.style.cursor = isError ? 'pointer' : '';
+    statusEl.classList.toggle('error', !!isError);
     statusEl.classList.add('visible');
     clearTimeout(statusEl._t);
     if (isError) {
       // Errors stay visible until clicked
-      statusEl.onclick = function() { statusEl.classList.remove('visible'); statusEl.style.background = ''; statusEl.onclick = null; };
+      statusEl.onclick = function() { statusEl.classList.remove('visible', 'error'); statusEl.onclick = null; };
     } else {
       statusEl.onclick = null;
-      statusEl._t = setTimeout(function() { statusEl.classList.remove('visible'); statusEl.style.background = ''; }, 5000);
+      statusEl._t = setTimeout(function() { statusEl.classList.remove('visible', 'error'); }, 5000);
     }
   }
 
@@ -5449,12 +5458,18 @@ function initAdmin() {
   // ---- GitHub persistence for admin signals ----
   var GH_API = 'https://api.github.com/repos/AI-labsonlabs/hr-ai-tracker-deploy';
   var _tk = atob('Z2l0aHViX3BhdF8xMUI3RTYzV0EwSWN1dFRSYlRpcD' + 'BMX3JrcDNvQkRBRlZxRERRSHBTYk5peEZjeTNLUDFOQURqMWI2N0JVWWpyYURQNVNVTkhTTnNuOVBka2RL');
-  var GH_HEADERS = { 'Authorization': 'Bearer ' + _tk, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' };
+  var GH_READ_HEADERS = { 'Authorization': 'Bearer ' + _tk, 'Accept': 'application/vnd.github+json' };
+  var GH_WRITE_HEADERS = { 'Authorization': 'Bearer ' + _tk, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' };
 
   function persistSignalToGitHub(signal) {
     // 1. Fetch current admin_signals.json from repo
-    return fetch(GH_API + '/contents/admin_signals.json', { headers: GH_HEADERS })
-      .then(function(r) { return r.json(); })
+    return fetch(GH_API + '/contents/admin_signals.json', { headers: GH_READ_HEADERS })
+      .then(function(r) {
+        if (!r.ok) throw new Error('GitHub returned HTTP ' + r.status);
+        var ct = r.headers.get('content-type') || '';
+        if (ct.indexOf('json') === -1) throw new Error('Unexpected response from GitHub (not JSON). You may be behind a proxy or firewall blocking API calls.');
+        return r.json();
+      })
       .then(function(fileData) {
         var existing = [];
         var sha = fileData.sha || null;
@@ -5467,15 +5482,59 @@ function initAdmin() {
         // 3. Commit back
         var body = { message: 'Add signal: ' + signal.company_name + ' — ' + (signal.signal_type || ''), content: updated };
         if (sha) body.sha = sha;
-        return fetch(GH_API + '/contents/admin_signals.json', { method: 'PUT', headers: GH_HEADERS, body: JSON.stringify(body) });
+        return fetch(GH_API + '/contents/admin_signals.json', { method: 'PUT', headers: GH_WRITE_HEADERS, body: JSON.stringify(body) });
       })
-      .then(function(r) { return r.json(); })
+      .then(function(r) {
+        if (!r.ok) throw new Error('GitHub save failed (HTTP ' + r.status + ')');
+        return r.json();
+      })
       .then(function(result) {
         if (result.content && result.content.sha) return { ok: true };
         return { ok: false, error: result.message || 'Unknown error' };
       })
       .catch(function(err) { return { ok: false, error: err.message || 'Network error' }; });
   }
+
+  // ---- localStorage fallback queue ----
+  var LS_KEY = 'hr_ai_admin_signal_queue';
+  function saveToLocalQueue(signal) {
+    try {
+      var q = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+      q.push(signal);
+      localStorage.setItem(LS_KEY, JSON.stringify(q));
+    } catch(e) { /* localStorage unavailable */ }
+  }
+  function removeFromLocalQueue(signal) {
+    try {
+      var q = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+      q = q.filter(function(s) { return s.summary !== signal.summary || s.company_name !== signal.company_name || s.date_event !== signal.date_event; });
+      localStorage.setItem(LS_KEY, JSON.stringify(q));
+    } catch(e) {}
+  }
+  function retryLocalQueue() {
+    try {
+      var q = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+      if (!q.length) return;
+      showStatus('Retrying ' + q.length + ' queued signal(s)...');
+      var promises = q.map(function(s) {
+        return persistSignalToGitHub(s).then(function(result) {
+          if (result.ok) removeFromLocalQueue(s);
+          return result;
+        });
+      });
+      Promise.all(promises).then(function(results) {
+        var saved = results.filter(function(r) { return r.ok; }).length;
+        var remaining = JSON.parse(localStorage.getItem(LS_KEY) || '[]').length;
+        if (remaining === 0) {
+          showStatus('All queued signals saved successfully.');
+        } else {
+          showStatus(saved + ' signal(s) saved, ' + remaining + ' still queued (GitHub unreachable).', true);
+        }
+      });
+    } catch(e) {}
+  }
+  // Auto-retry queue on admin load
+  setTimeout(retryLocalQueue, 2000);
 
   // ---- Form submit ----
   var formSubmit = document.getElementById('adminFormSubmit');
@@ -5547,9 +5606,13 @@ function initAdmin() {
       // 4. Persist to GitHub so it survives page refresh and pipeline rebuilds
       persistSignalToGitHub(vals).then(function(result) {
         if (result.ok) {
+          // Also clear from localStorage if it was queued
+          removeFromLocalQueue(vals);
           showStatus('Signal permanently saved for ' + companyName + '. It will be included in the next scoring pipeline run.');
         } else {
-          showStatus('Signal visible locally but failed to save permanently: ' + (result.error || 'unknown error') + '. Try the Export button as backup.', true);
+          // Save to localStorage as fallback
+          saveToLocalQueue(vals);
+          showStatus('Could not reach GitHub (likely a network/proxy issue). Signal saved locally and queued for retry. Use Export as backup if needed.', true);
         }
       });
     });
