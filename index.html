@@ -5371,9 +5371,16 @@ function initAdmin() {
     if (!statusEl) return;
     statusEl.textContent = msg;
     statusEl.style.background = isError ? '#b91c1c' : '';
+    statusEl.style.cursor = isError ? 'pointer' : '';
     statusEl.classList.add('visible');
     clearTimeout(statusEl._t);
-    statusEl._t = setTimeout(function() { statusEl.classList.remove('visible'); statusEl.style.background = ''; }, isError ? 10000 : 5000);
+    if (isError) {
+      // Errors stay visible until clicked
+      statusEl.onclick = function() { statusEl.classList.remove('visible'); statusEl.style.background = ''; statusEl.onclick = null; };
+    } else {
+      statusEl.onclick = null;
+      statusEl._t = setTimeout(function() { statusEl.classList.remove('visible'); statusEl.style.background = ''; }, 5000);
+    }
   }
 
   // ---- Form toggle ----
