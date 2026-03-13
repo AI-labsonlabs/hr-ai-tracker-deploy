@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "company_name": "Capital Group",
+    "date_event": "2026-03-13",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "press release",
+    "summary": "PERSIST DEBUG TEST",
+    "source_urls": [
+      "https://example.com/debug"
+    ],
+    "date_found": "2026-03-13"
+  }
+]
