@@ -1749,7 +1749,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 }
 .signals-filter-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: var(--space-3);
 }
 .signals-filter-group label {
@@ -2562,18 +2562,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             <label>Confirmation</label>
             <div class="sig-multiselect" id="sigMultiConfirm" data-filter="confirmation_level"></div>
           </div>
-          <div class="signals-filter-group">
-            <label>Date Range</label>
-            <select id="sigFilterDate" onchange="renderSignalsFeed()">
-              <option value="">All Time</option>
-              <option value="7">Last 7 days</option>
-              <option value="30">Last 30 days</option>
-              <option value="60">Last 60 days</option>
-              <option value="90">Last 90 days</option>
-              <option value="180">Last 6 months</option>
-              <option value="365">Last year</option>
-            </select>
-          </div>
+
         </div>
         <div class="signals-filter-actions">
           <span id="signalsCount" style="font-size:var(--text-xs);color:var(--color-text-muted);"></span>
@@ -2844,8 +2833,11 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
             <div class="admin-form-grid">
               <div class="admin-form-field">
                 <label>Company Name</label>
-                <input type="text" id="afCompany" list="afCompanyList" placeholder="e.g. Capital Group" autocomplete="off">
-                <datalist id="afCompanyList"></datalist>
+                <div class="af-company-search" style="position:relative;">
+                  <input type="text" id="afCompanySearch" placeholder="Search companies..." autocomplete="off" style="width:100%;">
+                  <input type="hidden" id="afCompany">
+                  <div id="afCompanyDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;max-height:220px;overflow-y:auto;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);z-index:200;margin-top:2px;"></div>
+                </div>
               </div>
               <div class="admin-form-field">
                 <label>Date Event</label>
@@ -2875,7 +2867,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                   <option value="L&D">L&amp;D</option>
                   <option value="HR Ops">HR Ops</option>
                   <option value="Comp/Benefits">Comp/Benefits</option>
-                  <option value="Employee Service">Employee Service</option>
+                  <option value="HR Service Delivery">HR Service Delivery</option>
                   <option value="Governance">Governance</option>
                   <option value="AI Hiring">AI Hiring</option>
                 </select>
@@ -5143,11 +5135,6 @@ function fillSelect(id, values, labelFn) {
 
 function getFilteredSignals() {
   var filterCompany = document.getElementById('sigFilterCompany').value;
-  var filterDate = document.getElementById('sigFilterDate').value;
-  
-  var now = new Date();
-  var cutoff = filterDate ? new Date(now.getTime() - parseInt(filterDate) * 86400000) : null;
-  var cutoffStr = cutoff ? cutoff.toISOString().slice(0, 10) : '';
   
   return sigAllSignals.filter(function(s) {
     if (sigMultiFilters.industry.size > 0 && !sigMultiFilters.industry.has(s.industry)) return false;
@@ -5155,7 +5142,6 @@ function getFilteredSignals() {
     if (sigMultiFilters.signal_type.size > 0 && !sigMultiFilters.signal_type.has(s.signal_type)) return false;
     if (sigMultiFilters.HR_domain.size > 0 && !sigMultiFilters.HR_domain.has(s.HR_domain)) return false;
     if (sigMultiFilters.confirmation_level.size > 0 && !sigMultiFilters.confirmation_level.has(s.confirmation_level)) return false;
-    if (cutoffStr && s.date < cutoffStr) return false;
     return true;
   });
 }
@@ -5262,7 +5248,6 @@ window.clearSignalsFilters = function() {
   sigMultiFilters.confirmation_level.clear();
   // Reset single selects
   document.getElementById('sigFilterCompany').value = '';
-  document.getElementById('sigFilterDate').value = '';
   // Re-populate to reset UI
   populateSignalsFilters();
   // Re-populate company list (no industry restriction)
@@ -5403,15 +5388,50 @@ function initAdmin() {
     });
   }
 
-  // ---- Populate datalist with company names ----
+  // ---- Searchable company dropdown ----
+  var afCompanyNames = (D.companies || []).map(function(c) { return c.name; }).sort();
   function populateCompanyDatalist() {
-    var dl = document.getElementById('afCompanyList');
-    if (!dl) return;
-    dl.innerHTML = '';
-    (D.companies || []).forEach(function(c) {
-      var opt = document.createElement('option');
-      opt.value = c.name;
-      dl.appendChild(opt);
+    var searchInput = document.getElementById('afCompanySearch');
+    var hiddenInput = document.getElementById('afCompany');
+    var dropdown = document.getElementById('afCompanyDropdown');
+    if (!searchInput || !dropdown) return;
+
+    function renderDropdown(filter) {
+      var q = (filter || '').toLowerCase();
+      var matches = q ? afCompanyNames.filter(function(n) { return n.toLowerCase().indexOf(q) >= 0; }) : afCompanyNames;
+      if (matches.length === 0) {
+        dropdown.innerHTML = '<div style="padding:8px 12px;color:var(--color-text-muted);font-size:var(--text-sm);">No matching companies</div>';
+      } else {
+        dropdown.innerHTML = matches.slice(0, 50).map(function(n) {
+          return '<div class="af-company-option" style="padding:6px 12px;cursor:pointer;font-size:var(--text-sm);" data-name="' + n.replace(/"/g, '&quot;') + '">' + n + '</div>';
+        }).join('') + (matches.length > 50 ? '<div style="padding:6px 12px;color:var(--color-text-muted);font-size:var(--text-xs);">Type more to narrow results...</div>' : '');
+      }
+      dropdown.style.display = 'block';
+    }
+
+    searchInput.addEventListener('focus', function() { renderDropdown(this.value); });
+    searchInput.addEventListener('input', function() { renderDropdown(this.value); });
+
+    dropdown.addEventListener('click', function(e) {
+      var opt = e.target.closest('.af-company-option');
+      if (!opt) return;
+      var name = opt.getAttribute('data-name');
+      searchInput.value = name;
+      hiddenInput.value = name;
+      dropdown.style.display = 'none';
+    });
+
+    dropdown.addEventListener('mouseover', function(e) {
+      var opt = e.target.closest('.af-company-option');
+      if (opt) opt.style.background = 'var(--color-surface-offset)';
+    });
+    dropdown.addEventListener('mouseout', function(e) {
+      var opt = e.target.closest('.af-company-option');
+      if (opt) opt.style.background = '';
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.af-company-search')) dropdown.style.display = 'none';
     });
   }
 
@@ -5434,7 +5454,7 @@ function initAdmin() {
   }
 
   function clearForm() {
-    ['afCompany','afDateEvent','afSummary','afSourceURLs'].forEach(function(id) {
+    ['afCompany','afCompanySearch','afDateEvent','afSummary','afSourceURLs'].forEach(function(id) {
       var el = document.getElementById(id); if (el) el.value = '';
     });
     ['afSignalType','afHRDomain','afConfirmLevel','afSourceType'].forEach(function(id) {
@@ -5793,7 +5813,10 @@ function initAdmin() {
         // --- EDIT ROW ---
         // Company
         var tdCo = document.createElement('td');
-        tdCo.innerHTML = '<input type="text" class="ae-company" value="' + esc(sig.company_name||'') + '" style="min-width:120px;">';
+        var coOpts = afCompanyNames.map(function(n) {
+          return '<option value="'+esc(n)+'"'+(sig.company_name===n?' selected':'')+'>'+esc(n)+'</option>';
+        }).join('');
+        tdCo.innerHTML = '<select class="ae-company" style="min-width:120px;max-width:180px;"><option value="">--</option>'+coOpts+'</select>';
         tr.appendChild(tdCo);
         // Date
         var tdDt = document.createElement('td');
@@ -5808,7 +5831,7 @@ function initAdmin() {
         tr.appendChild(tdTy);
         // Domain
         var tdDo = document.createElement('td');
-        var domOpts = ['Recruiting','L&D','HR Ops','Comp/Benefits','Employee Service','Governance','AI Hiring'].map(function(d) {
+        var domOpts = ['Recruiting','L&D','HR Ops','Comp/Benefits','HR Service Delivery','Governance','AI Hiring'].map(function(d) {
           return '<option value="'+d+'"'+(sig.HR_domain===d?' selected':'')+'>'+d+'</option>';
         }).join('');
         tdDo.innerHTML = '<select class="ae-domain"><option value="">--</option>'+domOpts+'</select>';
