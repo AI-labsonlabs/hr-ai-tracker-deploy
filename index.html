@@ -5389,12 +5389,15 @@ function initAdmin() {
   }
 
   // ---- Searchable company dropdown ----
-  var afCompanyNames = (D.companies || []).map(function(c) { return c.name; }).sort();
+  var afCompanyNames = Object.keys(D.company_details || {}).sort();
+  var _companyDropdownInitialized = false;
   function populateCompanyDatalist() {
+    if (_companyDropdownInitialized) return;
     var searchInput = document.getElementById('afCompanySearch');
     var hiddenInput = document.getElementById('afCompany');
     var dropdown = document.getElementById('afCompanyDropdown');
     if (!searchInput || !dropdown) return;
+    _companyDropdownInitialized = true;
 
     function renderDropdown(filter) {
       var q = (filter || '').toLowerCase();
