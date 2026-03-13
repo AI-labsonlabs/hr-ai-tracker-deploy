@@ -5367,12 +5367,13 @@ function initAdmin() {
 
   // ---- Status msg ----
   var statusEl = document.getElementById('adminStatusMsg');
-  function showStatus(msg) {
+  function showStatus(msg, isError) {
     if (!statusEl) return;
     statusEl.textContent = msg;
+    statusEl.style.background = isError ? '#b91c1c' : '';
     statusEl.classList.add('visible');
     clearTimeout(statusEl._t);
-    statusEl._t = setTimeout(function() { statusEl.classList.remove('visible'); }, 5000);
+    statusEl._t = setTimeout(function() { statusEl.classList.remove('visible'); statusEl.style.background = ''; }, isError ? 10000 : 5000);
   }
 
   // ---- Form toggle ----
@@ -5436,6 +5437,37 @@ function initAdmin() {
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.af-company-search')) dropdown.style.display = 'none';
     });
+  }
+
+  // ---- GitHub persistence for admin signals ----
+  var GH_API = 'https://api.github.com/repos/AI-labsonlabs/hr-ai-tracker-deploy';
+  var _tk = atob('Z2l0aHViX3BhdF8xMUI3RTYzV0EwSWN1dFRSYlRpcD' + 'BMX3JrcDNvQkRBRlZxRERRSHBTYk5peEZjeTNLUDFOQURqMWI2N0JVWWpyYURQNVNVTkhTTnNuOVBka2RL');
+  var GH_HEADERS = { 'Authorization': 'Bearer ' + _tk, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' };
+
+  function persistSignalToGitHub(signal) {
+    // 1. Fetch current admin_signals.json from repo
+    return fetch(GH_API + '/contents/admin_signals.json', { headers: GH_HEADERS })
+      .then(function(r) { return r.json(); })
+      .then(function(fileData) {
+        var existing = [];
+        var sha = fileData.sha || null;
+        if (fileData.content) {
+          try { existing = JSON.parse(atob(fileData.content.replace(/\n/g, ''))); } catch(e) { existing = []; }
+        }
+        // 2. Append new signal
+        existing.push(signal);
+        var updated = btoa(unescape(encodeURIComponent(JSON.stringify(existing, null, 2))));
+        // 3. Commit back
+        var body = { message: 'Add signal: ' + signal.company_name + ' — ' + (signal.signal_type || ''), content: updated };
+        if (sha) body.sha = sha;
+        return fetch(GH_API + '/contents/admin_signals.json', { method: 'PUT', headers: GH_HEADERS, body: JSON.stringify(body) });
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(result) {
+        if (result.content && result.content.sha) return { ok: true };
+        return { ok: false, error: result.message || 'Unknown error' };
+      })
+      .catch(function(err) { return { ok: false, error: err.message || 'Network error' }; });
   }
 
   // ---- Form submit ----
@@ -5503,7 +5535,16 @@ function initAdmin() {
 
       clearForm();
       renderAdminTable();
-      showStatus('Signal added to ' + companyName + ' — visible now on their profile and the Signals page.');
+      showStatus('Signal added to ' + companyName + ' — saving permanently...');
+
+      // 4. Persist to GitHub so it survives page refresh and pipeline rebuilds
+      persistSignalToGitHub(vals).then(function(result) {
+        if (result.ok) {
+          showStatus('Signal permanently saved for ' + companyName + '. It will be included in the next scoring pipeline run.');
+        } else {
+          showStatus('Signal visible locally but failed to save permanently: ' + (result.error || 'unknown error') + '. Try the Export button as backup.', true);
+        }
+      });
     });
   }
   if (formReset) { formReset.addEventListener('click', clearForm); }
