@@ -4967,7 +4967,7 @@ var sigAllSignals = [];
 var sigPageSize = 50;
 var sigCurrentPage = 1;
 
-function initSignalsExplorer() {
+window.initSignalsExplorer = function() {
   // Flatten all signals with company info
   sigAllSignals = [];
   Object.entries(D.company_details || {}).forEach(function(entry) {
