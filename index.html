@@ -2684,7 +2684,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 2: Group by HR domain</strong><br>
-                  7 domains: Recruiting, L&amp;D, HR Ops, Comp/Benefits, Employee Service, Governance, AI Hiring. Each scored 0&ndash;100 independently with diminishing returns within a domain (1/&radic;rank). Domains with at least one signal score a minimum of 1.
+                  7 domains: Recruiting, L&amp;D, HR Ops, Comp/Benefits, HR Service Delivery, Governance, AI Hiring. Each scored 0&ndash;100 independently with diminishing returns within a domain (1/&radic;rank). Domains with at least one signal score a minimum of 1.
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 3: Blend for overall score</strong><br>
@@ -3372,7 +3372,7 @@ function openProfile(companyName) {
   const mfc = (mom).formula_components || {};
   const pw = md.pattern_weights || {};
   const pattern = md.adoption_pattern || detail.adoption_pattern || '\u2014';
-  const allDomains = ['Recruiting', 'L&D', 'HR Ops', 'Comp/Benefits', 'Employee Service', 'Governance', 'AI Hiring'];
+  const allDomains = ['Recruiting', 'L&D', 'HR Ops', 'Comp/Benefits', 'HR Service Delivery', 'Governance', 'AI Hiring'];
   const isPrivate = co.public_or_private === 'Private';
   const estTag = ' <span style="font-size:var(--text-xs);color:var(--color-text-faint);font-weight:400;" title="Estimated based on publicly available industry data">est.</span>';
 
@@ -3740,7 +3740,7 @@ const OV_COLS = [
   { key: 'industry',     label: 'Industry',     type: 'multi-filter' },
   { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter' },
   { key: 'maturity',     label: 'Maturity',     type: 'metric',
-    tooltip: '<strong>Maturity Score (0–100)</strong>Each of 7 HR domains (Recruiting, L&D, HR Ops, Comp/Benefits, Employee Service, Governance, AI Hiring) is scored 0–100 independently. Overall = 60% mean of all 7 domains + 40% mean of top 3, adjusted for company size and regulatory complexity. Rewards breadth across categories.' },
+    tooltip: '<strong>Maturity Score (0–100)</strong>Each of 7 HR domains (Recruiting, L&D, HR Ops, Comp/Benefits, HR Service Delivery, Governance, AI Hiring) is scored 0–100 independently. Overall = 60% mean of all 7 domains + 40% mean of top 3, adjusted for company size and regulatory complexity. Rewards breadth across categories.' },
   { key: 'momentum',     label: 'Momentum',     type: 'metric',
     tooltip: '<strong>Momentum (−10 to +10)</strong>Measures recent acceleration of HR AI signals. Compares 30-day weighted signal velocity to a 12-month baseline, normalized by company size.' },
   { key: 'signals',      label: 'Signals',      type: 'metric',
@@ -4168,7 +4168,7 @@ const DOMAIN_TOOLTIPS = {
   'L&D': 'Signals for AI in Learning & Development: personalized learning paths, AI content curation, skills gap analysis, adaptive training platforms, and intelligent coaching tools.',
   'HR Ops': 'Signals for AI in HR Operations: workflow automation, document processing, employee data analytics, HRIS AI features (Workday AI, ServiceNow), and process optimization.',
   'Comp/Benefits': 'Signals for AI in Compensation & Benefits: automated pay equity analysis, benefits optimization, comp benchmarking tools, and total rewards modeling.',
-  'Employee Service': 'Signals for AI in Employee Service: HR chatbots, AI help desks, automated case routing, self-service portals with AI, and employee experience platforms.',
+  'HR Service Delivery': 'Signals for AI in HR Service Delivery: HR chatbots, AI help desks, automated case routing, self-service portals with AI, and employee experience platforms.',
   'Governance': 'Signals for AI Governance in HR: responsible AI policies, bias auditing frameworks, ethics boards overseeing HR AI, regulatory compliance, and algorithmic accountability.',
   'AI Hiring': 'Signals for AI talent hiring intensity: job postings for AI/ML engineers, data scientists, AI product managers, and other AI-focused roles that indicate investment in building AI capabilities.'
 };
@@ -4383,7 +4383,7 @@ var heatState = {
   filters: { industry: new Set(), sub_industry: new Set() }
 };
 
-var HEAT_DOMAINS = ['Recruiting', 'L\u0026D', 'HR Ops', 'Comp/Benefits', 'Employee Service', 'Governance', 'AI Hiring'];
+var HEAT_DOMAINS = ['Recruiting', 'L\u0026D', 'HR Ops', 'Comp/Benefits', 'HR Service Delivery', 'Governance', 'AI Hiring'];
 
 // Build heatmap data array once
 var heatmapData = Object.entries(D.heatmap)
@@ -4749,7 +4749,7 @@ function buildCompanyProfileHTML(companyName, side) {
   // --- DOMAIN SCORES (clickable to filter signals) ---
   html += '<div style="margin-top:var(--space-4);">';
   html += '<h4 style="margin:0 0 var(--space-2) 0;font-size:var(--text-sm);font-weight:600;">Domain Scores <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(click to filter signals)</span></h4>';
-  var domains = ['Recruiting', 'L&D', 'HR Ops', 'Comp/Benefits', 'Employee Service', 'Governance', 'AI Hiring'];
+  var domains = ['Recruiting', 'L&D', 'HR Ops', 'Comp/Benefits', 'HR Service Delivery', 'Governance', 'AI Hiring'];
   domains.forEach(function(d) {
     var score = ds[d] || 0;
     var tip = DOMAIN_TOOLTIPS[d] || '';
