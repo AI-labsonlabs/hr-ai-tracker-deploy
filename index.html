@@ -3220,12 +3220,14 @@ function fmt(v, d) { return (typeof v === 'number') ? v.toFixed(d === undefined 
 function fmtMomentum(v) { return v > 0 ? '+' + fmt(v) : fmt(v); }
 function patternBadge(p) { return '<span class="badge badge-blue">' + (p || '—') + '</span>'; }
 function confirmBadge(level) {
+  if (!level) return '';
   var cls = 'badge-gray';
   if (level === 'Confirmed Deployment') cls = 'badge-green';
   else if (level === 'Pilot') cls = 'badge-blue';
   else if (level === 'Preparing') cls = 'badge-teal';
   else if (level === 'Exploration') cls = 'badge-yellow';
-  return '<span class="badge ' + cls + '">' + (level || '—') + '</span>';
+  else if (level === 'PR Mention') cls = 'badge-gray';
+  return '<span class="badge ' + cls + '">' + level + '</span>';
 }
 function signalTypeBadge(type) {
   var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',E:'Governance',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'PR Mention',J:'AI Talent Hiring'};
@@ -3433,7 +3435,7 @@ function openProfile(companyName) {
       }
       signalsHTML += '<div class="signal-item profile-signal-item" data-domain="' + (s.HR_domain || '') + '">' +
         '<div class="signal-meta"><span>' + (s.date_event || s.date_found || '') + '</span>' +
-        '<span class="badge badge-blue">' + (s.HR_domain || '') + '</span>' +
+        (s.HR_domain ? '<span class="badge badge-blue">' + s.HR_domain + '</span>' : '') +
         confirmBadge(s.confirmation_level || '') +
         (s.signal_type === 'J' ? '<span class="badge badge-teal">AI Talent</span>' : '') +
         flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
@@ -4783,7 +4785,7 @@ function buildCompanyProfileHTML(companyName, side) {
       html += '<div class="cmp-signal-item" data-domain="' + (s.HR_domain || '') + '" style="padding:var(--space-2);border-bottom:1px solid var(--color-border);font-size:var(--text-xs);">';
       html += '<div style="display:flex;gap:var(--space-2);flex-wrap:wrap;align-items:center;margin-bottom:2px;">';
       html += '<span style="color:var(--color-text-muted);">' + (s.date_event || s.date_found || '') + '</span>';
-      html += '<span class="badge badge-blue" style="font-size:10px;">' + (s.HR_domain || '') + '</span>';
+      if (s.HR_domain) html += '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>';
       html += confirmBadge(s.confirmation_level || '');
       if (s.signal_type === 'J') html += '<span class="badge badge-teal" style="font-size:10px;">AI Talent</span>';
       html += flagBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'');
@@ -5350,7 +5352,9 @@ function initAdmin() {
     sort: { col: 'date', dir: -1 },
     filters: { company_name: new Set(), signal_type: new Set(), HR_domain: new Set(), confirmation_level: new Set() },
     search: '',
-    editIdx: null  // index in allSignals being edited
+    editIdx: null,  // index in allSignals being edited
+    page: 0,
+    pageSize: 100
   };
 
   // ---- Status msg ----
@@ -5612,6 +5616,7 @@ function initAdmin() {
         var fc = cb.closest('.dd-filter-list').dataset.afdCol;
         if (cb.checked) { tState.filters[fc].add(cb.value); }
         else { tState.filters[fc].delete(cb.value); }
+        tState.page = 0;
         refreshAdminThead();
         renderAdminTable();
       });
@@ -5621,14 +5626,14 @@ function initAdmin() {
       e.stopPropagation();
       tState.filters[colKey].clear();
       menu.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
-      refreshAdminThead(); renderAdminTable();
+      tState.page = 0; refreshAdminThead(); renderAdminTable();
     });
     // All
     menu.querySelector('#afdAll').addEventListener('click', function(e) {
       e.stopPropagation();
       values.forEach(function(v) { tState.filters[colKey].add(v); });
       menu.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = true; });
-      refreshAdminThead(); renderAdminTable();
+      tState.page = 0; refreshAdminThead(); renderAdminTable();
     });
 
     // Position below the th
@@ -5703,12 +5708,47 @@ function initAdmin() {
     var countEl = document.getElementById('adminTableCount');
     if (!tbody) return;
 
-    var rows = getFilteredSorted();
-    if (countEl) countEl.textContent = 'Showing ' + rows.length + ' of ' + allSignals.length + ' signals';
+    var allRows = getFilteredSorted();
+    var totalPages = Math.max(1, Math.ceil(allRows.length / tState.pageSize));
+    if (tState.page >= totalPages) tState.page = totalPages - 1;
+    if (tState.page < 0) tState.page = 0;
+    var startIdx = tState.page * tState.pageSize;
+    var rows = allRows.slice(startIdx, startIdx + tState.pageSize);
+
+    if (countEl) countEl.textContent = 'Showing ' + (startIdx + 1) + '–' + (startIdx + rows.length) + ' of ' + allRows.length + ' signals';
 
     tbody.innerHTML = '';
 
-    if (rows.length === 0) {
+    // Pagination controls
+    var pagDiv = document.getElementById('adminPagination');
+    if (!pagDiv) {
+      pagDiv = document.createElement('div');
+      pagDiv.id = 'adminPagination';
+      pagDiv.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 0;font-size:13px;';
+      tbody.parentElement.parentElement.appendChild(pagDiv);
+    }
+    if (totalPages <= 1) { pagDiv.innerHTML = ''; }
+    else {
+      pagDiv.innerHTML = '';
+      var prevBtn = document.createElement('button');
+      prevBtn.className = 'admin-btn admin-btn-sm';
+      prevBtn.textContent = '\u2190 Prev';
+      prevBtn.disabled = tState.page === 0;
+      prevBtn.addEventListener('click', function() { tState.page--; renderAdminTable(); });
+      pagDiv.appendChild(prevBtn);
+      var pageInfo = document.createElement('span');
+      pageInfo.style.color = 'var(--color-text-muted)';
+      pageInfo.textContent = 'Page ' + (tState.page + 1) + ' of ' + totalPages;
+      pagDiv.appendChild(pageInfo);
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'admin-btn admin-btn-sm';
+      nextBtn.textContent = 'Next \u2192';
+      nextBtn.disabled = tState.page >= totalPages - 1;
+      nextBtn.addEventListener('click', function() { tState.page++; renderAdminTable(); });
+      pagDiv.appendChild(nextBtn);
+    }
+
+    if (allRows.length === 0) {
       var emptyTr = document.createElement('tr');
       var emptyTd = document.createElement('td');
       emptyTd.colSpan = 7;
@@ -5876,6 +5916,7 @@ function initAdmin() {
   if (searchInput) {
     searchInput.addEventListener('input', function() {
       tState.search = this.value;
+      tState.page = 0;
       renderAdminTable();
     });
   }
