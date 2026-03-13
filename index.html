@@ -5471,10 +5471,39 @@ function initAdmin() {
       var vals = getFormValues();
       if (!vals.company_name) { alert('Company name is required.'); return; }
       if (!vals.signal_type)  { alert('Signal type is required.'); return; }
+
+      // 1. Push into admin table's allSignals
       allSignals.push(vals);
+
+      // 2. Inject into D.company_details so it appears on company page + signals feed
+      var companyName = vals.company_name;
+      var detail = D.company_details[companyName];
+      if (detail) {
+        // Company exists — add signal to its top_signals
+        detail.top_signals = detail.top_signals || [];
+        detail.top_signals.unshift(vals);
+        detail.total_signals = (detail.total_signals || 0) + 1;
+      } else {
+        // New company — create a minimal company_details entry
+        D.company_details[companyName] = {
+          company: { industry: '', sub_industry: '', employee_count: 0, annual_revenue: 0, market_cap: null },
+          maturity_score: 0, momentum_score: 0,
+          maturity_details: {}, momentum_details: {},
+          pr_ratio: { ratio: 0, pr_pct: 0, deploy_pct: 0, label: 'No Data' },
+          adoption_pattern: '',
+          top_signals: [vals],
+          total_signals: 1,
+          ai_hiring_intensity: {},
+          tech_stack: []
+        };
+      }
+
+      // 3. Rebuild signals explorer so it appears on Signals tab immediately
+      if (typeof initSignalsExplorer === 'function') initSignalsExplorer();
+
       clearForm();
       renderAdminTable();
-      showStatus('Signal added successfully.');
+      showStatus('Signal added to ' + companyName + ' — visible now on their profile and the Signals page.');
     });
   }
   if (formReset) { formReset.addEventListener('click', clearForm); }
@@ -5483,7 +5512,7 @@ function initAdmin() {
   var publishBtn = document.getElementById('adminPublishBtn');
   if (publishBtn) {
     publishBtn.addEventListener('click', function() {
-      if (!confirm('Export all signals as signals_export.json?\n\nWorkflow: Download this file → provide to AI assistant → AI runs the pipeline and updates data.js.')) return;
+      if (!confirm('Export all signals as signals_export.json?\n\nNew signals are already visible on the dashboard. This export is for backup or for running the full scoring pipeline.')) return;
       var json = JSON.stringify(allSignals, null, 2);
       var blob = new Blob([json], { type: 'application/json' });
       var url  = URL.createObjectURL(blob);
