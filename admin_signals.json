@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "company_name": "Capital Group",
+    "date_event": "2026-02-26",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "social media",
+    "summary": "Capital Group panelists discuss launching an HR AI chatbot internally to all employees.",
+    "source_urls": [
+      "https://www.youtube.com/watch?v=jl2oxhluERQ"
+    ],
+    "date_found": "2026-03-13"
+  }
+]
