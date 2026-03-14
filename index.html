@@ -6387,12 +6387,12 @@ initAdmin();
 
   // KPI row
   var totalTechs = techs.length;
-  var totalDeployments = 0;
   var totalCompanies = new Set();
+  var totalVendors = new Set();
   var categories = {};
   techs.forEach(function(t) {
-    totalDeployments += t.deployments || 0;
     (t.companies || []).forEach(function(c) { totalCompanies.add(c.name); });
+    if (t.vendor) totalVendors.add(t.vendor);
     var cat = t.category || 'Other';
     categories[cat] = (categories[cat] || 0) + 1;
   });
@@ -6404,12 +6404,12 @@ initAdmin();
         '<div style="font-size:var(--text-xl);font-weight:700;color:var(--color-text);">' + totalTechs + '</div>' +
       '</div>' +
       '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3) var(--space-4);">' +
-        '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:4px;">Categories</div>' +
-        '<div style="font-size:var(--text-xl);font-weight:700;color:var(--color-text);">' + Object.keys(categories).length + '</div>' +
+        '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:4px;">Vendors</div>' +
+        '<div style="font-size:var(--text-xl);font-weight:700;color:var(--color-text);">' + totalVendors.size + '</div>' +
       '</div>' +
       '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3) var(--space-4);">' +
-        '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:4px;">Total Deployments</div>' +
-        '<div style="font-size:var(--text-xl);font-weight:700;color:var(--color-text);">' + totalDeployments.toLocaleString() + '</div>' +
+        '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:4px;">Categories</div>' +
+        '<div style="font-size:var(--text-xl);font-weight:700;color:var(--color-text);">' + Object.keys(categories).length + '</div>' +
       '</div>' +
       '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3) var(--space-4);">' +
         '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:4px;">Companies Using</div>' +
@@ -6445,7 +6445,6 @@ initAdmin();
       '<th style="cursor:pointer;" onclick="sortTechTable(\'category\')">Category <span class="sort-arrow">▲</span></th>' +
       '<th style="cursor:pointer;" onclick="sortTechTable(\'primary_domain\')">HR Domain <span class="sort-arrow">▲</span></th>' +
       '<th style="cursor:pointer;text-align:right;" onclick="sortTechTable(\'company_count\')">Companies <span class="sort-arrow">▲</span></th>' +
-      '<th style="cursor:pointer;text-align:right;" onclick="sortTechTable(\'deployments\')">Deployments <span class="sort-arrow">▲</span></th>' +
       '<th style="text-align:right;">Industries</th>';
   }
 
@@ -6472,7 +6471,6 @@ initAdmin();
         '<td><span style="font-size:var(--text-xs);background:var(--color-surface-2);padding:2px 6px;border-radius:4px;">' + (t.category || '—') + '</span></td>' +
         '<td>' + (t.primary_domain || '—') + '</td>' +
         '<td style="text-align:right;font-family:var(--font-mono);font-size:var(--text-xs);">' + (t.company_count || 0) + '</td>' +
-        '<td style="text-align:right;font-family:var(--font-mono);font-size:var(--text-xs);">' + (t.deployments || 0) + '</td>' +
         '<td style="text-align:right;font-family:var(--font-mono);font-size:var(--text-xs);">' + indCount + '</td>' +
       '</tr>';
     });
@@ -6524,17 +6522,27 @@ initAdmin();
     html += '<div style="font-size:var(--text-sm);color:var(--color-text-muted);">' + (tech.vendor || '') + ' · ' + (tech.category || '') + ' · ' + (tech.primary_domain || '') + '</div>';
     html += '</div>';
 
+    // Compute deployed/piloting/mentioned from companies array
+    var _deployed = 0, _piloting = 0, _mentioned = 0;
+    (tech.companies || []).forEach(function(c) {
+      if (c.status === 'Deployed') _deployed++;
+      else if (c.status === 'Piloting') _piloting++;
+      else _mentioned++;
+    });
+
     // Stats row
     html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:var(--space-3);margin-bottom:var(--space-5);">';
     html += '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3);">' +
       '<div style="font-size:var(--text-xs);color:var(--color-text-muted);">Companies</div>' +
-      '<div style="font-size:var(--text-xl);font-weight:700;">' + (tech.company_count || 0) + '</div></div>';
+      '<div style="font-size:var(--text-xl);font-weight:700;">' + (tech.companies || []).length + '</div></div>';
     html += '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3);">' +
       '<div style="font-size:var(--text-xs);color:var(--color-text-muted);">Deployed</div>' +
-      '<div style="font-size:var(--text-xl);font-weight:700;">' + (tech.deployed_company_count || 0) + '</div></div>';
-    html += '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3);">' +
-      '<div style="font-size:var(--text-xs);color:var(--color-text-muted);">Piloting</div>' +
-      '<div style="font-size:var(--text-xl);font-weight:700;">' + (tech.piloting_company_count || 0) + '</div></div>';
+      '<div style="font-size:var(--text-xl);font-weight:700;">' + _deployed + '</div></div>';
+    if (_piloting > 0) {
+      html += '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3);">' +
+        '<div style="font-size:var(--text-xs);color:var(--color-text-muted);">Piloting</div>' +
+        '<div style="font-size:var(--text-xl);font-weight:700;">' + _piloting + '</div></div>';
+    }
     html += '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3);">' +
       '<div style="font-size:var(--text-xs);color:var(--color-text-muted);">Industries</div>' +
       '<div style="font-size:var(--text-xl);font-weight:700;">' + Object.keys(tech.industries || {}).length + '</div></div>';
