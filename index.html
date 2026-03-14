@@ -153,6 +153,30 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 .tab-panel.active { display: block; animation: fadeIn 200ms cubic-bezier(0.16, 1, 0.3, 1); }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+/* TECH CATEGORY PILLS */
+.tech-cat-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+.tech-cat-pill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.tech-cat-pill.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
 /* COMPANY PROFILE OVERLAY */
 .profile-overlay {
   display: none;
@@ -2379,6 +2403,10 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
         <span>Heatmap</span>
       </li>
 
+      <li class="nav-item" data-tab="tech" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
+        <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        <span>HR AI Tech</span>
+      </li>
       <li class="nav-item" data-tab="methodology" role="button" tabindex="0" style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:2px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:#d1d5db;background:transparent;">
         <svg style="width:16px;height:16px;flex-shrink:0;display:inline-block;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         <span>Methodology</span>
@@ -2535,6 +2563,40 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
           </table>
         </div>
         <div id="govCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) var(--space-3);"></div>
+      </div>
+    </section>
+
+    <!-- HR AI TECH LANDSCAPE TAB -->
+    <section class="tab-panel" id="tab-tech">
+      <h2 class="section-title" style="margin-bottom:var(--space-2);">HR AI Tech Landscape</h2>
+      <p class="section-subtitle" style="margin-bottom:var(--space-4);">67 technologies tracked across HR functions — from core HRIS to specialized AI tools.</p>
+
+      <!-- Tech Summary KPIs -->
+      <div id="techKpiRow" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:var(--space-3);margin-bottom:var(--space-5);"></div>
+
+      <!-- Category Filter Pills -->
+      <div id="techCategoryFilters" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--space-4);"></div>
+
+      <!-- Tech Table -->
+      <div class="data-table-wrap">
+        <div class="data-table-scroll" style="max-height:calc(100vh - 280px);overflow-y:auto;overscroll-behavior:contain;">
+          <table class="data-table" id="techTable">
+            <thead><tr id="techThead"></tr></thead>
+            <tbody id="techTbody"></tbody>
+          </table>
+        </div>
+        <div id="techCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) var(--space-3);"></div>
+      </div>
+
+      <!-- Tech Detail Overlay (inline, not a separate page) -->
+      <div id="techDetailOverlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:60;background:var(--color-bg);overflow-y:auto;">
+        <div style="max-width:900px;margin:0 auto;padding:var(--space-5) var(--space-4);">
+          <button onclick="closeTechDetail()" style="display:inline-flex;align-items:center;gap:4px;background:none;border:none;color:var(--color-primary);font-size:var(--text-sm);cursor:pointer;margin-bottom:var(--space-4);font-weight:500;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Tech Landscape
+          </button>
+          <div id="techDetailContent"></div>
+        </div>
       </div>
     </section>
 
@@ -2974,6 +3036,10 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
       <button onclick="closeMoreMenu()" aria-label="Close" style="background:none;border:none;color:var(--color-text);font-size:20px;cursor:pointer;padding:4px 8px;">✕</button>
     </div>
 
+    <button class="mobile-more-item" onclick="switchTabMobile('tech');closeMoreMenu()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      <span>HR AI Tech</span>
+    </button>
     <button class="mobile-more-item" onclick="switchTabMobile('methodology');closeMoreMenu()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       <span>Methodology</span>
@@ -3037,7 +3103,7 @@ window.switchTabMobile = function(tabId) {
     var isMore = t.dataset.mobileTab === 'more';
     var isActive = t.dataset.mobileTab === tabId;
     // For methodology/admin, highlight "more"
-    if ((tabId === 'methodology' || tabId === 'admin') && isMore) isActive = true;
+    if ((tabId === 'methodology' || tabId === 'admin' || tabId === 'tech') && isMore) isActive = true;
     t.classList.toggle('active', isActive);
   });
 };
@@ -3176,7 +3242,7 @@ function switchTab(tabId) {
   document.querySelectorAll('.mobile-tab-item').forEach(function(t) {
     var isMore = t.dataset.mobileTab === 'more';
     var isActive = t.dataset.mobileTab === tabId;
-    if ((tabId === 'methodology' || tabId === 'admin') && isMore) isActive = true;
+    if ((tabId === 'methodology' || tabId === 'admin' || tabId === 'tech') && isMore) isActive = true;
     t.classList.toggle('active', isActive);
   });
   // Close more menu if open
@@ -6311,6 +6377,240 @@ document.getElementById('flagModalOverlay').addEventListener('click', function(e
 });
 
 initAdmin();
+
+// ============================================
+// TECH LANDSCAPE TAB
+// ============================================
+(function initTechLandscape() {
+  var techs = DASHBOARD_DATA.tech_landscape || [];
+  if (!techs.length) return;
+
+  // KPI row
+  var totalTechs = techs.length;
+  var totalDeployments = 0;
+  var totalCompanies = new Set();
+  var categories = {};
+  techs.forEach(function(t) {
+    totalDeployments += t.deployments || 0;
+    (t.companies || []).forEach(function(c) { totalCompanies.add(c.name); });
+    var cat = t.category || 'Other';
+    categories[cat] = (categories[cat] || 0) + 1;
+  });
+  var kpiEl = document.getElementById('techKpiRow');
+  if (kpiEl) {
+    kpiEl.innerHTML =
+      '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3) var(--space-4);">' +
+        '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:4px;">Technologies</div>' +
+        '<div style="font-size:var(--text-xl);font-weight:700;color:var(--color-text);">' + totalTechs + '</div>' +
+      '</div>' +
+      '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3) var(--space-4);">' +
+        '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:4px;">Categories</div>' +
+        '<div style="font-size:var(--text-xl);font-weight:700;color:var(--color-text);">' + Object.keys(categories).length + '</div>' +
+      '</div>' +
+      '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3) var(--space-4);">' +
+        '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:4px;">Total Deployments</div>' +
+        '<div style="font-size:var(--text-xl);font-weight:700;color:var(--color-text);">' + totalDeployments.toLocaleString() + '</div>' +
+      '</div>' +
+      '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3) var(--space-4);">' +
+        '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:4px;">Companies Using</div>' +
+        '<div style="font-size:var(--text-xl);font-weight:700;color:var(--color-text);">' + totalCompanies.size + '</div>' +
+      '</div>';
+  }
+
+  // Category filter pills
+  var catFilterEl = document.getElementById('techCategoryFilters');
+  var activeCatFilter = 'All';
+  var sortedCats = Object.keys(categories).sort(function(a, b) { return categories[b] - categories[a]; });
+  function renderCatFilters() {
+    if (!catFilterEl) return;
+    var html = '<button class="tech-cat-pill' + (activeCatFilter === 'All' ? ' active' : '') + '" onclick="filterTechCategory(\'All\')">All (' + totalTechs + ')</button>';
+    sortedCats.forEach(function(cat) {
+      html += '<button class="tech-cat-pill' + (activeCatFilter === cat ? ' active' : '') + '" onclick="filterTechCategory(\'' + cat.replace(/'/g, "\\'") + '\')">' + cat + ' (' + categories[cat] + ')</button>';
+    });
+    catFilterEl.innerHTML = html;
+  }
+  renderCatFilters();
+
+  // Render tech table
+  var techThead = document.getElementById('techThead');
+  var techTbody = document.getElementById('techTbody');
+  var techCount = document.getElementById('techCount');
+  var techSortCol = 'company_count';
+  var techSortAsc = false;
+
+  if (techThead) {
+    techThead.innerHTML =
+      '<th style="cursor:pointer;" onclick="sortTechTable(\'name\')">Technology <span class="sort-arrow">▲</span></th>' +
+      '<th style="cursor:pointer;" onclick="sortTechTable(\'vendor\')">Vendor <span class="sort-arrow">▲</span></th>' +
+      '<th style="cursor:pointer;" onclick="sortTechTable(\'category\')">Category <span class="sort-arrow">▲</span></th>' +
+      '<th style="cursor:pointer;" onclick="sortTechTable(\'primary_domain\')">HR Domain <span class="sort-arrow">▲</span></th>' +
+      '<th style="cursor:pointer;text-align:right;" onclick="sortTechTable(\'company_count\')">Companies <span class="sort-arrow">▲</span></th>' +
+      '<th style="cursor:pointer;text-align:right;" onclick="sortTechTable(\'deployments\')">Deployments <span class="sort-arrow">▲</span></th>' +
+      '<th style="text-align:right;">Industries</th>';
+  }
+
+  function renderTechTable() {
+    if (!techTbody) return;
+    var filtered = techs.filter(function(t) {
+      if (activeCatFilter === 'All') return true;
+      return t.category === activeCatFilter;
+    });
+    filtered.sort(function(a, b) {
+      var va = a[techSortCol], vb = b[techSortCol];
+      if (typeof va === 'string') va = va.toLowerCase();
+      if (typeof vb === 'string') vb = vb.toLowerCase();
+      if (va < vb) return techSortAsc ? -1 : 1;
+      if (va > vb) return techSortAsc ? 1 : -1;
+      return 0;
+    });
+    var html = '';
+    filtered.forEach(function(t) {
+      var indCount = Object.keys(t.industries || {}).length;
+      html += '<tr style="cursor:pointer;" onclick="openTechDetail(\'' + t.name.replace(/'/g, "\\'") + '\')">' +
+        '<td><span class="company-name">' + t.name + '</span></td>' +
+        '<td>' + (t.vendor || '—') + '</td>' +
+        '<td><span style="font-size:var(--text-xs);background:var(--color-surface-2);padding:2px 6px;border-radius:4px;">' + (t.category || '—') + '</span></td>' +
+        '<td>' + (t.primary_domain || '—') + '</td>' +
+        '<td style="text-align:right;font-family:var(--font-mono);font-size:var(--text-xs);">' + (t.company_count || 0) + '</td>' +
+        '<td style="text-align:right;font-family:var(--font-mono);font-size:var(--text-xs);">' + (t.deployments || 0) + '</td>' +
+        '<td style="text-align:right;font-family:var(--font-mono);font-size:var(--text-xs);">' + indCount + '</td>' +
+      '</tr>';
+    });
+    techTbody.innerHTML = html;
+    if (techCount) techCount.textContent = 'Showing ' + filtered.length + ' of ' + totalTechs + ' technologies';
+
+    // Update sort arrows
+    if (techThead) {
+      techThead.querySelectorAll('th').forEach(function(th) {
+        th.classList.remove('sorted');
+      });
+    }
+  }
+  renderTechTable();
+
+  // Global sort handler
+  window.sortTechTable = function(col) {
+    if (techSortCol === col) {
+      techSortAsc = !techSortAsc;
+    } else {
+      techSortCol = col;
+      techSortAsc = (col === 'name' || col === 'vendor' || col === 'category' || col === 'primary_domain');
+    }
+    renderTechTable();
+  };
+
+  // Global filter handler
+  window.filterTechCategory = function(cat) {
+    activeCatFilter = cat;
+    renderCatFilters();
+    renderTechTable();
+  };
+
+  // Tech detail overlay
+  window.openTechDetail = function(techName) {
+    var tech = null;
+    for (var i = 0; i < techs.length; i++) {
+      if (techs[i].name === techName) { tech = techs[i]; break; }
+    }
+    if (!tech) return;
+    var overlay = document.getElementById('techDetailOverlay');
+    var content = document.getElementById('techDetailContent');
+    if (!overlay || !content) return;
+
+    // Build detail HTML
+    var html = '';
+    html += '<div style="margin-bottom:var(--space-5);">';
+    html += '<h2 style="font-size:var(--text-2xl);font-weight:700;margin-bottom:4px;">' + tech.name + '</h2>';
+    html += '<div style="font-size:var(--text-sm);color:var(--color-text-muted);">' + (tech.vendor || '') + ' · ' + (tech.category || '') + ' · ' + (tech.primary_domain || '') + '</div>';
+    html += '</div>';
+
+    // Stats row
+    html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:var(--space-3);margin-bottom:var(--space-5);">';
+    html += '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3);">' +
+      '<div style="font-size:var(--text-xs);color:var(--color-text-muted);">Companies</div>' +
+      '<div style="font-size:var(--text-xl);font-weight:700;">' + (tech.company_count || 0) + '</div></div>';
+    html += '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3);">' +
+      '<div style="font-size:var(--text-xs);color:var(--color-text-muted);">Deployed</div>' +
+      '<div style="font-size:var(--text-xl);font-weight:700;">' + (tech.deployed_company_count || 0) + '</div></div>';
+    html += '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3);">' +
+      '<div style="font-size:var(--text-xs);color:var(--color-text-muted);">Piloting</div>' +
+      '<div style="font-size:var(--text-xl);font-weight:700;">' + (tech.piloting_company_count || 0) + '</div></div>';
+    html += '<div style="background:var(--color-surface-2);border-radius:8px;padding:var(--space-3);">' +
+      '<div style="font-size:var(--text-xs);color:var(--color-text-muted);">Industries</div>' +
+      '<div style="font-size:var(--text-xl);font-weight:700;">' + Object.keys(tech.industries || {}).length + '</div></div>';
+    html += '</div>';
+
+    // Industry breakdown
+    var indEntries = Object.entries(tech.industries || {}).sort(function(a, b) { return b[1] - a[1]; });
+    if (indEntries.length) {
+      var maxInd = indEntries[0][1];
+      html += '<div style="margin-bottom:var(--space-5);">';
+      html += '<h3 style="font-size:var(--text-base);font-weight:600;margin-bottom:var(--space-3);">Industry Distribution</h3>';
+      indEntries.forEach(function(entry) {
+        var pct = maxInd > 0 ? (entry[1] / maxInd * 100) : 0;
+        html += '<div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:6px;">' +
+          '<div style="width:120px;font-size:var(--text-xs);color:var(--color-text-muted);flex-shrink:0;text-align:right;">' + entry[0] + '</div>' +
+          '<div class="bar-track" style="flex:1;height:18px;">' +
+            '<div class="bar-fill" style="width:' + pct + '%;min-width:2px;"></div>' +
+          '</div>' +
+          '<div style="width:32px;font-size:var(--text-xs);font-family:var(--font-mono);text-align:right;">' + entry[1] + '</div>' +
+        '</div>';
+      });
+      html += '</div>';
+    }
+
+    // Domains used
+    var domEntries = Object.entries(tech.domains_used || {}).sort(function(a, b) { return b[1] - a[1]; });
+    if (domEntries.length) {
+      var maxDom = domEntries[0][1];
+      html += '<div style="margin-bottom:var(--space-5);">';
+      html += '<h3 style="font-size:var(--text-base);font-weight:600;margin-bottom:var(--space-3);">HR Domains</h3>';
+      domEntries.forEach(function(entry) {
+        var pct = maxDom > 0 ? (entry[1] / maxDom * 100) : 0;
+        html += '<div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:6px;">' +
+          '<div style="width:120px;font-size:var(--text-xs);color:var(--color-text-muted);flex-shrink:0;text-align:right;">' + entry[0] + '</div>' +
+          '<div class="bar-track" style="flex:1;height:18px;">' +
+            '<div class="bar-fill" style="width:' + pct + '%;min-width:2px;"></div>' +
+          '</div>' +
+          '<div style="width:32px;font-size:var(--text-xs);font-family:var(--font-mono);text-align:right;">' + entry[1] + '</div>' +
+        '</div>';
+      });
+      html += '</div>';
+    }
+
+    // Companies table
+    var companies = (tech.companies || []).slice().sort(function(a, b) { return b.signal_count - a.signal_count; });
+    if (companies.length) {
+      html += '<div style="margin-bottom:var(--space-5);">';
+      html += '<h3 style="font-size:var(--text-base);font-weight:600;margin-bottom:var(--space-3);">Companies (' + companies.length + ')</h3>';
+      html += '<div class="data-table-wrap"><div class="data-table-scroll" style="max-height:400px;overflow-y:auto;">';
+      html += '<table class="data-table" style="font-size:var(--text-xs);">';
+      html += '<thead><tr><th>Company</th><th>Industry</th><th>Status</th><th style="text-align:right;">Signals</th><th style="text-align:right;">Latest</th></tr></thead>';
+      html += '<tbody>';
+      companies.forEach(function(c) {
+        var statusColor = c.status === 'Deployed' ? '#10b981' : c.status === 'Piloting' ? '#f59e0b' : '#6b7280';
+        html += '<tr>' +
+          '<td><span class="company-name" style="cursor:pointer;" onclick="closeTechDetail();openCompanyProfile(\'' + c.name.replace(/'/g, "\\'") + '\')">' + c.name + '</span></td>' +
+          '<td>' + (c.industry || '') + '</td>' +
+          '<td><span style="color:' + statusColor + ';font-weight:500;">' + c.status + '</span></td>' +
+          '<td style="text-align:right;font-family:var(--font-mono);">' + c.signal_count + '</td>' +
+          '<td style="text-align:right;font-family:var(--font-mono);">' + (c.latest_date || '') + '</td>' +
+        '</tr>';
+      });
+      html += '</tbody></table></div></div>';
+      html += '</div>';
+    }
+
+    content.innerHTML = html;
+    overlay.style.display = 'block';
+    overlay.scrollTop = 0;
+  };
+
+  window.closeTechDetail = function() {
+    var overlay = document.getElementById('techDetailOverlay');
+    if (overlay) overlay.style.display = 'none';
+  };
+})();
 
 })();
 </script>
