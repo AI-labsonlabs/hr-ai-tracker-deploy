@@ -3471,7 +3471,7 @@ function patternBadge(p) { return '<span class="badge badge-blue">' + (p || '—
 function confirmBadge(level, signalType) {
   if (!level) return '';
   // AI Hiring (J), Leadership Hire (D), and Governance (E) signals don't show confirmation badges
-  if (signalType === 'J' || signalType === 'D' || signalType === 'E') return '';
+  if (signalType === 'J' || signalType === 'D' || signalType === 'E' || signalType === 'F') return '';
   var cls = 'badge-gray';
   if (level === 'Confirmed Deployment') cls = 'badge-green';
   else if (level === 'Pilot') cls = 'badge-blue';
