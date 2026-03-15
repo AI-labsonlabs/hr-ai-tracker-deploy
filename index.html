@@ -2847,6 +2847,28 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
               </div>
             </div>
 
+            <!-- Time Decay -->
+            <div class="profile-card">
+              <div class="profile-card-title">Time Decay</div>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Signals lose relevance over time using exponential decay with a 180-day half-life. A signal from 6 months ago contributes half the weight of an identical signal from today. This ensures the tracker reflects current adoption posture rather than historical activity.</p>
+            </div>
+
+            <!-- Adoption Pattern -->
+            <div class="profile-card">
+              <div class="profile-card-title">Adoption Pattern Classification</div>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Classified based on where signal weight concentrates:</p>
+              <div style="font-size:var(--text-xs);line-height:1.8;">
+                <div style="display:grid;grid-template-columns:100px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
+                  <div><strong style="color:#6366f1;">Governance</strong></div><div>Governance &amp; AI oversight signals</div>
+                  <div><strong style="color:#059669;">Tool</strong></div><div>Deployments + pilots</div>
+                  <div><strong style="color:#d97706;">Talent</strong></div><div>HR AI leadership hires + upskilling</div>
+                  <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>AI/ML engineer &amp; data scientist hiring &mdash; separated from Talent to prevent distortion (~48% of all signals)</div>
+                  <div><strong style="color:#9ca3af;">PR</strong></div><div>PR-only mentions</div>
+                </div>
+                <div style="margin-top:var(--space-2);">If PR exceeds 50% of total weight &rarr; &ldquo;PR-led&rdquo;. Otherwise, the highest category wins. If two categories are within 10% of each other, both are listed (e.g., &ldquo;Governance &amp; Tool-led&rdquo;).</div>
+              </div>
+            </div>
+
           </div>
 
           <!-- RIGHT COLUMN -->
@@ -2902,28 +2924,6 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
                   tanh smoothly maps raw values to &minus;10 &hellip; +10, compressing extreme values. In practice, scores rarely exceed &plusmn;8 because tanh flattens as it approaches its limits.
                 </div>
               </div>
-            </div>
-
-            <!-- Adoption Pattern -->
-            <div class="profile-card">
-              <div class="profile-card-title">Adoption Pattern Classification</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Classified based on where signal weight concentrates:</p>
-              <div style="font-size:var(--text-xs);line-height:1.8;">
-                <div style="display:grid;grid-template-columns:100px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
-                  <div><strong style="color:#6366f1;">Governance</strong></div><div>Governance &amp; AI oversight signals</div>
-                  <div><strong style="color:#059669;">Tool</strong></div><div>Deployments + pilots</div>
-                  <div><strong style="color:#d97706;">Talent</strong></div><div>HR AI leadership hires + upskilling</div>
-                  <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>AI/ML engineer &amp; data scientist hiring &mdash; separated from Talent to prevent distortion (~48% of all signals)</div>
-                  <div><strong style="color:#9ca3af;">PR</strong></div><div>PR-only mentions</div>
-                </div>
-                <div style="margin-top:var(--space-2);">If PR exceeds 50% of total weight &rarr; &ldquo;PR-led&rdquo;. Otherwise, the highest category wins. If two categories are within 10% of each other, both are listed (e.g., &ldquo;Governance &amp; Tool-led&rdquo;).</div>
-              </div>
-            </div>
-
-            <!-- Time Decay -->
-            <div class="profile-card">
-              <div class="profile-card-title">Time Decay</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Signals lose relevance over time using exponential decay with a 180-day half-life. A signal from 6 months ago contributes half the weight of an identical signal from today. This ensures the tracker reflects current adoption posture rather than historical activity.</p>
             </div>
 
             <!-- General Note -->
