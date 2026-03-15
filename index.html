@@ -2791,16 +2791,16 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);font-size:var(--text-xs);line-height:1.6;">
             <div>
-              <p style="margin-bottom:var(--space-2);"><strong>Signal Type</strong> and <strong>Confirmation Level</strong> are independent dimensions. Signal Type captures <em>what kind</em> of evidence was found (a deployment vs. a job post vs. a press release). Confirmation Level captures <em>how verified</em> that evidence is (confirmed vs. pilot vs. just exploring).</p>
-              <p>For example, a signal type of &ldquo;Deployment&rdquo; (base weight 10.0) means the evidence itself is about a real deployment, while the <em>confirmation level</em> &ldquo;Confirmed Deployment&rdquo; (&times;1.0) means that evidence has been verified as real. These are independent dimensions.</p>
+              <p style="margin-bottom:var(--space-2);"><strong>Signal Type</strong> captures <em>what kind</em> of evidence was found &mdash; a confirmed deployment carries far more weight than a press release mention. <strong>Source Credibility</strong> adjusts for how trustworthy the source is (an earnings call vs. a social media post). <strong>Time Decay</strong> ensures recent signals matter more than old ones.</p>
+              <p>Together, these three factors determine how much each signal contributes to a company&rsquo;s maturity score.</p>
             </div>
             <div>
-              <p style="margin-bottom:var(--space-2);"><strong>Why this matters:</strong> A vendor case study (type weight 5.0) with Confirmed Deployment verification (&times;1.0) from an earnings call (source 1.0) scores much higher than a PR mention (type weight 1.0) at Exploration level (&times;0.4) from social media (source 0.3).</p>
+              <p style="margin-bottom:var(--space-2);"><strong>Why this matters:</strong> A deployment (weight 10.0) from an earnings call (source 1.0) scores far higher than a PR mention (weight 1.0) from social media (source 0.3). The difference in evidence quality is reflected directly in the score.</p>
               <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:var(--space-2);margin-top:var(--space-2);">
                 <div style="color:var(--color-text-muted);margin-bottom:4px;">Example comparison:</div>
-                <div>Vendor case study, Confirmed: 5.0 &times; 1.0 &times; 0.85 = <strong>4.25</strong></div>
-                <div>PR mention, Exploration: 1.0 &times; 0.4 &times; 0.3 = <strong>0.12</strong></div>
-                <div style="color:var(--color-text-muted);margin-top:4px;">35&times; difference before time decay.</div>
+                <div>Deployment from earnings call: 10.0 &times; 1.0 = <strong>10.0</strong></div>
+                <div>PR mention from social media: 1.0 &times; 0.3 = <strong>0.3</strong></div>
+                <div style="color:var(--color-text-muted);margin-top:4px;">33&times; difference before time decay.</div>
               </div>
             </div>
           </div>
@@ -2819,31 +2819,15 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
               <table class="data-table" style="font-size:var(--text-xs);">
                 <thead><tr><th>Type</th><th>Weight</th><th>Example</th></tr></thead>
                 <tbody>
-                  <tr><td>Deployment</td><td class="mono">10.0</td><td>Enterprise-wide rollout of Workday AI</td></tr>
-                  <tr><td>Procurement</td><td class="mono">7.0</td><td>Purchasing Eightfold AI platform</td></tr>
+                  <tr><td>Deployment</td><td class="mono">10.0</td><td>Enterprise-wide rollout of Eightfold AI for recruiting</td></tr>
                   <tr><td>Pilot / Limited Rollout</td><td class="mono">6.0</td><td>Testing AI recruiting tool in one division</td></tr>
                   <tr><td>Governance / AI Oversight</td><td class="mono">6.0</td><td>AI ethics board covering HR</td></tr>
-                  <tr><td>HR AI Leadership Hire</td><td class="mono">5.0</td><td>Hiring VP of AI for HR</td></tr>
-                  <tr><td>Vendor Case Study</td><td class="mono">5.0</td><td>Named in vendor success story</td></tr>
-                  <tr><td>AI Upskilling for HR</td><td class="mono">4.0</td><td>Company-wide AI training for HR team</td></tr>
-                  <tr><td>Earnings / Annual Report</td><td class="mono">4.0</td><td>CEO mentions HR AI on earnings call</td></tr>
+                  <tr><td>Leadership Hire</td><td class="mono">5.0</td><td>Hiring VP of AI for HR</td></tr>
+                  <tr><td>Upskilling</td><td class="mono">4.0</td><td>Company-wide AI training for HR team</td></tr>
                   <tr><td>AI Talent Hiring</td><td class="mono">3.0</td><td>Job posts for ML engineers, data scientists</td></tr>
-                  <tr><td>PR Mention</td><td class="mono">1.0</td><td>Press release about AI strategy</td></tr>
+                  <tr><td>Announcement</td><td class="mono">1.0</td><td>Press release about AI strategy</td></tr>
                 </tbody>
               </table>
-            </div>
-
-            <!-- Confirmation Levels -->
-            <div class="profile-card">
-              <div class="profile-card-title">Confirmation Levels</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Independent of signal type &mdash; this multiplier reflects how verified the evidence is:</p>
-              <div style="display:flex;flex-direction:column;gap:var(--space-2);font-size:var(--text-xs);">
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Confirmed Deployment</strong> &mdash; &times;1.0<br><span style="color:var(--color-text-muted);">A specific AI tool or platform is verified as running in production at meaningful scale (e.g., enterprise-wide rollout, confirmed in earnings call or vendor case study).</span></div>
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Pilot</strong> &mdash; &times;0.7<br><span style="color:var(--color-text-muted);">A named tool is actively being tested in limited scope &mdash; one business unit, region, or use case &mdash; with intent to evaluate for broader rollout.</span></div>
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Preparing</strong> &mdash; &times;0.5<br><span style="color:var(--color-text-muted);">The company is building toward AI adoption through infrastructure, hiring, or vendor procurement, but no specific tool is confirmed as deployed or piloted yet. Includes roles focused on building AI for HR.</span></div>
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>Exploration</strong> &mdash; &times;0.4<br><span style="color:var(--color-text-muted);">The company has expressed interest in HR AI through public statements, conference appearances, or generic leadership hires, but no concrete tool, vendor, or timeline has been identified.</span></div>
-                <div style="padding:var(--space-2) var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-sm);line-height:1.6;"><strong>PR Mention</strong> &mdash; &times;0.15<br><span style="color:var(--color-text-muted);">AI is mentioned in press materials or blog posts without specifics about tools, timelines, or measurable outcomes. Often aspirational language without evidence of real activity.</span></div>
-              </div>
             </div>
 
             <!-- Source Credibility -->
@@ -2926,8 +2910,8 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
               <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-3);line-height:1.5;">Classified based on where signal weight concentrates:</p>
               <div style="font-size:var(--text-xs);line-height:1.8;">
                 <div style="display:grid;grid-template-columns:100px 1fr;gap:var(--space-1) var(--space-2);margin-bottom:var(--space-2);">
-                  <div><strong style="color:#6366f1;">Governance</strong></div><div>Oversight signals + 30% of earnings mentions</div>
-                  <div><strong style="color:#059669;">Tool</strong></div><div>Deployments + pilots + procurement</div>
+                  <div><strong style="color:#6366f1;">Governance</strong></div><div>Governance &amp; AI oversight signals</div>
+                  <div><strong style="color:#059669;">Tool</strong></div><div>Deployments + pilots</div>
                   <div><strong style="color:#d97706;">Talent</strong></div><div>HR AI leadership hires + upskilling</div>
                   <div><strong style="color:#0ea5e9;">AI Hiring</strong></div><div>AI/ML engineer &amp; data scientist hiring &mdash; separated from Talent to prevent distortion (~48% of all signals)</div>
                   <div><strong style="color:#9ca3af;">PR</strong></div><div>PR-only mentions</div>
