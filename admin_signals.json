@@ -71,5 +71,23 @@
     "source_urls": [
       "https://www.dol.gov/newsroom/releases/eta/eta20260213"
     ]
+  },
+  {
+    "company_name": "Vanguard",
+    "date_event": "2025-10-15",
+    "signal_type": "F",
+    "HR_domain": "Talent Development",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "edited",
+    "summary": "Vanguard hosted an Innovation With Impact webinar focused on building an AI-ready workforce, fostering AI literacy, and training teams within an ethical framework to promote responsible AI adoption across the organization.",
+    "source_urls": [
+      "https://innovationatvanguard.events.vanguard.com"
+    ],
+    "_edited": "2026-03-15T17:56:32.182Z",
+    "_original": {
+      "company": "Vanguard",
+      "date": "2025-10-15",
+      "summary_start": "Vanguard hosted an Innovation With Impact webinar focused on"
+    }
   }
 ]
