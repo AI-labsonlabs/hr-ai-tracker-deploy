@@ -3470,8 +3470,8 @@ function fmtMomentum(v) { return v > 0 ? '+' + fmt(v) : fmt(v); }
 function patternBadge(p) { return '<span class="badge badge-blue">' + (p || '—') + '</span>'; }
 function confirmBadge(level, signalType) {
   if (!level) return '';
-  // AI Hiring signals (J, D) don't show confirmation badges
-  if (signalType === 'J' || signalType === 'D') return '';
+  // AI Hiring (J), Leadership Hire (D), and Governance (E) signals don't show confirmation badges
+  if (signalType === 'J' || signalType === 'D' || signalType === 'E') return '';
   var cls = 'badge-gray';
   if (level === 'Confirmed Deployment') cls = 'badge-green';
   else if (level === 'Pilot') cls = 'badge-blue';
@@ -3662,7 +3662,7 @@ function openProfile(companyName) {
   // Domain bars (clickable to filter signals)
   let domainBarsHTML = '';
   for (const d of allDomains) {
-    const val = domains[d] || 0;
+    const val = domainVal(domains, d);
     var tip = DOMAIN_TOOLTIPS[d] || '';
     domainBarsHTML += '<div class="bar-row bar-row-clickable profile-domain-bar" data-domain="' + d + '" title="' + tip.replace(/"/g, '&quot;') + '"><div class="bar-label">' + d + '</div><div class="bar-track"><div class="bar-fill" style="width:' + val + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(val, 0) + '</div></div>';
   }
@@ -3806,7 +3806,7 @@ function openProfile(companyName) {
       this.classList.add('bar-row-active');
       var visibleCount = 0;
       signalItems.forEach(function(el) {
-        if (el.getAttribute('data-domain') === domain) { el.style.display = ''; visibleCount++; }
+        if (domainMatches(el.getAttribute('data-domain'), domain)) { el.style.display = ''; visibleCount++; }
         else { el.style.display = 'none'; }
       });
       filterLabel.textContent = 'Showing: ' + domain + ' \u00d7';
@@ -4423,6 +4423,27 @@ function kpiCard(label, value, sub, extraClass) {
   return '<div class="kpi-card' + (extraClass ? ' ' + extraClass : '') + '"><div class="kpi-label">' + label + '</div><div class="kpi-value">' + value + '</div><div class="kpi-sub">' + (sub || '') + '</div></div>';
 }
 
+// Map display labels to scoring engine keys (they differ for some domains)
+const DOMAIN_DATA_KEY = {
+  'L&D': 'Talent Development',
+  'HR Ops': 'People Analytics'
+};
+// Reverse: map data keys back to display labels
+const DOMAIN_DISPLAY_LABEL = {
+  'Talent Development': 'L&D',
+  'People Analytics': 'HR Ops'
+};
+function domainVal(scores, displayLabel) {
+  var key = DOMAIN_DATA_KEY[displayLabel] || displayLabel;
+  return scores[key] || scores[displayLabel] || 0;
+}
+// Check if a signal's HR_domain matches a display label (handles alias)
+function domainMatches(signalDomain, displayLabel) {
+  if (signalDomain === displayLabel) return true;
+  var dataKey = DOMAIN_DATA_KEY[displayLabel];
+  return dataKey ? signalDomain === dataKey : false;
+}
+
 const DOMAIN_TOOLTIPS = {
   'Recruiting': 'Signals related to AI in talent acquisition: AI resume screening, chatbot interviews, automated candidate matching, programmatic job advertising, and predictive hiring tools.',
   'L&D': 'Signals for AI in Learning & Development: personalized learning paths, AI content curation, skills gap analysis, adaptive training platforms, and intelligent coaching tools.',
@@ -4650,7 +4671,7 @@ var heatmapData = Object.entries(D.heatmap)
   .filter(function(e) { return e[1].maturity > 3; })
   .map(function(e) {
     var name = e[0], data = e[1];
-    var total = HEAT_DOMAINS.reduce(function(s, d) { return s + (data.domains[d] || 0); }, 0);
+    var total = HEAT_DOMAINS.reduce(function(s, d) { return s + domainVal(data.domains, d); }, 0);
     return { name: name, industry: data.industry, sub_industry: data.sub_industry, domains: data.domains, maturity: data.maturity, total: total };
   });
 
@@ -4669,7 +4690,7 @@ HEAT_COLS.push({ key: 'total', label: 'Total', type: 'sort-only',
 // Add domain sort keys to heatmap data
 heatmapData.forEach(function(entry) {
   HEAT_DOMAINS.forEach(function(d) {
-    entry['d_' + d.replace(/[^a-zA-Z]/g,'')] = entry.domains[d] || 0;
+    entry['d_' + d.replace(/[^a-zA-Z]/g,'')] = domainVal(entry.domains, d);
   });
 });
 
@@ -4702,7 +4723,7 @@ function renderHeatmap() {
       '<td style="font-size:var(--text-xs);">' + entry.industry + '</td>' +
       '<td style="font-size:var(--text-xs);text-transform:capitalize;">' + (entry.sub_industry || '\u2014') + '</td>' +
       HEAT_DOMAINS.map(function(d) {
-        var v = entry.domains[d] || 0;
+        var v = domainVal(entry.domains, d);
         return '<td class="domain-cell" style="' + domainHeatColor(v) + '">' + (v > 0 ? fmt(v, 0) : '') + '</td>';
       }).join('') +
       '<td class="mono" style="font-weight:600;">' + fmt(entry.total, 0) + '</td></tr>';
@@ -5011,7 +5032,7 @@ function buildCompanyProfileHTML(companyName, side) {
   html += '<h4 style="margin:0 0 var(--space-2) 0;font-size:var(--text-sm);font-weight:600;">Domain Scores <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(click to filter signals)</span></h4>';
   var domains = ['Recruiting', 'L&D', 'HR Ops', 'Comp/Benefits', 'HR Service Delivery', 'Governance', 'AI Hiring'];
   domains.forEach(function(d) {
-    var score = ds[d] || 0;
+    var score = domainVal(ds, d);
     var tip = DOMAIN_TOOLTIPS[d] || '';
     html += '<div class="cmp-domain-bar" data-domain="' + d + '" data-panel="' + uid + '" style="display:flex;align-items:center;gap:8px;padding:4px 6px;margin:1px 0;border-radius:var(--radius-sm);cursor:pointer;transition:background 0.15s;" title="' + tip.replace(/"/g, '&quot;') + '">';
     html += '<span style="font-size:var(--text-xs);min-width:100px;flex-shrink:0;text-align:right;">' + d + '</span>';
@@ -5193,7 +5214,7 @@ function initDomainFiltering(uid) {
         activeDomain = domain;
         bars.forEach(function(b) { b.classList.toggle('active', b.dataset.domain === domain); });
         container.querySelectorAll('.cmp-signal-item').forEach(function(s) {
-          s.classList.toggle('hidden', s.dataset.domain !== domain);
+          s.classList.toggle('hidden', !domainMatches(s.dataset.domain, domain));
         });
         if (filterLabel) {
           filterLabel.style.display = 'inline';
