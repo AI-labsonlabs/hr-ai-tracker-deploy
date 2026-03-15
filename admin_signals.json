@@ -11,5 +11,65 @@
       "https://www.youtube.com/watch?v=jl2oxhluERQ"
     ],
     "date_found": "2026-03-13"
+  },
+  {
+    "company_name": "Walmart",
+    "date_event": "2026-03-09",
+    "signal_type": "F",
+    "HR_domain": "Talent Development",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "news article",
+    "summary": "Walmart CPO Donna Morris described a nearly $1B AI upskilling initiative and partnership with Google to offer the Google AI Professional Certificate to associates, positioning it as role-agnostic AI enablement.",
+    "source_urls": [
+      "https://aimagazine.com/news/donna-morris-the-us-must-prioritise-ai-upskilling"
+    ]
+  },
+  {
+    "company_name": "Kroger",
+    "date_event": "2026-03-10",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "news article",
+    "summary": "Kroger deploying AI tools for frontline store-level associates, part of broader grocery industry push to use AI for workforce management at store level.",
+    "source_urls": [
+      "https://www.grocerydive.com/news/grocery-ai-frontline-workers-store-level-associates-technology-retail-media/813196/"
+    ]
+  },
+  {
+    "company_name": "SAP",
+    "date_event": "2026-03-11",
+    "signal_type": "I",
+    "HR_domain": "Recruiting",
+    "confirmation_level": "PR Mention",
+    "source_type": "press release",
+    "summary": "SAP announced SmartRecruiters for SAP SuccessFactors, providing AI-driven hiring capabilities connected to their HCM platform.",
+    "source_urls": [
+      "https://news.sap.com/2026/03/smartrecruiters-for-sap-successfactors-ai-driven-hiring-connected-hcm/"
+    ]
+  },
+  {
+    "company_name": "Phenom",
+    "date_event": "2026-03-12",
+    "signal_type": "I",
+    "HR_domain": "Recruiting",
+    "confirmation_level": "PR Mention",
+    "source_type": "press release",
+    "summary": "Phenom announced iAMPhenom Agent AI automation capabilities, expanding their AI-driven recruiting and talent management platform.",
+    "source_urls": [
+      "https://www.phenom.com/press-release/iamphenom-agent-ai-automation"
+    ]
+  },
+  {
+    "company_name": "US Department of Labor",
+    "date_event": "2026-02-13",
+    "signal_type": "E",
+    "HR_domain": "Talent Development",
+    "confirmation_level": "PR Mention",
+    "source_type": "government announcement",
+    "summary": "US Department of Labor released guidance on AI workforce development, signaling federal policy direction on AI upskilling.",
+    "source_urls": [
+      "https://www.dol.gov/newsroom/releases/eta/eta20260213"
+    ]
   }
 ]
