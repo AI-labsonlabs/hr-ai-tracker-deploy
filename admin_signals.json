@@ -119,5 +119,23 @@
       "date": "2026-03-06",
       "summary_start": "In Q4 2025 earnings call, Gap Inc. outlined its AI strategy "
     }
+  },
+  {
+    "company_name": "Cigna",
+    "date_event": "2026-03-05",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "confirmation_level": "PR Mention",
+    "source_type": "edited",
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affected—signaling AI-enabled automation of HR and back-office functions.",
+    "source_urls": [
+      "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
+    ],
+    "_edited": "2026-03-16T19:17:16.410Z",
+    "_original": {
+      "company": "Cigna",
+      "date": "2026-03-05",
+      "summary_start": "Forbes reported that Cigna is reducing its workforce by appr"
+    }
   }
 ]
