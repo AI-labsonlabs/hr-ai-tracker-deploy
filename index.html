@@ -2753,10 +2753,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
             <label>HR Domain</label>
             <div class="sig-multiselect" id="sigMultiDomain" data-filter="HR_domain"></div>
           </div>
-          <div class="signals-filter-group">
-            <label>Confirmation</label>
-            <div class="sig-multiselect" id="sigMultiConfirm" data-filter="confirmation_level"></div>
-          </div>
+
 
         </div>
         <div class="signals-filter-actions">
@@ -3051,17 +3048,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
                   <option value="AI Hiring">AI Hiring</option>
                 </select>
               </div>
-              <div class="admin-form-field">
-                <label>Confirmation Level</label>
-                <select id="afConfirmLevel">
-                  <option value="">-- Select --</option>
-                  <option value="Confirmed Deployment">Confirmed Deployment</option>
-                  <option value="Pilot">Pilot</option>
-                  <option value="Preparing">Preparing</option>
-                  <option value="Exploration">Exploration</option>
-                  <option value="PR Mention">PR Mention</option>
-                </select>
-              </div>
+
               <div class="admin-form-field">
                 <label>Source Type</label>
                 <select id="afSourceType">
@@ -3176,7 +3163,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
       </label>
       <label class="flag-modal-option" onclick="selectFlagReason(this, 'wrong_categorization')">
         <input type="radio" name="flag_reason" value="wrong_categorization">
-        <span>A categorization is wrong (type, domain, or confirmation level)</span>
+        <span>A categorization is wrong (type or domain)</span>
       </label>
       <label class="flag-modal-option" onclick="selectFlagReason(this, 'wrong_company')">
         <input type="radio" name="flag_reason" value="wrong_company">
@@ -3238,16 +3225,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
           <option value="AI Hiring">AI Hiring</option>
         </select>
       </div>
-      <div class="se-field">
-        <label>Confirmation Level</label>
-        <select id="seConfirm">
-          <option value="Confirmed Deployment">Confirmed Deployment</option>
-          <option value="Pilot">Pilot</option>
-          <option value="Preparing">Preparing</option>
-          <option value="Exploration">Exploration</option>
-          <option value="PR Mention">PR Mention</option>
-        </select>
-      </div>
+
     </div>
     <div class="se-field">
       <label>Summary</label>
@@ -3452,18 +3430,7 @@ function momentumClass(v) { return v > 0 ? 'momentum-pos' : v < 0 ? 'momentum-ne
 function fmt(v, d) { return (typeof v === 'number') ? v.toFixed(d === undefined ? 1 : d) : v || '—'; }
 function fmtMomentum(v) { return v > 0 ? '+' + fmt(v) : fmt(v); }
 function patternBadge(p) { return '<span class="badge badge-blue">' + (p || '—') + '</span>'; }
-function confirmBadge(level, signalType) {
-  if (!level) return '';
-  // AI Hiring (J), Leadership Hire (D), and Governance (E) signals don't show confirmation badges
-  if (signalType === 'J' || signalType === 'D' || signalType === 'E' || signalType === 'F') return '';
-  var cls = 'badge-gray';
-  if (level === 'Confirmed Deployment') cls = 'badge-green';
-  else if (level === 'Pilot') cls = 'badge-blue';
-  else if (level === 'Preparing') cls = 'badge-teal';
-  else if (level === 'Exploration') cls = 'badge-yellow';
-  else if (level === 'PR Mention') cls = 'badge-gray';
-  return '<span class="badge ' + cls + '">' + level + '</span>';
-}
+function confirmBadge() { return ''; }
 function signalTypeBadge(type) {
   var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',E:'Governance',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'PR Mention',J:'AI Talent Hiring'};
   return labels[type] || type || '';
@@ -3671,10 +3638,9 @@ function openProfile(companyName) {
       signalsHTML += '<div class="signal-item profile-signal-item" data-domain="' + (s.HR_domain || '') + '">' +
         '<div class="signal-meta"><span>' + (s.date_event || s.date_found || '') + '</span>' +
         (s.HR_domain ? '<span class="badge badge-blue">' + s.HR_domain + '</span>' : '') +
-        confirmBadge(s.confirmation_level || '', s.signal_type) +
         (s.signal_type === 'J' ? '<span class="badge badge-teal">AI Talent</span>' : '') +
         flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
-        adminEditBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.confirmation_level||'', s.source_urls||[]) +
+        adminEditBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_urls||[]) +
         '</div>' +
         '<div class="signal-summary">' + (s.summary || '') + '</div>' +
         sourcesHTML + '</div>';
@@ -5067,10 +5033,9 @@ function buildCompanyProfileHTML(companyName, side) {
       html += '<div style="display:flex;gap:var(--space-2);flex-wrap:wrap;align-items:center;margin-bottom:2px;">';
       html += '<span style="color:var(--color-text-muted);">' + (s.date_event || s.date_found || '') + '</span>';
       if (s.HR_domain) html += '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>';
-      html += confirmBadge(s.confirmation_level || '', s.signal_type);
       if (s.signal_type === 'J') html += '<span class="badge badge-teal" style="font-size:10px;">AI Talent</span>';
       html += flagBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'');
-      html += adminEditBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.confirmation_level||'', s.source_urls||[]);
+      html += adminEditBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_urls||[]);
       html += '</div>';
       html += '<div style="line-height:1.4;">' + (s.summary || '') + '</div>';
       html += sourcesHTML + '</div>';
@@ -5249,7 +5214,6 @@ window.initSignalsExplorer = function() {
         date: s.date_event || s.date_found || '',
         signal_type: s.signal_type || '',
         HR_domain: s.HR_domain || '',
-        confirmation_level: s.confirmation_level || '',
         summary: s.summary || '',
         source_urls: s.source_urls || []
       });
@@ -5270,8 +5234,7 @@ window.initSignalsExplorer = function() {
 var sigMultiFilters = {
   industry: new Set(),
   signal_type: new Set(),
-  HR_domain: new Set(),
-  confirmation_level: new Set()
+  HR_domain: new Set()
 };
 
 var SIG_LABELS = {
@@ -5365,21 +5328,18 @@ function populateSignalsFilters() {
   var companies = new Set();
   var types = new Set();
   var domains = new Set();
-  var confirms = new Set();
   
   sigAllSignals.forEach(function(s) {
     if (s.industry) industries.add(s.industry);
     if (s.company_name) companies.add(s.company_name);
     if (s.signal_type) types.add(s.signal_type);
     if (s.HR_domain) domains.add(s.HR_domain);
-    if (s.confirmation_level) confirms.add(s.confirmation_level);
   });
   
   // Build multi-selects
   buildSigMultiselect('sigMultiIndustry', Array.from(industries).sort(), function(v) { return v; }, 'industry');
   buildSigMultiselect('sigMultiType', Array.from(types).sort(), function(v) { return SIG_LABELS[v] || v; }, 'signal_type');
   buildSigMultiselect('sigMultiDomain', Array.from(domains).sort(), function(v) { return v; }, 'HR_domain');
-  buildSigMultiselect('sigMultiConfirm', Array.from(confirms).sort(), function(v) { return v; }, 'confirmation_level');
   
   // Company stays as single select
   fillSelect('sigFilterCompany', Array.from(companies).sort(), function(v) { return v; });
@@ -5408,7 +5368,6 @@ function getFilteredSignals() {
     if (filterCompany && s.company_name !== filterCompany) return false;
     if (sigMultiFilters.signal_type.size > 0 && !sigMultiFilters.signal_type.has(s.signal_type)) return false;
     if (sigMultiFilters.HR_domain.size > 0 && !sigMultiFilters.HR_domain.has(s.HR_domain)) return false;
-    if (sigMultiFilters.confirmation_level.size > 0 && !sigMultiFilters.confirmation_level.has(s.confirmation_level)) return false;
     return true;
   });
 }
@@ -5497,9 +5456,8 @@ function renderSignalCards(signals) {
       '<div class="signal-feed-card-header">' +
       '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>' +
       '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' +
-      confirmBadge(s.confirmation_level, s.signal_type) +
       flagBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain) +
-      adminEditBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain, s.confirmation_level, s.source_urls) +
+      adminEditBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain, s.source_urls) +
       '</div>' +
       '<div class="signal-feed-summary">' + s.summary + '</div>' +
       sourcesHTML +
@@ -5513,7 +5471,7 @@ window.clearSignalsFilters = function() {
   sigMultiFilters.industry.clear();
   sigMultiFilters.signal_type.clear();
   sigMultiFilters.HR_domain.clear();
-  sigMultiFilters.confirmation_level.clear();
+
   // Reset single selects
   document.getElementById('sigFilterCompany').value = '';
   // Re-populate to reset UI
@@ -5628,7 +5586,7 @@ function initAdmin() {
   // ---- Table state ----
   var tState = {
     sort: { col: 'date', dir: -1 },
-    filters: { company_name: new Set(), signal_type: new Set(), HR_domain: new Set(), confirmation_level: new Set() },
+    filters: { company_name: new Set(), signal_type: new Set(), HR_domain: new Set() },
     search: '',
     editIdx: null,  // index in allSignals being edited
     page: 0,
@@ -5806,7 +5764,6 @@ function initAdmin() {
       date_event:         document.getElementById('afDateEvent').value || '',
       signal_type:        document.getElementById('afSignalType').value || '',
       HR_domain:          document.getElementById('afHRDomain').value || '',
-      confirmation_level: document.getElementById('afConfirmLevel').value || '',
       source_type:        document.getElementById('afSourceType').value || '',
       summary:            (document.getElementById('afSummary').value || '').trim(),
       source_urls:        (document.getElementById('afSourceURLs').value || '').split('\n').map(function(u){ return u.trim(); }).filter(Boolean),
@@ -5818,7 +5775,7 @@ function initAdmin() {
     ['afCompany','afCompanySearch','afDateEvent','afSummary','afSourceURLs'].forEach(function(id) {
       var el = document.getElementById(id); if (el) el.value = '';
     });
-    ['afSignalType','afHRDomain','afConfirmLevel','afSourceType'].forEach(function(id) {
+    ['afSignalType','afHRDomain','afSourceType'].forEach(function(id) {
       var el = document.getElementById(id); if (el) el.value = '';
     });
 
@@ -5927,7 +5884,6 @@ function initAdmin() {
       { key: 'date',                label: 'Date',         sortable: true, filterable: false },
       { key: 'signal_type',         label: 'Type',         sortable: true, filterable: true  },
       { key: 'HR_domain',           label: 'Domain',       sortable: true, filterable: true  },
-      { key: 'confirmation_level',  label: 'Confirmation', sortable: true, filterable: true  },
       { key: 'summary',             label: 'Summary',      sortable: false,filterable: false },
       { key: '_actions',            label: 'Actions',      sortable: false,filterable: false }
     ];
@@ -6116,7 +6072,7 @@ function initAdmin() {
           (s.signal_type||'').toLowerCase().indexOf(q) >= 0 ||
           (SIG_LABELS[s.signal_type]||'').toLowerCase().indexOf(q) >= 0 ||
           (s.HR_domain||'').toLowerCase().indexOf(q) >= 0 ||
-          (s.confirmation_level||'').toLowerCase().indexOf(q) >= 0 ||
+
           (s.summary||'').toLowerCase().indexOf(q) >= 0 ||
           (s.source_type||'').toLowerCase().indexOf(q) >= 0
         );
@@ -6124,7 +6080,7 @@ function initAdmin() {
     }
 
     // Filters
-    ['company_name','signal_type','HR_domain','confirmation_level'].forEach(function(k) {
+    ['company_name','signal_type','HR_domain'].forEach(function(k) {
       if (tState.filters[k] && tState.filters[k].size > 0) {
         rows = rows.filter(function(s) { return tState.filters[k].has(s[k] || ''); });
       }
@@ -6197,7 +6153,7 @@ function initAdmin() {
     if (allRows.length === 0) {
       var emptyTr = document.createElement('tr');
       var emptyTd = document.createElement('td');
-      emptyTd.colSpan = 7;
+      emptyTd.colSpan = 6;
       emptyTd.style.cssText = 'text-align:center;padding:24px;color:var(--color-text-muted);';
       emptyTd.textContent = 'No signals match your filters.';
       emptyTr.appendChild(emptyTd); tbody.appendChild(emptyTr); return;
@@ -6239,13 +6195,6 @@ function initAdmin() {
         }).join('');
         tdDo.innerHTML = '<select class="ae-domain"><option value="">--</option>'+domOpts+'</select>';
         tr.appendChild(tdDo);
-        // Confirmation
-        var tdCf = document.createElement('td');
-        var cfOpts = ['Confirmed Deployment','Pilot','Preparing','Exploration','PR Mention'].map(function(c) {
-          return '<option value="'+c+'"'+(sig.confirmation_level===c?' selected':'')+'>'+c+'</option>';
-        }).join('');
-        tdCf.innerHTML = '<select class="ae-confirm"><option value="">--</option>'+cfOpts+'</select>';
-        tr.appendChild(tdCf);
         // Summary
         var tdSu = document.createElement('td');
         tdSu.innerHTML = '<textarea class="ae-summary" rows="2" style="min-width:160px;">'+esc(sig.summary||'')+'</textarea>';
@@ -6264,7 +6213,6 @@ function initAdmin() {
           else s.date_found = newDate;
           s.signal_type        = tr.querySelector('.ae-type').value;
           s.HR_domain          = tr.querySelector('.ae-domain').value;
-          s.confirmation_level = tr.querySelector('.ae-confirm').value;
           s.summary            = tr.querySelector('.ae-summary').value.trim();
           tState.editIdx = null;
           renderAdminTable();
@@ -6305,10 +6253,6 @@ function initAdmin() {
         var tdDo = document.createElement('td');
         tdDo.textContent = sig.HR_domain || '—';
         tr.appendChild(tdDo);
-
-        var tdCf = document.createElement('td');
-        tdCf.textContent = sig.confirmation_level || '—';
-        tr.appendChild(tdCf);
 
         var tdSu = document.createElement('td');
         tdSu.className = 'admin-summary-cell';
@@ -6393,7 +6337,7 @@ function initAdmin() {
 
   var FLAG_REASON_LABELS = {
     irrelevant: 'Signal is irrelevant / should be deleted',
-    wrong_categorization: 'Wrong categorization (type, domain, or confirmation)',
+    wrong_categorization: 'Wrong categorization (type or domain)',
     wrong_company: 'Wrong company attribution'
   };
 
@@ -6496,9 +6440,9 @@ function flagBtnHTML(company, summary, date, type, domain) {
   return '<button class="flag-btn" data-fc="' + c + '" data-fs="' + s + '" data-fd="' + d + '" data-ft="' + t + '" data-fdm="' + dm + '" onclick="event.stopPropagation();openFlagFromBtn(this)" title="Flag this signal for review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Flag</button>';
 }
 
-function adminEditBtnHTML(company, summary, date, type, domain, confirmLevel, sourceUrls) {
-  var c = esc(company||''), s = esc((summary||'').replace(/"/g, '&quot;')), d = esc(date||''), t = esc(type||''), dm = esc(domain||''), cf = esc(confirmLevel||''), urls = esc((sourceUrls||[]).join('|'));
-  return '<button class="admin-edit-signal-btn" data-ec="' + c + '" data-es="' + s + '" data-ed="' + d + '" data-et="' + t + '" data-edm="' + dm + '" data-ecf="' + cf + '" data-eurls="' + urls + '" onclick="event.stopPropagation();openSignalEdit(this)" title="Edit signal (admin)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>Edit</button>';
+function adminEditBtnHTML(company, summary, date, type, domain, sourceUrls) {
+  var c = esc(company||''), s = esc((summary||'').replace(/"/g, '&quot;')), d = esc(date||''), t = esc(type||''), dm = esc(domain||''), urls = esc(((sourceUrls||[]).join ? (sourceUrls||[]) : []).join('|'));
+  return '<button class="admin-edit-signal-btn" data-ec="' + c + '" data-es="' + s + '" data-ed="' + d + '" data-et="' + t + '" data-edm="' + dm + '" data-eurls="' + urls + '" onclick="event.stopPropagation();openSignalEdit(this)" title="Edit signal (admin)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>Edit</button>';
 }
 
 window.openFlagFromBtn = function(btn) {
@@ -6598,14 +6542,12 @@ window.openSignalEdit = function(btn) {
     date: btn.dataset.ed || '',
     type: btn.dataset.et || '',
     domain: btn.dataset.edm || '',
-    confirm: btn.dataset.ecf || '',
     urls: (btn.dataset.eurls || '').split('|').filter(function(u) { return u; })
   };
   document.getElementById('seCompany').value = _seOriginal.company;
   document.getElementById('seDate').value = _seOriginal.date;
   document.getElementById('seType').value = _seOriginal.type;
   document.getElementById('seDomain').value = _seOriginal.domain;
-  document.getElementById('seConfirm').value = _seOriginal.confirm;
   document.getElementById('seSummary').value = _seOriginal.summary;
   document.getElementById('seStatus').textContent = '';
   document.getElementById('seStatus').className = 'se-status';
@@ -6635,7 +6577,6 @@ window.saveSignalEdit = function() {
     date_event: document.getElementById('seDate').value,
     signal_type: document.getElementById('seType').value,
     HR_domain: document.getElementById('seDomain').value,
-    confirmation_level: document.getElementById('seConfirm').value,
     summary: document.getElementById('seSummary').value.trim(),
     source_urls: _seOriginal.urls
   };
@@ -6707,7 +6648,6 @@ function updateSignalInMemory(orig, newData) {
         s.summary = newData.summary;
         s.signal_type = newData.signal_type;
         s.HR_domain = newData.HR_domain;
-        s.confirmation_level = newData.confirmation_level;
         if (s.date_event !== undefined) s.date_event = newData.date_event;
         else s.date_found = newData.date_event;
       }
@@ -6733,7 +6673,6 @@ function updateSignalInMemory(orig, newData) {
         s.date = newData.date_event;
         s.signal_type = newData.signal_type;
         s.HR_domain = newData.HR_domain;
-        s.confirmation_level = newData.confirmation_level;
         s.summary = newData.summary;
       }
     });
@@ -6810,7 +6749,6 @@ function persistSignalEditToGitHub(orig, newData) {
             date_event: newData.date_event,
             signal_type: newData.signal_type,
             HR_domain: newData.HR_domain,
-            confirmation_level: newData.confirmation_level,
             source_type: s.source_type || 'edited',
             summary: newData.summary,
             source_urls: s.source_urls || orig.urls,
@@ -6826,7 +6764,6 @@ function persistSignalEditToGitHub(orig, newData) {
           date_event: newData.date_event,
           signal_type: newData.signal_type,
           HR_domain: newData.HR_domain,
-          confirmation_level: newData.confirmation_level,
           source_type: 'edited',
           summary: newData.summary,
           source_urls: orig.urls,
