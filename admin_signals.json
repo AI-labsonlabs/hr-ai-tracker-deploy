@@ -89,5 +89,17 @@
       "date": "2025-10-15",
       "summary_start": "Vanguard hosted an Innovation With Impact webinar focused on"
     }
+  },
+  {
+    "company_name": "Cogent Communications",
+    "date_event": "2026-03-15",
+    "signal_type": "B",
+    "HR_domain": "People Analytics",
+    "summary": "Cogent relies on a manual careers page (cogentco.com/careers) that requires applicants to email resumes directly, indicating no confirmed ATS or AI recruiting tool in place. The company does use HRIS data analytics for workforce decisions per HR Director's profile, suggesting basic HR analytics capability exists.",
+    "source_urls": [
+      "https://www.cogentco.com/en/about-cogent/careers"
+    ],
+    "_deleted": true,
+    "_deleted_at": "2026-03-16T19:16:07.651Z"
   }
 ]
