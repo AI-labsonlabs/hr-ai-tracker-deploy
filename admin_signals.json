@@ -101,5 +101,23 @@
     ],
     "_deleted": true,
     "_deleted_at": "2026-03-16T19:16:07.651Z"
+  },
+  {
+    "company_name": "Gap Inc.",
+    "date_event": "2026-03-06",
+    "signal_type": "F",
+    "HR_domain": "Talent Development",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "edited",
+    "summary": "In Q4 2025 earnings call, Gap Inc. outlined its AI strategy focused on 'enable' for enterprise-wide adoption and building AI fluency across the organization, as part of three areas: enable, optimize, and reinvent.",
+    "source_urls": [
+      "https://www.investing.com/news/transcripts/earnings-call-transcript-gap-inc-meets-q4-2025-expectations-stock-dips-93CH-4545777"
+    ],
+    "_edited": "2026-03-16T19:16:43.300Z",
+    "_original": {
+      "company": "Gap Inc.",
+      "date": "2026-03-06",
+      "summary_start": "In Q4 2025 earnings call, Gap Inc. outlined its AI strategy "
+    }
   }
 ]
