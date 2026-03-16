@@ -127,7 +127,7 @@
     "HR_domain": "HR Service Delivery",
     "confirmation_level": "PR Mention",
     "source_type": "edited",
-    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedâsignaling AI-enabled automation of HR and back-office functions.",
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedÃ¢ÂÂsignaling AI-enabled automation of HR and back-office functions.",
     "source_urls": [
       "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
     ],
@@ -155,5 +155,17 @@
       "date": "2026-03-05",
       "summary_start": "Grainger's careers site highlights that women make up 40%+ o"
     }
+  },
+  {
+    "company_name": "W.W. Grainger",
+    "date_event": "2026-03-05",
+    "signal_type": "I",
+    "HR_domain": "AI Hiring",
+    "summary": "Grainger's careers site highlights that women make up 40%+ of the US/Canadian workforce and features strong wellbeing and development offerings as part of its employee value proposition.",
+    "source_urls": [
+      "https://jobs.grainger.com/go/Information-technology/2432200/"
+    ],
+    "_deleted": true,
+    "_deleted_at": "2026-03-16T19:18:02.139Z"
   }
 ]
