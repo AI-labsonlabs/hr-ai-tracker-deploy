@@ -2851,13 +2851,13 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
                 <tbody>
                   <tr><td>Deployment</td><td class="mono">10.0</td><td>Enterprise-wide rollout of Eightfold AI for recruiting</td></tr>
                   <tr><td>Pilot / Limited Rollout</td><td class="mono">6.0</td><td>Testing AI recruiting tool in one division</td></tr>
-                  <tr><td>Governance / AI Oversight</td><td class="mono">6.0</td><td>AI ethics board covering HR</td></tr>
                   <tr><td>Leadership Hire</td><td class="mono">5.0</td><td>Hiring VP of AI for HR</td></tr>
                   <tr><td>Upskilling</td><td class="mono">4.0</td><td>Company-wide AI training for HR team</td></tr>
                   <tr><td>AI Talent Hiring</td><td class="mono">3.0</td><td>Job posts for ML engineers, data scientists</td></tr>
                   <tr><td>Announcement</td><td class="mono">1.0</td><td>Press release about AI strategy</td></tr>
                 </tbody>
               </table>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2);line-height:1.5;">Governance is scored as an HR domain, not a signal type. Signals in the Governance domain receive a 6x domain multiplier to reflect the strategic importance of AI oversight activities.</p>
             </div>
 
             <!-- Source Credibility -->
@@ -3060,11 +3060,11 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
                   <option value="B">B — Pilot</option>
                   <option value="C">C — Procurement</option>
                   <option value="D">D — Leadership Hire</option>
-                  <option value="E">E — Governance/Oversight</option>
+
                   <option value="F">F — AI Upskilling</option>
                   <option value="G">G — Vendor Case Study</option>
                   <option value="H">H — Earnings/Report</option>
-                  <option value="I">I — PR Mention</option>
+                  <option value="I">I — Announcement</option>
                   <option value="J">J — AI Talent Hiring</option>
                 </select>
               </div>
@@ -3211,7 +3211,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
     <div class="flag-success" id="flagSuccess">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       <p>Signal flagged for review</p>
-      <span>The admin will be notified and review this signal.</span>
+      <span>This flag will appear in the admin panel for review.</span>
       <div style="margin-top:var(--space-4);"><button onclick="closeFlagModal()" style="padding:6px 14px;border-radius:var(--radius-md);font-size:var(--text-xs);font-weight:600;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);">Close</button></div>
     </div>
   </div>
@@ -3236,7 +3236,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
           <option value="A">Deployment</option>
           <option value="B">Pilot</option>
           <option value="D">Leadership Hire</option>
-          <option value="E">Governance</option>
+
           <option value="F">Upskilling</option>
           <option value="I">Announcement</option>
           <option value="J">AI Talent Hiring</option>
@@ -3465,7 +3465,7 @@ function fmtMomentum(v) { return v > 0 ? '+' + fmt(v) : fmt(v); }
 function patternBadge(p) { return '<span class="badge badge-blue">' + (p || '—') + '</span>'; }
 function confirmBadge() { return ''; }
 function signalTypeBadge(type) {
-  var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',E:'Governance',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'PR Mention',J:'AI Talent Hiring'};
+  var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'Announcement',J:'AI Talent Hiring'};
   return labels[type] || type || '';
 }
 function prRatioBar(pr) {
@@ -3671,7 +3671,7 @@ function openProfile(companyName) {
       signalsHTML += '<div class="signal-item profile-signal-item" data-domain="' + (s.HR_domain || '') + '">' +
         '<div class="signal-meta"><span>' + (s.date_event || s.date_found || '') + '</span>' +
         (s.HR_domain ? '<span class="badge badge-blue">' + s.HR_domain + '</span>' : '') +
-        (function() { var _tl = ({A:'Deployment',B:'Pilot',D:'Leadership Hire',E:'Governance',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'Announcement',J:'AI Talent Hiring'})[s.signal_type]||''; if (!_tl) return ''; if (s.signal_type==='E' && s.HR_domain && s.HR_domain.toLowerCase().indexOf('governance')!==-1) return ''; return '<span class="badge badge-gray">' + _tl + '</span>'; })() +
+        (function() { var _tl = ({A:'Deployment',B:'Pilot',D:'Leadership Hire',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'Announcement',J:'AI Talent Hiring'})[s.signal_type]||''; if (!_tl) return ''; return '<span class="badge badge-gray">' + _tl + '</span>'; })() +
         flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
         adminEditBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_urls||[]) +
         '</div>' +
@@ -5066,8 +5066,8 @@ function buildCompanyProfileHTML(companyName, side) {
       html += '<div style="display:flex;gap:var(--space-2);flex-wrap:wrap;align-items:center;margin-bottom:2px;">';
       html += '<span style="color:var(--color-text-muted);">' + (s.date_event || s.date_found || '') + '</span>';
       if (s.HR_domain) html += '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>';
-      var _peerTypeLabel = ({A:'Deployment',B:'Pilot',D:'Leadership Hire',E:'Governance',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'Announcement',J:'AI Talent Hiring'})[s.signal_type]||'';
-      if (_peerTypeLabel && !(s.signal_type==='E' && s.HR_domain && s.HR_domain.toLowerCase().indexOf('governance')!==-1)) html += '<span class="badge badge-gray" style="font-size:10px;">' + _peerTypeLabel + '</span>';
+      var _peerTypeLabel = ({A:'Deployment',B:'Pilot',D:'Leadership Hire',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'Announcement',J:'AI Talent Hiring'})[s.signal_type]||'';
+      if (_peerTypeLabel) html += '<span class="badge badge-gray" style="font-size:10px;">' + _peerTypeLabel + '</span>';
       html += flagBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'');
       html += adminEditBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_urls||[]);
       html += '</div>';
@@ -5275,8 +5275,8 @@ var sigMultiFilters = {
 
 var SIG_LABELS = {
   A:'Deployment', B:'Pilot', C:'Procurement',
-  D:'Leadership Hire', E:'Governance', F:'Upskilling',
-  G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
+  D:'Leadership Hire', F:'Upskilling',
+  G:'Vendor Case Study', H:'Earnings/Report', I:'Announcement', J:'AI Talent Hiring'
 };
 
 function buildSigMultiselect(containerId, values, labelFn, filterKey) {
@@ -5510,8 +5510,8 @@ window.loadMoreSignals = function() {
 function renderSignalCards(signals) {
   var SIG_LABELS = {
     A:'Deployment', B:'Pilot', C:'Procurement',
-    D:'Leadership Hire', E:'Governance', F:'Upskilling',
-    G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
+    D:'Leadership Hire', F:'Upskilling',
+    G:'Vendor Case Study', H:'Earnings/Report', I:'Announcement', J:'AI Talent Hiring'
   };
   var linkIcon = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
   
@@ -5542,7 +5542,7 @@ function renderSignalCards(signals) {
       '</div>' +
       '<div class="signal-feed-card-header">' +
       '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>' +
-      ((s.signal_type === 'E' && s.HR_domain && s.HR_domain.toLowerCase().indexOf('governance') !== -1) ? '' : '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>') +
+      (typeLabel ? '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' : '') +
       flagBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain) +
       adminEditBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain, s.source_urls) +
       '</div>' +
@@ -5658,8 +5658,8 @@ function initAdmin() {
   // ---- Signal type labels ----
   var SIG_LABELS = {
     A:'Deployment', B:'Pilot', C:'Procurement',
-    D:'Leadership Hire', E:'Governance', F:'Upskilling',
-    G:'Vendor Case Study', H:'Earnings/Report', I:'PR Mention', J:'AI Talent Hiring'
+    D:'Leadership Hire', F:'Upskilling',
+    G:'Vendor Case Study', H:'Earnings/Report', I:'Announcement', J:'AI Talent Hiring'
   };
 
   // ---- Table state ----
@@ -6402,16 +6402,10 @@ function initAdmin() {
     loadFlags();
   }
 
-  // ---- Flagged Signals Management ----
+  // ---- Flagged Signals Management (localStorage) ----
   function loadFlags() {
-    fetch(FLAG_API + '/api/flags')
-      .then(function(r) { return r.json(); })
-      .then(function(flags) {
-        renderFlaggedSection(flags);
-      })
-      .catch(function(err) {
-        console.error('[flags] Failed to load:', err);
-      });
+    var flags = _getFlags();
+    renderFlaggedSection(flags);
   }
 
   var FLAG_REASON_LABELS = {
@@ -6456,13 +6450,18 @@ function initAdmin() {
       btn.addEventListener('click', function() {
         var fid = this.dataset.flagId;
         var note = prompt('Optional note (or leave blank):') || '';
-        fetch(FLAG_API + '/api/flags/' + fid + '/resolve', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ resolve_note: note })
-        })
-        .then(function() { loadFlags(); showStatus('Flag #' + fid + ' resolved.'); })
-        .catch(function(err) { alert('Failed to resolve flag.'); });
+        var flags = _getFlags();
+        for (var i = 0; i < flags.length; i++) {
+          if (flags[i].id === fid) {
+            flags[i].resolved = true;
+            flags[i].resolve_note = note;
+            flags[i].resolved_at = new Date().toISOString();
+            break;
+          }
+        }
+        _saveFlags(flags);
+        loadFlags();
+        showStatus('Flag resolved.');
       });
     });
 
@@ -6471,9 +6470,10 @@ function initAdmin() {
       btn.addEventListener('click', function() {
         var fid = this.dataset.flagId;
         if (!confirm('Delete this flag permanently?')) return;
-        fetch(FLAG_API + '/api/flags/' + fid, { method: 'DELETE' })
-        .then(function() { loadFlags(); showStatus('Flag deleted.'); })
-        .catch(function(err) { alert('Failed to delete flag.'); });
+        var flags = _getFlags().filter(function(f) { return f.id !== fid; });
+        _saveFlags(flags);
+        loadFlags();
+        showStatus('Flag deleted.');
       });
     });
   }
@@ -6508,11 +6508,17 @@ function initAdmin() {
 }
 
 // ============================================
-// SIGNAL FLAGGING SYSTEM
+// SIGNAL FLAGGING SYSTEM (localStorage-based)
 // ============================================
-var FLAG_API = '__PORT_8000__';
-var FLAG_API_AVAILABLE = FLAG_API.indexOf('PORT_8000') === -1; // true when deployed with backend proxy
 var _flagTarget = null; // { company, summary, date, type, domain }
+var FLAG_STORAGE_KEY = 'hr_ai_tracker_flags';
+
+function _getFlags() {
+  try { return JSON.parse(localStorage.getItem(FLAG_STORAGE_KEY) || '[]'); } catch(e) { return []; }
+}
+function _saveFlags(flags) {
+  localStorage.setItem(FLAG_STORAGE_KEY, JSON.stringify(flags));
+}
 
 function flagBtnHTML(company, summary, date, type, domain) {
   var c = esc(company||''), s = esc((summary||'').substring(0,200)), d = esc(date||''), t = esc(type||''), dm = esc(domain||'');
@@ -6565,42 +6571,26 @@ window.submitFlag = function() {
   var btn = document.getElementById('flagSubmitBtn');
   if (btn) { btn.disabled = true; btn.textContent = 'Submitting...'; }
 
-  // If no backend API (e.g. GitHub Pages), use mailto fallback
-  if (!FLAG_API_AVAILABLE) {
-    var subject = encodeURIComponent('HR AI Tracker Flag: ' + _flagTarget.company);
-    var body = encodeURIComponent('Signal: ' + _flagTarget.company + ' — ' + _flagTarget.summary + '\nDate: ' + _flagTarget.date + '\nType: ' + _flagTarget.type + '\nDomain: ' + _flagTarget.domain + '\nReason: ' + reason + '\nDetails: ' + (details || 'N/A'));
-    window.open('mailto:andrewmhelms@icloud.com?subject=' + subject + '&body=' + body);
-    document.getElementById('flagFormContent').style.display = 'none';
-    document.getElementById('flagSuccess').classList.add('active');
-    if (btn) { btn.disabled = false; btn.textContent = 'Submit Flag'; }
-    return;
-  }
-
-  fetch(FLAG_API + '/api/flags', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      signal_company: _flagTarget.company,
-      signal_summary: _flagTarget.summary,
-      signal_date: _flagTarget.date,
-      signal_type: _flagTarget.type,
-      signal_domain: _flagTarget.domain,
-      flag_reason: reason,
-      flag_details: details
-    })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function() {
-    document.getElementById('flagFormContent').style.display = 'none';
-    document.getElementById('flagSuccess').classList.add('active');
-  })
-  .catch(function(err) {
-    alert('Failed to submit flag. Please try again.');
-    console.error(err);
-  })
-  .finally(function() {
-    if (btn) { btn.disabled = false; btn.textContent = 'Submit Flag'; }
+  // Store flag in localStorage
+  var flags = _getFlags();
+  flags.push({
+    id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
+    signal_company: _flagTarget.company,
+    signal_summary: _flagTarget.summary,
+    signal_date: _flagTarget.date,
+    signal_type: _flagTarget.type,
+    signal_domain: _flagTarget.domain,
+    flag_reason: reason,
+    flag_details: details,
+    flagged_at: new Date().toISOString(),
+    resolved: false,
+    resolve_note: ''
   });
+  _saveFlags(flags);
+
+  document.getElementById('flagFormContent').style.display = 'none';
+  document.getElementById('flagSuccess').classList.add('active');
+  if (btn) { btn.disabled = false; btn.textContent = 'Submit Flag'; }
 };
 
 // Close modal on overlay click
