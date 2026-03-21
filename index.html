@@ -1927,13 +1927,15 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
 }
 .signals-filter-group select {
   width: 100%;
-  padding: 6px 8px;
+  min-height: 34px;
+  padding: 4px 8px;
   font-size: var(--text-sm);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-bg);
   color: var(--color-text);
   cursor: pointer;
+  box-sizing: border-box;
 }
 .signals-filter-group select:focus {
   outline: none;
@@ -2738,12 +2740,16 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
       <div class="signals-filter-bar" id="signalsFilterBar">
         <div class="signals-filter-row">
           <div class="signals-filter-group">
+            <label>Company</label>
+            <div class="sig-multiselect" id="sigMultiCompany" data-filter="company_name"></div>
+          </div>
+          <div class="signals-filter-group">
             <label>Industry</label>
             <div class="sig-multiselect" id="sigMultiIndustry" data-filter="industry"></div>
           </div>
           <div class="signals-filter-group">
-            <label>Company</label>
-            <select id="sigFilterCompany" onchange="renderSignalsFeed()"><option value="">All Companies</option></select>
+            <label>Sub-Industry</label>
+            <div class="sig-multiselect" id="sigMultiSubIndustry" data-filter="sub_industry"></div>
           </div>
           <div class="signals-filter-group">
             <label>Signal Type</label>
@@ -2753,8 +2759,6 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
             <label>HR Domain</label>
             <div class="sig-multiselect" id="sigMultiDomain" data-filter="HR_domain"></div>
           </div>
-
-
         </div>
         <div class="signals-filter-actions">
           <span id="signalsCount" style="font-size:var(--text-xs);color:var(--color-text-muted);"></span>
@@ -5232,7 +5236,9 @@ window.initSignalsExplorer = function() {
 
 // Multi-select filter state for signals page
 var sigMultiFilters = {
+  company_name: new Set(),
   industry: new Set(),
+  sub_industry: new Set(),
   signal_type: new Set(),
   HR_domain: new Set()
 };
@@ -5324,25 +5330,26 @@ document.addEventListener('click', function(e) {
 });
 
 function populateSignalsFilters() {
-  var industries = new Set();
   var companies = new Set();
+  var industries = new Set();
+  var subIndustries = new Set();
   var types = new Set();
   var domains = new Set();
   
   sigAllSignals.forEach(function(s) {
-    if (s.industry) industries.add(s.industry);
     if (s.company_name) companies.add(s.company_name);
+    if (s.industry) industries.add(s.industry);
+    if (s.sub_industry) subIndustries.add(s.sub_industry);
     if (s.signal_type) types.add(s.signal_type);
     if (s.HR_domain) domains.add(s.HR_domain);
   });
   
   // Build multi-selects
+  buildSigMultiselect('sigMultiCompany', Array.from(companies).sort(), function(v) { return v; }, 'company_name');
   buildSigMultiselect('sigMultiIndustry', Array.from(industries).sort(), function(v) { return v; }, 'industry');
+  buildSigMultiselect('sigMultiSubIndustry', Array.from(subIndustries).sort(), function(v) { return v; }, 'sub_industry');
   buildSigMultiselect('sigMultiType', Array.from(types).sort(), function(v) { return SIG_LABELS[v] || v; }, 'signal_type');
   buildSigMultiselect('sigMultiDomain', Array.from(domains).sort(), function(v) { return v; }, 'HR_domain');
-  
-  // Company stays as single select
-  fillSelect('sigFilterCompany', Array.from(companies).sort(), function(v) { return v; });
 }
 
 function fillSelect(id, values, labelFn) {
@@ -5361,11 +5368,10 @@ function fillSelect(id, values, labelFn) {
 }
 
 function getFilteredSignals() {
-  var filterCompany = document.getElementById('sigFilterCompany').value;
-  
   return sigAllSignals.filter(function(s) {
+    if (sigMultiFilters.company_name.size > 0 && !sigMultiFilters.company_name.has(s.company_name)) return false;
     if (sigMultiFilters.industry.size > 0 && !sigMultiFilters.industry.has(s.industry)) return false;
-    if (filterCompany && s.company_name !== filterCompany) return false;
+    if (sigMultiFilters.sub_industry.size > 0 && !sigMultiFilters.sub_industry.has(s.sub_industry)) return false;
     if (sigMultiFilters.signal_type.size > 0 && !sigMultiFilters.signal_type.has(s.signal_type)) return false;
     if (sigMultiFilters.HR_domain.size > 0 && !sigMultiFilters.HR_domain.has(s.HR_domain)) return false;
     return true;
@@ -5385,25 +5391,6 @@ window.renderSignalsFeed = function() {
   
   var loadMore = document.getElementById('signalsLoadMore');
   loadMore.style.display = filtered.length > sigPageSize ? '' : 'none';
-  
-  // Update company dropdown based on industry multi-filter
-  if (sigMultiFilters.industry.size > 0) {
-    var companiesInIndustry = [];
-    sigAllSignals.forEach(function(s) {
-      if (sigMultiFilters.industry.has(s.industry) && companiesInIndustry.indexOf(s.company_name) === -1) {
-        companiesInIndustry.push(s.company_name);
-      }
-    });
-    companiesInIndustry.sort();
-    fillSelect('sigFilterCompany', companiesInIndustry, function(v) { return v; });
-  } else {
-    var allCompanyNames = [];
-    sigAllSignals.forEach(function(s) {
-      if (allCompanyNames.indexOf(s.company_name) === -1) allCompanyNames.push(s.company_name);
-    });
-    allCompanyNames.sort();
-    fillSelect('sigFilterCompany', allCompanyNames, function(v) { return v; });
-  }
 };
 
 window.loadMoreSignals = function() {
@@ -5467,22 +5454,14 @@ function renderSignalCards(signals) {
 }
 
 window.clearSignalsFilters = function() {
-  // Reset multi-select filters
+  // Reset all multi-select filters
+  sigMultiFilters.company_name.clear();
   sigMultiFilters.industry.clear();
+  sigMultiFilters.sub_industry.clear();
   sigMultiFilters.signal_type.clear();
   sigMultiFilters.HR_domain.clear();
-
-  // Reset single selects
-  document.getElementById('sigFilterCompany').value = '';
   // Re-populate to reset UI
   populateSignalsFilters();
-  // Re-populate company list (no industry restriction)
-  var allCompanyNames = [];
-  sigAllSignals.forEach(function(s) {
-    if (allCompanyNames.indexOf(s.company_name) === -1) allCompanyNames.push(s.company_name);
-  });
-  allCompanyNames.sort();
-  fillSelect('sigFilterCompany', allCompanyNames, function(v) { return v; });
   renderSignalsFeed();
 };
 
