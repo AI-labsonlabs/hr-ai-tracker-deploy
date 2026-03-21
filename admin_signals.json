@@ -211,5 +211,89 @@
     "source_urls": [
       "https://www.hirevue.com/press-release/hirevue-acquires-hireguide-technology-to-accelerate-agentic-ai-hiring"
     ]
+  },
+  {
+    "company_name": "United Airlines",
+    "date_event": "2026-03-11",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "press release",
+    "summary": "United Airlines deployed Phenom's AI-powered high-volume hiring and automated scheduling across Customer Service, Ramp, and Intern positions, with full adoption across 150-200 recruiting team members. Results: 10,000 hours saved per quarter, 750% increase in interviews scheduled, 30% faster screening.",
+    "source_urls": [
+      "https://www.phenom.com/press-release/phenom-2026-hr-award-winners"
+    ]
+  },
+  {
+    "company_name": "ServiceNow",
+    "date_event": "2026-03-13",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "product release notes",
+    "summary": "ServiceNow's March 2026 HRSD Store Release introduced AI-agentic interview self-scheduling V2, generative onboarding ramp-up plan builder, Voice Agents for HRSD V3.0 with 8-language support, AI-generated offboarding knowledge transfer plan, and employee feedback agentic flows.",
+    "source_urls": [
+      "https://www.servicenow.com/community/hrsd-blog/march-2026-store-release-deep-dive-blog-hrsd/ba-p/3506473"
+    ]
+  },
+  {
+    "company_name": "Ace Hardware",
+    "date_event": "2026-01-08",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "press release",
+    "summary": "Ace Hardware deployed Workday's Paradox Conversational ATS (post-acquisition), automating up to 90% of hiring tasks from screening to onboarding via text-based AI conversation, achieving an 86% candidate conversation rate.",
+    "source_urls": [
+      "https://newsroom.workday.com/2026-01-08-Workday-Accelerates-Retail-and-Hospitality-Momentum-with-New-Customer-Wins-and-AI-Innovations-for-the-Frontline"
+    ]
+  },
+  {
+    "company_name": "PNC Financial",
+    "date_event": "2026-03-19",
+    "signal_type": "F",
+    "HR_domain": "Learning & Development",
+    "confirmation_level": "PR Mention",
+    "source_type": "news article",
+    "summary": "PNC Financial's CIO described AI workforce upskilling as a 2026 priority, equipping employees with AI tools across the organization as part of broader responsible AI adoption efforts.",
+    "source_urls": [
+      "https://biztechmagazine.com/article/2026/03/inside-banks-2026-priorities-efficiency-resilience-and-better-customer-service"
+    ]
+  },
+  {
+    "company_name": "Workday",
+    "date_event": "2026-01-08",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "press release",
+    "summary": "Workday announced that customers including 7-Eleven and Ace Hardware deployed the Workday Paradox Candidate Experience Agent and Paradox Conversational ATS, automating up to 90% of hiring tasks. Early customers reported conversion rates above 70% and time-to-hire as fast as 3.5 days.",
+    "source_urls": [
+      "https://newsroom.workday.com/2026-01-08-Workday-Accelerates-Retail-and-Hospitality-Momentum-with-New-Customer-Wins-and-AI-Innovations-for-the-Frontline"
+    ]
+  },
+  {
+    "company_name": "KeyCorp",
+    "date_event": "2026-03-19",
+    "signal_type": "F",
+    "HR_domain": "Learning & Development",
+    "confirmation_level": "PR Mention",
+    "source_type": "news article",
+    "summary": "KeyCorp's CIO described accelerated AI talent and upskilling investment as a central 2026 workforce priority.",
+    "source_urls": [
+      "https://biztechmagazine.com/article/2026/03/inside-banks-2026-priorities-efficiency-resilience-and-better-customer-service"
+    ]
+  },
+  {
+    "company_name": "U.S. Bancorp",
+    "date_event": "2026-03-19",
+    "signal_type": "F",
+    "HR_domain": "Learning & Development",
+    "confirmation_level": "PR Mention",
+    "source_type": "news article",
+    "summary": "U.S. Bancorp's CIO described ensuring the right skills for responsible AI adoption as a 2026 workforce priority.",
+    "source_urls": [
+      "https://biztechmagazine.com/article/2026/03/inside-banks-2026-priorities-efficiency-resilience-and-better-customer-service"
+    ]
   }
 ]
