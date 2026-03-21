@@ -1882,6 +1882,35 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   overflow-y: auto;
   padding: 4px 0;
 }
+/* Typeahead search input inside dropdown */
+.sig-typeahead-search {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 6px 8px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.sig-typeahead-search input {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+}
+.sig-typeahead-search input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+.sig-typeahead-search input::placeholder {
+  color: var(--color-text-muted);
+}
+.sig-multiselect-option.typeahead-hidden {
+  display: none;
+}
 .sig-multiselect-dropdown.open { display: block; }
 .sig-multiselect-option {
   display: flex;
@@ -5293,6 +5322,76 @@ function buildSigMultiselect(containerId, values, labelFn, filterKey) {
   });
 }
 
+function buildSigTypeahead(containerId, values, labelFn, filterKey) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  
+  var triggerHTML = '<div class="sig-multiselect-trigger" tabindex="0"></div>';
+  triggerHTML += '<div class="sig-multiselect-dropdown">';
+  triggerHTML += '<div class="sig-typeahead-search"><input type="text" placeholder="Type to search..." autocomplete="off"></div>';
+  values.forEach(function(v) {
+    var label = labelFn(v);
+    var checked = sigMultiFilters[filterKey].has(v) ? ' checked' : '';
+    var selectedClass = sigMultiFilters[filterKey].has(v) ? ' selected' : '';
+    triggerHTML += '<label class="sig-multiselect-option' + selectedClass + '" data-value="' + v.replace(/"/g, '&quot;').toLowerCase() + '"><input type="checkbox" value="' + v.replace(/"/g, '&quot;') + '"' + checked + '> ' + label + '</label>';
+  });
+  triggerHTML += '</div>';
+  container.innerHTML = triggerHTML;
+  
+  var trigger = container.querySelector('.sig-multiselect-trigger');
+  var dropdown = container.querySelector('.sig-multiselect-dropdown');
+  var searchInput = dropdown.querySelector('.sig-typeahead-search input');
+  
+  updateSigTriggerDisplay(trigger, filterKey, labelFn);
+  
+  // Toggle dropdown on trigger click
+  trigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    document.querySelectorAll('.sig-multiselect-dropdown.open').forEach(function(d) {
+      if (d !== dropdown) d.classList.remove('open');
+    });
+    var wasOpen = dropdown.classList.contains('open');
+    dropdown.classList.toggle('open');
+    if (!wasOpen) {
+      searchInput.value = '';
+      // Reset visibility
+      dropdown.querySelectorAll('.sig-multiselect-option').forEach(function(opt) {
+        opt.classList.remove('typeahead-hidden');
+      });
+      setTimeout(function() { searchInput.focus(); }, 50);
+    }
+  });
+  
+  // Search filtering
+  searchInput.addEventListener('input', function() {
+    var query = this.value.toLowerCase().trim();
+    dropdown.querySelectorAll('.sig-multiselect-option').forEach(function(opt) {
+      var val = opt.getAttribute('data-value') || '';
+      if (!query || val.indexOf(query) !== -1) {
+        opt.classList.remove('typeahead-hidden');
+      } else {
+        opt.classList.add('typeahead-hidden');
+      }
+    });
+  });
+  
+  // Prevent search input clicks from closing dropdown
+  searchInput.addEventListener('click', function(e) { e.stopPropagation(); });
+  
+  // Checkbox changes
+  dropdown.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+    cb.addEventListener('change', function(e) {
+      e.stopPropagation();
+      if (this.checked) { sigMultiFilters[filterKey].add(this.value); }
+      else { sigMultiFilters[filterKey].delete(this.value); }
+      this.closest('.sig-multiselect-option').classList.toggle('selected', this.checked);
+      updateSigTriggerDisplay(trigger, filterKey, labelFn);
+      renderSignalsFeed();
+    });
+    cb.addEventListener('click', function(e) { e.stopPropagation(); });
+  });
+}
+
 function updateSigTriggerDisplay(trigger, filterKey, labelFn) {
   var selected = sigMultiFilters[filterKey];
   if (selected.size === 0) {
@@ -5345,7 +5444,7 @@ function populateSignalsFilters() {
   });
   
   // Build multi-selects
-  buildSigMultiselect('sigMultiCompany', Array.from(companies).sort(), function(v) { return v; }, 'company_name');
+  buildSigTypeahead('sigMultiCompany', Array.from(companies).sort(), function(v) { return v; }, 'company_name');
   buildSigMultiselect('sigMultiIndustry', Array.from(industries).sort(), function(v) { return v; }, 'industry');
   buildSigMultiselect('sigMultiSubIndustry', Array.from(subIndustries).sort(), function(v) { return v; }, 'sub_industry');
   buildSigMultiselect('sigMultiType', Array.from(types).sort(), function(v) { return SIG_LABELS[v] || v; }, 'signal_type');
