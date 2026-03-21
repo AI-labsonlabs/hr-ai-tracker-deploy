@@ -127,7 +127,7 @@
     "HR_domain": "HR Service Delivery",
     "confirmation_level": "PR Mention",
     "source_type": "edited",
-    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedÃ¢ÂÂsignaling AI-enabled automation of HR and back-office functions.",
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affected\u00c3\u00a2\u00c2\u0080\u00c2\u0094signaling AI-enabled automation of HR and back-office functions.",
     "source_urls": [
       "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
     ],
@@ -167,5 +167,49 @@
     ],
     "_deleted": true,
     "_deleted_at": "2026-03-16T19:18:02.139Z"
+  },
+  {
+    "company_name": "Microsoft",
+    "date_event": "2026-03-16",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "news article",
+    "summary": "Microsoft expanded 'People Skills' (AI-inferred skills from Microsoft 365 activity) across more users and surfaces for workforce insights and learning/talent experiences. Skills Agent removed for new installs.",
+    "source_urls": [
+      "https://techcommunity.microsoft.com/blog/microsoft365copilotblog/people-skills-expanding-skills-intelligence-to-more-users-and-surfaces-across-mi/4497646"
+    ]
+  },
+  {
+    "company_name": "XPO Logistics",
+    "date_event": "2026-03-21",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "press release",
+    "summary": "XPO Logistics deployed an AI HR chatbot ('Andrea') for chat-based initial interview and candidate screening in recruiting.",
+    "source_urls": [
+      "https://europenews.xpo.com/en/2958/xpo-logistics-uses-ai-to-improves-candidate-experience-in-new-hr-chatbot/"
+    ]
+  },
+  {
+    "company_name": "Wilson James",
+    "date_event": "2026-03-10",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "press release",
+    "summary": "Wilson James selected Legion's AI-powered workforce management platform for workforce planning and scheduling optimization.",
+    "source_urls": [
+      "https://legion.co/company/press-releases/2026/03/10/wilson-james-selects-legion-ai-workforce-management/"
+    ]
+  },
+  {
+    "company_name": "HireVue",
+    "date_event": "2026-03-21",
+    "signal_type": "I",
+    "HR_domain": "Recruiting",
+    "source_type": "press release",
+    "summary": "HireVue announced acquisition of Hireguide technology to accelerate agentic AI hiring with a voice-based AI interviewer.",
+    "source_urls": [
+      "https://www.hirevue.com/press-release/hirevue-acquires-hireguide-technology-to-accelerate-agentic-ai-hiring"
+    ]
   }
 ]
