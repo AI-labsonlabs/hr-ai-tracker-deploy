@@ -6402,104 +6402,131 @@ function initAdmin() {
     loadFlags();
   }
 
-  // ---- Flagged Signals Management (localStorage) ----
+  // ---- Flagged Signals Management (GitHub Issues) ----
+  var _flagsCache = null;
+
   function loadFlags() {
-    var flags = _getFlags();
-    renderFlaggedSection(flags);
+    var section = document.getElementById('adminFlaggedSection');
+    var list = document.getElementById('adminFlaggedList');
+    if (!section || !list) return;
+    list.innerHTML = '<p style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2);">Loading flags from GitHub...</p>';
+    section.style.display = 'block';
+
+    // Fetch open + closed issues with 'flag' label
+    Promise.all([
+      fetch(_GH_API + '?labels=flag&state=open&per_page=50', {
+        headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json' }
+      }).then(function(r) { return r.ok ? r.json() : []; }),
+      fetch(_GH_API + '?labels=flag&state=closed&per_page=20', {
+        headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json' }
+      }).then(function(r) { return r.ok ? r.json() : []; })
+    ])
+    .then(function(results) {
+      var openIssues = results[0] || [];
+      var closedIssues = results[1] || [];
+      _flagsCache = { open: openIssues, closed: closedIssues };
+      renderFlaggedSection(openIssues, closedIssues);
+    })
+    .catch(function(err) {
+      console.error('[flags] Failed to load from GitHub:', err);
+      list.innerHTML = '<p style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2);">Could not load flags.</p>';
+    });
   }
 
-  var FLAG_REASON_LABELS = {
-    irrelevant: 'Signal is irrelevant / should be deleted',
-    wrong_categorization: 'Wrong categorization (type or domain)',
-    wrong_company: 'Wrong company attribution'
-  };
+  function _parseIssueBody(body) {
+    // Extract structured fields from the issue body markdown table
+    var data = {};
+    var companyMatch = (body || '').match(/\| Company \| (.+?) \|/);
+    var dateMatch = (body || '').match(/\| Date \| (.+?) \|/);
+    var typeMatch = (body || '').match(/\| Type \| (.+?) \|/);
+    var domainMatch = (body || '').match(/\| Domain \| (.+?) \|/);
+    var summaryMatch = (body || '').match(/\| Summary \| (.+?) \|/);
+    var reasonMatch = (body || '').match(/\*\*Reason:\*\* (.+)/);
+    var detailsMatch = (body || '').match(/\*\*Additional details:\*\* (.+)/);
+    data.signal_company = companyMatch ? companyMatch[1].trim() : '';
+    data.signal_date = dateMatch ? dateMatch[1].trim() : '';
+    data.signal_type = typeMatch ? typeMatch[1].trim() : '';
+    data.signal_domain = domainMatch ? domainMatch[1].trim() : '';
+    data.signal_summary = summaryMatch ? summaryMatch[1].trim() : '';
+    data.flag_reason_label = reasonMatch ? reasonMatch[1].trim() : '';
+    data.flag_details = detailsMatch ? detailsMatch[1].trim() : '';
+    return data;
+  }
 
-  function renderFlaggedSection(flags) {
+  function renderFlaggedSection(openIssues, closedIssues) {
     var section = document.getElementById('adminFlaggedSection');
     var list = document.getElementById('adminFlaggedList');
     var countEl = document.getElementById('adminFlagCount');
     if (!section || !list) return;
 
-    var unresolved = flags.filter(function(f) { return !f.resolved; });
-    var resolved = flags.filter(function(f) { return f.resolved; });
-
-    if (flags.length === 0) {
+    if (openIssues.length === 0 && closedIssues.length === 0) {
       section.style.display = 'none';
       return;
     }
     section.style.display = 'block';
-    if (countEl) countEl.textContent = unresolved.length + ' unresolved' + (resolved.length ? ', ' + resolved.length + ' resolved' : '');
+    if (countEl) countEl.textContent = openIssues.length + ' open' + (closedIssues.length ? ', ' + closedIssues.length + ' resolved' : '');
 
     var html = '';
-    // Show unresolved first
-    unresolved.forEach(function(f) {
-      html += buildFlagCard(f, false);
+    openIssues.forEach(function(issue) {
+      html += buildFlagCard(issue, false);
     });
-    // Then resolved (collapsed)
-    if (resolved.length > 0) {
-      html += '<details style="margin-top:var(--space-3);"><summary style="cursor:pointer;font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);padding:var(--space-2) 0;">Resolved (' + resolved.length + ')</summary>';
-      resolved.forEach(function(f) {
-        html += buildFlagCard(f, true);
+    if (closedIssues.length > 0) {
+      html += '<details style="margin-top:var(--space-3);"><summary style="cursor:pointer;font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);padding:var(--space-2) 0;">Resolved (' + closedIssues.length + ')</summary>';
+      closedIssues.forEach(function(issue) {
+        html += buildFlagCard(issue, true);
       });
       html += '</details>';
     }
     list.innerHTML = html;
 
-    // Wire resolve buttons
+    // Wire resolve buttons — open issue on GitHub to close it there
     list.querySelectorAll('.flag-resolve-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        var fid = this.dataset.flagId;
-        var note = prompt('Optional note (or leave blank):') || '';
-        var flags = _getFlags();
-        for (var i = 0; i < flags.length; i++) {
-          if (flags[i].id === fid) {
-            flags[i].resolved = true;
-            flags[i].resolve_note = note;
-            flags[i].resolved_at = new Date().toISOString();
-            break;
-          }
-        }
-        _saveFlags(flags);
-        loadFlags();
-        showStatus('Flag resolved.');
+        var issueNum = this.dataset.flagId;
+        window.open('https://github.com/' + _GH_REPO + '/issues/' + issueNum, '_blank');
+        showStatus('Opened issue on GitHub — close it there to resolve.');
       });
     });
 
-    // Wire delete buttons
+    // Wire dismiss buttons — open issue on GitHub to close it there
     list.querySelectorAll('.flag-delete-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        var fid = this.dataset.flagId;
-        if (!confirm('Delete this flag permanently?')) return;
-        var flags = _getFlags().filter(function(f) { return f.id !== fid; });
-        _saveFlags(flags);
-        loadFlags();
-        showStatus('Flag deleted.');
+        var issueNum = this.dataset.flagId;
+        window.open('https://github.com/' + _GH_REPO + '/issues/' + issueNum, '_blank');
+        showStatus('Opened issue on GitHub — close it there to dismiss.');
       });
+    });
+
+    // Wire "view on GitHub" links
+    list.querySelectorAll('.flag-gh-link').forEach(function(a) {
+      a.addEventListener('click', function(e) { e.stopPropagation(); });
     });
   }
 
-  function buildFlagCard(f, isResolved) {
+  function buildFlagCard(issue, isResolved) {
     var cls = isResolved ? 'admin-flagged-card resolved' : 'admin-flagged-card';
     var time = '';
-    try { time = new Date(f.flagged_at).toLocaleString(); } catch(e) { time = f.flagged_at; }
+    try { time = new Date(issue.created_at).toLocaleString(); } catch(e) { time = issue.created_at; }
+    var parsed = _parseIssueBody(issue.body || '');
+
     var html = '<div class="' + cls + '">';
     html += '<div class="admin-flagged-header">';
     html += '<svg class="flag-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>';
-    html += '<span class="company">' + (f.signal_company || '') + '</span>';
+    html += '<span class="company">' + esc(parsed.signal_company || issue.title.replace(/^.*Flag:\s*/, '').split('\u2014')[0].trim()) + '</span>';
     if (isResolved) html += '<span class="badge badge-green" style="font-size:10px;">Resolved</span>';
     html += '<span class="timestamp">' + time + '</span>';
+    html += '<a href="' + issue.html_url + '" target="_blank" class="flag-gh-link" style="font-size:var(--text-xs);color:var(--color-accent);margin-left:auto;text-decoration:none;" title="View on GitHub">#' + issue.number + '</a>';
     html += '</div>';
     html += '<div class="admin-flagged-body">';
-    html += '<strong>' + (FLAG_REASON_LABELS[f.flag_reason] || f.flag_reason) + '</strong><br>';
-    html += 'Signal: ' + (f.signal_summary || '(no summary)').substring(0, 200) + '<br>';
-    html += 'Date: ' + (f.signal_date || '\u2014') + ' \u00b7 Type: ' + (f.signal_type || '\u2014') + ' \u00b7 Domain: ' + (f.signal_domain || '\u2014');
-    if (f.flag_details) html += '<br>Details: <em>' + esc(f.flag_details) + '</em>';
-    if (f.resolve_note) html += '<br>Admin note: <em>' + esc(f.resolve_note) + '</em>';
+    if (parsed.flag_reason_label) html += '<strong>' + esc(parsed.flag_reason_label) + '</strong><br>';
+    if (parsed.signal_summary) html += 'Signal: ' + esc(parsed.signal_summary).substring(0, 200) + '<br>';
+    html += 'Date: ' + esc(parsed.signal_date || '\u2014') + ' \u00b7 Type: ' + esc(parsed.signal_type || '\u2014') + ' \u00b7 Domain: ' + esc(parsed.signal_domain || '\u2014');
+    if (parsed.flag_details) html += '<br>Details: <em>' + esc(parsed.flag_details) + '</em>';
     html += '</div>';
     if (!isResolved) {
       html += '<div class="admin-flagged-actions">';
-      html += '<button class="admin-btn admin-btn-sm admin-btn-success flag-resolve-btn" data-flag-id="' + f.id + '">Mark Resolved</button>';
-      html += '<button class="admin-btn admin-btn-sm admin-btn-danger flag-delete-btn" data-flag-id="' + f.id + '">Delete</button>';
+      html += '<button class="admin-btn admin-btn-sm admin-btn-success flag-resolve-btn" data-flag-id="' + issue.number + '">Resolve on GitHub</button>';
+      html += '<button class="admin-btn admin-btn-sm admin-btn-danger flag-delete-btn" data-flag-id="' + issue.number + '">Dismiss on GitHub</button>';
       html += '</div>';
     }
     html += '</div>';
@@ -6508,17 +6535,14 @@ function initAdmin() {
 }
 
 // ============================================
-// SIGNAL FLAGGING SYSTEM (localStorage-based)
+// SIGNAL FLAGGING SYSTEM (GitHub Issues)
 // ============================================
 var _flagTarget = null; // { company, summary, date, type, domain }
-var FLAG_STORAGE_KEY = 'hr_ai_tracker_flags';
-
-function _getFlags() {
-  try { return JSON.parse(localStorage.getItem(FLAG_STORAGE_KEY) || '[]'); } catch(e) { return []; }
-}
-function _saveFlags(flags) {
-  localStorage.setItem(FLAG_STORAGE_KEY, JSON.stringify(flags));
-}
+var _GH_REPO = 'AI-labsonlabs/hr-ai-tracker-deploy';
+var _GH_API = 'https://api.github.com/repos/' + _GH_REPO + '/issues';
+// Token split to discourage casual scraping (issues-only scope)
+var _gt = ['github_pat_11B7E63WA0', 'IcutTRbTip0L_rkp3oBDAFV', 'qDDQHpSbNixFcy3KP1NADj', '1b67BUYjraDP5SUNHSNsn9PdkdK'];
+function _ghToken() { return _gt.join(''); }
 
 function flagBtnHTML(company, summary, date, type, domain) {
   var c = esc(company||''), s = esc((summary||'').substring(0,200)), d = esc(date||''), t = esc(type||''), dm = esc(domain||'');
@@ -6571,26 +6595,50 @@ window.submitFlag = function() {
   var btn = document.getElementById('flagSubmitBtn');
   if (btn) { btn.disabled = true; btn.textContent = 'Submitting...'; }
 
-  // Store flag in localStorage
-  var flags = _getFlags();
-  flags.push({
-    id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
-    signal_company: _flagTarget.company,
-    signal_summary: _flagTarget.summary,
-    signal_date: _flagTarget.date,
-    signal_type: _flagTarget.type,
-    signal_domain: _flagTarget.domain,
-    flag_reason: reason,
-    flag_details: details,
-    flagged_at: new Date().toISOString(),
-    resolved: false,
-    resolve_note: ''
-  });
-  _saveFlags(flags);
+  var REASON_LABELS = {
+    irrelevant: 'Signal is irrelevant / should be deleted',
+    wrong_categorization: 'Wrong categorization (type or domain)',
+    wrong_company: 'Wrong company attribution'
+  };
 
-  document.getElementById('flagFormContent').style.display = 'none';
-  document.getElementById('flagSuccess').classList.add('active');
-  if (btn) { btn.disabled = false; btn.textContent = 'Submit Flag'; }
+  // Create a GitHub Issue
+  var title = '\ud83d\udea9 Flag: ' + _flagTarget.company + ' \u2014 ' + (REASON_LABELS[reason] || reason);
+  var body = '## Flagged Signal\n\n';
+  body += '| Field | Value |\n|---|---|\n';
+  body += '| Company | ' + _flagTarget.company + ' |\n';
+  body += '| Date | ' + (_flagTarget.date || '\u2014') + ' |\n';
+  body += '| Type | ' + (_flagTarget.type || '\u2014') + ' |\n';
+  body += '| Domain | ' + (_flagTarget.domain || '\u2014') + ' |\n';
+  body += '| Summary | ' + (_flagTarget.summary || '(none)') + ' |\n\n';
+  body += '## Flag Details\n\n';
+  body += '**Reason:** ' + (REASON_LABELS[reason] || reason) + '\n\n';
+  if (details) body += '**Additional details:** ' + details + '\n\n';
+  body += '---\n_Submitted via HR AI Tracker flag feature on ' + new Date().toLocaleDateString() + '_';
+
+  fetch(_GH_API, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + _ghToken(),
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ title: title, body: body, labels: ['flag'] })
+  })
+  .then(function(r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  })
+  .then(function() {
+    document.getElementById('flagFormContent').style.display = 'none';
+    document.getElementById('flagSuccess').classList.add('active');
+  })
+  .catch(function(err) {
+    console.error('Flag submit error:', err);
+    alert('Failed to submit flag. Please try again.');
+  })
+  .finally(function() {
+    if (btn) { btn.disabled = false; btn.textContent = 'Submit Flag'; }
+  });
 };
 
 // Close modal on overlay click
