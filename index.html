@@ -6481,21 +6481,58 @@ function initAdmin() {
     }
     list.innerHTML = html;
 
-    // Wire resolve buttons — open issue on GitHub to close it there
+    // Wire resolve buttons — close issue via API
     list.querySelectorAll('.flag-resolve-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var issueNum = this.dataset.flagId;
-        window.open('https://github.com/' + _GH_REPO + '/issues/' + issueNum, '_blank');
-        showStatus('Opened issue on GitHub — close it there to resolve.');
+        var self = this;
+        self.disabled = true;
+        self.textContent = 'Resolving...';
+        fetch(_GH_API + '/' + issueNum, {
+          method: 'PATCH',
+          headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ state: 'closed' })
+        })
+        .then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          loadFlags();
+          showStatus('Flag resolved.');
+        })
+        .catch(function(err) {
+          console.error('Resolve error:', err);
+          self.disabled = false;
+          self.textContent = 'Resolve on GitHub';
+          window.open('https://github.com/' + _GH_REPO + '/issues/' + issueNum, '_blank');
+          showStatus('Could not close automatically — opened on GitHub instead.');
+        });
       });
     });
 
-    // Wire dismiss buttons — open issue on GitHub to close it there
+    // Wire dismiss buttons — close issue via API
     list.querySelectorAll('.flag-delete-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var issueNum = this.dataset.flagId;
-        window.open('https://github.com/' + _GH_REPO + '/issues/' + issueNum, '_blank');
-        showStatus('Opened issue on GitHub — close it there to dismiss.');
+        if (!confirm('Dismiss this flag?')) return;
+        var self = this;
+        self.disabled = true;
+        self.textContent = 'Dismissing...';
+        fetch(_GH_API + '/' + issueNum, {
+          method: 'PATCH',
+          headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ state: 'closed' })
+        })
+        .then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          loadFlags();
+          showStatus('Flag dismissed.');
+        })
+        .catch(function(err) {
+          console.error('Dismiss error:', err);
+          self.disabled = false;
+          self.textContent = 'Dismiss on GitHub';
+          window.open('https://github.com/' + _GH_REPO + '/issues/' + issueNum, '_blank');
+          showStatus('Could not close automatically — opened on GitHub instead.');
+        });
       });
     });
 
@@ -6527,8 +6564,8 @@ function initAdmin() {
     html += '</div>';
     if (!isResolved) {
       html += '<div class="admin-flagged-actions">';
-      html += '<button class="admin-btn admin-btn-sm admin-btn-success flag-resolve-btn" data-flag-id="' + issue.number + '">Resolve on GitHub</button>';
-      html += '<button class="admin-btn admin-btn-sm admin-btn-danger flag-delete-btn" data-flag-id="' + issue.number + '">Dismiss on GitHub</button>';
+      html += '<button class="admin-btn admin-btn-sm admin-btn-success flag-resolve-btn" data-flag-id="' + issue.number + '">Resolve</button>';
+      html += '<button class="admin-btn admin-btn-sm admin-btn-danger flag-delete-btn" data-flag-id="' + issue.number + '">Dismiss</button>';
       html += '</div>';
     }
     html += '</div>';
