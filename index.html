@@ -3504,6 +3504,292 @@ function momentumBar(v) {
 
 function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/'/g,"\'").replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
+// ============================================
+// CLIENT-SIDE RESCORING ENGINE
+// Replicates scoring_engine.py logic in JS so
+// scores update instantly after signal edits.
+// ============================================
+var RESCORE = (function() {
+  var SIGNAL_WEIGHTS = { A: 10.0, B: 6.0, D: 5.0, F: 4.0, I: 1.0, J: 3.0 };
+  var GOVERNANCE_DOMAIN_MULTIPLIER = 6.0;
+  var DOMAIN_MAX_POINTS = 12.0;
+  var AI_HIRING_NON_D_CEILING = 0.60;
+  var HR_DOMAINS = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring', 'People Analytics'];
+  var DOMAIN_ALIASES = { 'HR Ops': 'HR Service Delivery', 'Employee Service': 'HR Service Delivery', 'L&D': 'Talent Development' };
+  var SOURCE_CREDIBILITY = {
+    'earnings call': 1.0, 'SEC filing': 1.0, 'vendor case study': 0.85, 'vendor customer page': 0.85,
+    'job post': 0.8, 'job board': 0.8, 'press release': 0.6, 'news article': 0.5,
+    'industry report': 0.7, 'conference presentation': 0.75, 'podcast/video': 0.6,
+    'social media': 0.3, 'blog post': 0.4, 'edited': 0.5
+  };
+
+  function parseDate(s) {
+    if (!s) return new Date(2025, 5, 1);
+    if (s instanceof Date) return s;
+    // Try YYYY-MM-DD, then YYYY-MM, then YYYY
+    var parts = String(s).split('-');
+    if (parts.length >= 3) return new Date(+parts[0], +parts[1] - 1, +parts[2]);
+    if (parts.length === 2) return new Date(+parts[0], +parts[1] - 1, 1);
+    var yr = parseInt(s);
+    return isNaN(yr) ? new Date(2025, 5, 1) : new Date(yr, 5, 1);
+  }
+
+  function timeDecay(sigDate, refDate, halfLife) {
+    var d = parseDate(sigDate);
+    var daysOld = Math.max(0, (refDate - d) / 86400000);
+    return Math.exp(-0.693 * daysOld / halfLife);
+  }
+
+  function sizeNorm(empCount, revM) {
+    var empLog = Math.log10(Math.max(empCount || 500, 500));
+    var revLog = Math.log10(Math.max(revM || 100, 100));
+    var refEmpLog = Math.log10(30000);
+    var refRevLog = Math.log10(15000);
+    var empDelta = (refEmpLog - empLog) / refEmpLog;
+    var revDelta = (refRevLog - revLog) / refRevLog;
+    var avg = (empDelta + revDelta) / 2;
+    return Math.min(1.25, Math.max(0.90, 1.0 + avg * 0.5));
+  }
+
+  function complexityAdj(regInt, orgComp) {
+    var avg = ((regInt || 3) + (orgComp || 3)) / 2;
+    return 0.9 + (avg - 1) * 0.1;
+  }
+
+  function classifyPattern(sigTypePts, domainPts) {
+    var gov = (domainPts['Governance'] || 0) + (sigTypePts['H'] || 0) * 0.3;
+    var tool = (sigTypePts['A'] || 0) + (sigTypePts['B'] || 0) + (sigTypePts['C'] || 0);
+    var lead = sigTypePts['D'] || 0;
+    var upsk = sigTypePts['F'] || 0;
+    var aiH  = sigTypePts['J'] || 0;
+    var pr   = Math.max(0, (sigTypePts['I'] || 0) - (domainPts['Governance'] || 0));
+    var w = { Governance: gov, Tool: tool, Leadership: lead, Upskilling: upsk, 'AI Hiring': aiH, PR: pr };
+    var total = 0; for (var k in w) total += w[k];
+    if (total === 0) return { pattern: 'No Activity', weights: w };
+    if (pr / Math.max(total, 1) > 0.5) return { pattern: 'PR-led', weights: w };
+    var sorted = Object.entries(w).sort(function(a, b) { return b[1] - a[1]; });
+    var topVal = sorted[0][1];
+    var thresh = total * 0.10;
+    var leaders = sorted.filter(function(e) { return e[1] > 0 && (topVal - e[1]) <= thresh; }).map(function(e) { return e[0]; });
+    if (leaders.length === 1) return { pattern: leaders[0] + '-led', weights: w };
+    if (leaders.length === 2) return { pattern: leaders[0] + ' & ' + leaders[1] + '-led', weights: w };
+    return { pattern: 'Balanced', weights: w };
+  }
+
+  function computeMaturity(signals, company) {
+    if (!signals || !signals.length) {
+      return { score: 0, raw_score: 0, domain_scores: {}, adoption_pattern: 'No Activity', pattern_weights: {}, formula_components: {}, signal_count: 0, domains_covered: 0 };
+    }
+    var refDate = new Date();
+    // Deduplicate
+    var seen = {}; var unique = [];
+    signals.forEach(function(s) {
+      var key = (s.signal_type || '') + '|' + (s.HR_domain || '') + '|' + (s.summary || '').substring(0, 50);
+      if (!seen[key]) { seen[key] = true; unique.push(s); }
+    });
+    var sigTypePts = {};
+    var domainRaw = {}; // domain -> [{points, sigType}]
+    HR_DOMAINS.forEach(function(d) { domainRaw[d] = []; });
+
+    unique.forEach(function(s) {
+      var st = s.signal_type || 'I';
+      var srcType = s.source_type || 'news article';
+      var sigDate = s.date_event || s.date_found || '2025-06-01';
+      var hrDom = s.HR_domain || 'HR Service Delivery';
+      var baseW = (SIGNAL_WEIGHTS[st] != null) ? SIGNAL_WEIGHTS[st] : SIGNAL_WEIGHTS['I'];
+      var srcCred = SOURCE_CREDIBILITY[srcType] != null ? SOURCE_CREDIBILITY[srcType] : 0.5;
+      var hl = st === 'A' ? 730 : 180;
+      var decay = timeDecay(sigDate, refDate, hl);
+      var pts = baseW * srcCred * decay;
+      if (hrDom === 'Governance') pts *= GOVERNANCE_DOMAIN_MULTIPLIER;
+
+      // Assign to domains
+      var doms = [hrDom];
+      if (hrDom.indexOf('/') !== -1 && HR_DOMAINS.indexOf(hrDom) === -1) {
+        doms = hrDom.split('/').map(function(d) { return d.trim(); }).filter(Boolean);
+      }
+      doms.forEach(function(dom) {
+        dom = DOMAIN_ALIASES[dom] || dom;
+        if (HR_DOMAINS.indexOf(dom) === -1) dom = 'HR Service Delivery';
+        domainRaw[dom].push({ points: pts, sigType: st });
+      });
+      sigTypePts[st] = (sigTypePts[st] || 0) + pts;
+    });
+
+    // Per-domain scoring
+    var domainPoints = {};
+    var domainScores = {};
+    HR_DOMAINS.forEach(function(dom) {
+      var entries = domainRaw[dom].slice().sort(function(a, b) { return b.points - a.points; });
+      var total = 0;
+      entries.forEach(function(e, i) { total += e.points * (1.0 / Math.sqrt(i + 1)); });
+      // AI Hiring ceiling
+      if (dom === 'AI Hiring' && entries.length) {
+        var dPts = 0, nonDPts = 0;
+        var dEntries = entries.filter(function(e) { return e.sigType === 'D'; }).sort(function(a, b) { return b.points - a.points; });
+        dEntries.forEach(function(e, i) { dPts += e.points * (1.0 / Math.sqrt(i + 1)); });
+        nonDPts = total - dPts;
+        total = dPts + Math.min(nonDPts, DOMAIN_MAX_POINTS * AI_HIRING_NON_D_CEILING);
+      }
+      var capped = Math.min(total, DOMAIN_MAX_POINTS);
+      domainPoints[dom] = capped;
+      var rawPct = (capped / DOMAIN_MAX_POINTS) * 100;
+      if (entries.length && rawPct < 1) rawPct = 1;
+      domainScores[dom] = Math.round(Math.min(100, rawPct) * 10) / 10;
+    });
+
+    // Blend
+    var nDom = HR_DOMAINS.length;
+    var allVals = HR_DOMAINS.map(function(d) { return domainScores[d]; });
+    var top3 = allVals.slice().sort(function(a, b) { return b - a; }).slice(0, 3);
+    var meanAll = allVals.reduce(function(a, b) { return a + b; }, 0) / nDom;
+    var meanTop3 = top3.reduce(function(a, b) { return a + b; }, 0) / 3;
+    var baseScore = meanAll * 0.6 + meanTop3 * 0.4;
+
+    // Adjustments
+    var empCount = company.employee_count || 10000;
+    var revenue = company.annual_revenue || 1000;
+    var regInt = company.regulatory_intensity_score || 3;
+    var orgComp = company.organizational_complexity_proxy || 3;
+    var sn = sizeNorm(empCount, revenue);
+    var ca = complexityAdj(regInt, orgComp);
+    var covered = HR_DOMAINS.filter(function(d) { return domainScores[d] > 5; }).length;
+    var covMult = nDom > 0 ? Math.pow(covered / nDom, 0.3) : 1.0;
+    var score = baseScore * covMult * Math.sqrt(sn) * Math.sqrt(ca);
+    score = Math.round(Math.max(0, Math.min(100, score)) * 10) / 10;
+
+    var patternResult = classifyPattern(sigTypePts, domainPoints);
+    return {
+      score: score, raw_score: Math.round(Object.values(domainPoints).reduce(function(a, b) { return a + b; }, 0) * 100) / 100,
+      domain_scores: domainScores, adoption_pattern: patternResult.pattern, pattern_weights: patternResult.weights,
+      signal_count: unique.length, domains_covered: covered,
+      formula_components: { mean_all_6: Math.round(meanAll * 100) / 100, mean_top_3: Math.round(meanTop3 * 100) / 100, base_score: Math.round(baseScore * 100) / 100, size_norm: Math.round(sn * 1000) / 1000, complexity_adj: Math.round(ca * 1000) / 1000, coverage_mult: Math.round(covMult * 1000) / 1000, sqrt_size_norm: Math.round(Math.sqrt(sn) * 1000) / 1000, sqrt_complexity: Math.round(Math.sqrt(ca) * 1000) / 1000, final_score: score }
+    };
+  }
+
+  function computeMomentum(signals, company) {
+    var refDate = new Date();
+    function sigsInWindow(sigs, daysBack) {
+      var cutoff = new Date(refDate.getTime() - daysBack * 86400000);
+      return sigs.filter(function(s) {
+        var d = parseDate(s.date_event || s.date_found || '2025-06-01');
+        return d >= cutoff;
+      });
+    }
+    function weightedCount(sigs) {
+      var t = 0;
+      sigs.forEach(function(s) {
+        var st = s.signal_type || 'I';
+        var src = s.source_type || 'news article';
+        t += ((SIGNAL_WEIGHTS[st] != null) ? SIGNAL_WEIGHTS[st] : SIGNAL_WEIGHTS['I']) * (SOURCE_CREDIBILITY[src] != null ? SOURCE_CREDIBILITY[src] : 0.5);
+      });
+      return t;
+    }
+    var w30 = weightedCount(sigsInWindow(signals, 30));
+    var w60 = weightedCount(sigsInWindow(signals, 60));
+    var w90 = weightedCount(sigsInWindow(signals, 90));
+    var w365 = weightedCount(sigsInWindow(signals, 365));
+    var emp = company.employee_count || 10000;
+    var sf = sizeNorm(emp, company.annual_revenue || 1000);
+    var monthlyBase = w365 > 0 ? w365 / 12 : 0.1;
+    var recentMonthly = w30 * sf;
+    var acceleration = monthlyBase > 0 ? (recentMonthly - monthlyBase) / Math.max(monthlyBase, 0.1) : recentMonthly * 2;
+    var velocity = (w30 * 3 + (w60 - w30) * 2 + (w90 - w60) * 1) * sf / Math.max(monthlyBase * 3, 1);
+    var raw = acceleration * 0.6 + velocity * 0.4;
+    var momentum = Math.tanh(raw / 4.0) * 10;
+    return {
+      score: Math.round(momentum * 10) / 10,
+      signals_30d: sigsInWindow(signals, 30).length,
+      signals_30_60d: sigsInWindow(signals, 60).length - sigsInWindow(signals, 30).length,
+      signals_60_90d: sigsInWindow(signals, 90).length - sigsInWindow(signals, 60).length,
+      formula_components: { w30: Math.round(w30 * 100) / 100, w60: Math.round(w60 * 100) / 100, w90: Math.round(w90 * 100) / 100, w365: Math.round(w365 * 100) / 100, size_factor: Math.round(sf * 1000) / 1000, monthly_baseline: Math.round(monthlyBase * 100) / 100, recent_monthly: Math.round(recentMonthly * 100) / 100, acceleration: Math.round(acceleration * 100) / 100, velocity: Math.round(velocity * 100) / 100, raw_momentum: Math.round(raw * 100) / 100, final_score: Math.round(momentum * 10) / 10 }
+    };
+  }
+
+  function prDeployRatio(signals) {
+    var pr = 0, dep = 0;
+    signals.forEach(function(s) {
+      if (s.signal_type === 'I') pr++;
+      if (s.signal_type === 'A' || s.signal_type === 'B' || s.signal_type === 'C') dep++;
+    });
+    var total = pr + dep;
+    if (!total) return { ratio: 0, pr_pct: 0, deploy_pct: 0, label: 'No Data' };
+    var prPct = Math.round(pr / total * 1000) / 10;
+    var depPct = Math.round(dep / total * 1000) / 10;
+    var label = prPct > 70 ? 'Mostly PR' : prPct > 40 ? 'Mixed' : depPct > 60 ? 'Action-Oriented' : 'Balanced';
+    return { ratio: Math.round(pr / Math.max(dep, 1) * 100) / 100, pr_pct: prPct, deploy_pct: depPct, label: label };
+  }
+
+  // Main entry point: rescore a single company and update all in-memory data
+  return function rescoreCompany(companyName) {
+    var detail = D.company_details[companyName];
+    if (!detail) return;
+    var co = detail.company || {};
+    var signals = detail.top_signals || [];
+
+    // Compute new scores
+    var mat = computeMaturity(signals, co);
+    var mom = computeMomentum(signals, co);
+    var pr = prDeployRatio(signals);
+
+    // Update company_details
+    detail.maturity_score = mat.score;
+    detail.maturity_details = mat;
+    detail.momentum_score = mom.score;
+    detail.momentum_details = mom;
+    detail.pr_deployment_ratio = pr;
+    detail.pr_ratio = pr;
+    detail.adoption_pattern = mat.adoption_pattern;
+    detail.total_signals = signals.length;
+
+    // Update the allCompanies array entry and D.industries entry
+    for (var ind in D.industries) {
+      var arr = D.industries[ind];
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i].name === companyName) {
+          arr[i].maturity = mat.score;
+          arr[i].momentum = mom.score;
+          arr[i].signals = signals.length;
+          arr[i].pattern = mat.adoption_pattern;
+          arr[i].pr_ratio = pr;
+          break;
+        }
+      }
+    }
+    // Update allCompanies (global flat list)
+    if (typeof allCompanies !== 'undefined') {
+      for (var j = 0; j < allCompanies.length; j++) {
+        if (allCompanies[j].name === companyName) {
+          allCompanies[j].maturity = mat.score;
+          allCompanies[j].momentum = mom.score;
+          allCompanies[j].signals = signals.length;
+          allCompanies[j].pattern = mat.adoption_pattern;
+          allCompanies[j].pr_ratio = pr;
+          allCompanies[j].pr_ratio_val = pr.ratio;
+          break;
+        }
+      }
+    }
+
+    // Re-render the currently open company detail panel if it matches
+    var profileOverlay = document.getElementById('profileOverlay');
+    if (profileOverlay && profileOverlay.classList.contains('active') && profileOverlay.dataset.company === companyName) {
+      openProfile(companyName);
+    }
+    // Re-render mobile profile if open
+    var mobileProfile = document.getElementById('mobileProfile');
+    if (mobileProfile && mobileProfile.style.display !== 'none' && mobileProfile.dataset.company === companyName) {
+      openProfile(companyName);
+    }
+
+    // Re-render overview table row data
+    if (typeof renderOverviewTable === 'function') renderOverviewTable();
+
+    console.log('[Rescore] ' + companyName + ': maturity=' + mat.score + ', momentum=' + mom.score + ', signals=' + signals.length);
+    return { maturity: mat.score, momentum: mom.score, pattern: mat.adoption_pattern };
+  };
+})();
+
 // Build flat company list
 function getAllCompanies() {
   const all = [];
@@ -3779,6 +4065,7 @@ function openProfile(companyName) {
     '<div class="section-block"><h2 class="section-title">Signals <span id="profileSignalCount" style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + detail.total_signals + ' total)</span> <span id="profileFilterLabel" style="display:none;font-weight:400;font-size:var(--text-xs);color:var(--color-primary);cursor:pointer;"></span></h2><div id="profileSignalsList">' + signalsHTML + '</div></div>';
 
   document.getElementById('profileContent').innerHTML = html;
+  profileOverlay.dataset.company = companyName;
   profileOverlay.classList.add('active');
   profileOverlay.scrollTop = 0;
 
@@ -5906,7 +6193,10 @@ function initAdmin() {
         };
       }
 
-      // 3. Rebuild signals explorer so it appears on Signals tab immediately
+      // 3. Rescore company so maturity/momentum update instantly
+      RESCORE(companyName);
+
+      // 4. Rebuild signals explorer so it appears on Signals tab immediately
       if (typeof initSignalsExplorer === 'function') initSignalsExplorer();
 
       clearForm();
@@ -6527,6 +6817,7 @@ function initAdmin() {
           self.textContent = 'Deleting...';
           // Delete signal then close the flag issue
           removeSignalFromMemory(origSignal);
+          RESCORE(origSignal.company);
           persistSignalDeleteToGitHub(origSignal).then(function(result) {
             if (!result.ok) throw new Error(result.error || 'delete failed');
             return _closeFlagIssue(issueNum);
@@ -6566,6 +6857,8 @@ function initAdmin() {
           if (!newData.company_name) { self.disabled = false; self.textContent = origText; showStatus('Company cannot be empty.'); return; }
           // Edit signal then close the flag issue
           updateSignalInMemory(origSignal, newData);
+          RESCORE(origSignal.company);
+          if (origSignal.company !== newData.company_name) RESCORE(newData.company_name);
           persistSignalEditToGitHub(origSignal, newData).then(function(result) {
             if (!result.ok) throw new Error(result.error || 'edit failed');
             return _closeFlagIssue(issueNum);
@@ -6865,6 +7158,8 @@ window.saveSignalEdit = function() {
 
   // Update in-memory data across the dashboard
   updateSignalInMemory(_seOriginal, newData);
+  RESCORE(_seOriginal.company);
+  if (_seOriginal.company !== newData.company_name) RESCORE(newData.company_name);
 
   // Persist edit to GitHub admin_signals.json
   persistSignalEditToGitHub(_seOriginal, newData).then(function(result) {
@@ -6894,6 +7189,7 @@ window.deleteSignalEdit = function() {
 
   // Remove from in-memory data
   removeSignalFromMemory(_seOriginal);
+  RESCORE(_seOriginal.company);
 
   // Persist deletion to GitHub
   persistSignalDeleteToGitHub(_seOriginal).then(function(result) {
