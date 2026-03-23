@@ -1371,6 +1371,20 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   margin-bottom: var(--space-3);
 }
 .admin-flagged-body strong { color: var(--color-warning); }
+/* Inline edit fields inside flag cards */
+.flag-edit-fields {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--color-border);
+}
+.flag-edit-fields .fe-field { display: flex; flex-direction: column; gap: 2px; }
+.flag-edit-fields .fe-field label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); }
+.flag-edit-fields .fe-field input,
+.flag-edit-fields .fe-field select {
+  font-size: var(--text-xs); padding: 4px 8px; border-radius: 4px; border: 1px solid var(--color-border);
+  background: var(--color-surface); color: var(--color-text); min-width: 140px;
+}
+.flag-edit-fields .fe-field select { min-width: 160px; }
+.flag-edit-fields .fe-field input:focus,
+.flag-edit-fields .fe-field select:focus { outline: none; border-color: var(--color-accent); }
 .admin-flagged-actions {
   display: flex;
   gap: var(--space-2);
@@ -6444,6 +6458,7 @@ function initAdmin() {
     var domainMatch = (body || '').match(/\| Domain \| (.+?) \|/);
     var summaryMatch = (body || '').match(/\| Summary \| (.+?) \|/);
     var reasonMatch = (body || '').match(/\*\*Reason:\*\* (.+)/);
+    var reasonCodeMatch = (body || '').match(/\*\*Reason code:\*\* (\w+)/);
     var detailsMatch = (body || '').match(/\*\*Additional details:\*\* (.+)/);
     data.signal_company = companyMatch ? companyMatch[1].trim() : '';
     data.signal_date = dateMatch ? dateMatch[1].trim() : '';
@@ -6451,6 +6466,7 @@ function initAdmin() {
     data.signal_domain = domainMatch ? domainMatch[1].trim() : '';
     data.signal_summary = summaryMatch ? summaryMatch[1].trim() : '';
     data.flag_reason_label = reasonMatch ? reasonMatch[1].trim() : '';
+    data.flag_reason_code = reasonCodeMatch ? reasonCodeMatch[1].trim() : '';
     data.flag_details = detailsMatch ? detailsMatch[1].trim() : '';
     return data;
   }
@@ -6481,57 +6497,108 @@ function initAdmin() {
     }
     list.innerHTML = html;
 
-    // Wire resolve buttons — close issue via API
-    list.querySelectorAll('.flag-resolve-btn').forEach(function(btn) {
+    // Helper: close a GitHub issue
+    function _closeFlagIssue(issueNum) {
+      return fetch(_GH_API + '/' + issueNum, {
+        method: 'PATCH',
+        headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ state: 'closed' })
+      }).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); });
+    }
+
+    // Wire action buttons (Delete Signal & Resolve, or Save Changes & Resolve)
+    list.querySelectorAll('.flag-action-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        var issueNum = this.dataset.flagId;
         var self = this;
+        var issueNum = self.dataset.flagId;
+        var action = self.dataset.action; // 'delete' or 'edit'
+        var origSignal = {
+          company: self.dataset.company || '',
+          summary: self.dataset.summary || '',
+          date: self.dataset.date || '',
+          type: self.dataset.type || '',
+          domain: self.dataset.domain || '',
+          urls: []
+        };
         self.disabled = true;
-        self.textContent = 'Resolving...';
-        fetch(_GH_API + '/' + issueNum, {
-          method: 'PATCH',
-          headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ state: 'closed' })
-        })
-        .then(function(r) {
-          if (!r.ok) throw new Error('HTTP ' + r.status);
-          showStatus('Flag resolved.');
-          setTimeout(loadFlags, 1000);
-        })
-        .catch(function(err) {
-          console.error('Resolve error:', err);
-          self.disabled = false;
-          self.textContent = 'Resolve on GitHub';
-          window.open('https://github.com/' + _GH_REPO + '/issues/' + issueNum, '_blank');
-          showStatus('Could not close automatically — opened on GitHub instead.');
-        });
+        var origText = self.textContent;
+
+        if (action === 'delete') {
+          self.textContent = 'Deleting...';
+          // Delete signal then close the flag issue
+          removeSignalFromMemory(origSignal);
+          persistSignalDeleteToGitHub(origSignal).then(function(result) {
+            if (!result.ok) throw new Error(result.error || 'delete failed');
+            return _closeFlagIssue(issueNum);
+          }).then(function() {
+            showStatus('Signal deleted and flag resolved.');
+            if (typeof renderSignalsFeed === 'function') renderSignalsFeed();
+            setTimeout(loadFlags, 1000);
+          }).catch(function(err) {
+            console.error('Flag delete error:', err);
+            self.disabled = false;
+            self.textContent = origText;
+            showStatus('Error: ' + err.message);
+          });
+
+        } else if (action === 'edit') {
+          self.textContent = 'Saving...';
+          var rc = self.dataset.rc || '';
+          var uid = self.dataset.uid || '';
+          // Build new data from inline edit fields
+          var newData = {
+            company_name: origSignal.company,
+            date_event: origSignal.date,
+            signal_type: origSignal.type,
+            HR_domain: origSignal.domain,
+            summary: origSignal.summary,
+            source_urls: []
+          };
+          if (rc === 'wrong_categorization') {
+            var typeEl = document.getElementById(uid + '_type');
+            var domainEl = document.getElementById(uid + '_domain');
+            if (typeEl) newData.signal_type = typeEl.value;
+            if (domainEl) newData.HR_domain = domainEl.value;
+          } else if (rc === 'wrong_company') {
+            var compEl = document.getElementById(uid + '_company');
+            if (compEl) newData.company_name = compEl.value.trim();
+          }
+          if (!newData.company_name) { self.disabled = false; self.textContent = origText; showStatus('Company cannot be empty.'); return; }
+          // Edit signal then close the flag issue
+          updateSignalInMemory(origSignal, newData);
+          persistSignalEditToGitHub(origSignal, newData).then(function(result) {
+            if (!result.ok) throw new Error(result.error || 'edit failed');
+            return _closeFlagIssue(issueNum);
+          }).then(function() {
+            showStatus('Signal updated and flag resolved.');
+            if (typeof renderSignalsFeed === 'function') renderSignalsFeed();
+            setTimeout(loadFlags, 1000);
+          }).catch(function(err) {
+            console.error('Flag edit error:', err);
+            self.disabled = false;
+            self.textContent = origText;
+            showStatus('Error: ' + err.message);
+          });
+        }
       });
     });
 
-    // Wire dismiss buttons — close issue via API
-    list.querySelectorAll('.flag-delete-btn').forEach(function(btn) {
+    // Wire dismiss buttons — close flag without taking action on the signal
+    list.querySelectorAll('.flag-dismiss-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var issueNum = this.dataset.flagId;
-        if (!confirm('Dismiss this flag?')) return;
+        if (!confirm('Dismiss this flag without taking action?')) return;
         var self = this;
         self.disabled = true;
         self.textContent = 'Dismissing...';
-        fetch(_GH_API + '/' + issueNum, {
-          method: 'PATCH',
-          headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ state: 'closed' })
-        })
-        .then(function(r) {
-          if (!r.ok) throw new Error('HTTP ' + r.status);
+        _closeFlagIssue(issueNum).then(function() {
           showStatus('Flag dismissed.');
           setTimeout(loadFlags, 1000);
-        })
-        .catch(function(err) {
+        }).catch(function(err) {
           console.error('Dismiss error:', err);
           self.disabled = false;
-          self.textContent = 'Dismiss on GitHub';
-          window.open('https://github.com/' + _GH_REPO + '/issues/' + issueNum, '_blank');
-          showStatus('Could not close automatically — opened on GitHub instead.');
+          self.textContent = 'Dismiss';
+          showStatus('Error: ' + err.message);
         });
       });
     });
@@ -6542,13 +6609,30 @@ function initAdmin() {
     });
   }
 
+  function _typeOptions(selected) {
+    var opts = [['A','Deployment'],['B','Pilot'],['D','Leadership Hire'],['F','Upskilling'],['I','Announcement'],['J','AI Talent Hiring']];
+    return opts.map(function(o) { return '<option value="' + o[0] + '"' + (o[0] === selected ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('');
+  }
+  function _domainOptions(selected) {
+    var opts = ['Recruiting','Talent Development','Learning & Development','HR Service Delivery','People Analytics','Compensation & Benefits','Employee Engagement','Governance','AI Hiring'];
+    return opts.map(function(o) { return '<option value="' + o + '"' + (o === selected ? ' selected' : '') + '>' + o + '</option>'; }).join('');
+  }
+
   function buildFlagCard(issue, isResolved) {
     var cls = isResolved ? 'admin-flagged-card resolved' : 'admin-flagged-card';
     var time = '';
     try { time = new Date(issue.created_at).toLocaleString(); } catch(e) { time = issue.created_at; }
     var parsed = _parseIssueBody(issue.body || '');
+    var rc = parsed.flag_reason_code || '';
+    // Infer reason code from label if not stored (for older issues)
+    if (!rc && parsed.flag_reason_label) {
+      if (parsed.flag_reason_label.indexOf('irrelevant') > -1 || parsed.flag_reason_label.indexOf('deleted') > -1) rc = 'irrelevant';
+      else if (parsed.flag_reason_label.indexOf('categorization') > -1) rc = 'wrong_categorization';
+      else if (parsed.flag_reason_label.indexOf('company') > -1) rc = 'wrong_company';
+    }
+    var uid = 'flag_' + issue.number;
 
-    var html = '<div class="' + cls + '">';
+    var html = '<div class="' + cls + '" data-flag-uid="' + uid + '">';
     html += '<div class="admin-flagged-header">';
     html += '<svg class="flag-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>';
     html += '<span class="company">' + esc(parsed.signal_company || issue.title.replace(/^.*Flag:\s*/, '').split('\u2014')[0].trim()) + '</span>';
@@ -6561,11 +6645,44 @@ function initAdmin() {
     if (parsed.signal_summary) html += 'Signal: ' + esc(parsed.signal_summary).substring(0, 200) + '<br>';
     html += 'Date: ' + esc(parsed.signal_date || '\u2014') + ' \u00b7 Type: ' + esc(parsed.signal_type || '\u2014') + ' \u00b7 Domain: ' + esc(parsed.signal_domain || '\u2014');
     if (parsed.flag_details) html += '<br>Details: <em>' + esc(parsed.flag_details) + '</em>';
-    html += '</div>';
+
+    // Contextual action area based on flag reason
+    if (!isResolved) {
+      if (rc === 'irrelevant') {
+        // Delete signal action
+        html += '<div class="flag-edit-fields" style="align-items:center;">';
+        html += '<span style="font-size:var(--text-xs);color:var(--color-text-muted);">Delete this signal from the tracker?</span>';
+        html += '</div>';
+      } else if (rc === 'wrong_categorization') {
+        // Editable type + domain
+        html += '<div class="flag-edit-fields">';
+        html += '<div class="fe-field"><label>Type</label><select id="' + uid + '_type">' + _typeOptions(parsed.signal_type) + '</select></div>';
+        html += '<div class="fe-field"><label>Domain</label><select id="' + uid + '_domain">' + _domainOptions(parsed.signal_domain) + '</select></div>';
+        html += '</div>';
+      } else if (rc === 'wrong_company') {
+        // Editable company
+        html += '<div class="flag-edit-fields">';
+        html += '<div class="fe-field"><label>Company</label><input type="text" id="' + uid + '_company" value="' + esc(parsed.signal_company) + '" list="companyDatalist"></div>';
+        html += '</div>';
+      }
+    }
+
+    html += '</div>'; // close body
     if (!isResolved) {
       html += '<div class="admin-flagged-actions">';
-      html += '<button class="admin-btn admin-btn-sm admin-btn-success flag-resolve-btn" data-flag-id="' + issue.number + '">Resolve</button>';
-      html += '<button class="admin-btn admin-btn-sm admin-btn-danger flag-delete-btn" data-flag-id="' + issue.number + '">Dismiss</button>';
+      if (rc === 'irrelevant') {
+        html += '<button class="admin-btn admin-btn-sm admin-btn-danger flag-action-btn" data-flag-id="' + issue.number + '" data-action="delete"'
+          + ' data-company="' + esc(parsed.signal_company) + '" data-summary="' + esc(parsed.signal_summary) + '"'
+          + ' data-date="' + esc(parsed.signal_date) + '" data-type="' + esc(parsed.signal_type) + '"'
+          + ' data-domain="' + esc(parsed.signal_domain) + '">Delete Signal & Resolve</button>';
+      } else {
+        html += '<button class="admin-btn admin-btn-sm admin-btn-success flag-action-btn" data-flag-id="' + issue.number + '" data-action="edit"'
+          + ' data-rc="' + rc + '" data-uid="' + uid + '"'
+          + ' data-company="' + esc(parsed.signal_company) + '" data-summary="' + esc(parsed.signal_summary) + '"'
+          + ' data-date="' + esc(parsed.signal_date) + '" data-type="' + esc(parsed.signal_type) + '"'
+          + ' data-domain="' + esc(parsed.signal_domain) + '">Save Changes & Resolve</button>';
+      }
+      html += '<button class="admin-btn admin-btn-sm flag-dismiss-btn" data-flag-id="' + issue.number + '" style="background:var(--color-surface-offset);color:var(--color-text-muted);">Dismiss</button>';
       html += '</div>';
     }
     html += '</div>';
@@ -6651,6 +6768,7 @@ window.submitFlag = function() {
   body += '| Summary | ' + (_flagTarget.summary || '(none)') + ' |\n\n';
   body += '## Flag Details\n\n';
   body += '**Reason:** ' + (REASON_LABELS[reason] || reason) + '\n\n';
+  body += '**Reason code:** ' + reason + '\n\n';
   if (details) body += '**Additional details:** ' + details + '\n\n';
   body += '---\n_Submitted via HR AI Tracker flag feature on ' + new Date().toLocaleDateString() + '_';
 
