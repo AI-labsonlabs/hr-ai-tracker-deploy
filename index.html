@@ -6495,8 +6495,8 @@ function initAdmin() {
         })
         .then(function(r) {
           if (!r.ok) throw new Error('HTTP ' + r.status);
-          loadFlags();
           showStatus('Flag resolved.');
+          setTimeout(loadFlags, 1000);
         })
         .catch(function(err) {
           console.error('Resolve error:', err);
@@ -6523,8 +6523,8 @@ function initAdmin() {
         })
         .then(function(r) {
           if (!r.ok) throw new Error('HTTP ' + r.status);
-          loadFlags();
           showStatus('Flag dismissed.');
+          setTimeout(loadFlags, 1000);
         })
         .catch(function(err) {
           console.error('Dismiss error:', err);
