@@ -3598,7 +3598,7 @@ var RESCORE = (function() {
       var hrDom = s.HR_domain || 'HR Service Delivery';
       var baseW = (SIGNAL_WEIGHTS[st] != null) ? SIGNAL_WEIGHTS[st] : SIGNAL_WEIGHTS['I'];
       var srcCred = SOURCE_CREDIBILITY[srcType] != null ? SOURCE_CREDIBILITY[srcType] : 0.5;
-      var hl = st === 'A' ? 730 : 180;
+      var hl = (st === 'A' || hrDom === 'Governance') ? 730 : 180;
       var decay = timeDecay(sigDate, refDate, hl);
       var pts = baseW * srcCred * decay;
       if (hrDom === 'Governance') pts *= GOVERNANCE_DOMAIN_MULTIPLIER;
