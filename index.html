@@ -2894,7 +2894,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
             <!-- Time Decay -->
             <div class="profile-card">
               <div class="profile-card-title">Time Decay</div>
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Signals lose relevance over time using exponential decay with a 180-day half-life. A signal from 6 months ago contributes half the weight of an identical signal from today. This ensures the tracker reflects current adoption posture rather than historical activity.</p>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Signals lose relevance over time using exponential decay. Most signal types use a <strong>180-day half-life</strong> &mdash; a signal from 6 months ago contributes half the weight of an identical signal today. <strong>Deployments</strong> and <strong>Governance</strong> signals use a <strong>730-day (2-year) half-life</strong> because they represent durable institutional facts: a confirmed tool deployment or an established AI governance framework remains relevant long after the initial announcement.</p>
             </div>
 
             <!-- Adoption Pattern -->
