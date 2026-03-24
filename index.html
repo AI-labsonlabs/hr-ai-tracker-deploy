@@ -3596,6 +3596,8 @@ var RESCORE = (function() {
       var srcType = s.source_type || 'news article';
       var sigDate = s.date_event || s.date_found || '2025-06-01';
       var hrDom = s.HR_domain || 'HR Service Delivery';
+      // Governance domain signals are always Announcements (I)
+      if (hrDom === 'Governance') st = 'I';
       var baseW = (SIGNAL_WEIGHTS[st] != null) ? SIGNAL_WEIGHTS[st] : SIGNAL_WEIGHTS['I'];
       var srcCred = SOURCE_CREDIBILITY[srcType] != null ? SOURCE_CREDIBILITY[srcType] : 0.5;
       var hl = (st === 'A' || hrDom === 'Governance') ? 730 : 180;
