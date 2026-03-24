@@ -127,7 +127,7 @@
     "HR_domain": "HR Service Delivery",
     "confirmation_level": "PR Mention",
     "source_type": "edited",
-    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedÃ¢ÂÂsignaling AI-enabled automation of HR and back-office functions.",
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedÃÂ¢ÃÂÃÂsignaling AI-enabled automation of HR and back-office functions.",
     "source_urls": [
       "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
     ],
@@ -307,5 +307,17 @@
     ],
     "_deleted": true,
     "_deleted_at": "2026-03-23T23:01:54.560Z"
+  },
+  {
+    "company_name": "Capital Group",
+    "date_event": "2025-07-15",
+    "signal_type": "A",
+    "HR_domain": "Governance",
+    "summary": "Capital Group's Workday ATS is actively used for talent acquisition with AI-powered disclosure statements visible on all job postings, indicating enterprise-wide deployment of AI-assisted hiring processes.",
+    "source_urls": [
+      "https://www.capitalgroup.com/about-us/careers/how-we-hire.html"
+    ],
+    "_deleted": true,
+    "_deleted_at": "2026-03-24T00:07:20.684Z"
   }
 ]
