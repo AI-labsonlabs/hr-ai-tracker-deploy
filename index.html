@@ -2929,7 +2929,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 2: Group by HR domain</strong><br>
-                  7 domains: Recruiting, L&amp;D, HR Ops, Comp/Benefits, HR Service Delivery, Governance, AI Hiring. Each scored 0&ndash;100 independently with diminishing returns within a domain (1/&radic;rank). Domains with at least one signal score a minimum of 1.
+                  7 domains: Recruiting, Talent Development, People Analytics, Comp/Benefits, HR Service Delivery, Governance, AI Hiring. Each scored 0&ndash;100 independently with diminishing returns within a domain (1/&radic;rank). Domains with at least one signal score a minimum of 1.
                 </div>
                 <div style="margin-bottom:var(--space-3);">
                   <strong>Step 3: Blend for overall score</strong><br>
@@ -3087,8 +3087,8 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
                 <select id="afHRDomain">
                   <option value="">-- Select --</option>
                   <option value="Recruiting">Recruiting</option>
-                  <option value="L&D">L&amp;D</option>
-                  <option value="HR Ops">HR Ops</option>
+                  <option value="Talent Development">Talent Development</option>
+                  <option value="People Analytics">People Analytics</option>
                   <option value="Comp/Benefits">Comp/Benefits</option>
                   <option value="HR Service Delivery">HR Service Delivery</option>
                   <option value="Governance">Governance</option>
@@ -3515,7 +3515,7 @@ var RESCORE = (function() {
   var DOMAIN_MAX_POINTS = 12.0;
   var AI_HIRING_NON_D_CEILING = 0.60;
   var HR_DOMAINS = ['Recruiting', 'Talent Development', 'HR Service Delivery', 'Comp/Benefits', 'Governance', 'AI Hiring', 'People Analytics'];
-  var DOMAIN_ALIASES = { 'HR Ops': 'HR Service Delivery', 'Employee Service': 'HR Service Delivery', 'L&D': 'Talent Development' };
+  var DOMAIN_ALIASES = { 'HR Ops': 'People Analytics', 'Employee Service': 'HR Service Delivery', 'L&D': 'Talent Development' };
   var SOURCE_CREDIBILITY = {
     'earnings call': 1.0, 'SEC filing': 1.0, 'vendor case study': 0.85, 'vendor customer page': 0.85,
     'job post': 0.8, 'job board': 0.8, 'press release': 0.6, 'news article': 0.5,
@@ -3917,7 +3917,7 @@ function openProfile(companyName) {
   const mfc = (mom).formula_components || {};
   const pw = md.pattern_weights || {};
   const pattern = md.adoption_pattern || detail.adoption_pattern || '\u2014';
-  const allDomains = ['Recruiting', 'L&D', 'HR Ops', 'Comp/Benefits', 'HR Service Delivery', 'Governance', 'AI Hiring'];
+  const allDomains = ['Recruiting', 'Talent Development', 'People Analytics', 'Comp/Benefits', 'HR Service Delivery', 'Governance', 'AI Hiring'];
   const isPrivate = co.public_or_private === 'Private';
   const estTag = ' <span style="font-size:var(--text-xs);color:var(--color-text-faint);font-weight:400;" title="Estimated based on publicly available industry data">est.</span>';
 
@@ -4286,7 +4286,7 @@ const OV_COLS = [
   { key: 'industry',     label: 'Industry',     type: 'multi-filter' },
   { key: 'sub_industry', label: 'Sub-Industry', type: 'multi-filter' },
   { key: 'maturity',     label: 'Maturity',     type: 'metric',
-    tooltip: '<strong>Maturity Score (0–100)</strong>Each of 7 HR domains (Recruiting, L&D, HR Ops, Comp/Benefits, HR Service Delivery, Governance, AI Hiring) is scored 0–100 independently. Overall = 60% mean of all 7 domains + 40% mean of top 3, adjusted for company size and regulatory complexity. Rewards breadth across categories.' },
+    tooltip: '<strong>Maturity Score (0–100)</strong>Each of 7 HR domains (Recruiting, Talent Development, People Analytics, Comp/Benefits, HR Service Delivery, Governance, AI Hiring) is scored 0–100 independently. Overall = 60% mean of all 7 domains + 40% mean of top 3, adjusted for company size and regulatory complexity. Rewards breadth across categories.' },
   { key: 'momentum',     label: 'Momentum',     type: 'metric',
     tooltip: '<strong>Momentum (−10 to +10)</strong>Measures recent acceleration of HR AI signals. Compares 30-day weighted signal velocity to a 12-month baseline, normalized by company size.' },
   { key: 'signals',      label: 'Signals',      type: 'metric',
@@ -4711,13 +4711,9 @@ function kpiCard(label, value, sub, extraClass) {
 
 // Map display labels to scoring engine keys (they differ for some domains)
 const DOMAIN_DATA_KEY = {
-  'L&D': 'Talent Development',
-  'HR Ops': 'People Analytics'
 };
 // Reverse: map data keys back to display labels
 const DOMAIN_DISPLAY_LABEL = {
-  'Talent Development': 'L&D',
-  'People Analytics': 'HR Ops'
 };
 function domainVal(scores, displayLabel) {
   var key = DOMAIN_DATA_KEY[displayLabel] || displayLabel;
@@ -4732,8 +4728,8 @@ function domainMatches(signalDomain, displayLabel) {
 
 const DOMAIN_TOOLTIPS = {
   'Recruiting': 'Signals related to AI in talent acquisition: AI resume screening, chatbot interviews, automated candidate matching, programmatic job advertising, and predictive hiring tools.',
-  'L&D': 'Signals for AI in Learning & Development: personalized learning paths, AI content curation, skills gap analysis, adaptive training platforms, and intelligent coaching tools.',
-  'HR Ops': 'Signals for AI in HR Operations: workflow automation, document processing, employee data analytics, HRIS AI features (Workday AI, ServiceNow), and process optimization.',
+  'Talent Development': 'Signals for AI in Learning & Development: personalized learning paths, AI content curation, skills gap analysis, adaptive training platforms, and intelligent coaching tools.',
+  'People Analytics': 'Signals for AI in People Analytics: workforce analytics, sentiment analysis, attrition modeling, employee surveys with AI insights, and predictive workforce planning.',
   'Comp/Benefits': 'Signals for AI in Compensation & Benefits: automated pay equity analysis, benefits optimization, comp benchmarking tools, and total rewards modeling.',
   'HR Service Delivery': 'Signals for AI in HR Service Delivery: HR chatbots, AI help desks, automated case routing, self-service portals with AI, and employee experience platforms.',
   'Governance': 'Signals for AI Governance in HR: responsible AI policies, bias auditing frameworks, ethics boards overseeing HR AI, regulatory compliance, and algorithmic accountability.',
@@ -4950,7 +4946,7 @@ var heatState = {
   filters: { industry: new Set(), sub_industry: new Set() }
 };
 
-var HEAT_DOMAINS = ['Recruiting', 'L\u0026D', 'HR Ops', 'Comp/Benefits', 'HR Service Delivery', 'Governance', 'AI Hiring'];
+var HEAT_DOMAINS = ['Recruiting', 'Talent Development', 'People Analytics', 'Comp/Benefits', 'HR Service Delivery', 'Governance', 'AI Hiring'];
 
 // Build heatmap data array once
 var heatmapData = Object.entries(D.heatmap)
@@ -5316,7 +5312,7 @@ function buildCompanyProfileHTML(companyName, side) {
   // --- DOMAIN SCORES (clickable to filter signals) ---
   html += '<div style="margin-top:var(--space-4);">';
   html += '<h4 style="margin:0 0 var(--space-2) 0;font-size:var(--text-sm);font-weight:600;">Domain Scores <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(click to filter signals)</span></h4>';
-  var domains = ['Recruiting', 'L&D', 'HR Ops', 'Comp/Benefits', 'HR Service Delivery', 'Governance', 'AI Hiring'];
+  var domains = ['Recruiting', 'Talent Development', 'People Analytics', 'Comp/Benefits', 'HR Service Delivery', 'Governance', 'AI Hiring'];
   domains.forEach(function(d) {
     var score = domainVal(ds, d);
     var tip = DOMAIN_TOOLTIPS[d] || '';
@@ -6575,7 +6571,7 @@ function initAdmin() {
         tr.appendChild(tdTy);
         // Domain
         var tdDo = document.createElement('td');
-        var domOpts = ['Recruiting','L&D','HR Ops','Comp/Benefits','HR Service Delivery','Governance','AI Hiring'].map(function(d) {
+        var domOpts = ['Recruiting','Talent Development','People Analytics','Comp/Benefits','HR Service Delivery','Governance','AI Hiring'].map(function(d) {
           return '<option value="'+d+'"'+(sig.HR_domain===d?' selected':'')+'>'+d+'</option>';
         }).join('');
         tdDo.innerHTML = '<select class="ae-domain"><option value="">--</option>'+domOpts+'</select>';
