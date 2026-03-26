@@ -127,7 +127,7 @@
     "HR_domain": "HR Service Delivery",
     "confirmation_level": "PR Mention",
     "source_type": "edited",
-    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affected\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u00a2\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0080\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0094signaling AI-enabled automation of HR and back-office functions.",
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedÃÂÃÂ¢ÃÂÃÂÃÂÃÂsignaling AI-enabled automation of HR and back-office functions.",
     "source_urls": [
       "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
     ],
@@ -342,6 +342,18 @@
     "summary": "Huawei announced an 'AI Talent Development Service' solution (planning, training, evaluation) plus an AI Talent Competence Map and certification upgrades to help organizations train and assess AI skills.",
     "source_urls": [
       "https://www.huawei.com/en/news/2026/3/ai-talent-development"
+    ]
+  },
+  {
+    "company_name": "Wizeline",
+    "date_event": "2026-03-20",
+    "signal_type": "F",
+    "HR_domain": "Learning & Development",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "press release",
+    "summary": "Wizeline expanded its company-wide AI Upskilling Program via a partnership with DataCamp, including an explicit role-specific track for People/HR.",
+    "source_urls": [
+      "https://www.wizeline.ai/wizeline-partners-with-datacamp-to-scale-company-wide-ai-upskilling-making-every-role-ai-native/"
     ]
   }
 ]
