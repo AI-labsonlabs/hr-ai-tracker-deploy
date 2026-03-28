@@ -355,5 +355,53 @@
     "source_urls": [
       "https://www.wizeline.ai/wizeline-partners-with-datacamp-to-scale-company-wide-ai-upskilling-making-every-role-ai-native/"
     ]
+  },
+  {
+    "company_name": "AGCO Corporation",
+    "date_event": "2026-01-27",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "confirmation_level": "PR Mention",
+    "source_type": "podcast/video",
+    "summary": "In a From Day One HR panel, an AGCO talent leader described launching an AI-driven career pathing marketplace that uses AI to analyze job titles, infer/suggest skills, and recommend career paths for employees.",
+    "source_urls": [
+      "https://www.youtube.com/watch?v=MvNEAKr5rkI"
+    ]
+  },
+  {
+    "company_name": "Fanatics",
+    "date_event": "2026-01-27",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "confirmation_level": "PR Mention",
+    "source_type": "podcast/video",
+    "summary": "In a From Day One HR panel, a Fanatics talent leader described using an internal AI coach for performance management (e.g., drafting performance reviews and tough feedback) and using Oracle's AI assist for writing goals and assessments.",
+    "source_urls": [
+      "https://www.youtube.com/watch?v=MvNEAKr5rkI"
+    ]
+  },
+  {
+    "company_name": "Toast",
+    "date_event": "2026-01-27",
+    "signal_type": "A",
+    "HR_domain": "Employee Engagement",
+    "confirmation_level": "PR Mention",
+    "source_type": "podcast/video",
+    "summary": "In a From Day One HR panel, a Toast employee relations leader described using AI to generate structured performance reviews/check-ins using prompts grounded in company values, job descriptions, and feedback notes.",
+    "source_urls": [
+      "https://www.youtube.com/watch?v=MvNEAKr5rkI"
+    ]
+  },
+  {
+    "company_name": "U.S. Department of Labor",
+    "date_event": "2026-03-24",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "confirmation_level": "PR Mention",
+    "source_type": "government release",
+    "summary": "The U.S. Department of Labor launched 'Make America AI-Ready,' a free AI literacy course delivered by text message (built with Arist) to build foundational AI skills for workers.",
+    "source_urls": [
+      "https://www.dol.gov/newsroom/releases/osec/osec20260324"
+    ]
   }
 ]
