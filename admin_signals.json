@@ -127,7 +127,7 @@
     "HR_domain": "HR Service Delivery",
     "confirmation_level": "PR Mention",
     "source_type": "edited",
-    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedÃÂÃÂ¢ÃÂÃÂÃÂÃÂsignaling AI-enabled automation of HR and back-office functions.",
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affected\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u00a2\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0080\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0094signaling AI-enabled automation of HR and back-office functions.",
     "source_urls": [
       "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
     ],
@@ -403,5 +403,83 @@
     "source_urls": [
       "https://www.dol.gov/newsroom/releases/osec/osec20260324"
     ]
+  },
+  {
+    "company_name": "Workday",
+    "date_event": "2026-03-17",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "press release",
+    "summary": "Workday launched Sana from Workday, a conversational AI interface built on its $1.1B acquisition of Sana Labs. Includes Sana Self-Service Agent with 300+ skills for HR and finance tasks, Sana Enterprise for cross-system orchestration, and AI Agent Studio for custom agent development. Now available to all Workday customers worldwide via Flex Credits.",
+    "source_urls": [
+      "https://newsroom.workday.com/2026-03-17-Introducing-Sana-from-Workday-Superintelligence-for-Work-That-Finds-Answers,-Takes-Action,-and-Automates-Workflows"
+    ],
+    "date_found": "2026-04-03"
+  },
+  {
+    "company_name": "Workday",
+    "date_event": "2026-03-26",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "blog post",
+    "summary": "Workday's Spring 2026 release delivers a new wave of AI Agents for HR including a Talent Management Agent (Early Access) that drafts evidence-based performance reviews using real-time contribution signals, plus new AI capabilities for hiring, compensation, and employee listening. Also launched Workday Data Cloud expansion.",
+    "source_urls": [
+      "https://blog.workday.com/en-us/workday-delivers-next-wave-agentic-ai-power-new-work-day.html"
+    ],
+    "date_found": "2026-04-03"
+  },
+  {
+    "company_name": "Oracle",
+    "date_event": "2026-02-05",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "blog post",
+    "summary": "Oracle Fusion Cloud HCM Release 26A delivers new AI agents across Core HR, Talent Management, and Workforce Management. Includes Employee Concierge AI subagents for absence/benefits/comp/payroll, Journeys Assistant for onboarding, AI-powered candidate authenticity scoring for recruiting, Payroll Run Analyst agent, and Employee Goals Assistant for conversational goal creation.",
+    "source_urls": [
+      "https://blogs.oracle.com/fusioninsider/roadmaps"
+    ],
+    "date_found": "2026-04-03"
+  },
+  {
+    "company_name": "Oracle",
+    "date_event": "2026-02-05",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "blog post",
+    "summary": "Oracle HCM 26A introduces AI-powered candidate authenticity scoring to identify fraudulent or AI-generated applicants, plus AI Agent Studio integration for recruiters during offer creation using uploaded policies and prompts. GenAI capabilities added for note and approval fields across HR workflows.",
+    "source_urls": [
+      "https://www.kyteconsulting.com.au/insights/oracle-fusion-cloud-hcm-release-26a-ai-takes-centre-stage"
+    ],
+    "date_found": "2026-04-03"
+  },
+  {
+    "company_name": "SAP",
+    "date_event": "2026-04-01",
+    "signal_type": "B",
+    "HR_domain": "People Analytics",
+    "confirmation_level": "Partnership/Integration",
+    "source_type": "press release",
+    "summary": "ChartHop's AI-powered people operations platform, including the new ChartHop AI Pro with agentic actions and custom AI agents, is now available on the SAP Store. Integration with SAP SuccessFactors Employee Central delivers unified workforce intelligence, headcount planning, and real-time people analytics with AI-powered insights.",
+    "source_urls": [
+      "https://www.businesswire.com/news/home/20260401921547/en/ChartHop-AI-Powered-People-Operations-Platform-Now-Available-on-SAP-Store"
+    ],
+    "date_found": "2026-04-03"
+  },
+  {
+    "company_name": "Microsoft",
+    "date_event": "2026-03-27",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "confirmation_level": "Confirmed Deployment",
+    "source_type": "industry report",
+    "summary": "Korn Ferry's 2026 TA Trends Report confirms Microsoft is issuing security IDs to AI agents as part of building infrastructure for human-AI hybrid teams. HR vendors are already creating employee records for AI agents, and 52% of talent leaders plan to add autonomous AI agents to their teams in 2026.",
+    "source_urls": [
+      "https://www.kornferry.com/insights/featured-topics/talent-recruitment/ai-in-recruitment-trends"
+    ],
+    "date_found": "2026-04-03"
   }
 ]
