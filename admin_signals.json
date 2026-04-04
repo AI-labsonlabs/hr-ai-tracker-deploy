@@ -127,7 +127,7 @@
     "HR_domain": "HR Service Delivery",
     "confirmation_level": "PR Mention",
     "source_type": "edited",
-    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂsignaling AI-enabled automation of HR and back-office functions.",
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affected\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u00a2\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0080\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0094signaling AI-enabled automation of HR and back-office functions.",
     "source_urls": [
       "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
     ],
@@ -481,34 +481,5 @@
       "https://www.kornferry.com/insights/featured-topics/talent-recruitment/ai-in-recruitment-trends"
     ],
     "date_found": "2026-04-03"
-  },
-  {
-    "company_name": "Oracle",
-    "date_event": "2026-01-15",
-    "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
-    "summary": "Oracle 26A release introduced 58 AI agents across Fusion Cloud HCM including Career Coach Agent, Compensation Guidelines Analyst, Team Goals Assistant, Benefits Plan Advisor, Employee Concierge, and Leave Management Agent.",
-    "source_urls": [
-      "https://blogs.oracle.com/cloud-infrastructure/post/oracle-26a-release-ai-agents"
-    ],
-    "_deleted": true,
-    "_deleted_at": "2026-04-04T00:40:14.750Z"
-  },
-  {
-    "company_name": "Workday",
-    "date_event": "2026-02-28",
-    "signal_type": "A",
-    "HR_domain": "Talent Development",
-    "source_type": "edited",
-    "summary": "Workday Illuminate Agents for HR now available: Talent Optimization Agent identifies skill gaps and career paths, Succession Planning Agent analyzes readiness. Part of Illuminate platform.",
-    "source_urls": [
-      "https://blog.workday.com/en-us/workday-illuminate-agents.html"
-    ],
-    "_edited": "2026-04-04T00:41:10.504Z",
-    "_original": {
-      "company": "Workday",
-      "date": "2026-02-28",
-      "summary_start": "Workday Illuminate Agents for HR now available: Recruiter Ag"
-    }
   }
 ]
