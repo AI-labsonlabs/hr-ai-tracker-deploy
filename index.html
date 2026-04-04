@@ -6031,8 +6031,15 @@ initSignalsExplorer();
     clearTimeout(hideTimer);
     var text = el.getAttribute('data-bench-tip') || '';
     var co = el.getAttribute('data-bench-co') || '';
-    pop.innerHTML = '<div class="bench-score">' + text + '</div>' +
-      (co ? '<a class="bench-company-link" onclick="document.getElementById(\'benchPopover\').classList.remove(\'visible\');openProfile(\'' + co.replace(/'/g, "\\'") + '\')">' + co + ' ' + arrowIcon + '</a>' : '');
+    var currentProfile = (document.getElementById('profileOverlay') || {}).dataset;
+    var isSameCompany = currentProfile && currentProfile.company === co;
+    var coHTML = '';
+    if (co && isSameCompany) {
+      coHTML = '<span style="font-weight:600;font-size:var(--text-sm);color:var(--color-text);">' + co + '</span>';
+    } else if (co) {
+      coHTML = '<a class="bench-company-link" onclick="document.getElementById(\'benchPopover\').classList.remove(\'visible\');openProfile(\'' + co.replace(/'/g, "\\'") + '\')">' + co + ' ' + arrowIcon + '</a>';
+    }
+    pop.innerHTML = '<div class="bench-score">' + text + '</div>' + coHTML;
     var rect = el.getBoundingClientRect();
     pop.style.left = rect.left + 'px';
     pop.style.top = (rect.top - 8) + 'px';
