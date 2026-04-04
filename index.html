@@ -5390,7 +5390,7 @@ function buildCompanyProfileHTML(companyName, side) {
     if (cAvg > 0) cMarkers += '<div class="ind-marker ind-avg" style="left:' + Math.min(cAvg, 99) + '%" title="' + cmpIndustry + ' avg: ' + fmt(cAvg, 0) + '"></div>';
     if (cMax > 0) cMarkers += '<div class="ind-marker ind-max" style="left:' + Math.min(cMax, 99) + '%" title="' + cmpIndustry + ' max: ' + fmt(cMax, 0) + '"></div>';
     html += '<div class="cmp-domain-bar" data-domain="' + d + '" data-panel="' + uid + '" style="display:flex;align-items:center;gap:8px;padding:4px 6px;margin:1px 0;border-radius:var(--radius-sm);cursor:pointer;transition:background 0.15s;" title="' + tip.replace(/"/g, '&quot;') + '">';
-    html += '<span style="font-size:var(--text-xs);min-width:100px;flex-shrink:0;text-align:right;">' + d + '</span>';
+    html += '<span style="font-size:var(--text-xs);width:130px;flex-shrink:0;text-align:right;">' + d + '</span>';
     html += '<div class="bar-track" style="height:10px;">' + cMarkers;
     if (score > 0) html += '<div class="bar-fill" style="width:' + score + '%;background:var(--color-primary);"></div>';
     html += '</div>';
@@ -5398,7 +5398,7 @@ function buildCompanyProfileHTML(companyName, side) {
   });
   // Legend
   html += '<div style="display:flex;align-items:center;gap:8px;padding:2px 6px;">' +
-    '<span style="min-width:100px;flex-shrink:0;"></span>' +
+    '<span style="width:130px;flex-shrink:0;"></span>' +
     '<div style="display:flex;gap:var(--space-3);font-size:10px;color:var(--color-text);align-items:center;">' +
     '<span style="display:inline-flex;align-items:center;gap:3px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;background:var(--color-surface-offset-2);border-radius:2px;flex-shrink:0;"><span style="width:0;height:8px;border-left:2.5px dashed var(--color-warning);"></span></span>avg</span>' +
     '<span style="display:inline-flex;align-items:center;gap:3px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;background:var(--color-surface-offset-2);border-radius:2px;flex-shrink:0;"><span style="width:0;height:8px;border-left:2.5px solid var(--color-success);"></span></span>max</span>' +
