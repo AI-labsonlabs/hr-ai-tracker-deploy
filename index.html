@@ -2573,6 +2573,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
 </head>
 <body>
 <div class="stb-tooltip" id="stbTooltip"></div>
+<div class="stb-tooltip" id="benchTooltip"></div>
 <div class="dashboard">
   <!-- SIDEBAR -->
   <nav class="sidebar" id="sidebar" aria-label="Main navigation">
@@ -3991,7 +3992,7 @@ function openProfile(companyName) {
     var maxCoName = (indBench.maxCompany && indBench.maxCompany[d]) || '';
     var markers = '';
     if (avgVal > 0) markers += '<div class="ind-marker ind-avg" style="left:' + Math.min(avgVal, 99) + '%" title="' + industryName + ' avg: ' + fmt(avgVal, 0) + '"></div>';
-    if (maxVal > 0) markers += '<div class="ind-marker ind-max" style="left:' + Math.min(maxVal, 99) + '%;pointer-events:auto;cursor:pointer;" title="' + industryName + ' max: ' + fmt(maxVal, 0) + ' (' + maxCoName.replace(/'/g, '\\&#39;') + ')" onclick="event.stopPropagation();openProfile(\'' + esc(maxCoName) + '\')"></div>';
+    if (maxVal > 0) markers += '<div class="ind-marker ind-max" style="left:' + Math.min(maxVal, 99) + '%;pointer-events:auto;cursor:pointer;" data-bench-tip="' + industryName + ' max: ' + fmt(maxVal, 0) + '" data-bench-co="' + esc(maxCoName) + '" onclick="event.stopPropagation();openProfile(\'' + esc(maxCoName) + '\')"></div>';
     domainBarsHTML += '<div class="bar-row bar-row-clickable profile-domain-bar" data-domain="' + d + '" title="' + tip.replace(/"/g, '&quot;') + '"><div class="bar-label">' + d + '</div><div class="bar-track">' + markers + '<div class="bar-fill" style="width:' + val + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(val, 0) + '</div></div>';
   }
   // Legend for industry benchmarks
@@ -5393,7 +5394,7 @@ function buildCompanyProfileHTML(companyName, side) {
     var cMaxCo = (cmpBench.maxCompany && cmpBench.maxCompany[d]) || '';
     var cMarkers = '';
     if (cAvg > 0) cMarkers += '<div class="ind-marker ind-avg" style="left:' + Math.min(cAvg, 99) + '%" title="' + cmpIndustry + ' avg: ' + fmt(cAvg, 0) + '"></div>';
-    if (cMax > 0) cMarkers += '<div class="ind-marker ind-max" style="left:' + Math.min(cMax, 99) + '%;pointer-events:auto;cursor:pointer;" title="' + cmpIndustry + ' max: ' + fmt(cMax, 0) + ' (' + cMaxCo.replace(/'/g, '\\&#39;') + ')" onclick="event.stopPropagation();openProfile(\'' + esc(cMaxCo) + '\')"></div>';
+    if (cMax > 0) cMarkers += '<div class="ind-marker ind-max" style="left:' + Math.min(cMax, 99) + '%;pointer-events:auto;cursor:pointer;" data-bench-tip="' + cmpIndustry + ' max: ' + fmt(cMax, 0) + '" data-bench-co="' + esc(cMaxCo) + '" onclick="event.stopPropagation();openProfile(\'' + esc(cMaxCo) + '\')"></div>';
     html += '<div class="cmp-domain-bar" data-domain="' + d + '" data-panel="' + uid + '" style="display:flex;align-items:center;gap:8px;padding:4px 6px;margin:1px 0;border-radius:var(--radius-sm);cursor:pointer;transition:background 0.15s;" title="' + tip.replace(/"/g, '&quot;') + '">';
     html += '<span style="font-size:var(--text-xs);width:130px;flex-shrink:0;text-align:right;">' + d + '</span>';
     html += '<div class="bar-track" style="height:10px;">' + cMarkers;
@@ -5963,6 +5964,29 @@ initGovernance();
 renderGovernance();
 initPeerComparison();
 initSignalsExplorer();
+
+// Benchmark max-line tooltip (delegated)
+(function() {
+  var tip = document.getElementById('benchTooltip');
+  if (!tip) return;
+  document.addEventListener('mouseenter', function(e) {
+    var el = e.target.closest && e.target.closest('.ind-max[data-bench-tip]');
+    if (!el) return;
+    var text = el.getAttribute('data-bench-tip') || '';
+    var co = el.getAttribute('data-bench-co') || '';
+    tip.innerHTML = '<strong>' + text + '</strong>' + (co ? '<br><span style="color:var(--color-primary);">' + co + '</span> <span style="opacity:0.6;">(click to view)</span>' : '');
+    var rect = el.getBoundingClientRect();
+    tip.style.left = Math.min(rect.left + rect.width / 2, window.innerWidth - 200) + 'px';
+    tip.style.top = (rect.top - 8) + 'px';
+    tip.style.transform = 'translateX(-50%) translateY(-100%)';
+    tip.classList.add('visible');
+  }, true);
+  document.addEventListener('mouseleave', function(e) {
+    var el = e.target.closest && e.target.closest('.ind-max[data-bench-tip]');
+    if (!el) return;
+    tip.classList.remove('visible');
+  }, true);
+})();
 
 // Re-render tables on resize to switch between card/table layout
 var _resizeTimer;
