@@ -4136,15 +4136,15 @@ function openProfile(companyName) {
     '</div></div>' +
     '<div class="profile-grid">' +
     '<div class="profile-card"><div class="profile-card-title">Maturity Score</div><div class="gauge-container">' + gaugeSVG + '<div><div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);">/100</span></div><div class="gauge-label">' + (md.adoption_pattern || '') + '</div></div></div></div>' +
-    '<div class="profile-card"><div class="profile-card-title">Momentum</div><div class="gauge-value" style="margin-bottom:var(--space-2);"><span class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span></div>' +
-    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-2);font-size:var(--text-xs);"><div><div style="color:var(--color-text-muted);">&lt;30d</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">30d\u201360d</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_30_60d || 0) + '</div></div><div><div style="color:var(--color-text-muted);">60d\u201390d</div><div style="font-weight:600;font-family:var(--font-mono);">' + (mom.signals_60_90d || 0) + '</div></div></div>' +
-    '<div style="margin-top:var(--space-3);padding-top:var(--space-3);border-top:1px solid var(--color-divider);">' +
-    '<div style="font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted);margin-bottom:var(--space-2);"><span style="color:var(--color-primary);">Deploy</span> vs <span style="color:var(--color-warning);">PR</span></div>' +
-    '<div style="display:flex;align-items:center;gap:var(--space-3);">' +
-    '<div style="flex:1;"><div style="display:flex;height:8px;border-radius:var(--radius-full);overflow:hidden;background:var(--color-surface-offset);"><div style="width:' + (pr.deploy_pct || 0) + '%;background:var(--color-primary);"></div><div style="width:' + (pr.pr_pct || 0) + '%;background:var(--color-warning);"></div></div></div>' +
+    '<div class="profile-card"><div class="profile-card-title">Momentum</div>' +
+    '<div style="display:flex;align-items:baseline;gap:var(--space-4);margin-bottom:var(--space-3);">' +
+    '<div class="gauge-value"><span class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span></div>' +
+    '<div style="display:flex;gap:var(--space-3);font-size:var(--text-xs);"><div><span style="color:var(--color-text-muted);">&lt;30d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</strong></div><div><span style="color:var(--color-text-muted);">30&#x2011;60d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_30_60d || 0) + '</strong></div><div><span style="color:var(--color-text-muted);">60&#x2011;90d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_60_90d || 0) + '</strong></div></div>' +
     '</div>' +
-    '<div style="font-size:10px;display:flex;gap:var(--space-3);margin-top:var(--space-1);"><span><span style="display:inline-block;width:6px;height:6px;background:var(--color-primary);border-radius:1px;"></span> ' + fmt(pr.deploy_pct || 0, 0) + '%</span><span><span style="display:inline-block;width:6px;height:6px;background:var(--color-warning);border-radius:1px;"></span> ' + fmt(pr.pr_pct || 0, 0) + '%</span><span style="color:var(--color-text-muted);">' + (pr.label || '') + '</span></div>' +
-    '</div></div>' +
+    '<div style="font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted);margin-bottom:4px;"><span style="color:var(--color-primary);">Deploy</span> vs <span style="color:var(--color-warning);">PR</span></div>' +
+    '<div style="display:flex;height:8px;border-radius:var(--radius-full);overflow:hidden;background:var(--color-surface-offset);margin-bottom:4px;"><div style="width:' + (pr.deploy_pct || 0) + '%;background:var(--color-primary);"></div><div style="width:' + (pr.pr_pct || 0) + '%;background:var(--color-warning);"></div></div>' +
+    '<div style="font-size:10px;display:flex;gap:var(--space-3);"><span><span style="display:inline-block;width:6px;height:6px;background:var(--color-primary);border-radius:1px;"></span> ' + fmt(pr.deploy_pct || 0, 0) + '%</span><span><span style="display:inline-block;width:6px;height:6px;background:var(--color-warning);border-radius:1px;"></span> ' + fmt(pr.pr_pct || 0, 0) + '%</span><span style="color:var(--color-text-muted);">' + (pr.label || '') + '</span></div>' +
+    '</div>' +
     '<div class="profile-card"><div class="profile-card-title">Company Info</div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);font-size:var(--text-sm);">' +
     '<div><span style="color:var(--color-text-muted);">Employees</span><br><strong>' + empHTML + '</strong></div>' +
@@ -4153,6 +4153,7 @@ function openProfile(companyName) {
     '<div><span style="color:var(--color-text-muted);">Geography</span><br><strong>' + (co.geographic_footprint || '\u2014') + '</strong></div>' +
     '</div>' +
     '<div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-faint);">Attributes last updated: ' + (D.attributes_last_updated || '\u2014') + '</div>' +
+    '</div>' +
     '</div>' +
     detailsHTML +
     '<div class="section-block"><h2 class="section-title">HR Domain Scores <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(click to filter signals)</span></h2><div style="max-width:500px;" class="bar-chart" id="profileDomainChart">' + domainBarsHTML + '</div></div>' +
