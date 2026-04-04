@@ -481,5 +481,18 @@
       "https://www.kornferry.com/insights/featured-topics/talent-recruitment/ai-in-recruitment-trends"
     ],
     "date_found": "2026-04-03"
+  },
+  {
+    "company_name": "Walt Disney",
+    "date_event": "2026-04-03",
+    "signal_type": "I",
+    "HR_domain": "People Analytics",
+    "confirmation_level": "low",
+    "source_type": "news article",
+    "summary": "AI industry digest reported that The Walt Disney Company has moved past pilots to embed generative AI across its operating structure; HR-specific use cases were not specified.",
+    "source_urls": [
+      "https://asanify.com/blog/news/ai-recruiting-data-breach-april--3-2026/"
+    ],
+    "date_found": "2026-04-04"
   }
 ]
