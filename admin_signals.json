@@ -459,9 +459,9 @@
   {
     "company_name": "SAP",
     "date_event": "2026-04-01",
-    "signal_type": "B",
+    "signal_type": "A",
     "HR_domain": "People Analytics",
-    "confirmation_level": "Partnership/Integration",
+    "confirmation_level": "Confirmed Deployment",
     "source_type": "press release",
     "summary": "ChartHop's AI-powered people operations platform, including the new ChartHop AI Pro with agentic actions and custom AI agents, is now available on the SAP Store. Integration with SAP SuccessFactors Employee Central delivers unified workforce intelligence, headcount planning, and real-time people analytics with AI-powered insights.",
     "source_urls": [
