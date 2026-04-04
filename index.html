@@ -1432,6 +1432,59 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   transition: opacity 120ms ease;
 }
 .stb-tooltip.visible { opacity: 1; }
+.bench-popover {
+  position: fixed;
+  z-index: 9999;
+  padding: 10px 14px;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 120ms ease;
+  white-space: nowrap;
+}
+.bench-popover.visible { opacity: 1; }
+.bench-popover::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+  transform: translateX(-50%) rotate(45deg);
+}
+.bench-popover .bench-score {
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+.bench-popover .bench-company-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 2px 0;
+}
+.bench-popover .bench-company-link:hover {
+  text-decoration: underline;
+}
+.bench-popover .bench-company-link svg {
+  opacity: 0.6;
+  flex-shrink: 0;
+}
 .stb-tooltip strong {
   display: block;
   font-weight: 600;
@@ -2573,7 +2626,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
 </head>
 <body>
 <div class="stb-tooltip" id="stbTooltip"></div>
-<div class="stb-tooltip" id="benchTooltip"></div>
+<div class="bench-popover" id="benchPopover"></div>
 <div class="dashboard">
   <!-- SIDEBAR -->
   <nav class="sidebar" id="sidebar" aria-label="Main navigation">
@@ -3992,7 +4045,7 @@ function openProfile(companyName) {
     var maxCoName = (indBench.maxCompany && indBench.maxCompany[d]) || '';
     var markers = '';
     if (avgVal > 0) markers += '<div class="ind-marker ind-avg" style="left:' + Math.min(avgVal, 99) + '%" title="' + industryName + ' avg: ' + fmt(avgVal, 0) + '"></div>';
-    if (maxVal > 0) markers += '<div class="ind-marker ind-max" style="left:' + Math.min(maxVal, 99) + '%;pointer-events:auto;cursor:pointer;" data-bench-tip="' + industryName + ' max: ' + fmt(maxVal, 0) + '" data-bench-co="' + esc(maxCoName) + '" onclick="event.stopPropagation();openProfile(\'' + esc(maxCoName) + '\')"></div>';
+    if (maxVal > 0) markers += '<div class="ind-marker ind-max" style="left:' + Math.min(maxVal, 99) + '%;pointer-events:auto;cursor:default;" data-bench-tip="' + industryName + ' max: ' + fmt(maxVal, 0) + '" data-bench-co="' + esc(maxCoName) + '"></div>';
     domainBarsHTML += '<div class="bar-row bar-row-clickable profile-domain-bar" data-domain="' + d + '" title="' + tip.replace(/"/g, '&quot;') + '"><div class="bar-label">' + d + '</div><div class="bar-track">' + markers + '<div class="bar-fill" style="width:' + val + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(val, 0) + '</div></div>';
   }
   // Legend for industry benchmarks
@@ -5395,7 +5448,7 @@ function buildCompanyProfileHTML(companyName, side) {
     var cMaxCo = (cmpBench.maxCompany && cmpBench.maxCompany[d]) || '';
     var cMarkers = '';
     if (cAvg > 0) cMarkers += '<div class="ind-marker ind-avg" style="left:' + Math.min(cAvg, 99) + '%" title="' + cmpIndustry + ' avg: ' + fmt(cAvg, 0) + '"></div>';
-    if (cMax > 0) cMarkers += '<div class="ind-marker ind-max" style="left:' + Math.min(cMax, 99) + '%;pointer-events:auto;cursor:pointer;" data-bench-tip="' + cmpIndustry + ' max: ' + fmt(cMax, 0) + '" data-bench-co="' + esc(cMaxCo) + '" onclick="event.stopPropagation();openProfile(\'' + esc(cMaxCo) + '\')"></div>';
+    if (cMax > 0) cMarkers += '<div class="ind-marker ind-max" style="left:' + Math.min(cMax, 99) + '%;pointer-events:auto;cursor:default;" data-bench-tip="' + cmpIndustry + ' max: ' + fmt(cMax, 0) + '" data-bench-co="' + esc(cMaxCo) + '"></div>';
     html += '<div class="cmp-domain-bar" data-domain="' + d + '" data-panel="' + uid + '" style="display:flex;align-items:center;gap:8px;padding:4px 6px;margin:1px 0;border-radius:var(--radius-sm);cursor:pointer;transition:background 0.15s;" title="' + tip.replace(/"/g, '&quot;') + '">';
     html += '<span style="font-size:var(--text-xs);width:130px;flex-shrink:0;text-align:right;">' + d + '</span>';
     html += '<div class="bar-track" style="height:10px;">' + cMarkers;
@@ -5966,26 +6019,42 @@ renderGovernance();
 initPeerComparison();
 initSignalsExplorer();
 
-// Benchmark max-line tooltip (delegated)
+// Benchmark max-line popover (delegated)
 (function() {
-  var tip = document.getElementById('benchTooltip');
-  if (!tip) return;
-  document.addEventListener('mouseenter', function(e) {
-    var el = e.target.closest && e.target.closest('.ind-max[data-bench-tip]');
-    if (!el) return;
+  var pop = document.getElementById('benchPopover');
+  if (!pop) return;
+  var hideTimer = null;
+  var arrowIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+
+  function showPopover(el) {
+    clearTimeout(hideTimer);
     var text = el.getAttribute('data-bench-tip') || '';
     var co = el.getAttribute('data-bench-co') || '';
-    tip.innerHTML = '<strong>' + text + '</strong>' + (co ? '<br><span style="color:var(--color-primary);">' + co + '</span> <span style="opacity:0.6;">(click to view)</span>' : '');
+    pop.innerHTML = '<div class="bench-score">' + text + '</div>' +
+      (co ? '<a class="bench-company-link" onclick="document.getElementById(\'benchPopover\').classList.remove(\'visible\');openProfile(\'' + co.replace(/'/g, "\\'") + '\')">' + co + ' ' + arrowIcon + '</a>' : '');
     var rect = el.getBoundingClientRect();
-    tip.style.left = Math.min(rect.left + rect.width / 2, window.innerWidth - 200) + 'px';
-    tip.style.top = (rect.top - 8) + 'px';
-    tip.style.transform = 'translateX(-50%) translateY(-100%)';
-    tip.classList.add('visible');
+    pop.style.left = rect.left + 'px';
+    pop.style.top = (rect.top - 8) + 'px';
+    pop.style.transform = 'translateX(-50%) translateY(-100%)';
+    pop.classList.add('visible');
+  }
+
+  function scheduleHide() {
+    hideTimer = setTimeout(function() {
+      pop.classList.remove('visible');
+    }, 250);
+  }
+
+  document.addEventListener('mouseenter', function(e) {
+    var el = e.target.closest && e.target.closest('.ind-max[data-bench-tip]');
+    if (el) { showPopover(el); return; }
+    if (e.target.closest && e.target.closest('.bench-popover')) { clearTimeout(hideTimer); }
   }, true);
+
   document.addEventListener('mouseleave', function(e) {
     var el = e.target.closest && e.target.closest('.ind-max[data-bench-tip]');
-    if (!el) return;
-    tip.classList.remove('visible');
+    if (el) { scheduleHide(); return; }
+    if (e.target.closest && e.target.closest('.bench-popover')) { scheduleHide(); }
   }, true);
 })();
 
