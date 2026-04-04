@@ -472,11 +472,11 @@
   {
     "company_name": "Microsoft",
     "date_event": "2026-03-27",
-    "signal_type": "A",
+    "signal_type": "I",
     "HR_domain": "HR Service Delivery",
     "confirmation_level": "Confirmed Deployment",
     "source_type": "industry report",
-    "summary": "Korn Ferry's 2026 TA Trends Report confirms Microsoft is issuing security IDs to AI agents as part of building infrastructure for human-AI hybrid teams. HR vendors are already creating employee records for AI agents, and 52% of talent leaders plan to add autonomous AI agents to their teams in 2026.",
+    "summary": "Korn Ferry's 2026 TA Trends Report notes Microsoft is issuing security IDs to AI agents and building infrastructure for human-AI hybrid teams, with 52% of talent leaders planning to add autonomous AI agents to their teams in 2026.",
     "source_urls": [
       "https://www.kornferry.com/insights/featured-topics/talent-recruitment/ai-in-recruitment-trends"
     ],
