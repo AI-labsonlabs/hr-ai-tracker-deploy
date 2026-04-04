@@ -3987,8 +3987,8 @@ function openProfile(companyName) {
     var avgVal = indBench.avg[d] || 0;
     var maxVal = indBench.max[d] || 0;
     var markers = '';
-    if (avgVal > 0) markers += '<div class="ind-marker ind-avg" style="left:' + avgVal + '%" title="' + industryName + ' avg: ' + fmt(avgVal, 0) + '"></div>';
-    if (maxVal > 0) markers += '<div class="ind-marker ind-max" style="left:' + Math.min(maxVal, 100) + '%" title="' + industryName + ' max: ' + fmt(maxVal, 0) + '"></div>';
+    if (avgVal > 0) markers += '<div class="ind-marker ind-avg" style="left:' + Math.min(avgVal, 99) + '%" title="' + industryName + ' avg: ' + fmt(avgVal, 0) + '"></div>';
+    if (maxVal > 0) markers += '<div class="ind-marker ind-max" style="left:' + Math.min(maxVal, 99) + '%" title="' + industryName + ' max: ' + fmt(maxVal, 0) + '"></div>';
     domainBarsHTML += '<div class="bar-row bar-row-clickable profile-domain-bar" data-domain="' + d + '" title="' + tip.replace(/"/g, '&quot;') + '"><div class="bar-label">' + d + '</div><div class="bar-track">' + markers + '<div class="bar-fill" style="width:' + val + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(val, 0) + '</div></div>';
   }
   // Legend for industry benchmarks
@@ -5387,8 +5387,8 @@ function buildCompanyProfileHTML(companyName, side) {
     var cAvg = cmpBench.avg[d] || 0;
     var cMax = cmpBench.max[d] || 0;
     var cMarkers = '';
-    if (cAvg > 0) cMarkers += '<div class="ind-marker ind-avg" style="left:' + cAvg + '%" title="' + cmpIndustry + ' avg: ' + fmt(cAvg, 0) + '"></div>';
-    if (cMax > 0) cMarkers += '<div class="ind-marker ind-max" style="left:' + Math.min(cMax, 100) + '%" title="' + cmpIndustry + ' max: ' + fmt(cMax, 0) + '"></div>';
+    if (cAvg > 0) cMarkers += '<div class="ind-marker ind-avg" style="left:' + Math.min(cAvg, 99) + '%" title="' + cmpIndustry + ' avg: ' + fmt(cAvg, 0) + '"></div>';
+    if (cMax > 0) cMarkers += '<div class="ind-marker ind-max" style="left:' + Math.min(cMax, 99) + '%" title="' + cmpIndustry + ' max: ' + fmt(cMax, 0) + '"></div>';
     html += '<div class="cmp-domain-bar" data-domain="' + d + '" data-panel="' + uid + '" style="display:flex;align-items:center;gap:8px;padding:4px 6px;margin:1px 0;border-radius:var(--radius-sm);cursor:pointer;transition:background 0.15s;" title="' + tip.replace(/"/g, '&quot;') + '">';
     html += '<span style="font-size:var(--text-xs);min-width:100px;flex-shrink:0;text-align:right;">' + d + '</span>';
     html += '<div class="bar-track" style="height:10px;">' + cMarkers;
