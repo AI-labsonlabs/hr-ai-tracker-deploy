@@ -4336,8 +4336,6 @@ const OV_COLS = [
   { key: 'signals',      label: 'Signals',      type: 'metric',
     tooltip: '<strong>Signal Count</strong>Total verified HR AI signals tied to specific HR domains. Each signal contributes to its domain score with diminishing returns — the 3rd signal in a domain adds less than the 1st. Breadth across domains matters more than depth in one.' },
   { key: 'pattern',      label: 'Pattern',      type: 'multi-filter' },
-  { key: 'pr_ratio_val',  label: '<span style="color:var(--color-primary);">Deploy</span> vs <span style="color:var(--color-warning);">PR</span>', type: 'metric',
-    tooltip: '<strong><span style="color:var(--color-primary);">Deploy</span> vs <span style="color:var(--color-warning);">PR</span> Ratio</strong>Proportion of signals that are real deployments vs. PR-only mentions. Higher deploy ratio = more substance behind the signal count.' },
 ];
 
 // Metric column tooltips keyed for quick lookup
@@ -4724,8 +4722,7 @@ function renderOverviewTable() {
         '<td class="mono ' + maturityClass(c.maturity) + '">' + fmt(c.maturity) + '</td>' +
         '<td class="mono ' + momentumClass(c.momentum) + '">' + fmtMomentum(c.momentum) + '</td>' +
         '<td class="mono">' + c.signals + '</td>' +
-        '<td>' + patternBadge(c.pattern) + '</td>' +
-        '<td>' + prRatioBar(c.pr_ratio || {}) + '</td></tr>';
+        '<td>' + patternBadge(c.pattern) + '</td></tr>';
     }
 
     let rows = '';
