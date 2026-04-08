@@ -493,7 +493,8 @@
     "source_urls": [
       "https://asanify.com/blog/news/ai-recruiting-data-breach-april--3-2026/"
     ],
-    "date_found": "2026-04-04"
+    "date_found": "2026-04-04",
+    "_deleted": true
   },
   {
     "company_name": "Workday",
