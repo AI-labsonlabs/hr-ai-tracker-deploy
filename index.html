@@ -176,6 +176,43 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   color: #fff;
   border-color: var(--color-primary);
 }
+.tech-mobile-select {
+  display: none;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-3);
+}
+.tech-card-row {
+  display: none;
+}
+@media (max-width: 640px) {
+  .tech-pill-row { display: none !important; }
+  .tech-mobile-select { display: block; }
+  #techTable thead { display: none; }
+  #techTable, #techTable tbody, #techTable tr { display: block; width: 100%; }
+  #techTable tr {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    margin-bottom: var(--space-2);
+    cursor: pointer;
+  }
+  #techTable td { display: none; }
+  #techTable td:nth-child(1),
+  #techTable td:nth-child(3),
+  #techTable td:nth-child(5) { display: block; }
+  #techTable td:nth-child(1) { font-weight: 600; font-size: var(--text-sm); margin-bottom: 4px; }
+  #techTable td:nth-child(3) { margin-bottom: 4px; }
+  #techTable td:nth-child(5) { font-size: var(--text-xs); color: var(--color-text-muted); }
+  #techTable td:nth-child(5)::before { content: 'Companies: '; }
+  .data-table-scroll { overflow-x: hidden !important; }
+}
 
 /* COMPANY PROFILE OVERLAY */
 .profile-overlay {
@@ -2530,6 +2567,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   }
 
   /* --- Methodology --- */
+  #tab-methodology div[style*="grid-template-columns:1fr 1fr"],
   #tab-methodology div[style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
@@ -2539,6 +2577,31 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   #tab-methodology code {
     font-size: 10px;
     word-break: break-all;
+    white-space: normal;
+  }
+  #tab-methodology .data-table {
+    font-size: 10px;
+  }
+  #tab-methodology .data-table th,
+  #tab-methodology .data-table td {
+    padding: 4px 6px;
+  }
+  #tab-methodology .data-table td:last-child {
+    display: none;
+  }
+  #tab-methodology .data-table th:last-child {
+    display: none;
+  }
+  #tab-methodology div[style*="grid-template-columns:100px 1fr"] {
+    grid-template-columns: 90px 1fr !important;
+  }
+  #tab-methodology div[style*="background:var(--color-surface-offset);border-radius:var(--radius-md);padding:var(--space-3)"] {
+    overflow-x: auto;
+  }
+  #tab-methodology [style*="text-align:center"] code {
+    font-size: 11px;
+    display: block;
+    text-align: left;
   }
 
   /* --- Admin --- */
@@ -2835,8 +2898,10 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
       <!-- Tech Summary KPIs -->
       <div id="techKpiRow" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:var(--space-3);margin-bottom:var(--space-5);"></div>
 
-      <!-- Category Filter Pills -->
-      <div id="techCategoryFilters" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--space-4);"></div>
+      <!-- Category Filter Pills (desktop) -->
+      <div id="techCategoryFilters" class="tech-pill-row" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--space-4);"></div>
+      <!-- Category Filter Dropdown (mobile) -->
+      <select id="techCategorySelect" class="tech-mobile-select" onchange="filterTechCategory(this.value)"></select>
 
       <!-- Tech Table -->
       <div class="data-table-wrap">
@@ -7597,12 +7662,21 @@ initAdmin();
   var activeCatFilter = 'All';
   var sortedCats = Object.keys(categories).sort(function(a, b) { return categories[b] - categories[a]; });
   function renderCatFilters() {
-    if (!catFilterEl) return;
-    var html = '<button class="tech-cat-pill' + (activeCatFilter === 'All' ? ' active' : '') + '" onclick="filterTechCategory(\'All\')">All (' + totalTechs + ')</button>';
-    sortedCats.forEach(function(cat) {
-      html += '<button class="tech-cat-pill' + (activeCatFilter === cat ? ' active' : '') + '" onclick="filterTechCategory(\'' + cat.replace(/'/g, "\\'") + '\')">' + cat + ' (' + categories[cat] + ')</button>';
-    });
-    catFilterEl.innerHTML = html;
+    if (catFilterEl) {
+      var html = '<button class="tech-cat-pill' + (activeCatFilter === 'All' ? ' active' : '') + '" onclick="filterTechCategory(\'All\')">All (' + totalTechs + ')</button>';
+      sortedCats.forEach(function(cat) {
+        html += '<button class="tech-cat-pill' + (activeCatFilter === cat ? ' active' : '') + '" onclick="filterTechCategory(\'' + cat.replace(/'/g, "\\'") + '\')">' + cat + ' (' + categories[cat] + ')</button>';
+      });
+      catFilterEl.innerHTML = html;
+    }
+    var selectEl = document.getElementById('techCategorySelect');
+    if (selectEl) {
+      var selHtml = '<option value="All"' + (activeCatFilter === 'All' ? ' selected' : '') + '>All categories (' + totalTechs + ')</option>';
+      sortedCats.forEach(function(cat) {
+        selHtml += '<option value="' + cat.replace(/"/g, '&quot;') + '"' + (activeCatFilter === cat ? ' selected' : '') + '>' + cat + ' (' + categories[cat] + ')</option>';
+      });
+      selectEl.innerHTML = selHtml;
+    }
   }
   renderCatFilters();
 
