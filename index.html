@@ -190,12 +190,13 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 .tech-card-row {
   display: none;
 }
+.tech-mobile-cards { display: none; }
 @media (max-width: 640px) {
   .tech-pill-row { display: none !important; }
   .tech-mobile-select { display: block; }
-  #techTable thead { display: none; }
-  #techTable, #techTable tbody, #techTable tr { display: block; width: 100%; }
-  #techTable tr {
+  .data-table-wrap { display: none !important; }
+  .tech-mobile-cards { display: block; max-height: calc(100vh - 280px); overflow-y: auto; }
+  .tech-mcard {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
@@ -203,15 +204,61 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
     margin-bottom: var(--space-2);
     cursor: pointer;
   }
-  #techTable td { display: none; }
-  #techTable td:nth-child(1),
-  #techTable td:nth-child(3),
-  #techTable td:nth-child(5) { display: block; }
-  #techTable td:nth-child(1) { font-weight: 600; font-size: var(--text-sm); margin-bottom: 4px; }
-  #techTable td:nth-child(3) { margin-bottom: 4px; }
-  #techTable td:nth-child(5) { font-size: var(--text-xs); color: var(--color-text-muted); }
-  #techTable td:nth-child(5)::before { content: 'Companies: '; }
-  .data-table-scroll { overflow-x: hidden !important; }
+  .tech-mcard:active { background: var(--color-surface-offset); }
+  .tech-mcard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .tech-mcard-name {
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+  }
+  .tech-mcard-cat {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--color-surface-2);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+  .tech-mcard-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+    font-size: 11px;
+  }
+  .tech-mcard-stat {
+    text-align: center;
+  }
+  .tech-mcard-stat-val {
+    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+  }
+  .tech-mcard-stat-label {
+    color: var(--color-text-muted);
+    font-size: 10px;
+  }
+  .tech-mcard-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--color-surface-offset);
+    margin-top: 8px;
+    overflow: hidden;
+    display: flex;
+  }
+  .tech-mcard-bar-dep {
+    background: var(--color-primary);
+    height: 100%;
+  }
+  .tech-mcard-bar-pilot {
+    background: var(--color-warning);
+    height: 100%;
+  }
 }
 
 /* COMPANY PROFILE OVERLAY */
@@ -2922,6 +2969,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
         </div>
         <div id="techCount" style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2) var(--space-3);"></div>
       </div>
+      <div class="tech-mobile-cards" id="techMobileCards"></div>
 
       <!-- Tech Detail Overlay (inline, not a separate page) -->
       <div id="techDetailOverlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:60;background:var(--color-bg);overflow-y:auto;">
@@ -7740,6 +7788,32 @@ initAdmin();
     });
     techTbody.innerHTML = html;
     if (techCount) techCount.textContent = 'Showing ' + filtered.length + ' of ' + totalTechs + ' technologies';
+
+    // Mobile cards
+    var mobileEl = document.getElementById('techMobileCards');
+    if (mobileEl) {
+      var maxCo = Math.max.apply(null, filtered.map(function(t) { return t.company_count || 0; })) || 1;
+      var mhtml = '';
+      filtered.forEach(function(t) {
+        var indCount = Object.keys(t.industries || {}).length;
+        var depPct = t.total_mentions > 0 ? Math.round((t.deployments || 0) / t.total_mentions * 100) : 0;
+        var pilotPct = t.total_mentions > 0 ? Math.round((t.pilots || 0) / t.total_mentions * 100) : 0;
+        var barW = Math.round((t.company_count || 0) / maxCo * 100);
+        mhtml += '<div class="tech-mcard" onclick="openTechDetail(\'' + t.name.replace(/'/g, "\\'") + '\')">' +
+          '<div class="tech-mcard-header">' +
+          '<span class="tech-mcard-name">' + t.name + '</span>' +
+          '<span class="tech-mcard-cat">' + (t.category || '') + '</span>' +
+          '</div>' +
+          '<div class="tech-mcard-stats">' +
+          '<div class="tech-mcard-stat"><div class="tech-mcard-stat-val">' + (t.company_count || 0) + '</div><div class="tech-mcard-stat-label">Companies</div></div>' +
+          '<div class="tech-mcard-stat"><div class="tech-mcard-stat-val">' + (t.deployed_company_count || 0) + '</div><div class="tech-mcard-stat-label">Deployed</div></div>' +
+          '<div class="tech-mcard-stat"><div class="tech-mcard-stat-val">' + indCount + '</div><div class="tech-mcard-stat-label">Industries</div></div>' +
+          '</div>' +
+          '<div class="tech-mcard-bar"><div class="tech-mcard-bar-dep" style="width:' + barW + '%"></div></div>' +
+          '</div>';
+      });
+      mobileEl.innerHTML = mhtml;
+    }
 
     // Update sort arrows
     if (techThead) {
