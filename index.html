@@ -539,6 +539,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   gap: var(--space-4);
 }
 .gauge-svg { width: 120px; height: 70px; }
+.gauge-mobile { display: none; }
 .gauge-label {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
@@ -2571,10 +2572,8 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   .profile-card {
     padding: var(--space-3);
   }
-  .gauge-svg {
-    width: 90px;
-    height: 52px;
-  }
+  .gauge-desktop { display: none; }
+  .gauge-mobile { display: block; }
 
   /* --- Methodology --- */
   #tab-methodology div[style*="grid-template-columns:1fr 1fr"],
@@ -4211,7 +4210,13 @@ function openProfile(companyName) {
     (co.public_or_private === 'Public' ? '<span class="badge badge-green">Public</span>' : '<span class="badge badge-gray">Private</span>') +
     '</div></div>' +
     '<div class="profile-grid">' +
-    '<div class="profile-card"><div class="profile-card-title">Maturity Score</div><div class="gauge-container">' + gaugeSVG + '<div><div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);">/100</span></div><div class="gauge-label">' + (md.adoption_pattern || '') + '</div></div></div></div>' +
+    '<div class="profile-card"><div class="profile-card-title">Maturity Score</div>' +
+    '<div class="gauge-container gauge-desktop">' + gaugeSVG + '<div><div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);">/100</span></div><div class="gauge-label">' + (md.adoption_pattern || '') + '</div></div></div>' +
+    '<div class="gauge-mobile">' +
+    '<div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);">/100</span></div>' +
+    '<div style="height:8px;border-radius:var(--radius-full);background:var(--color-surface-offset);margin:var(--space-2) 0;overflow:hidden;"><div style="height:100%;width:' + Math.min(matScore, 100) + '%;border-radius:var(--radius-full);background:' + gaugeColor + ';"></div></div>' +
+    '<div class="gauge-label">' + (md.adoption_pattern || '') + '</div>' +
+    '</div></div>' +
     '<div class="profile-card"><div class="profile-card-title">Momentum</div>' +
     '<div style="display:flex;align-items:baseline;gap:var(--space-4);margin-bottom:var(--space-3);">' +
     '<div class="gauge-value"><span class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span></div>' +
