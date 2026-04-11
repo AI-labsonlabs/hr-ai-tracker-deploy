@@ -361,6 +361,13 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 .bar-row-clickable:hover .bar-label {
   color: var(--color-text);
 }
+.ind-bar-active {
+  background: color-mix(in oklch, var(--color-primary) 12%, transparent);
+}
+.ind-bar-active .bar-label {
+  color: var(--color-primary);
+  font-weight: 600;
+}
 .bar-row-active {
   background: color-mix(in oklch, var(--color-primary) 12%, transparent);
 }
@@ -2692,10 +2699,9 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
     gap: var(--space-3);
   }
 
-  /* --- Signal Type Breakdown bar labels --- */
-  #signalTypeChart .bar-label {
-    width: 100px !important;
-    min-width: 100px !important;
+  /* --- Signal Type Breakdown: hide on mobile --- */
+  #stbSection {
+    display: none !important;
   }
 
   /* --- Controls bar compact --- */
@@ -2847,7 +2853,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
           <h2 class="section-title">Industry Median Maturity</h2>
           <div class="bar-chart" id="industryChart"></div>
         </div>
-        <div class="section-block">
+        <div class="section-block" id="stbSection">
           <h2 class="section-title">Signal Type Breakdown</h2>
           <div class="bar-chart" id="signalTypeChart"></div>
         </div>
@@ -4371,13 +4377,12 @@ function renderOverview() {
   const SHOW_TOP = 6;
   const topIndustries = sorted.slice(0, SHOW_TOP);
   const restIndustries = sorted.slice(SHOW_TOP);
-  let chartHtml = topIndustries.map(([name, avg]) =>
-    '<div class="bar-row"><div class="bar-label">' + name + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (avg / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(avg) + '</div></div>'
-  ).join('');
+  function indBarHtml(name, avg) {
+    return '<div class="bar-row bar-row-clickable ind-filter-bar" data-industry="' + name.replace(/"/g, '&quot;') + '" style="cursor:pointer;border-radius:var(--radius-sm);transition:background 0.15s;" onclick="filterByIndustryBar(this)"><div class="bar-label">' + name + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (avg / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(avg) + '</div></div>';
+  }
+  let chartHtml = topIndustries.map(([name, avg]) => indBarHtml(name, avg)).join('');
   if (restIndustries.length > 0) {
-    chartHtml += '<div id="industryChartMore" style="display:none;">' + restIndustries.map(([name, avg]) =>
-      '<div class="bar-row"><div class="bar-label">' + name + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (avg / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(avg) + '</div></div>'
-    ).join('') + '</div>';
+    chartHtml += '<div id="industryChartMore" style="display:none;">' + restIndustries.map(([name, avg]) => indBarHtml(name, avg)).join('') + '</div>';
     var moreCount = restIndustries.length;
     chartHtml += '<button id="industryToggleBtn" style="background:none;border:none;color:var(--color-primary);font-size:var(--text-xs);cursor:pointer;padding:var(--space-2) 0 0;font-weight:500;">+ ' + moreCount + ' more industries \u25BC</button>';
     // Attach toggle handler after DOM insert
@@ -4833,6 +4838,30 @@ window.applyMobileIndustryFilter = function() {
   var sel = document.getElementById('mobileIndustryFilter');
   mobileIndustryFilterValue = sel ? sel.value : '';
   renderOverviewTable();
+  // Sync industry bar highlights
+  document.querySelectorAll('.ind-filter-bar').forEach(function(bar) {
+    bar.classList.toggle('ind-bar-active', bar.getAttribute('data-industry') === mobileIndustryFilterValue);
+  });
+};
+window.filterByIndustryBar = function(el) {
+  var ind = el.getAttribute('data-industry');
+  // Toggle: click again to deselect
+  if (mobileIndustryFilterValue === ind) {
+    mobileIndustryFilterValue = '';
+  } else {
+    mobileIndustryFilterValue = ind;
+  }
+  // Sync mobile select dropdown
+  var sel = document.getElementById('mobileIndustryFilter');
+  if (sel) sel.value = mobileIndustryFilterValue;
+  // Highlight active bar
+  document.querySelectorAll('.ind-filter-bar').forEach(function(bar) {
+    bar.classList.toggle('ind-bar-active', bar.getAttribute('data-industry') === mobileIndustryFilterValue);
+  });
+  renderOverviewTable();
+  // Scroll to the table
+  var tableEl = document.getElementById('overviewTableTitle');
+  if (tableEl) tableEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
 function renderOverviewTable() {
