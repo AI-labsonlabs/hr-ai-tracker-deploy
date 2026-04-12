@@ -5313,8 +5313,8 @@ function renderOverviewTable() {
   // Apply all active filters
   let filtered = [...allCompanies];
 
-  // Mobile industry filter
-  if (isMobile() && mobileIndustryFilterValue) {
+  // Industry filter (from industry median chart click)
+  if (mobileIndustryFilterValue) {
     filtered = filtered.filter(function(c) { return c.industry === mobileIndustryFilterValue; });
   }
 
@@ -5402,7 +5402,7 @@ function renderOverviewTable() {
     }
   }
   const filterNote = activeFilterNames.length > 0 ? ' \u00b7 Filtered: ' + activeFilterNames.join(', ') : '';
-  var mobileFilterNote = (isMobile() && mobileIndustryFilterValue) ? ' \u00b7 ' + mobileIndustryFilterValue : '';
+  var mobileFilterNote = mobileIndustryFilterValue ? ' \u00b7 ' + mobileIndustryFilterValue : '';
   document.getElementById('overviewTableTitle').innerHTML =
     'All Companies <span style="font-size:0.75em;font-weight:400;color:var(--color-text-muted);margin-left:8px;">' +
     filtered.length + ' of ' + allCompanies.length + ' companies' + filterNote + mobileFilterNote + '</span>';
