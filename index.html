@@ -5311,13 +5311,8 @@ window.filterByIndustryBar = function(el) {
   } else {
     ovState.filters.industry.add(ind);
   }
-  // Also sync the table's industry checkboxes
-  document.querySelectorAll('#overviewTable th .filter-dd input[type="checkbox"]').forEach(function(cb) {
-    if (cb.closest('[data-col="industry"]') || cb.closest('th') && cb.closest('th').dataset.col === 'industry') {
-      cb.checked = ovState.filters.industry.has(cb.value);
-    }
-  });
   syncIndustryUI();
+  refreshOverviewHeaders(); // rebuilds checkboxes from ovState.filters.industry
   renderOverviewTable();
   // Scroll to the table on first selection
   if (ovState.filters.industry.size > 0) {
