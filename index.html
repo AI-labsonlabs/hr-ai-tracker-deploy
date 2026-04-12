@@ -8432,8 +8432,6 @@ initAdmin();
   };
 })();
 
-})();
-
 // ============================================================
 // ANALYTICS TRACKER
 // Lightweight, non-blocking event tracker. Batches events
@@ -8443,7 +8441,7 @@ initAdmin();
   'use strict';
 
   var ANALYTICS_ISSUE = 10;
-  var FLUSH_INTERVAL_MS = 30000;
+  var FLUSH_INTERVAL_MS = 15000;
   var _eventBuffer = [];
   var _sessionId = '';
   var _isFirstEvent = true;
@@ -8518,14 +8516,25 @@ initAdmin();
 
   // Flush on page leave
   window.addEventListener('beforeunload', function() {
-    // Record time on current section before leaving
     var elapsed = Math.round((Date.now() - _pageViewStart) / 1000);
     if (elapsed > 1) _track('page_view', { section: _currentSection, duration_sec: elapsed });
-    _flush(true);
+    // Use sync XHR as last resort — Safari blocks keepalive fetch on unload
+    if (_eventBuffer.length === 0) return;
+    var events = _eventBuffer.slice();
+    _eventBuffer = [];
+    try {
+      var url = 'https://api.github.com/repos/' + _GH_REPO + '/issues/' + ANALYTICS_ISSUE + '/comments';
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', url, false); // synchronous
+      xhr.setRequestHeader('Authorization', 'Bearer ' + _ghToken());
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({ body: JSON.stringify(events) }));
+    } catch(e) {}
   });
 
-  // Track initial page view
+  // Track initial page view and flush immediately so short visits get captured
   _track('page_view', { section: 'overview', action: 'load' });
+  setTimeout(function() { _flush(false); }, 2000);
   _startFlushTimer();
 
   // ---- Hook into existing functions ----
