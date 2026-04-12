@@ -5266,8 +5266,7 @@ window.ovSelectAllFilter = function(colKey) {
   renderOverviewTable();
 };
 
-// Mobile industry filter for overview cards
-var mobileIndustryFilterValue = '';
+// Industry filter — unified between chart bars and table column filter
 function initMobileIndustryFilter() {
   var sel = document.getElementById('mobileIndustryFilter');
   if (!sel) return;
@@ -5279,30 +5278,41 @@ function initMobileIndustryFilter() {
     sel.appendChild(opt);
   });
 }
+
+// Sync chart bar highlights + mobile dropdown to match ovState.filters.industry
+function syncIndustryUI() {
+  var activeSet = ovState.filters.industry;
+  // Highlight chart bars
+  document.querySelectorAll('.ind-filter-bar').forEach(function(bar) {
+    var ind = bar.getAttribute('data-industry');
+    bar.classList.toggle('ind-bar-active', activeSet.has(ind));
+  });
+  // Sync mobile dropdown (show first selected or blank)
+  var sel = document.getElementById('mobileIndustryFilter');
+  if (sel) {
+    sel.value = activeSet.size === 1 ? Array.from(activeSet)[0] : '';
+  }
+}
+
 window.applyMobileIndustryFilter = function() {
   var sel = document.getElementById('mobileIndustryFilter');
-  mobileIndustryFilterValue = sel ? sel.value : '';
+  var val = sel ? sel.value : '';
+  ovState.filters.industry.clear();
+  if (val) ovState.filters.industry.add(val);
+  syncIndustryUI();
   renderOverviewTable();
-  // Sync industry bar highlights
-  document.querySelectorAll('.ind-filter-bar').forEach(function(bar) {
-    bar.classList.toggle('ind-bar-active', bar.getAttribute('data-industry') === mobileIndustryFilterValue);
-  });
 };
+
 window.filterByIndustryBar = function(el) {
   var ind = el.getAttribute('data-industry');
   // Toggle: click again to deselect
-  if (mobileIndustryFilterValue === ind) {
-    mobileIndustryFilterValue = '';
+  if (ovState.filters.industry.size === 1 && ovState.filters.industry.has(ind)) {
+    ovState.filters.industry.clear();
   } else {
-    mobileIndustryFilterValue = ind;
+    ovState.filters.industry.clear();
+    ovState.filters.industry.add(ind);
   }
-  // Sync mobile select dropdown
-  var sel = document.getElementById('mobileIndustryFilter');
-  if (sel) sel.value = mobileIndustryFilterValue;
-  // Highlight active bar
-  document.querySelectorAll('.ind-filter-bar').forEach(function(bar) {
-    bar.classList.toggle('ind-bar-active', bar.getAttribute('data-industry') === mobileIndustryFilterValue);
-  });
+  syncIndustryUI();
   renderOverviewTable();
   // Scroll to the table
   var tableEl = document.getElementById('overviewTableTitle');
@@ -5312,11 +5322,6 @@ window.filterByIndustryBar = function(el) {
 function renderOverviewTable() {
   // Apply all active filters
   let filtered = [...allCompanies];
-
-  // Industry filter (from industry median chart click)
-  if (mobileIndustryFilterValue) {
-    filtered = filtered.filter(function(c) { return c.industry === mobileIndustryFilterValue; });
-  }
 
   for (const [colKey, filterSet] of Object.entries(ovState.filters)) {
     if (filterSet.size > 0) {
@@ -5402,10 +5407,12 @@ function renderOverviewTable() {
     }
   }
   const filterNote = activeFilterNames.length > 0 ? ' \u00b7 Filtered: ' + activeFilterNames.join(', ') : '';
-  var mobileFilterNote = mobileIndustryFilterValue ? ' \u00b7 ' + mobileIndustryFilterValue : '';
+  var mobileFilterNote = '';
   document.getElementById('overviewTableTitle').innerHTML =
     'All Companies <span style="font-size:0.75em;font-weight:400;color:var(--color-text-muted);margin-left:8px;">' +
-    filtered.length + ' of ' + allCompanies.length + ' companies' + filterNote + mobileFilterNote + '</span>';
+    filtered.length + ' of ' + allCompanies.length + ' companies' + filterNote + '</span>';
+  // Keep chart bars in sync with table filter state
+  syncIndustryUI();
 }
 
 function kpiCard(label, value, sub, extraClass) {
