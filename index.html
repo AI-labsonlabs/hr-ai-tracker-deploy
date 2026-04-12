@@ -5305,18 +5305,25 @@ window.applyMobileIndustryFilter = function() {
 
 window.filterByIndustryBar = function(el) {
   var ind = el.getAttribute('data-industry');
-  // Toggle: click again to deselect
-  if (ovState.filters.industry.size === 1 && ovState.filters.industry.has(ind)) {
-    ovState.filters.industry.clear();
+  // Toggle this industry on/off (supports multi-select)
+  if (ovState.filters.industry.has(ind)) {
+    ovState.filters.industry.delete(ind);
   } else {
-    ovState.filters.industry.clear();
     ovState.filters.industry.add(ind);
   }
+  // Also sync the table's industry checkboxes
+  document.querySelectorAll('#overviewTable th .filter-dd input[type="checkbox"]').forEach(function(cb) {
+    if (cb.closest('[data-col="industry"]') || cb.closest('th') && cb.closest('th').dataset.col === 'industry') {
+      cb.checked = ovState.filters.industry.has(cb.value);
+    }
+  });
   syncIndustryUI();
   renderOverviewTable();
-  // Scroll to the table
-  var tableEl = document.getElementById('overviewTableTitle');
-  if (tableEl) tableEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Scroll to the table on first selection
+  if (ovState.filters.industry.size > 0) {
+    var tableEl = document.getElementById('overviewTableTitle');
+    if (tableEl) tableEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 };
 
 function renderOverviewTable() {
