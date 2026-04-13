@@ -361,6 +361,11 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 .bar-row-clickable:hover .bar-label {
   color: var(--color-text);
 }
+.ind-filter-bar {
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
+}
 .ind-bar-active {
   background: color-mix(in oklch, var(--color-primary) 12%, transparent);
 }
@@ -390,7 +395,8 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   text-overflow: ellipsis;
 }
 #industryChart .bar-label {
-  width: 150px;
+  width: 140px;
+  min-width: 140px;
 }
 .bar-track {
   flex: 1;
@@ -4823,7 +4829,7 @@ function renderOverview() {
   const topIndustries = sorted.slice(0, SHOW_TOP);
   const restIndustries = sorted.slice(SHOW_TOP);
   function indBarHtml(name, avg) {
-    return '<div class="bar-row bar-row-clickable ind-filter-bar" data-industry="' + name.replace(/"/g, '&quot;') + '" style="cursor:pointer;border-radius:var(--radius-sm);transition:background 0.15s;" onclick="filterByIndustryBar(this)"><div class="bar-label">' + name + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (avg / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(avg) + '</div></div>';
+    return '<div class="bar-row bar-row-clickable ind-filter-bar" data-industry="' + name.replace(/"/g, '&quot;') + '" onclick="filterByIndustryBar(this)"><div class="bar-label">' + name + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (avg / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(avg) + '</div></div>';
   }
   let chartHtml = topIndustries.map(([name, avg]) => indBarHtml(name, avg)).join('');
   if (restIndustries.length > 0) {
@@ -4874,7 +4880,7 @@ function renderOverview() {
   var stbRest = stbSorted.slice(STB_SHOW_TOP);
   function stbBarHTML(s) {
     var hoverText = (stbDescriptions[s.code] || '').replace(/'/g, '&#39;').replace(/"/g, '&quot;');
-    return '<div class="bar-row stb-bar" data-stb-label="' + s.label.replace(/"/g, '&quot;') + '" data-stb-desc="' + hoverText + '" style="cursor:help;"><div class="bar-label" style="min-width:180px;">' + s.label + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (s.count / maxSTB * 100) + '%;background:' + (stbColors[s.code] || 'var(--color-blue-500)') + ';"></div></div><div class="bar-value">' + s.count + '</div></div>';
+    return '<div class="bar-row stb-bar" data-stb-label="' + s.label.replace(/"/g, '&quot;') + '" data-stb-desc="' + hoverText + '" style="cursor:help;"><div class="bar-label" style="width:140px;min-width:140px;">' + s.label + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (s.count / maxSTB * 100) + '%;background:' + (stbColors[s.code] || 'var(--color-blue-500)') + ';"></div></div><div class="bar-value">' + s.count + '</div></div>';
   }
   var stbChartHtml = stbTop.map(stbBarHTML).join('');
   if (stbRest.length > 0) {
