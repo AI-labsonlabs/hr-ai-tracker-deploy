@@ -5222,27 +5222,25 @@ function cascadeOverviewFilters() {
     allCompanies.forEach(function(c) { if (c.industry) validIndustries.add(c.industry); });
   }
   
-  if (selectedSubs.size > 0) {
-    var indList = thead.querySelector('.dd-filter-list[data-filter-col="industry"]');
-    if (indList) {
-      var sortedInds = Array.from(validIndustries).sort();
-      var indHTML = '';
-      sortedInds.forEach(function(v) {
-        var checked = ovState.filters.industry.has(v) ? ' checked' : '';
-        indHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + v + '</label>';
+  var indList = thead.querySelector('.dd-filter-list[data-filter-col="industry"]');
+  if (indList) {
+    var sortedInds = Array.from(validIndustries).sort();
+    var indHTML = '';
+    sortedInds.forEach(function(v) {
+      var checked = ovState.filters.industry.has(v) ? ' checked' : '';
+      indHTML += '<label class="dd-filter-item"><input type="checkbox" value="' + esc(v) + '"' + checked + '> ' + v + '</label>';
+    });
+    indList.innerHTML = indHTML;
+    indList.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+      cb.addEventListener('change', function(e) {
+        e.stopPropagation();
+        if (this.checked) { ovState.filters.industry.add(this.value); }
+        else { ovState.filters.industry.delete(this.value); }
+        cascadeOverviewFilters();
+        refreshOverviewHeaders();
+        renderOverviewTable();
       });
-      indList.innerHTML = indHTML;
-      indList.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
-        cb.addEventListener('change', function(e) {
-          e.stopPropagation();
-          if (this.checked) { ovState.filters.industry.add(this.value); }
-          else { ovState.filters.industry.delete(this.value); }
-          cascadeOverviewFilters();
-          refreshOverviewHeaders();
-          renderOverviewTable();
-        });
-      });
-    }
+    });
   }
 }
 
