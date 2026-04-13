@@ -442,10 +442,18 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 .ind-max {
   background: var(--color-success);
   opacity: 0.95;
-  width: 4px;
+  width: 3px;
   transform: translateX(-50%);
-  padding: 0 4px;
-  box-sizing: content-box;
+}
+.ind-max::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -6px;
+  right: -6px;
+  bottom: 0;
+  pointer-events: auto;
+  cursor: default;
 }
 .bar-value {
   font-size: var(--text-xs);
