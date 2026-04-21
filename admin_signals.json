@@ -127,7 +127,7 @@
     "HR_domain": "HR Service Delivery",
     "confirmation_level": "PR Mention",
     "source_type": "edited",
-    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedÃÂÃÂ¢ÃÂÃÂÃÂÃÂsignaling AI-enabled automation of HR and back-office functions.",
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affected\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u00a2\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0080\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0094signaling AI-enabled automation of HR and back-office functions.",
     "source_urls": [
       "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
     ],
@@ -523,16 +523,26 @@
     "date_found": "2026-04-06"
   },
   {
-    "company_name": "Nestlé",
+    "company_name": "Nestl\u00e9",
     "date_event": "2022-12-21",
     "signal_type": "A",
     "HR_domain": "Recruiting",
     "confirmation_level": "Confirmed Deployment",
     "source_type": "vendor case study",
-    "summary": "Nestlé deployed Paradox's conversational assistant 'Olivia' to automate recruiting workflows like candidate screening and interview scheduling (integrated with SAP SuccessFactors), reporting ~25,000 interviews scheduled and ~8,000 hours saved in one year.",
+    "summary": "Nestl\u00e9 deployed Paradox's conversational assistant 'Olivia' to automate recruiting workflows like candidate screening and interview scheduling (integrated with SAP SuccessFactors), reporting ~25,000 interviews scheduled and ~8,000 hours saved in one year.",
     "source_urls": [
       "https://www.paradox.ai/blog/8-000-hours-of-work-turned-to-almost-zero-how-nestle-did-it"
     ],
     "date_found": "2026-04-12"
+  },
+  {
+    "company_name": "AMD",
+    "date_event": "2025-09-03",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "press release",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "LinkedIn reported that AMD is using LinkedIn Hiring Assistant (an AI agent for recruiters) to find qualified talent faster, with early adopters saving 4+ hours per role and reviewing fewer profiles.",
+    "source_url": "https://news.linkedin.com/2025/hiring-assistant-globally-available"
   }
 ]
