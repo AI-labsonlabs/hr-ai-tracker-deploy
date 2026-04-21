@@ -544,5 +544,495 @@
     "confirmation_level": "Confirmed Deployment",
     "summary": "LinkedIn reported that AMD is using LinkedIn Hiring Assistant (an AI agent for recruiters) to find qualified talent faster, with early adopters saving 4+ hours per role and reviewing fewer profiles.",
     "source_url": "https://news.linkedin.com/2025/hiring-assistant-globally-available"
+  },
+  {
+    "company_name": "SAP",
+    "date_event": "2025-03-25",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "SAP was named as a charter customer of LinkedIn Hiring Assistant, with recruiter Rachel Gold reporting the AI learned from feedback to surface higher-quality candidates and saved significant sourcing time, resulting in a confirmed hire from a Hiring Assistant-sourced candidate.",
+    "source_url": "https://www.linkedin.com/business/talent/blog/talent-acquisition/early-impact-of-linkedin-hiring-assistant-and-ai-agent"
+  },
+  {
+    "company_name": "Verizon",
+    "date_event": "2025-03-25",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Verizon was a charter customer of LinkedIn Hiring Assistant, with recruiter Bhavana Preet reporting that the tool translated job descriptions and intake notes into project details and was impressed with the quality of top-rated candidates presented.",
+    "source_url": "https://www.linkedin.com/business/talent/blog/talent-acquisition/early-impact-of-linkedin-hiring-assistant-and-ai-agent"
+  },
+  {
+    "company_name": "Verizon",
+    "date_event": "2025-02-27",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Verizon used Beamery to build a skills-based talent mobility strategy for its customer service department. Beamery AI inferred skills from employee profiles, generated an AI Talent Match Score for each role, and enabled skills-based career pathing to reskill and redeploy talent facing automation.",
+    "source_url": "https://beamery.com/resources/case-studies/beamery-tech-company-job-architecture-case-study-apr-2025"
+  },
+  {
+    "company_name": "General Motors",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "General Motors deployed Paradox's AI assistant to automate interview scheduling, reducing time-to-schedule from 5 days to 29 minutes and saving $2 million annually through automated interview scheduling with AI.",
+    "source_url": "https://www.paradox.ai/clients-stories"
+  },
+  {
+    "company_name": "3M",
+    "date_event": "2021-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "3M deployed Paradox Olivia Chatbot as a recruiting chatbot on its careers website in 2021, supporting conversational screening, candidate scheduling, and automated responses to common careers and application questions.",
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/paradox-olivia-chatbot"
+  },
+  {
+    "company_name": "Medtronic",
+    "date_event": "2023-06-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Medtronic is listed as a Paradox Olivia customer, deploying the conversational AI recruiting assistant for talent acquisition automation including candidate screening and interview scheduling.",
+    "source_url": "https://www.paradox.ai/clients-stories"
+  },
+  {
+    "company_name": "Johnson Controls",
+    "date_event": "2022-06-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Johnson Controls deployed Paradox's AI recruiting assistant, lowering candidate response time by 98% through automated Q&A \u2014 one of the named success metrics on the Paradox client stories page.",
+    "source_url": "https://www.paradox.ai/clients-stories"
+  },
+  {
+    "company_name": "Dell Technologies",
+    "date_event": "2023-06-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Dell is listed as a Paradox Olivia customer on the Paradox client stories page, using the conversational AI recruiting assistant for talent acquisition processes.",
+    "source_url": "https://www.paradox.ai/clients-stories"
+  },
+  {
+    "company_name": "Amazon",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Amazon is listed as a Paradox Olivia Chatbot customer per AppsRunTheWorld, using the conversational AI for recruiting at scale across its large talent acquisition operations.",
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/paradox-olivia-chatbot"
+  },
+  {
+    "company_name": "CVS Health",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "CVS Health is listed as a Paradox Olivia Chatbot customer per AppsRunTheWorld, deploying the conversational AI recruiting chatbot as part of its high-volume talent acquisition operations.",
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/paradox-olivia-chatbot"
+  },
+  {
+    "company_name": "Tractor Supply Company",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Tractor Supply Company deployed Paradox conversational AI (named 'Cory') for recruiting automation, achieving 80% chat-to-apply conversion rate and a 58% decrease in time to apply, as detailed in a Paradox case study.",
+    "source_url": "https://www.paradox.ai/clients-stories"
+  },
+  {
+    "company_name": "Southwest Airlines",
+    "date_event": "2024-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Southwest Airlines deployed Phenom's talent platform achieving a 30% hire rate from the Phenom talent community, with head of Talent Acquisition Greg Muccio citing end-to-end data visibility as a major benefit, reducing need to parse data from five different systems.",
+    "source_url": "https://www.phenom.com/customers"
+  },
+  {
+    "company_name": "Cigna",
+    "date_event": "2024-01-01",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Cigna Group deployed Phenom's talent marketplace for internal mobility, with VP Talent Acquisition Amanda Day describing an ecosystem for job finding, internal growth, networking, and mentoring that retained employees who would have otherwise left. Third-party analysis noted 60% of employees completed their talent profiles, demonstrating strong adoption.",
+    "source_url": "https://www.phenom.com/customers"
+  },
+  {
+    "company_name": "Mastercard",
+    "date_event": "2024-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Mastercard deployed Phenom's talent platform achieving 900% more candidate profiles, with Matthias Leitzmann (Director, Global Talent Attraction) citing access to foundational solutions and tools 'all under one roof' for talent attraction.",
+    "source_url": "https://www.phenom.com/customers"
+  },
+  {
+    "company_name": "Honda",
+    "date_event": "2026-03-11",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "press release",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Honda won a 2026 Phenom HR Award, having deployed Phenom's talent platform with event functionality and CRM capabilities. Since launch, they hosted 158 recruiting events attracting 5,000+ attendees, generated 3,000+ new CRM entries, and 1,798 job applications directly linked to event participation.",
+    "source_url": "https://finance.yahoo.com/news/phenom-announces-2026-hr-award-110000501.html"
+  },
+  {
+    "company_name": "Southwest Airlines",
+    "date_event": "2024-09-12",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Southwest Airlines deployed HiredScore AI for Recruiting with Workday, as featured in a Workday webinar where Southwest shared how the company harnesses AI with HiredScore and Workday Recruiting to enhance productivity, impact, and strategic TA capability.",
+    "source_url": "https://explore.workday.com/hiredscore-healthcare/items/southwest-airlines-taking-recruiting-to-new-heights"
+  },
+  {
+    "company_name": "Eaton Corporation",
+    "date_event": "2024-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Eaton deployed Eightfold AI talent intelligence platform for recruiting modernization, achieving 50% reduction in time to hire, 30-40% increase in talent network, double-digit improvements in time to market/present/offer, and 4x productivity gains in sourcing \u2014 as detailed in Eightfold customer highlights.",
+    "source_url": "https://eightfold.ai/learn/eightfold-customer-highlights/"
+  },
+  {
+    "company_name": "Fortive",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Fortive is listed as an Eightfold Talent Intelligence Suite customer per AppsRunTheWorld, using the AI talent intelligence platform for talent management across the manufacturing enterprise.",
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/eightfold-talent-intelligence-suite"
+  },
+  {
+    "company_name": "Regeneron Pharmaceuticals",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Regeneron Pharmaceuticals is listed as a Beamery customer per AppsRunTheWorld, using the AI-powered talent lifecycle management platform for candidate relationship management and recruiting.",
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery"
+  },
+  {
+    "company_name": "Wells Fargo",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Wells Fargo is listed as a Beamery customer per AppsRunTheWorld, using the AI-powered talent management platform for candidate relationship management and talent acquisition.",
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery"
+  },
+  {
+    "company_name": "HSBC",
+    "date_event": "2024-01-01",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "HSBC deployed Gloat's talent marketplace to power a future-fit skills agenda, with HSBC's head of Future Workforce Hamish Nesbit sharing the skills-based transformation and game-changing success metrics in a customer story on gloat.com.",
+    "source_url": "https://gloat.com/resources/customer-stories/"
+  },
+  {
+    "company_name": "Nationwide",
+    "date_event": "2024-01-01",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Nationwide deployed Gloat's talent marketplace and used 1.6 million data points to anticipate future skills needs. Head of Future Workforce Mark Jackson described how the organization uses this data for strategic workforce planning decisions.",
+    "source_url": "https://gloat.com/resources/customer-stories/"
+  },
+  {
+    "company_name": "Mastercard",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Mastercard deployed Gloat's talent marketplace for internal mobility, with the initiative unlocking over 900,000 hours of workforce productivity. TA leaders Lucrecia Borgonovo and Heather Yurko described the marketplace as critical to bringing the internal mobility initiative to speed and scale.",
+    "source_url": "https://gloat.com/resources/customer-stories/"
+  },
+  {
+    "company_name": "Accenture",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Accenture is a named Workera customer, using the AI skills intelligence platform to accelerate global hiring of Machine Learning Engineers and Data Scientists by leveraging verified skills intelligence for candidate assessment.",
+    "source_url": "https://www.workera.ai/customer-stories"
+  },
+  {
+    "company_name": "United Airlines",
+    "date_event": "2024-04-24",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "United Airlines deployed Cornerstone's Learning Management, Learning Experience, Content, Performance, and Compensation solutions with AI-driven personalized learning. Results include managing 5 million training activities per year, onboarding ~20,000 new hires, and launching Leadership, Digital, and HR learning institutes.",
+    "source_url": "https://www.cornerstoneondemand.com/resources/article/elevating-excellence-with-united-airlines-innovative-learning-solutions/"
+  },
+  {
+    "company_name": "Aflac",
+    "date_event": "2021-01-01",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Aflac deployed Cornerstone Saba (since 2011) and expanded with Cornerstone Learning Experience in 2021 for AI-powered personalized learning, achieving 200% increase in conversion rate for engaged onboarding program participants and broad sales training improvements.",
+    "source_url": "https://www.cornerstoneondemand.com/resources/article/aflac-sets-up-its-agents-for-success-with-a-complete-learning-experience/"
+  },
+  {
+    "company_name": "T. Rowe Price",
+    "date_event": "2025-04-17",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "conference",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "T. Rowe Price won the Visier Outsmart 2025 'Best Use of AI with Vee' award for their thoughtful, data-driven approach to training users on Visier's AI digital assistant (Vee), demonstrating commitment to continuous improvement, user feedback, and data literacy for real business impact.",
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+  },
+  {
+    "company_name": "Eaton Corporation",
+    "date_event": "2025-04-17",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "conference",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Eaton Corporation won the Visier Outsmart 2025 'Rookie of the Year' award for an outstanding Visier people analytics implementation \u2014 including building a data mesh simultaneously \u2014 resulting in widespread and growing user adoption for workforce analytics and insights.",
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+  },
+  {
+    "company_name": "IQVIA",
+    "date_event": "2025-04-17",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "conference",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "IQVIA won the Visier Outsmart 2025 'Best Technical Innovation' award for leveraging Visier in groundbreaking ways including optimizing global hiring with Top Location Recommendations and integrating financial KPIs for deeper business insights across HR, finance, and executive leadership.",
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+  },
+  {
+    "company_name": "Johnson & Johnson",
+    "date_event": "2025-04-17",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "conference",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Johnson & Johnson won the Visier Outsmart 2025 'Democratizing Data Beyond HR' award for bridging HR and Finance with a unified headcount source of truth enabling the C-suite to make more informed workforce decisions and expanding Visier's impact beyond HR to finance teams.",
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+  },
+  {
+    "company_name": "Merck",
+    "date_event": "2025-04-17",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "conference",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Merck deployed Visier for people analytics, with Jeremy Shapiro (AVP, Human Resources, Workforce Analytics) presenting at Visier Outsmart 2025 on how AI is reshaping job roles and organizational structures, and how Merck uses analytics to reshape workforce decisions.",
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+  },
+  {
+    "company_name": "Zimmer Biomet",
+    "date_event": "2026-01-22",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "blog post",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Zimmer Biomet deployed Visier people analytics, with Global Talent and Engagement Leader Andrea Lebar describing how they embedded KPIs throughout operating mechanisms on a monthly and quarterly basis, getting business leaders to speak to workforce metrics as standard practice.",
+    "source_url": "https://www.visier.com/blog/building-the-business-case-for-people-analytics/"
+  },
+  {
+    "company_name": "Amgen",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "press release",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Amgen is named as a Visier enterprise customer, using the AI-powered people analytics platform for workforce intelligence and planning decisions. Listed in Visier's profile of enterprise customers including Ford Motor Company, BASF, and Panasonic.",
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+  },
+  {
+    "company_name": "Ford Motor",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "press release",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Ford Motor Company is named as a Visier enterprise customer for AI-powered people analytics. Listed alongside BASF, Panasonic, Experian, Amgen, and eBay as enterprises using Visier for workforce intelligence and HR data platform.",
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+  },
+  {
+    "company_name": "Fidelity Investments",
+    "date_event": "2022-01-01",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Fidelity International (international arm) deployed Gloat's talent marketplace to create purpose-led career development, as listed in the Gloat case studies featuring the 'How Fidelity International created purpose-led career development' customer story.",
+    "source_url": "https://www.featuredcustomers.com/vendor/innermobility-gloat/case-studies"
+  },
+  {
+    "company_name": "Mastercard",
+    "date_event": "2024-01-01",
+    "signal_type": "I",
+    "HR_domain": "Governance",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Mastercard deployed Credo AI's AI governance platform, with Chief Data Officer Andrew Reiskind confirming: 'Using the Credo AI Platform, Mastercard is able to manage AI risk and responsibly implement generative AI \u2013 with better speed and scale than ever before. Features like AI Registry and Vendor Registry have allowed us to maintain control of all AI use cases.'",
+    "source_url": "https://www.credo.ai"
+  },
+  {
+    "company_name": "Amazon",
+    "date_event": "2018-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Amazon deployed Beamery as a Candidate Relationship Management platform in 2018 to support talent acquisition across seven business units, with Beamery configured for sourcing, candidate profiling, pipeline management, screening and interview scheduling, integrated with LinkedIn Recruiter, iCIMS, Hire, and Slack.",
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery"
+  },
+  {
+    "company_name": "Altice USA",
+    "date_event": "2022-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Altice is listed as a Paradox Olivia conversational AI recruiting customer on the Paradox client stories page, deploying the AI assistant for talent acquisition automation.",
+    "source_url": "https://www.paradox.ai/clients-stories"
+  },
+  {
+    "company_name": "Allstate",
+    "date_event": "2016-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Allstate deployed Beamery as its Candidate Relationship Management solution in 2016, centralizing talent pool profiles, campaign orchestration, and candidate engagement workflows for Talent Acquisition and Employer Branding teams with candidate profiling, segmentation, and nurture campaigns.",
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery"
+  },
+  {
+    "company_name": "Southwest Airlines",
+    "date_event": "2025-04-17",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "conference",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Southwest Airlines is named as a Visier people analytics customer, with Head of Talent Acquisition Greg Muccio featured in Visier content and listed as a customer at Visier Outsmart 2025, using the platform for end-to-end talent data visibility.",
+    "source_url": "https://www.visier.com/people-analytics/"
+  },
+  {
+    "company_name": "General Mills",
+    "date_event": "2023-01-01",
+    "signal_type": "I",
+    "HR_domain": "Recruiting",
+    "source_type": "press release",
+    "confirmation_level": "PR Mention",
+    "summary": "General Mills is listed on the Paradox website as a customer displaying their logo, indicating deployment of Paradox's conversational AI recruiting platform, though no specific case study details are publicly available.",
+    "source_url": "https://www.nbcnews.com/tech/innovation/ai-job-recruiters-used-top-companies-glitches-rcna215128"
+  },
+  {
+    "company_name": "Kraft Heinz",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "news article",
+    "confirmation_level": "PR Mention",
+    "summary": "Kraft Heinz is named by NBC News as one of the major brands displaying their logo on the Paradox website, indicating deployment of Paradox's AI recruiting platform (Olivia) for talent acquisition automation.",
+    "source_url": "https://www.nbcnews.com/tech/innovation/ai-job-recruiters-used-top-companies-glitches-rcna215128"
+  },
+  {
+    "company_name": "FedEx",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "news article",
+    "confirmation_level": "PR Mention",
+    "summary": "FedEx is named by NBC News as one of the major brands displaying their logo on the Paradox website, indicating deployment of Paradox's conversational AI recruiting platform (Olivia) for talent acquisition.",
+    "source_url": "https://www.nbcnews.com/tech/innovation/ai-job-recruiters-used-top-companies-glitches-rcna215128"
+  },
+  {
+    "company_name": "Eaton Corporation",
+    "date_event": "2025-04-15",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Eaton is named as an Eightfold customer in the 2025 Customer Stories PDF, with results including a 50% reduction in time to hire, 30-40% increase in talent network, double-digit improvements in candidate metrics, and 4x productivity gains in sourcing. Eaton received the 'Rookie of the Year' award at Visier Outsmart 2025 separately for Visier.",
+    "source_url": "https://eightfold.ai/wp-content/uploads/customer_stories_2025_digital.pdf"
+  },
+  {
+    "company_name": "IBM",
+    "date_event": "2025-10-08",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "blog post",
+    "confirmation_level": "PR Mention",
+    "summary": "Josh Bersin reported that IBM switched from Workday to SAP SuccessFactors. IBM is described as a current SAP SuccessFactors (Joule AI) customer in the context of Josh Bersin's SAP Connect report, which noted several clients including IBM and Disney switched from Workday to SuccessFactors.",
+    "source_url": "https://joshbersin.com/2025/10/sap-jumps-ahead-in-ai-agents-with-joule-hcm-features-and-more/"
+  },
+  {
+    "company_name": "Walt Disney",
+    "date_event": "2025-10-08",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "blog post",
+    "confirmation_level": "PR Mention",
+    "summary": "Josh Bersin reported that Walt Disney Company switched from Workday to SAP SuccessFactors, noting Disney is now a SAP SuccessFactors (with Joule AI) customer, in the context of the Josh Bersin SAP Connect analysis.",
+    "source_url": "https://joshbersin.com/2025/10/sap-jumps-ahead-in-ai-agents-with-joule-hcm-features-and-more/"
+  },
+  {
+    "company_name": "General Motors",
+    "date_event": "2021-10-01",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "blog post",
+    "confirmation_level": "PR Mention",
+    "summary": "General Motors is cited by Gloat as a trust reference in podcast content, with employees accessing talent marketplace opportunities across divisions. GM is named alongside Unilever, Nestl\u00e9, Seagate, and Novartis as Gloat clients.",
+    "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8"
+  },
+  {
+    "company_name": "Amazon",
+    "date_event": "2023-01-01",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Amazon is listed by AppsRunTheWorld as using the Eightfold Talent Intelligence Suite for talent management, alongside Paradox Olivia CRM \u2014 confirming Amazon's use of multiple AI recruiting and talent tools concurrently.",
+    "source_url": "https://eightfold.ai/customers/"
+  },
+  {
+    "company_name": "Nestl\u00e9",
+    "date_event": "2022-12-21",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Nestl\u00e9 deployed Gloat's talent marketplace alongside its Paradox recruiting deployment. Gloat reference shows Nestl\u00e9 as a named customer for internal talent marketplace and career development, in addition to the confirmed Paradox recruiting deployment already in admin_signals.",
+    "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8"
   }
 ]
