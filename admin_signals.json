@@ -1034,5 +1034,255 @@
     "confirmation_level": "Confirmed Deployment",
     "summary": "Nestl\u00e9 deployed Gloat's talent marketplace alongside its Paradox recruiting deployment. Gloat reference shows Nestl\u00e9 as a named customer for internal talent marketplace and career development, in addition to the confirmed Paradox recruiting deployment already in admin_signals.",
     "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8"
+  },
+  {
+    "company_name": "MetLife",
+    "date_event": "2024-01-01",
+    "signal_type": "I",
+    "HR_domain": "People Analytics",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "MetLife is listed as a Crunchr people analytics platform customer, using Crunchr for workforce analytics including headcount, turnover, DE&I, and organizational structure metrics.",
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/crunchr-people-analytics"
+  },
+  {
+    "company_name": "Trane Technologies",
+    "date_event": "2022-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Trane Technologies deployed Fuel50's AI-powered talent marketplace for internal career pathing and talent mobility; internal recruitment rose from 38.7% to 55% since the Fuel50 platform introduction.",
+    "source_url": "https://fuel50.com/stories/"
+  },
+  {
+    "company_name": "Johnson & Johnson",
+    "date_event": "2022-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Johnson & Johnson is listed as a Fuel50 talent marketplace customer, using the platform for internal mobility, career pathing, and talent agility across the enterprise.",
+    "source_url": "https://lhra.io/wp-content/uploads/2022/11/HR-Tech-Awards-2022-Case-Study-Fuel50.pdf"
+  },
+  {
+    "company_name": "CVS Health",
+    "date_event": "2022-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "CVS Health is listed as a Fuel50 talent marketplace customer, using the platform for AI-powered internal talent mobility, career pathing, and workforce reskilling.",
+    "source_url": "https://lhra.io/wp-content/uploads/2022/11/HR-Tech-Awards-2022-Case-Study-Fuel50.pdf"
+  },
+  {
+    "company_name": "Fidelity Investments",
+    "date_event": "2022-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Fidelity Investments is listed as a Fuel50 talent marketplace customer, deploying the platform for talent mobility and career development to help employees discover internal opportunities.",
+    "source_url": "https://lhra.io/wp-content/uploads/2022/11/HR-Tech-Awards-2022-Case-Study-Fuel50.pdf"
+  },
+  {
+    "company_name": "Vanguard",
+    "date_event": "2022-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Vanguard deployed Fuel50's talent intelligence platform for internal mobility and career pathing; mentioned by name as a Fuel50 enterprise customer in analyst coverage.",
+    "source_url": "https://fuel50.com/stories/"
+  },
+  {
+    "company_name": "Accenture",
+    "date_event": "2024-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "press release",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Accenture selected Workera as Skills Intelligence Partner for its LearnVantage platform, integrating Workera's AI-powered skills assessments to personalize learning journeys and optimize workforce capabilities across the enterprise.",
+    "source_url": "https://www.workera.ai/blog/workera-is-enabling-skills-based-talent-strategies-using-ai"
+  },
+  {
+    "company_name": "Eli Lilly",
+    "date_event": "2023-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Eli Lilly deployed Workera's AI-powered skills intelligence platform for workforce upskilling and skills assessment across technical and AI-related roles.",
+    "source_url": "https://www.workera.ai/blog/workera-is-enabling-skills-based-talent-strategies-using-ai"
+  },
+  {
+    "company_name": "CVS Health",
+    "date_event": "2024-01-01",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "CVS Health deployed Moveworks AI Assistant for HR and IT service delivery, achieving a 50% reduction in live agent chats across HR, procurement, corporate communications, and store operations.",
+    "source_url": "https://www.moveworks.com/us/en/customers"
+  },
+  {
+    "company_name": "Broadcom",
+    "date_event": "2023-01-01",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Broadcom deployed Moveworks AI Assistant across engineering support and HR teams enterprise-wide, tracking an 88% autonomous resolution rate (trending over 89% in Q2 2025).",
+    "source_url": "https://www.moveworks.com/us/en/customers"
+  },
+  {
+    "company_name": "Ciena Corporation",
+    "date_event": "2023-01-01",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Ciena Corporation deployed Moveworks AI Assistant (branded 'Navi') in Microsoft Teams as a single entry point for HR, IT, legal, and facilities support, cutting approval times from 3 days to 30 minutes and saving 16K+ employee hours per month.",
+    "source_url": "https://www.moveworks.com/us/en/resources/blog/real-world-enterprise-hr-transformation-examples-case-studies"
+  },
+  {
+    "company_name": "Leidos",
+    "date_event": "2023-01-01",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Leidos deployed Moveworks AI Assistant for employee IT and HR service delivery, achieving a 180x drop in support resolution time (mean time to repair).",
+    "source_url": "https://www.moveworks.com/us/en/customers"
+  },
+  {
+    "company_name": "Databricks",
+    "date_event": "2023-01-01",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Databricks deployed Moveworks AI Assistant (branded 'R2DB') in Slack to scale HR and IT support during hypergrowth, reaching 73% ticket deflection, NPS of 70, and saving an estimated $1.5M annually in hiring costs for 8,000 employees.",
+    "source_url": "https://www.moveworks.com/us/en/resources/blog/real-world-enterprise-hr-transformation-examples-case-studies"
+  },
+  {
+    "company_name": "Unilever",
+    "date_event": "2024-01-01",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Unilever deployed Moveworks AI Assistant enterprise-wide for employee self-service and support; Unilever is cited as a named Moveworks customer in the company's acquisition by ServiceNow announcement and marketing materials.",
+    "source_url": "https://www.moveworks.com/us/en/resources/videos/employee-self-service-and-support-made-easy"
+  },
+  {
+    "company_name": "Toyota North America",
+    "date_event": "2024-01-01",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Toyota North America deployed Moveworks AI Assistant to improve employee efficiency by streamlining everyday IT and HR tasks; cited as a named Moveworks customer in acquisition announcement and CEO keynote coverage.",
+    "source_url": "https://www.moveworks.com/us/en/resources/videos/how-toyota-siemens-cvs-and-marriott-rely-on-moveworks"
+  },
+  {
+    "company_name": "Palo Alto Networks",
+    "date_event": "2024-01-01",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "press release",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Palo Alto Networks is a named Moveworks AI Assistant customer, deploying the platform to automate repetitive employee support and IT/HR issues across the enterprise.",
+    "source_url": "https://www.moveworks.com/us/en/company/news/press-releases/moveworks-unveils-ai-agent-marketplace-to-enable-ai-agent-discovery-and-deployment-in-minute"
+  },
+  {
+    "company_name": "Johnson Controls",
+    "date_event": "2023-01-01",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Johnson Controls deployed Moveworks AI Assistant (branded 'Omni') in Slack for HR service delivery, covering onboarding, policy clarifications, payroll, and benefits inquiries; over 100,000 employees use the system, cutting HR call volume by 30-40%.",
+    "source_url": "https://www.moveworks.com/us/en/resources/blog/real-world-enterprise-hr-transformation-examples-case-studies"
+  },
+  {
+    "company_name": "General Mills",
+    "date_event": "2020-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "General Mills is listed as a named Udemy Business enterprise customer, using the AI-powered learning platform to deliver employee skills development and corporate training.",
+    "source_url": "https://www.intercom.com/blog/podcasts/scale-from-marketplace-to-saas-business-how-udemy-acquired-80-of-the-fortune-100/"
+  },
+  {
+    "company_name": "Pinterest",
+    "date_event": "2020-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Pinterest is listed as a named Udemy Business enterprise customer, using the platform for AI-powered employee skills development and corporate learning.",
+    "source_url": "https://www.intercom.com/blog/podcasts/scale-from-marketplace-to-saas-business-how-udemy-acquired-80-of-the-fortune-100/"
+  },
+  {
+    "company_name": "Lyft",
+    "date_event": "2021-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Lyft is listed as a named Udemy Business enterprise customer, using the AI-powered learning platform for employee skills development and professional development programs.",
+    "source_url": "https://www.sramanamitra.com/2021/11/05/udemy-targets-223-billion-market-opportunity/"
+  },
+  {
+    "company_name": "Motorola Solutions",
+    "date_event": "2024-01-01",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Motorola Solutions scaled employee support by migrating 300+ automations to Moveworks enterprise AI platform, expanding the AI assistant business-wide for IT and HR service delivery.",
+    "source_url": "https://www.moveworks.com/us/en/resources/videos/how-toyota-siemens-cvs-and-marriott-rely-on-moveworks"
+  },
+  {
+    "company_name": "Autodesk",
+    "date_event": "2019-04-17",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "press release",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Autodesk deployed Moveworks AI Assistant as an early customer to provide conversational AI for employee IT and HR support, enabling modern AI capabilities for the workforce and improving employee experience and retention.",
+    "source_url": "https://www.prnewswire.com/news-releases/moveworks-unveils-advanced-ai-solution-to-autonomously-resolve-employee-it-support-issues-300833734.html"
+  },
+  {
+    "company_name": "Philip Morris International",
+    "date_event": "2023-01-01",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Philip Morris International partnered with edX for Business on a multi-year roadmap for global workforce transformation and enterprise employee learning and development.",
+    "source_url": "https://business.edx.org/resources/case-studies/"
+  },
+  {
+    "company_name": "Microsoft",
+    "date_event": "2025-09-03",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "press release",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Microsoft is named as a charter customer of LinkedIn Hiring Assistant (LinkedIn's AI recruiting agent), deployed to help recruiting teams uncover qualified talent faster and improve hiring outcomes; cited in LinkedIn's global availability announcement.",
+    "source_url": "https://news.linkedin.com/2025/hiring-assistant-globally-available"
+  },
+  {
+    "company_name": "Mastercard",
+    "date_event": "2025-09-03",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "press release",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Mastercard is named as a charter customer of LinkedIn Hiring Assistant (LinkedIn's AI recruiting agent), deploying the AI agent to help recruiting teams source and screen qualified candidates faster.",
+    "source_url": "https://www.webwire.com/ViewPressRel.asp?aId=343351"
   }
 ]
