@@ -4768,7 +4768,7 @@ function openProfile(companyName) {
       var h = '<div class="section-block"><h2 class="section-title">Deployed Technologies <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + ts.length + ')</span></h2><div style="display:flex;flex-wrap:wrap;gap:6px;">';
       ts.forEach(function(t) {
         var safeName = String(t.name).replace(/'/g, "\\'");
-        h += '<a href="#" class="badge badge-tech" style="font-size:11px;padding:3px 8px;text-decoration:none;" onclick="event.preventDefault();event.stopPropagation();window.openTechDetail(\'' + safeName + '\');" title="' + (t.vendor||'') + ' \u2022 ' + (t.category||'') + ' \u2022 ' + (t.primary_domain||'') + '">' + t.name + '</a>';
+        h += '<a href="#" class="badge badge-tech" style="font-size:11px;padding:3px 8px;text-decoration:none;" onclick="event.preventDefault();event.stopPropagation();window.openTechFromPill(\'' + safeName + '\');" title="' + (t.vendor||'') + ' \u2022 ' + (t.category||'') + ' \u2022 ' + (t.primary_domain||'') + '">' + t.name + '</a>';
       });
       return h + '</div></div>';
     })() +
@@ -4822,6 +4822,20 @@ function closeProfile() {
   profileOverlay.classList.remove('active');
 }
 window.closeProfile = closeProfile;
+
+// Navigate from a tech pill → close profile, switch to Tech tab, open tech detail
+window.openTechFromPill = function(techName) {
+  try { closeProfile(); } catch (e) {}
+  try {
+    if (typeof window.switchTab === 'function') window.switchTab('tech');
+  } catch (e) {}
+  // Defer so the tab panel is visible before the overlay is shown
+  setTimeout(function() {
+    if (typeof window.openTechDetail === 'function') {
+      window.openTechDetail(techName);
+    }
+  }, 50);
+};
 
 // ============================================
 // OVERVIEW TAB
@@ -6114,7 +6128,7 @@ function buildCompanyProfileHTML(companyName, side) {
     html += '<div style="display:flex;flex-wrap:wrap;gap:6px;">';
     techStack.forEach(function(t) {
       var safeName = String(t.name).replace(/'/g, "\\'");
-      html += '<a href="#" class="badge badge-tech" style="font-size:11px;padding:3px 8px;text-decoration:none;" onclick="event.preventDefault();event.stopPropagation();window.openTechDetail(\'' + safeName + '\');" title="' + (t.vendor || '') + ' \u2022 ' + (t.category || '') + ' \u2022 ' + (t.primary_domain || '') + '">' + t.name + '</a>';
+      html += '<a href="#" class="badge badge-tech" style="font-size:11px;padding:3px 8px;text-decoration:none;" onclick="event.preventDefault();event.stopPropagation();window.openTechFromPill(\'' + safeName + '\');" title="' + (t.vendor || '') + ' \u2022 ' + (t.category || '') + ' \u2022 ' + (t.primary_domain || '') + '">' + t.name + '</a>';
     });
     html += '</div></div>';
   }
