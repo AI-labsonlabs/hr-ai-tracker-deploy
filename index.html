@@ -4823,18 +4823,27 @@ function closeProfile() {
 }
 window.closeProfile = closeProfile;
 
-// Navigate from a tech pill → close profile, switch to Tech tab, open tech detail
+// Move techDetailOverlay out of the Tech tab panel so it renders regardless of which tab is active
+(function() {
+  var moveOverlay = function() {
+    var overlay = document.getElementById('techDetailOverlay');
+    if (overlay && overlay.parentNode !== document.body) {
+      document.body.appendChild(overlay);
+    }
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', moveOverlay);
+  } else {
+    moveOverlay();
+  }
+})();
+
+// Navigate from a tech pill → close profile, open tech detail directly (no tab switch needed)
 window.openTechFromPill = function(techName) {
   try { closeProfile(); } catch (e) {}
-  try {
-    if (typeof window.switchTab === 'function') window.switchTab('tech');
-  } catch (e) {}
-  // Defer so the tab panel is visible before the overlay is shown
-  setTimeout(function() {
-    if (typeof window.openTechDetail === 'function') {
-      window.openTechDetail(techName);
-    }
-  }, 50);
+  if (typeof window.openTechDetail === 'function') {
+    window.openTechDetail(techName);
+  }
 };
 
 // ============================================
