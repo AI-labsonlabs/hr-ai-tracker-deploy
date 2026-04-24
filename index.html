@@ -3373,9 +3373,9 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
       <!-- Tech Detail Overlay (inline, not a separate page) -->
       <div id="techDetailOverlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:60;background:var(--color-bg);overflow-y:auto;">
         <div style="max-width:900px;margin:0 auto;padding:var(--space-5) var(--space-4);">
-          <button onclick="closeTechDetail()" style="display:inline-flex;align-items:center;gap:4px;background:none;border:none;color:var(--color-primary);font-size:var(--text-sm);cursor:pointer;margin-bottom:var(--space-4);font-weight:500;">
+          <button id="techDetailBackBtn" onclick="closeTechDetail()" style="display:inline-flex;align-items:center;gap:4px;background:none;border:none;color:var(--color-primary);font-size:var(--text-sm);cursor:pointer;margin-bottom:var(--space-4);font-weight:500;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Back to Tech Landscape
+            <span id="techDetailBackLabel">Back to Tech Landscape</span>
           </button>
           <div id="techDetailContent"></div>
         </div>
@@ -4589,6 +4589,7 @@ function cascadeFilters(config) {
 function openProfile(companyName) {
   const detail = D.company_details[companyName];
   if (!detail) return;
+  window.currentProfileCompany = companyName;
   const co = detail.company;
   const md = detail.maturity_details || {};
   const mom = detail.momentum_details || {};
@@ -4822,6 +4823,7 @@ window.openProfile = openProfile;
 
 function closeProfile() {
   profileOverlay.classList.remove('active');
+  window.currentProfileCompany = null;
 }
 window.closeProfile = closeProfile;
 
@@ -4840,12 +4842,26 @@ window.closeProfile = closeProfile;
   }
 })();
 
-// Navigate from a tech pill → close profile, open tech detail directly (no tab switch needed)
+// Navigate from a tech pill → remember source company, close profile, open tech detail
 window.openTechFromPill = function(techName) {
+  // Remember which company profile we came from so the back button can return there
+  var currentCompany = window.currentProfileCompany || null;
+  window.techDetailOrigin = currentCompany ? { type: 'company', name: currentCompany } : { type: 'tech' };
+
   try { closeProfile(); } catch (e) {}
   if (typeof window.openTechDetail === 'function') {
     window.openTechDetail(techName);
   }
+
+  // Update the back button label to match the origin
+  setTimeout(function() {
+    var label = document.getElementById('techDetailBackLabel');
+    if (label) {
+      label.textContent = window.techDetailOrigin && window.techDetailOrigin.type === 'company'
+        ? 'Back to ' + window.techDetailOrigin.name
+        : 'Back to Tech Landscape';
+    }
+  }, 0);
 };
 
 // ============================================
@@ -8486,7 +8502,7 @@ initAdmin();
       companies.forEach(function(c) {
         var statusColor = c.status === 'Deployed' ? '#10b981' : c.status === 'Piloting' ? '#f59e0b' : '#6b7280';
         html += '<tr>' +
-          '<td><span class="company-name" style="cursor:pointer;" onclick="closeTechDetail();openCompanyProfile(\'' + c.name.replace(/'/g, "\\'") + '\')">' + c.name + '</span></td>' +
+          '<td><span class="company-name" style="cursor:pointer;" onclick="closeTechDetail();openProfile(\'' + c.name.replace(/'/g, "\\'") + '\')">' + c.name + '</span></td>' +
           '<td>' + (c.industry || '') + '</td>' +
           '<td><span style="color:' + statusColor + ';font-weight:500;">' + c.status + '</span></td>' +
           '<td style="text-align:right;font-family:var(--font-mono);">' + c.signal_count + '</td>' +
@@ -8505,6 +8521,15 @@ initAdmin();
   window.closeTechDetail = function() {
     var overlay = document.getElementById('techDetailOverlay');
     if (overlay) overlay.style.display = 'none';
+    // If we came from a company profile, reopen it
+    var origin = window.techDetailOrigin;
+    if (origin && origin.type === 'company' && origin.name && typeof window.openProfile === 'function') {
+      window.openProfile(origin.name);
+    }
+    window.techDetailOrigin = null;
+    // Reset label back to default
+    var label = document.getElementById('techDetailBackLabel');
+    if (label) label.textContent = 'Back to Tech Landscape';
   };
 })();
 
