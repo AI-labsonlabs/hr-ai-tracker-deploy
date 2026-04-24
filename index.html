@@ -8374,10 +8374,28 @@ initAdmin();
   // Tech detail overlay
   window.openTechDetail = function(techName) {
     var tech = null;
+    // Exact match first
     for (var i = 0; i < techs.length; i++) {
       if (techs[i].name === techName) { tech = techs[i]; break; }
     }
-    if (!tech) return;
+    // Fallback: vendor field match (e.g., pill says "Paradox" but tech name is "Paradox (Olivia)")
+    if (!tech) {
+      for (var j = 0; j < techs.length; j++) {
+        if (techs[j].vendor && techs[j].vendor.toLowerCase() === String(techName).toLowerCase()) { tech = techs[j]; break; }
+      }
+    }
+    // Fallback: substring match on name
+    if (!tech) {
+      var lc = String(techName).toLowerCase();
+      for (var k = 0; k < techs.length; k++) {
+        var tn = (techs[k].name || '').toLowerCase();
+        if (tn === lc || tn.indexOf(lc + ' ') === 0 || tn.indexOf(lc + '(') === 0 || tn.indexOf(' ' + lc) !== -1) { tech = techs[k]; break; }
+      }
+    }
+    if (!tech) {
+      console.warn('openTechDetail: no tech matched for "' + techName + '"');
+      return;
+    }
     var overlay = document.getElementById('techDetailOverlay');
     var content = document.getElementById('techDetailContent');
     if (!overlay || !content) return;
