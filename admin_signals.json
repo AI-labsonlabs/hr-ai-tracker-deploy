@@ -1284,5 +1284,35 @@
     "confirmation_level": "Confirmed Deployment",
     "summary": "Mastercard is named as a charter customer of LinkedIn Hiring Assistant (LinkedIn's AI recruiting agent), deploying the AI agent to help recruiting teams source and screen qualified candidates faster.",
     "source_url": "https://www.webwire.com/ViewPressRel.asp?aId=343351"
+  },
+  {
+    "company_name": "BlackRock",
+    "date_event": "2025-12-13",
+    "signal_type": "A",
+    "HR_domain": "AI Hiring",
+    "source_type": "news article",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "BlackRock's global head of talent acquisition Nigel Williams confirmed AI fluency is now a hiring priority across all roles, with candidates expected to demonstrate prompt engineering skills and AI tool familiarity.",
+    "source_url": "https://www.businessinsider.com/blackrock-talent-acquisition-ai-hire-job-hunt-2025-12"
+  },
+  {
+    "company_name": "BlackRock",
+    "date_event": "2026-04-15",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "confirmation_level": "Confirmed Announcement",
+    "summary": "BlackRock launched RockAI, an internal platform that lets employees spin up AI agents without coding. Positioned as enabling cross-functional oversight roles and workforce transformation \u2014 no-code AI tooling available to all employees.",
+    "source_url": "https://www.linkedin.com/news/story/blackrock-launches-ai-platform-for-rapid-agent-creation-8711866/"
+  },
+  {
+    "company_name": "BlackRock",
+    "date_event": "2025-12-13",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "news article",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "BlackRock's talent acquisition team uses AI for interview scheduling (confirmed by global head of TA Nigel Williams). Recruiters also actively detect candidate AI use during interviews.",
+    "source_url": "https://www.businessinsider.com/blackrock-talent-acquisition-ai-hire-job-hunt-2025-12#interview-scheduling"
   }
 ]
