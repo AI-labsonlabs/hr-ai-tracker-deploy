@@ -1298,11 +1298,11 @@
   {
     "company_name": "BlackRock",
     "date_event": "2026-04-15",
-    "signal_type": "I",
+    "signal_type": "A",
     "HR_domain": "Talent Development",
     "source_type": "news article",
-    "confirmation_level": "Confirmed Announcement",
-    "summary": "BlackRock launched RockAI, an internal platform that lets employees spin up AI agents without coding. Positioned as enabling cross-functional oversight roles and workforce transformation \u2014 no-code AI tooling available to all employees.",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "BlackRock launched RockAI, an internal platform that lets employees spin up AI agents without coding. Positioned as driving workforce transformation \u2014 employees moving into cross-functional oversight roles as AI handles execution, with new operating models for how work gets done across the firm.",
     "source_url": "https://www.linkedin.com/news/story/blackrock-launches-ai-platform-for-rapid-agent-creation-8711866/"
   },
   {
