@@ -5378,11 +5378,6 @@ window.filterByIndustryBar = function(el) {
   syncIndustryUI();
   refreshOverviewHeaders(); // rebuilds checkboxes from ovState.filters.industry
   renderOverviewTable();
-  // Scroll to the table on first selection
-  if (ovState.filters.industry.size > 0) {
-    var tableEl = document.getElementById('overviewTableTitle');
-    if (tableEl) tableEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
 };
 
 function renderOverviewTable() {
