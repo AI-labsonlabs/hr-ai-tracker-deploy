@@ -4767,8 +4767,9 @@ function openProfile(companyName) {
       if (ts.length === 0) return '';
       var h = '<div class="section-block"><h2 class="section-title">Deployed Technologies <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + ts.length + ')</span></h2><div style="display:flex;flex-wrap:wrap;gap:6px;">';
       ts.forEach(function(t) {
-        var safeName = String(t.name).replace(/'/g, "\\'");
-        h += '<a href="#" class="badge badge-tech" style="font-size:11px;padding:3px 8px;text-decoration:none;" onclick="event.preventDefault();event.stopPropagation();window.openTechFromPill(\'' + safeName + '\');" title="' + (t.vendor||'') + ' \u2022 ' + (t.category||'') + ' \u2022 ' + (t.primary_domain||'') + '">' + t.name + '</a>';
+        var key = t.tech_key || t.name;
+        var safeKey = String(key).replace(/'/g, "\\'");
+        h += '<a href="#" class="badge badge-tech" style="font-size:11px;padding:3px 8px;text-decoration:none;" onclick="event.preventDefault();event.stopPropagation();window.openTechFromPill(\'' + safeKey + '\');" title="' + (t.vendor||'') + ' \u2022 ' + (t.category||'') + ' \u2022 ' + (t.primary_domain||'') + '">' + t.name + '</a>';
       });
       return h + '</div></div>';
     })() +
@@ -6136,8 +6137,9 @@ function buildCompanyProfileHTML(companyName, side) {
     html += '<h4 style="margin:0 0 var(--space-2) 0;font-size:var(--text-sm);font-weight:600;">Deployed Technologies <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(' + techStack.length + ')</span></h4>';
     html += '<div style="display:flex;flex-wrap:wrap;gap:6px;">';
     techStack.forEach(function(t) {
-      var safeName = String(t.name).replace(/'/g, "\\'");
-      html += '<a href="#" class="badge badge-tech" style="font-size:11px;padding:3px 8px;text-decoration:none;" onclick="event.preventDefault();event.stopPropagation();window.openTechFromPill(\'' + safeName + '\');" title="' + (t.vendor || '') + ' \u2022 ' + (t.category || '') + ' \u2022 ' + (t.primary_domain || '') + '">' + t.name + '</a>';
+      var key = t.tech_key || t.name;
+      var safeKey = String(key).replace(/'/g, "\\'");
+      html += '<a href="#" class="badge badge-tech" style="font-size:11px;padding:3px 8px;text-decoration:none;" onclick="event.preventDefault();event.stopPropagation();window.openTechFromPill(\'' + safeKey + '\');" title="' + (t.vendor || '') + ' \u2022 ' + (t.category || '') + ' \u2022 ' + (t.primary_domain || '') + '">' + t.name + '</a>';
     });
     html += '</div></div>';
   }
