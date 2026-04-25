@@ -5058,8 +5058,13 @@ window.closeProfile = closeProfile;
 
   function buildCompanyIndex() {
     var list = [];
-    if (!window.DASHBOARD_DATA || !window.DASHBOARD_DATA.industries) return list;
-    var inds = window.DASHBOARD_DATA.industries;
+    // DASHBOARD_DATA is a lexical const declared in data.js; access via the
+    // outer scope (it is not attached to window).
+    var src = null;
+    try { src = (typeof DASHBOARD_DATA !== 'undefined') ? DASHBOARD_DATA : null; } catch(e) {}
+    if (!src && typeof D !== 'undefined') src = D;
+    if (!src || !src.industries) return list;
+    var inds = src.industries;
     Object.keys(inds).forEach(function(ind) {
       (inds[ind] || []).forEach(function(c) {
         list.push({
