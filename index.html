@@ -3380,6 +3380,11 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
         <input type="search" id="companySearchInput" class="company-search-input" placeholder="Search companies" autocomplete="off" aria-label="Search companies">
         <div class="company-search-dropdown" id="companySearchDropdown"></div>
       </div>
+      <div class="company-search-wrap" id="techSearchWrap">
+        <svg class="company-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="techSearchInput" class="company-search-input" placeholder="Search technologies" autocomplete="off" aria-label="Search technologies">
+        <div class="company-search-dropdown" id="techSearchDropdown"></div>
+      </div>
       <span class="header-meta-status"><span class="dot"></span> Live</span>
       <span id="lastUpdated">Loading...</span>
       <button class="theme-btn" data-theme-toggle aria-label="Switch to dark mode">
@@ -4007,10 +4012,10 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
           </div>
         </div>
 
-        <!-- COMPANY REQUESTS PANEL -->
+        <!-- REQUESTS PANEL (Company + Tech) -->
         <div id="requestsPanel" style="display:none;">
           <div class="analytics-toolbar">
-            <div class="analytics-toolbar-title">
+            <div class="analytics-toolbar-title" id="requestsPanelTitle">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
               Company Requests
             </div>
@@ -4020,6 +4025,10 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
                 Refresh
               </button>
+              <div class="analytics-range-toggle" style="margin-right:8px;">
+                <button class="analytics-range-btn active" data-kind="company" onclick="setRequestsKind('company', this)">Companies</button>
+                <button class="analytics-range-btn" data-kind="tech" onclick="setRequestsKind('tech', this)">Technologies</button>
+              </div>
               <div class="analytics-range-toggle">
                 <button class="analytics-range-btn active" data-status="open" onclick="setRequestsView('open', this)">Open</button>
                 <button class="analytics-range-btn" data-status="approved" onclick="setRequestsView('approved', this)">Approved</button>
@@ -5295,6 +5304,262 @@ window.closeProfile = closeProfile;
     });
 
     // Click outside to close
+    document.addEventListener('click', function(e) {
+      if (!wrap.contains(e.target)) closeDropdown();
+    });
+  });
+})();
+
+// =============================================================================
+// TECH SEARCH (header) — mirrors COMPANY SEARCH structure
+// =============================================================================
+(function initTechSearch() {
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  function buildTechIndex() {
+    var list = [];
+    var src = null;
+    try { src = (typeof DASHBOARD_DATA !== 'undefined') ? DASHBOARD_DATA : null; } catch(e) {}
+    if (!src && typeof D !== 'undefined') src = D;
+    if (!src || !src.tech_landscape) return list;
+    (src.tech_landscape || []).forEach(function(t) {
+      var coCount = Array.isArray(t.companies) ? t.companies.length : 0;
+      list.push({
+        name: t.name,
+        vendor: t.vendor || '',
+        category: t.category || '',
+        companyCount: coCount,
+        nameLower: (t.name || '').toLowerCase(),
+        vendorLower: (t.vendor || '').toLowerCase()
+      });
+    });
+    return list;
+  }
+
+  function rankResults(query, index) {
+    var q = query.trim().toLowerCase();
+    if (!q) return [];
+    var results = [];
+    for (var i = 0; i < index.length; i++) {
+      var t = index[i];
+      var score = 0;
+      if (t.nameLower === q) score = 1000;
+      else if (t.nameLower.indexOf(q) === 0) score = 500;
+      else if (t.nameLower.indexOf(' ' + q) !== -1) score = 250;
+      else if (t.nameLower.indexOf(q) !== -1) score = 100;
+      else if (t.vendorLower && t.vendorLower.indexOf(q) !== -1) score = 60;
+      if (score > 0) {
+        results.push({ t: t, score: score + (t.companyCount || 0) / 1000 });
+      }
+    }
+    results.sort(function(a, b) { return b.score - a.score; });
+    return results.slice(0, 8).map(function(r) { return r.t; });
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  ready(function() {
+    var input = document.getElementById('techSearchInput');
+    var dropdown = document.getElementById('techSearchDropdown');
+    var wrap = document.getElementById('techSearchWrap');
+    if (!input || !dropdown || !wrap) return;
+
+    var index = [];
+    var activeIdx = -1;
+    var currentResults = [];
+    var currentQuery = '';
+
+    function refreshIndex() { index = buildTechIndex(); }
+    refreshIndex();
+    if (index.length === 0) {
+      var tries = 0;
+      var iv = setInterval(function() {
+        refreshIndex();
+        tries++;
+        if (index.length > 0 || tries > 20) clearInterval(iv);
+      }, 250);
+    }
+
+    function closeDropdown() {
+      dropdown.classList.remove('open');
+      dropdown.innerHTML = '';
+      activeIdx = -1;
+    }
+
+    function renderResults(query) {
+      currentQuery = query;
+      var trimmed = query.trim();
+      if (trimmed.length < 1) { closeDropdown(); return; }
+      currentResults = rankResults(trimmed, index);
+      activeIdx = currentResults.length > 0 ? 0 : -1;
+
+      var html = '';
+      if (currentResults.length > 0) {
+        currentResults.forEach(function(t, i) {
+          var meta = escapeHtml(t.vendor || t.category || '');
+          var coCount = t.companyCount > 0 ? '<span class="csr-score">' + t.companyCount + '</span>' : '';
+          html += '<div class="company-search-result' + (i === activeIdx ? ' active' : '') + '" data-idx="' + i + '">' +
+                    '<span class="company-search-result-name">' + escapeHtml(t.name) + '</span>' +
+                    '<span class="company-search-result-meta">' + meta + (coCount ? ' \u00b7 ' + coCount : '') + '</span>' +
+                  '</div>';
+        });
+      } else {
+        html += '<div class="company-search-empty">' +
+                  'No technologies found for &ldquo;' + escapeHtml(trimmed) + '&rdquo;.' +
+                  '<div class="company-search-empty-prompt">' +
+                    '<div class="company-search-empty-prompt-question">Request that this technology be added to the tracker?</div>' +
+                    '<div class="company-search-request-actions">' +
+                      '<button class="csr-cancel" data-action="cancel-request">No, thanks</button>' +
+                      '<button class="csr-submit" data-action="start-request">Yes, request</button>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>';
+      }
+      html += '<div class="company-search-request-form" id="techRequestForm">' +
+                '<div class="company-search-request-error" id="techRequestError" style="display:none;"></div>' +
+                '<input type="text" id="techRequestName" placeholder="Tool / platform name *" />' +
+                '<input type="text" id="techRequestVendor" placeholder="Vendor (optional)" />' +
+                '<input type="text" id="techRequestCategory" placeholder="Category (optional, e.g. Recruiting, People Analytics)" />' +
+                '<input type="text" id="techRequestSite" placeholder="Website (recommended)" />' +
+                '<div class="company-search-request-actions">' +
+                  '<button class="csr-cancel" data-action="cancel-request">Cancel</button>' +
+                  '<button class="csr-submit" data-action="submit-request">Submit request</button>' +
+                '</div>' +
+              '</div>';
+      dropdown.innerHTML = html;
+      dropdown.classList.add('open');
+    }
+
+    function selectIndex(i) {
+      var nodes = dropdown.querySelectorAll('.company-search-result');
+      nodes.forEach(function(n, idx) { n.classList.toggle('active', idx === i); });
+      activeIdx = i;
+      var active = nodes[i];
+      if (active && active.scrollIntoView) active.scrollIntoView({ block: 'nearest' });
+    }
+
+    function openTech(name) {
+      input.value = '';
+      closeDropdown();
+      input.blur();
+      if (typeof window.openTechDetail === 'function') {
+        window.openTechDetail(name);
+      }
+    }
+
+    function showRequestForm(prefillName) {
+      var form = document.getElementById('techRequestForm');
+      if (!form) return;
+      form.classList.add('open');
+      var nameInput = document.getElementById('techRequestName');
+      if (nameInput) {
+        nameInput.value = prefillName || currentQuery.trim();
+        nameInput.focus();
+      }
+    }
+
+    function showRequestError(msg) {
+      var err = document.getElementById('techRequestError');
+      if (err) { err.textContent = msg; err.style.display = 'block'; }
+    }
+
+    function submitRequest() {
+      var nameInput = document.getElementById('techRequestName');
+      var vendorInput = document.getElementById('techRequestVendor');
+      var categoryInput = document.getElementById('techRequestCategory');
+      var siteInput = document.getElementById('techRequestSite');
+      var submitBtn = dropdown.querySelector('[data-action="submit-request"]');
+      if (!nameInput) return;
+      var name = (nameInput.value || '').trim();
+      var vendor = (vendorInput && vendorInput.value || '').trim();
+      var category = (categoryInput && categoryInput.value || '').trim();
+      var site = (siteInput && siteInput.value || '').trim();
+      if (!name) { showRequestError('Please enter a tool / platform name.'); return; }
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting\u2026'; }
+
+      var workerBase = (typeof window !== 'undefined' && window._WORKER_BASE) || 'https://hr-tracker-proxy.hr-ai.workers.dev';
+      if (!workerBase) { showRequestError('Submission unavailable. Please try again later.'); if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit request'; } return; }
+
+      fetch(workerBase + '/tech-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          vendor: vendor,
+          category: category,
+          website: site,
+          page_query: currentQuery
+        })
+      }).then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).then(function() {
+        dropdown.innerHTML = '<div class="company-search-request-success">Thanks \u2014 your request has been sent.</div>';
+        setTimeout(function() {
+          input.value = '';
+          closeDropdown();
+        }, 2200);
+      }).catch(function(e) {
+        showRequestError('Could not submit. Please try again later.');
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit request'; }
+      });
+    }
+
+    var debounceT = null;
+    input.addEventListener('input', function() {
+      var v = input.value;
+      if (debounceT) clearTimeout(debounceT);
+      debounceT = setTimeout(function() { renderResults(v); }, 80);
+    });
+    input.addEventListener('focus', function() {
+      if (input.value.trim().length >= 1) renderResults(input.value);
+    });
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (currentResults.length === 0) return;
+        selectIndex(Math.min(activeIdx + 1, currentResults.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (currentResults.length === 0) return;
+        selectIndex(Math.max(activeIdx - 1, 0));
+      } else if (e.key === 'Enter') {
+        if (currentResults.length > 0 && activeIdx >= 0) {
+          e.preventDefault();
+          openTech(currentResults[activeIdx].name);
+        }
+      } else if (e.key === 'Escape') {
+        closeDropdown();
+        input.blur();
+      }
+    });
+
+    dropdown.addEventListener('click', function(e) {
+      var resultEl = e.target.closest('.company-search-result');
+      if (resultEl) {
+        var idx = parseInt(resultEl.getAttribute('data-idx'), 10);
+        if (currentResults[idx]) openTech(currentResults[idx].name);
+        return;
+      }
+      var actionEl = e.target.closest('[data-action]');
+      if (actionEl) {
+        var action = actionEl.getAttribute('data-action');
+        if (action === 'start-request') showRequestForm();
+        else if (action === 'cancel-request') {
+          var form = document.getElementById('techRequestForm');
+          if (form) form.classList.remove('open');
+          closeDropdown();
+          input.blur();
+        }
+        else if (action === 'submit-request') submitRequest();
+      }
+    });
+
     document.addEventListener('click', function(e) {
       if (!wrap.contains(e.target)) closeDropdown();
     });
@@ -9683,11 +9948,67 @@ initAdmin();
   }
 
   // ============================================================================
-  // COMPANY REQUESTS — admin view
+  // COMPANY + TECH REQUESTS — admin view
   // ============================================================================
-  var _requestsCache = null; // { issues: [...], fetchedAt: Date }
-  var _requestsLoading = false;
+  var _requestsCacheCompany = null; // { issues: [...], fetchedAt: Date }
+  var _requestsCacheTech = null;
+  var _requestsLoadingCompany = false;
+  var _requestsLoadingTech = false;
   var _requestsView = 'open'; // open | approved | denied | built
+  var _requestsKind = 'company'; // 'company' | 'tech'
+
+  // Back-compat alias — some legacy code paths reference _requestsCache directly.
+  // Keep this in sync with the active kind so older logic still works.
+  Object.defineProperty(window, '_requestsCache', {
+    get: function() { return _requestsKind === 'tech' ? _requestsCacheTech : _requestsCacheCompany; },
+    configurable: true
+  });
+
+  function _kindCfg(kind) {
+    if (kind === 'tech') {
+      return {
+        kind: 'tech',
+        labelBase: 'tech-request',
+        title: 'Tech Requests',
+        adminListPath: '/admin/tech-requests',
+        adminApprovePath: '/admin/tech-approve',
+        adminDenyPath: '/admin/tech-deny',
+        nameField: 'name',
+        secondaryField: 'vendor',
+        tertiaryField: 'category',
+        websiteField: 'website',
+        websiteLabel: 'Website',
+        approveFn: 'approveTechRequest',
+        denyFn: 'denyTechRequest',
+        approveConfirm: 'Approve this technology request? It will be queued for the admin to add it to the tech landscape.',
+        emptyTitleSuffix: 'tech requests'
+      };
+    }
+    return {
+      kind: 'company',
+      labelBase: 'company-request',
+      title: 'Company Requests',
+      adminListPath: '/admin/requests',
+      adminApprovePath: '/admin/approve',
+      adminDenyPath: '/admin/deny',
+      nameField: 'company_name',
+      secondaryField: null,
+      tertiaryField: null,
+      websiteField: 'website_or_ticker',
+      websiteLabel: 'Website / ticker',
+      approveFn: 'approveCompanyRequest',
+      denyFn: 'denyCompanyRequest',
+      approveConfirm: 'Approve this company request? It will be queued for the cron job to add the company and build initial signals.',
+      emptyTitleSuffix: 'company requests'
+    };
+  }
+
+  function _currentCache() {
+    return _requestsKind === 'tech' ? _requestsCacheTech : _requestsCacheCompany;
+  }
+  function _setCurrentCache(val) {
+    if (_requestsKind === 'tech') _requestsCacheTech = val; else _requestsCacheCompany = val;
+  }
 
   function _ghAuthHeaders() {
     var token = (typeof _adminGhToken === 'function') ? _adminGhToken() : '';
@@ -9739,35 +10060,44 @@ initAdmin();
     return issue.labels && issue.labels.some(function(l) { return (l.name || l) === name; });
   }
 
-  window.loadCompanyRequests = function(force) {
-    if (_requestsLoading) return;
+  function _loadRequests(kind, force, opts) {
+    opts = opts || {};
+    var cfg = _kindCfg(kind);
+    var isTech = (kind === 'tech');
+    var loading = isTech ? _requestsLoadingTech : _requestsLoadingCompany;
+    if (loading) return;
     // If we have no password yet, don't cache anything — just bail so a future
     // call after the password is set will retry cleanly.
     if (typeof _adminPw === 'function' && !_adminPw() && typeof _promptAdminPw === 'function') {
       _promptAdminPw();
     }
-    if (_requestsCache && !force) {
-      _renderRequests();
+    var cached = isTech ? _requestsCacheTech : _requestsCacheCompany;
+    if (cached && !force) {
+      if (kind === _requestsKind) _renderRequests();
       return;
     }
-    _requestsLoading = true;
-    var spinner = document.getElementById('requestsSpinner');
-    var content = document.getElementById('requestsContent');
-    var err = document.getElementById('requestsError');
+
+    if (isTech) _requestsLoadingTech = true; else _requestsLoadingCompany = true;
+
+    // Only show spinner UI if this kind matches the active view
+    var showUi = (kind === _requestsKind) && !opts.silent;
+    var spinner = showUi ? document.getElementById('requestsSpinner') : null;
+    var content = showUi ? document.getElementById('requestsContent') : null;
+    var err = showUi ? document.getElementById('requestsError') : null;
     if (spinner) spinner.style.display = '';
     if (content) content.style.display = 'none';
     if (err) err.style.display = 'none';
 
     var hdrs = _adminPwHeaders();
     if (!hdrs) {
-      _requestsLoading = false;
+      if (isTech) _requestsLoadingTech = false; else _requestsLoadingCompany = false;
       if (spinner) spinner.style.display = 'none';
       if (err) { err.textContent = 'Admin password required to load requests.'; err.style.display = ''; }
       return;
     }
 
     // Fetch via Worker (server-side GitHub call with PAT secret)
-    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/admin/requests', { method: 'GET', headers: hdrs })
+    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + cfg.adminListPath, { method: 'GET', headers: hdrs })
       .then(function(r) {
         if (r.status === 401) { _clearAdminPw && _clearAdminPw(); throw new Error('Admin password rejected. Please refresh and re-enter.'); }
         if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -9777,42 +10107,92 @@ initAdmin();
         var issues = (json && json.issues) || [];
         // Filter out PRs
         issues = issues.filter(function(i) { return !i.pull_request; });
-        _requestsCache = { issues: issues, fetchedAt: new Date() };
-        _renderRequests();
+        var newCache = { issues: issues, fetchedAt: new Date() };
+        if (isTech) _requestsCacheTech = newCache; else _requestsCacheCompany = newCache;
+        if (kind === _requestsKind) _renderRequests();
         _updateRequestsBadge();
       })
       .catch(function(e) {
         if (spinner) spinner.style.display = 'none';
         if (err) { err.textContent = 'Failed to load requests: ' + e.message; err.style.display = ''; }
       })
-      .finally(function() { _requestsLoading = false; });
+      .finally(function() {
+        if (isTech) _requestsLoadingTech = false; else _requestsLoadingCompany = false;
+      });
+  }
+
+  window.loadCompanyRequests = function(force) {
+    // When user clicks Refresh, reload whichever kind is currently active
+    _loadRequests(_requestsKind, force);
+    // Also silently refresh the other kind so the badge stays accurate
+    var other = _requestsKind === 'tech' ? 'company' : 'tech';
+    _loadRequests(other, force, { silent: true });
   };
 
-  function _updateRequestsBadge() {
-    if (!_requestsCache) return;
-    var openCount = _requestsCache.issues.filter(function(i) {
-      return i.state === 'open' && !_hasLabel(i, 'company-request-approved') && !_hasLabel(i, 'company-request-denied');
+  window.loadTechRequests = function(force) {
+    _loadRequests('tech', force);
+  };
+
+  function _countOpen(cache, labelBase) {
+    if (!cache) return 0;
+    return cache.issues.filter(function(i) {
+      return i.state === 'open' && !_hasLabel(i, labelBase + '-approved') && !_hasLabel(i, labelBase + '-denied');
     }).length;
+  }
+
+  function _updateRequestsBadge() {
+    var openCompany = _countOpen(_requestsCacheCompany, 'company-request');
+    var openTech = _countOpen(_requestsCacheTech, 'tech-request');
+    var total = openCompany + openTech;
     var badge = document.getElementById('adminRequestsBadge');
     if (badge) {
-      badge.textContent = openCount;
-      badge.style.display = openCount > 0 ? '' : 'none';
+      badge.textContent = total;
+      badge.style.display = total > 0 ? '' : 'none';
     }
   }
 
   window.setRequestsView = function(view, btn) {
     _requestsView = view;
-    var btns = document.querySelectorAll('#requestsPanel .analytics-range-btn');
+    // Only toggle status row buttons (not the kind row)
+    var btns = document.querySelectorAll('#requestsPanel .analytics-range-btn[data-status]');
     btns.forEach(function(b) { b.classList.remove('active'); });
     if (btn) btn.classList.add('active');
     _renderRequests();
   };
 
-  function _filterRequestsByView(issues, view) {
+  window.setRequestsKind = function(kind, btn) {
+    if (kind !== 'company' && kind !== 'tech') return;
+    _requestsKind = kind;
+    // Toggle kind row buttons
+    var btns = document.querySelectorAll('#requestsPanel .analytics-range-btn[data-kind]');
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    // Update panel title
+    var titleEl = document.getElementById('requestsPanelTitle');
+    if (titleEl) {
+      var icon = titleEl.querySelector('svg');
+      var label = (kind === 'tech') ? 'Tech Requests' : 'Company Requests';
+      // Preserve the SVG icon, replace just the text node
+      titleEl.innerHTML = '';
+      if (icon) titleEl.appendChild(icon);
+      titleEl.appendChild(document.createTextNode(' ' + label));
+    }
+    // If we don't have data for this kind yet, fetch it
+    var cache = _currentCache();
+    if (!cache) {
+      _loadRequests(kind, false);
+    } else {
+      _renderRequests();
+    }
+  };
+
+  function _filterRequestsByView(issues, view, cfg) {
+    cfg = cfg || _kindCfg(_requestsKind);
+    var base = cfg.labelBase;
     return issues.filter(function(i) {
-      var isApproved = _hasLabel(i, 'company-request-approved');
-      var isDenied = _hasLabel(i, 'company-request-denied');
-      var isBuilt = _hasLabel(i, 'company-request-built');
+      var isApproved = _hasLabel(i, base + '-approved');
+      var isDenied = _hasLabel(i, base + '-denied');
+      var isBuilt = _hasLabel(i, base + '-built');
       if (view === 'open') return i.state === 'open' && !isApproved && !isDenied;
       if (view === 'approved') return isApproved && !isBuilt;
       if (view === 'denied') return isDenied;
@@ -9822,59 +10202,77 @@ initAdmin();
   }
 
   function _renderRequests() {
+    var cfg = _kindCfg(_requestsKind);
+    var cache = _currentCache();
     var spinner = document.getElementById('requestsSpinner');
     var content = document.getElementById('requestsContent');
     var lastUpdated = document.getElementById('requestsLastUpdated');
     if (spinner) spinner.style.display = 'none';
     if (content) content.style.display = '';
-    if (lastUpdated && _requestsCache) {
-      lastUpdated.textContent = 'Updated ' + _fmtDate(_requestsCache.fetchedAt.toISOString());
+    if (lastUpdated && cache) {
+      lastUpdated.textContent = 'Updated ' + _fmtDate(cache.fetchedAt.toISOString());
+    } else if (lastUpdated) {
+      lastUpdated.textContent = '';
     }
-    if (!_requestsCache) return;
+    if (!cache) {
+      if (content) content.innerHTML = '<div style="padding:40px 20px;text-align:center;color:var(--color-text-muted);font-size:var(--text-sm);">No data loaded yet.</div>';
+      return;
+    }
 
-    var filtered = _filterRequestsByView(_requestsCache.issues, _requestsView);
+    var filtered = _filterRequestsByView(cache.issues, _requestsView, cfg);
     filtered.sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); });
 
     if (filtered.length === 0) {
-      content.innerHTML = '<div style="padding:40px 20px;text-align:center;color:var(--color-text-muted);font-size:var(--text-sm);">No ' + _requestsView + ' requests.</div>';
+      content.innerHTML = '<div style="padding:40px 20px;text-align:center;color:var(--color-text-muted);font-size:var(--text-sm);">No ' + _requestsView + ' ' + cfg.emptyTitleSuffix + '.</div>';
       return;
     }
 
     var html = '<div style="display:flex;flex-direction:column;gap:12px;">';
     filtered.forEach(function(issue) {
       var data = _parseRequestData(issue.body) || {};
-      var company = data.company_name || (issue.title || '').replace(/^.*?:\s*/, '');
-      var site = data.website_or_ticker || '';
+      var primary = data[cfg.nameField] || (issue.title || '').replace(/^.*?:\s*/, '');
+      var secondary = cfg.secondaryField ? (data[cfg.secondaryField] || '') : '';
+      var tertiary = cfg.tertiaryField ? (data[cfg.tertiaryField] || '') : '';
+      var site = cfg.websiteField ? (data[cfg.websiteField] || '') : '';
       var query = data.page_query || '';
       var status = '';
       var statusColor = '';
-      if (_hasLabel(issue, 'company-request-built')) { status = 'Built'; statusColor = 'var(--color-primary)'; }
-      else if (_hasLabel(issue, 'company-request-approved')) { status = 'Approved — queued'; statusColor = '#5319e7'; }
-      else if (_hasLabel(issue, 'company-request-denied')) { status = 'Denied'; statusColor = 'var(--color-error)'; }
+      if (_hasLabel(issue, cfg.labelBase + '-built')) { status = 'Built'; statusColor = 'var(--color-primary)'; }
+      else if (_hasLabel(issue, cfg.labelBase + '-approved')) { status = 'Approved — queued'; statusColor = '#5319e7'; }
+      else if (_hasLabel(issue, cfg.labelBase + '-denied')) { status = 'Denied'; statusColor = 'var(--color-error)'; }
       else { status = 'Pending'; statusColor = 'var(--color-warning)'; }
 
       var actions = '';
-      if (issue.state === 'open' && !_hasLabel(issue, 'company-request-approved') && !_hasLabel(issue, 'company-request-denied')) {
+      if (issue.state === 'open' && !_hasLabel(issue, cfg.labelBase + '-approved') && !_hasLabel(issue, cfg.labelBase + '-denied')) {
         actions =
           '<div style="display:flex;gap:8px;margin-top:12px;">' +
-            '<button class="admin-btn admin-btn-success" onclick="approveCompanyRequest(' + issue.number + ', this)" data-num="' + issue.number + '">Approve</button>' +
-            '<button class="admin-btn" style="color:var(--color-error);border-color:var(--color-error);" onclick="denyCompanyRequest(' + issue.number + ', this)" data-num="' + issue.number + '">Deny</button>' +
+            '<button class="admin-btn admin-btn-success" onclick="' + cfg.approveFn + '(' + issue.number + ', this)" data-num="' + issue.number + '">Approve</button>' +
+            '<button class="admin-btn" style="color:var(--color-error);border-color:var(--color-error);" onclick="' + cfg.denyFn + '(' + issue.number + ', this)" data-num="' + issue.number + '">Deny</button>' +
             '<a class="admin-btn" href="' + issue.html_url + '" target="_blank" rel="noopener" style="text-decoration:none;">View on GitHub</a>' +
           '</div>';
       } else {
         actions = '<div style="margin-top:12px;"><a class="admin-btn" href="' + issue.html_url + '" target="_blank" rel="noopener" style="text-decoration:none;">View on GitHub</a></div>';
       }
 
+      var subLine = '';
+      if (secondary || tertiary) {
+        var bits = [];
+        if (secondary) bits.push(esc(secondary));
+        if (tertiary) bits.push(esc(tertiary));
+        subLine = '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:2px;">' + bits.join(' · ') + '</div>';
+      }
+
       html +=
-        '<div style="border:1px solid var(--color-border);border-radius:var(--radius-md);padding:14px;background:var(--color-surface);" id="req-' + issue.number + '">' +
+        '<div style="border:1px solid var(--color-border);border-radius:var(--radius-md);padding:14px;background:var(--color-surface);" id="req-' + cfg.kind + '-' + issue.number + '">' +
           '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px;">' +
             '<div>' +
-              '<div style="font-weight:700;font-size:var(--text-base);color:var(--color-text);">' + esc(company) + '</div>' +
+              '<div style="font-weight:700;font-size:var(--text-base);color:var(--color-text);">' + esc(primary) + '</div>' +
+              subLine +
               '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:2px;">Submitted ' + _fmtDate(issue.created_at) + ' · #' + issue.number + '</div>' +
             '</div>' +
             '<span style="font-size:var(--text-xs);font-weight:600;color:' + statusColor + ';padding:3px 10px;border:1px solid ' + statusColor + ';border-radius:12px;white-space:nowrap;">' + status + '</span>' +
           '</div>' +
-          (site ? '<div style="font-size:var(--text-sm);color:var(--color-text-secondary);margin-top:6px;"><strong>Website / ticker:</strong> ' + esc(site) + '</div>' : '') +
+          (site ? '<div style="font-size:var(--text-sm);color:var(--color-text-secondary);margin-top:6px;"><strong>' + esc(cfg.websiteLabel) + ':</strong> ' + esc(site) + '</div>' : '') +
           (query ? '<div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:4px;">Search query: “' + esc(query) + '”</div>' : '') +
           actions +
         '</div>';
@@ -9907,12 +10305,13 @@ initAdmin();
     }).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
   }
 
-  window.approveCompanyRequest = function(num, btn) {
-    if (!confirm('Approve this company request? It will be queued for the cron job to add the company and build initial signals.')) return;
+  function _approveRequest(kind, num, btn) {
+    var cfg = _kindCfg(kind);
+    if (!confirm(cfg.approveConfirm)) return;
     var hdrs = _adminPwHeaders();
     if (!hdrs) { alert('Admin password required.'); return; }
     if (btn) { btn.disabled = true; btn.textContent = 'Approving…'; }
-    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/admin/approve', {
+    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + cfg.adminApprovePath, {
       method: 'POST',
       headers: Object.assign({ 'Content-Type': 'application/json' }, hdrs),
       body: JSON.stringify({ issue_number: num })
@@ -9923,27 +10322,28 @@ initAdmin();
         return r.json();
       })
       .then(function() {
-        // Update local cache
-        if (_requestsCache) {
-          var i = _requestsCache.issues.find(function(x) { return x.number === num; });
-          if (i) i.labels = (i.labels || []).concat([{ name: 'company-request-approved' }]);
+        var cache = (kind === 'tech') ? _requestsCacheTech : _requestsCacheCompany;
+        if (cache) {
+          var i = cache.issues.find(function(x) { return x.number === num; });
+          if (i) i.labels = (i.labels || []).concat([{ name: cfg.labelBase + '-approved' }]);
         }
-        _renderRequests();
+        if (kind === _requestsKind) _renderRequests();
         _updateRequestsBadge();
       })
       .catch(function(e) {
         alert('Approve failed: ' + e.message);
         if (btn) { btn.disabled = false; btn.textContent = 'Approve'; }
       });
-  };
+  }
 
-  window.denyCompanyRequest = function(num, btn) {
+  function _denyRequest(kind, num, btn) {
+    var cfg = _kindCfg(kind);
     var reason = prompt('Reason for denying (optional, included in the issue comment):');
-    if (reason === null) return; // user cancelled
+    if (reason === null) return;
     var hdrs = _adminPwHeaders();
     if (!hdrs) { alert('Admin password required.'); return; }
     if (btn) { btn.disabled = true; btn.textContent = 'Denying…'; }
-    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/admin/deny', {
+    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + cfg.adminDenyPath, {
       method: 'POST',
       headers: Object.assign({ 'Content-Type': 'application/json' }, hdrs),
       body: JSON.stringify({ issue_number: num, reason: reason || '' })
@@ -9954,18 +10354,24 @@ initAdmin();
         return r.json();
       })
       .then(function() {
-        if (_requestsCache) {
-          var i = _requestsCache.issues.find(function(x) { return x.number === num; });
-          if (i) { i.labels = (i.labels || []).concat([{ name: 'company-request-denied' }]); i.state = 'closed'; }
+        var cache = (kind === 'tech') ? _requestsCacheTech : _requestsCacheCompany;
+        if (cache) {
+          var i = cache.issues.find(function(x) { return x.number === num; });
+          if (i) { i.labels = (i.labels || []).concat([{ name: cfg.labelBase + '-denied' }]); i.state = 'closed'; }
         }
-        _renderRequests();
+        if (kind === _requestsKind) _renderRequests();
         _updateRequestsBadge();
       })
       .catch(function(e) {
         alert('Deny failed: ' + e.message);
         if (btn) { btn.disabled = false; btn.textContent = 'Deny'; }
       });
-  };
+  }
+
+  window.approveCompanyRequest = function(num, btn) { _approveRequest('company', num, btn); };
+  window.denyCompanyRequest = function(num, btn) { _denyRequest('company', num, btn); };
+  window.approveTechRequest = function(num, btn) { _approveRequest('tech', num, btn); };
+  window.denyTechRequest = function(num, btn) { _denyRequest('tech', num, btn); };
 
   // Pre-fetch the open requests count once admin unlocks, so the badge shows
   document.addEventListener('DOMContentLoaded', function() {
@@ -9975,7 +10381,9 @@ initAdmin();
       // an error state.
       if (window.__adminUnlocked && typeof _adminPw === 'function' && _adminPw()) {
         clearInterval(checkAuth);
-        if (typeof window.loadCompanyRequests === 'function') window.loadCompanyRequests(true);
+        // Load both kinds so the badge reflects pending work across both
+        _loadRequests('company', true);
+        _loadRequests('tech', true, { silent: true });
       }
     }, 1000);
   });
