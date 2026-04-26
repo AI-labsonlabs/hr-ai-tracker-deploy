@@ -5215,37 +5215,18 @@ window.closeProfile = closeProfile;
       if (!name) { showRequestError('Please enter a company name.'); return; }
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting…'; }
 
-      // Build issue body (markdown) — admin UI parses this to populate the requests view
-      var requestedAt = new Date().toISOString();
-      var title = '\uD83D\uDCE5 Company request: ' + name;
-      var body = '## Company request\n\n' +
-                 '| Field | Value |\n|---|---|\n' +
-                 '| Company | ' + name + ' |\n' +
-                 '| Website / ticker | ' + (site || '_(not provided)_') + ' |\n' +
-                 '| Search query | ' + (currentQuery || '_(none)_') + ' |\n' +
-                 '| Submitted | ' + requestedAt + ' |\n\n' +
-                 '<!-- request-data\n' +
-                 JSON.stringify({
-                   company_name: name,
-                   website_or_ticker: site,
-                   requested_at: requestedAt,
-                   page_query: currentQuery
-                 }) + '\n-->\n\n' +
-                 '---\n_Submitted via HR AI Tracker company search on ' + new Date().toLocaleDateString() + '_';
+      // Submit through the Cloudflare Worker proxy (token held server-side).
+      var workerBase = (typeof _WORKER_BASE !== 'undefined') ? _WORKER_BASE : '';
+      if (!workerBase) { showRequestError('Submission unavailable. Please try again later.'); if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit request'; } return; }
 
-      // Reuse the same GitHub Issues endpoint + token used by submitFlag()
-      var apiUrl = (typeof _GH_API !== 'undefined') ? _GH_API : 'https://api.github.com/repos/AI-labsonlabs/hr-ai-tracker-deploy/issues';
-      var token = (typeof _ghToken === 'function') ? _ghToken() : '';
-      if (!token) { showRequestError('Submission unavailable. Please try again later.'); if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit request'; } return; }
-
-      fetch(apiUrl, {
+      fetch(workerBase + '/company-request', {
         method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + token,
-          'Accept': 'application/vnd.github+json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ title: title, body: body, labels: ['company-request'] })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          website_or_ticker: site,
+          page_query: currentQuery
+        })
       }).then(function(r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
@@ -7267,6 +7248,13 @@ function initAdmin() {
         window.__adminUnlocked = true;
         document.body.classList.add('admin-mode');
         gateErr.textContent = '';
+        // Prompt once for the admin GitHub token (used for reading flag/request
+        // issues and approving/denying). Stored in this browser's localStorage
+        // only; never uploaded. If the user cancels, admin features that need
+        // the token will prompt again on first use.
+        if (typeof _adminGhToken === 'function' && !_adminGhToken()) {
+          try { _promptAdminGhToken(); } catch (e) {}
+        }
         showContent();
       } else {
         gateErr.textContent = 'Incorrect password. Please try again.';
@@ -8051,13 +8039,21 @@ function initAdmin() {
     list.innerHTML = '<p style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2);">Loading flags from GitHub...</p>';
     section.style.display = 'block';
 
+    // Ensure admin token available (prompts on first use, then cached locally)
+    var _t = (typeof _adminGhToken === 'function') ? _adminGhToken() : '';
+    if (!_t && typeof _promptAdminGhToken === 'function') _t = _promptAdminGhToken();
+    if (!_t) {
+      list.innerHTML = '<p style="font-size:var(--text-xs);color:var(--color-error);padding:var(--space-2);">Admin token required to load flags.</p>';
+      return;
+    }
+
     // Fetch open + closed issues (all issues in this repo are flags)
     Promise.all([
       fetch(_GH_API + '?state=open&per_page=50', {
-        headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json' }
+        headers: { 'Authorization': 'Bearer ' + _t, 'Accept': 'application/vnd.github+json' }
       }).then(function(r) { return r.ok ? r.json() : []; }),
       fetch(_GH_API + '?state=closed&per_page=20', {
-        headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json' }
+        headers: { 'Authorization': 'Bearer ' + _t, 'Accept': 'application/vnd.github+json' }
       }).then(function(r) { return r.ok ? r.json() : []; })
     ])
     .then(function(results) {
@@ -8324,9 +8320,38 @@ function initAdmin() {
 var _flagTarget = null; // { company, summary, date, type, domain }
 var _GH_REPO = 'AI-labsonlabs/hr-ai-tracker-deploy';
 var _GH_API = 'https://api.github.com/repos/' + _GH_REPO + '/issues';
-// Token split to discourage casual scraping (issues-only scope)
-var _gt = ['github_pat_11B7E63WA0M6', '6EoYbXjFMK_nPE1uVkTwo9Q', 'oRYGuFru8N75u1nIvIhPDzE', 'N02vQ4AFD3FRVWUK6bZ4CbgI'];
-function _ghToken() { return _gt.join(''); }
+
+// Public-write proxy (Cloudflare Worker). Token never appears client-side.
+// REPLACE this URL after deploying the Worker (see hr-tracker-worker/README.md).
+var _WORKER_BASE = 'https://hr-tracker-proxy.hr-ai.workers.dev';
+
+// Admin-only GitHub token. Stored in localStorage on the admin's own machine.
+// NEVER hardcoded. NEVER shipped to public visitors. Used only for admin actions
+// (reading flag/request issues, approving/denying, closing).
+var _ADMIN_TOKEN_KEY = 'hrtrk_admin_gh_token';
+function _adminGhToken() {
+  try {
+    var t = (window.localStorage && window.localStorage.getItem(_ADMIN_TOKEN_KEY)) || '';
+    return t;
+  } catch (e) { return ''; }
+}
+function _setAdminGhToken(t) {
+  try { window.localStorage.setItem(_ADMIN_TOKEN_KEY, t || ''); } catch (e) {}
+}
+function _clearAdminGhToken() {
+  try { window.localStorage.removeItem(_ADMIN_TOKEN_KEY); } catch (e) {}
+}
+function _promptAdminGhToken() {
+  var existing = _adminGhToken();
+  if (existing) return existing;
+  var t = window.prompt('Paste your admin GitHub token (fine-grained PAT with Issues: read/write).\n\nThis is stored in this browser only and never uploaded.');
+  if (t) { _setAdminGhToken(t.trim()); }
+  return _adminGhToken();
+}
+// Backwards-compat shim: any remaining _ghToken() callers will receive the
+// admin token if present (used only on admin paths). Returns empty string for
+// public visitors, which causes the legacy code paths to no-op.
+function _ghToken() { return _adminGhToken(); }
 
 function flagBtnHTML(company, summary, date, type, domain) {
   var c = esc(company||''), s = esc((summary||'').substring(0,200)), d = esc(date||''), t = esc(type||''), dm = esc(domain||'');
@@ -8400,14 +8425,17 @@ window.submitFlag = function() {
   if (details) body += '**Additional details:** ' + details + '\n\n';
   body += '---\n_Submitted via HR AI Tracker flag feature on ' + new Date().toLocaleDateString() + '_';
 
-  fetch(_GH_API, {
+  // Send to Cloudflare Worker proxy (which holds the GitHub token server-side).
+  // We pass the structured fields; the Worker formats the issue and sets labels.
+  fetch(_WORKER_BASE + '/flag', {
     method: 'POST',
-    headers: {
-      'Authorization': 'Bearer ' + _ghToken(),
-      'Accept': 'application/vnd.github+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ title: title, body: body })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      signal_id: '',
+      company_name: _flagTarget.company,
+      reason: REASON_LABELS[reason] || reason,
+      details: '\n' + body // ship the full pre-rendered context so admin still sees everything
+    })
   })
   .then(function(r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -9063,21 +9091,22 @@ initAdmin();
     var events = _eventBuffer.slice();
     _eventBuffer = [];
     try {
-      var body = JSON.stringify({ body: JSON.stringify(events) });
-      var url = 'https://api.github.com/repos/' + _GH_REPO + '/issues/' + ANALYTICS_ISSUE + '/comments';
-      var token = _ghToken();
-      if (isBeacon && navigator.sendBeacon) {
-        // sendBeacon can't set custom headers; fall back to fetch with keepalive
+      // Send via Worker proxy (token server-side). The Worker chunks events into
+      // a single comment on the analytics issue.
+      if (typeof _WORKER_BASE === 'undefined' || !_WORKER_BASE) return;
+      var url = _WORKER_BASE + '/analytics';
+      var body = JSON.stringify({ events: events });
+      if (isBeacon) {
         fetch(url, {
           method: 'POST',
-          headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github+json' },
+          headers: { 'Content-Type': 'application/json' },
           body: body,
           keepalive: true
         }).catch(function() {});
       } else {
         fetch(url, {
           method: 'POST',
-          headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github+json' },
+          headers: { 'Content-Type': 'application/json' },
           body: body
         }).catch(function() {});
       }
@@ -9098,12 +9127,12 @@ initAdmin();
     var events = _eventBuffer.slice();
     _eventBuffer = [];
     try {
-      var url = 'https://api.github.com/repos/' + _GH_REPO + '/issues/' + ANALYTICS_ISSUE + '/comments';
+      if (typeof _WORKER_BASE === 'undefined' || !_WORKER_BASE) return;
+      var url = _WORKER_BASE + '/analytics';
       var xhr = new XMLHttpRequest();
       xhr.open('POST', url, false); // synchronous
-      xhr.setRequestHeader('Authorization', 'Bearer ' + _ghToken());
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({ body: JSON.stringify(events) }));
+      xhr.send(JSON.stringify({ events: events }));
     } catch(e) {}
   });
 
@@ -9278,13 +9307,24 @@ initAdmin();
     if (errEl) errEl.style.display = 'none';
     if (refreshBtn) { refreshBtn.disabled = true; refreshBtn.textContent = 'Loading…'; }
 
+    // Ensure admin token (prompts on first use, cached locally)
+    var _aTok = (typeof _adminGhToken === 'function') ? _adminGhToken() : '';
+    if (!_aTok && typeof _promptAdminGhToken === 'function') _aTok = _promptAdminGhToken();
+    if (!_aTok) {
+      _analyticsLoading = false;
+      if (spinner) spinner.style.display = 'none';
+      if (errEl) { errEl.textContent = 'Admin token required to load analytics.'; errEl.style.display = 'block'; }
+      if (refreshBtn) { refreshBtn.disabled = false; refreshBtn.textContent = 'Refresh'; }
+      return;
+    }
+
     // Fetch all comments paginated (100/page)
     var allEvents = [];
     var baseUrl = 'https://api.github.com/repos/' + _GH_REPO + '/issues/' + ANALYTICS_ISSUE + '/comments';
 
     function fetchPage(page) {
       return fetch(baseUrl + '?per_page=100&page=' + page, {
-        headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json' }
+        headers: { 'Authorization': 'Bearer ' + _aTok, 'Accept': 'application/vnd.github+json' }
       }).then(function(r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
@@ -9617,7 +9657,10 @@ initAdmin();
   var _requestsView = 'open'; // open | approved | denied | built
 
   function _ghAuthHeaders() {
-    var token = (typeof _ghToken === 'function') ? _ghToken() : '';
+    var token = (typeof _adminGhToken === 'function') ? _adminGhToken() : '';
+    if (!token && typeof _promptAdminGhToken === 'function') {
+      token = _promptAdminGhToken();
+    }
     return token ? { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' } : { 'Accept': 'application/vnd.github+json' };
   }
 
