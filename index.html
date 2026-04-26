@@ -9664,6 +9664,16 @@ initAdmin();
     return token ? { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' } : { 'Accept': 'application/vnd.github+json' };
   }
 
+  // Local HTML escape helper (the outer `esc` is scoped to a different IIFE)
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function _parseRequestData(body) {
     if (!body) return null;
     var m = body.match(/<!--\s*request-data\s*([\s\S]*?)-->/);
