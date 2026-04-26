@@ -9698,11 +9698,16 @@ initAdmin();
     return token ? { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' } : { 'Accept': 'application/vnd.github+json' };
   }
 
-  // Worker auth: returns headers for the admin password. If no password is
-  // stored, prompts. Returns null if the user declined.
+  // Worker auth: returns headers for the admin password. Reads localStorage
+  // directly to avoid any scope-resolution surprises across IIFEs.
   function _adminPwHeaders() {
-    var pw = (typeof _adminPw === 'function') ? _adminPw() : '';
-    if (!pw && typeof _promptAdminPw === 'function') pw = _promptAdminPw();
+    var pw = '';
+    try { pw = (window.localStorage && window.localStorage.getItem('hrtrk_admin_pw')) || ''; } catch (e) {}
+    if (!pw && typeof window._promptAdminPw === 'function') {
+      pw = window._promptAdminPw() || '';
+    } else if (!pw && typeof _promptAdminPw === 'function') {
+      pw = _promptAdminPw() || '';
+    }
     if (!pw) return null;
     return { 'X-Admin-Password': pw };
   }
