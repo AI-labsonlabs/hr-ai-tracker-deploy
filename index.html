@@ -9427,17 +9427,7 @@ initAdmin();
 
     var pageViews = filteredEvents.filter(function(e) { return e.event_type === 'page_view'; }).length;
     var sessions = new Set(filteredEvents.map(function(e) { return e.session_id; })).size;
-
-    // Avg session duration (sum of page_view duration_sec per session)
-    var sessionDurations = {};
-    filteredEvents.forEach(function(e) {
-      if (e.event_type === 'page_view' && e.event_data && e.event_data.duration_sec) {
-        sessionDurations[e.session_id] = (sessionDurations[e.session_id] || 0) + (e.event_data.duration_sec || 0);
-      }
-    });
-    var durVals = Object.values(sessionDurations);
-    var avgDur = durVals.length > 0 ? Math.round(durVals.reduce(function(a,b){return a+b;},0) / durVals.length) : 0;
-    var avgDurStr = avgDur > 0 ? (avgDur >= 60 ? Math.floor(avgDur/60) + 'm ' + (avgDur%60) + 's' : avgDur + 's') : '—';
+    var companyViews = filteredEvents.filter(function(e) { return e.event_type === 'company_view'; }).length;
 
     // Top referrer (from first events only)
     var refCounts = {};
@@ -9457,7 +9447,7 @@ initAdmin();
     var kpis = [
       { label: 'Page Views', value: pageViews.toLocaleString(), sub: 'last ' + days + 'd' },
       { label: 'Unique Sessions', value: sessions.toLocaleString(), sub: 'last ' + days + 'd' },
-      { label: 'Avg Session Duration', value: avgDurStr, sub: 'across tracked sessions' },
+      { label: 'Company Views', value: companyViews.toLocaleString(), sub: 'last ' + days + 'd' },
       { label: 'Top Referrer', value: topRefStr, sub: topRef ? topRef[1] + ' visits' : 'no referrer data' }
     ];
 
