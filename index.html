@@ -3548,7 +3548,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
         <div style="max-width:900px;margin:0 auto;padding:var(--space-5) var(--space-4);">
           <button id="techDetailBackBtn" onclick="closeTechDetail()" style="display:inline-flex;align-items:center;gap:4px;background:none;border:none;color:var(--color-primary);font-size:var(--text-sm);cursor:pointer;margin-bottom:var(--space-4);font-weight:500;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            <span id="techDetailBackLabel">Back to Tech Landscape</span>
+            <span id="techDetailBackLabel">Back</span>
           </button>
           <div id="techDetailContent"></div>
         </div>
@@ -5583,7 +5583,7 @@ window.openTechFromPill = function(techName) {
     if (label) {
       label.textContent = window.techDetailOrigin && window.techDetailOrigin.type === 'company'
         ? 'Back to ' + window.techDetailOrigin.name
-        : 'Back to Tech Landscape';
+        : 'Back';
     }
   }, 0);
 };
@@ -9353,7 +9353,7 @@ initAdmin();
     window.techDetailOrigin = null;
     // Reset label back to default
     var label = document.getElementById('techDetailBackLabel');
-    if (label) label.textContent = 'Back to Tech Landscape';
+    if (label) label.textContent = 'Back';
   };
 })();
 
