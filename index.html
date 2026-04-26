@@ -5423,8 +5423,6 @@ window.closeProfile = closeProfile;
       html += '<div class="company-search-request-form" id="techRequestForm">' +
                 '<div class="company-search-request-error" id="techRequestError" style="display:none;"></div>' +
                 '<input type="text" id="techRequestName" placeholder="Tool / platform name *" />' +
-                '<input type="text" id="techRequestVendor" placeholder="Vendor (optional)" />' +
-                '<input type="text" id="techRequestCategory" placeholder="Category (optional, e.g. Recruiting, People Analytics)" />' +
                 '<input type="text" id="techRequestSite" placeholder="Website (recommended)" />' +
                 '<div class="company-search-request-actions">' +
                   '<button class="csr-cancel" data-action="cancel-request">Cancel</button>' +
@@ -5470,14 +5468,10 @@ window.closeProfile = closeProfile;
 
     function submitRequest() {
       var nameInput = document.getElementById('techRequestName');
-      var vendorInput = document.getElementById('techRequestVendor');
-      var categoryInput = document.getElementById('techRequestCategory');
       var siteInput = document.getElementById('techRequestSite');
       var submitBtn = dropdown.querySelector('[data-action="submit-request"]');
       if (!nameInput) return;
       var name = (nameInput.value || '').trim();
-      var vendor = (vendorInput && vendorInput.value || '').trim();
-      var category = (categoryInput && categoryInput.value || '').trim();
       var site = (siteInput && siteInput.value || '').trim();
       if (!name) { showRequestError('Please enter a tool / platform name.'); return; }
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting\u2026'; }
@@ -5490,8 +5484,6 @@ window.closeProfile = closeProfile;
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: name,
-          vendor: vendor,
-          category: category,
           website: site,
           page_query: currentQuery
         })
