@@ -9151,8 +9151,8 @@ initAdmin();
     try {
       // Send via Worker proxy (token server-side). The Worker chunks events into
       // a single comment on the analytics issue.
-      if (typeof _WORKER_BASE === 'undefined' || !_WORKER_BASE) return;
-      var url = (window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/analytics';
+      var _wb = (typeof window !== 'undefined' && window._WORKER_BASE) || 'https://hr-tracker-proxy.hr-ai.workers.dev';
+      var url = _wb + '/analytics';
       var body = JSON.stringify({ events: events });
       if (isBeacon) {
         fetch(url, {
@@ -9185,8 +9185,8 @@ initAdmin();
     var events = _eventBuffer.slice();
     _eventBuffer = [];
     try {
-      if (typeof _WORKER_BASE === 'undefined' || !_WORKER_BASE) return;
-      var url = (window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/analytics';
+      var _wb2 = (typeof window !== 'undefined' && window._WORKER_BASE) || 'https://hr-tracker-proxy.hr-ai.workers.dev';
+      var url = _wb2 + '/analytics';
       var xhr = new XMLHttpRequest();
       xhr.open('POST', url, false); // synchronous
       xhr.setRequestHeader('Content-Type', 'application/json');
