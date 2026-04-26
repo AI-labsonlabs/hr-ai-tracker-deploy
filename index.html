@@ -9737,6 +9737,11 @@ initAdmin();
 
   window.loadCompanyRequests = function(force) {
     if (_requestsLoading) return;
+    // If we have no password yet, don't cache anything — just bail so a future
+    // call after the password is set will retry cleanly.
+    if (typeof _adminPw === 'function' && !_adminPw() && typeof _promptAdminPw === 'function') {
+      _promptAdminPw();
+    }
     if (_requestsCache && !force) {
       _renderRequests();
       return;
@@ -9961,11 +9966,14 @@ initAdmin();
   // Pre-fetch the open requests count once admin unlocks, so the badge shows
   document.addEventListener('DOMContentLoaded', function() {
     var checkAuth = setInterval(function() {
-      if (window.__adminUnlocked) {
+      // Wait for both admin unlock AND a stored admin password before loading,
+      // so the first request doesn't fail with 'password required' and cache
+      // an error state.
+      if (window.__adminUnlocked && typeof _adminPw === 'function' && _adminPw()) {
         clearInterval(checkAuth);
-        if (typeof window.loadCompanyRequests === 'function') window.loadCompanyRequests(false);
+        if (typeof window.loadCompanyRequests === 'function') window.loadCompanyRequests(true);
       }
-    }, 1500);
+    }, 1000);
   });
 
 })();
