@@ -8057,7 +8057,7 @@ function initAdmin() {
     }
 
     // Fetch via Worker (server-side GitHub call with PAT secret)
-    fetch(_WORKER_BASE + '/admin/flags', {
+    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/admin/flags', {
       method: 'GET',
       headers: { 'X-Admin-Password': _pw }
     })
@@ -8133,7 +8133,7 @@ function initAdmin() {
     function _closeFlagIssue(issueNum) {
       var pw = (typeof _adminPw === 'function') ? _adminPw() : '';
       if (!pw) return Promise.reject(new Error('Admin password required'));
-      return fetch(_WORKER_BASE + '/admin/close-flag', {
+      return fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/admin/close-flag', {
         method: 'POST',
         headers: { 'X-Admin-Password': pw, 'Content-Type': 'application/json' },
         body: JSON.stringify({ issue_number: parseInt(issueNum, 10) })
@@ -8340,6 +8340,8 @@ var _GH_API = 'https://api.github.com/repos/' + _GH_REPO + '/issues';
 // Public-write proxy (Cloudflare Worker). Token never appears client-side.
 // REPLACE this URL after deploying the Worker (see hr-tracker-worker/README.md).
 var _WORKER_BASE = 'https://hr-tracker-proxy.hr-ai.workers.dev';
+// Also expose on window so any IIFE-scoped code can find it reliably.
+try { window._WORKER_BASE = _WORKER_BASE; } catch (e) {}
 
 // Admin password. Stored in localStorage on the admin's own machine.
 // All privileged operations (approve/deny requests, list/close flags,
@@ -8364,12 +8366,19 @@ function _promptAdminPw(force) {
   if (p) { _setAdminPw(p.trim()); }
   return _adminPw();
 }
+// Expose on window so IIFE-scoped code can find these reliably.
+try {
+  window._adminPw = _adminPw;
+  window._setAdminPw = _setAdminPw;
+  window._clearAdminPw = _clearAdminPw;
+  window._promptAdminPw = _promptAdminPw;
+} catch (e) {}
 // Verify the stored password against the Worker. If it fails, clear it and
 // re-prompt. Returns a Promise resolving to true on success, false on failure.
 function _verifyAdminPw() {
   var pw = _adminPw();
   if (!pw) return Promise.resolve(false);
-  return fetch(_WORKER_BASE + '/admin/verify', {
+  return fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/admin/verify', {
     method: 'GET',
     headers: { 'X-Admin-Password': pw }
   }).then(function(r) {
@@ -8476,7 +8485,7 @@ window.submitFlag = function() {
 
   // Send to Cloudflare Worker proxy (which holds the GitHub token server-side).
   // We pass the structured fields; the Worker formats the issue and sets labels.
-  fetch(_WORKER_BASE + '/flag', {
+  fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/flag', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -9143,7 +9152,7 @@ initAdmin();
       // Send via Worker proxy (token server-side). The Worker chunks events into
       // a single comment on the analytics issue.
       if (typeof _WORKER_BASE === 'undefined' || !_WORKER_BASE) return;
-      var url = _WORKER_BASE + '/analytics';
+      var url = (window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/analytics';
       var body = JSON.stringify({ events: events });
       if (isBeacon) {
         fetch(url, {
@@ -9177,7 +9186,7 @@ initAdmin();
     _eventBuffer = [];
     try {
       if (typeof _WORKER_BASE === 'undefined' || !_WORKER_BASE) return;
-      var url = _WORKER_BASE + '/analytics';
+      var url = (window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/analytics';
       var xhr = new XMLHttpRequest();
       xhr.open('POST', url, false); // synchronous
       xhr.setRequestHeader('Content-Type', 'application/json');
@@ -9368,7 +9377,7 @@ initAdmin();
     }
 
     // Fetch via Worker (paginates through analytics issue comments server-side)
-    fetch(_WORKER_BASE + '/admin/analytics', {
+    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/admin/analytics', {
       method: 'GET',
       headers: { 'X-Admin-Password': _aPw }
     }).then(function(r) {
@@ -9768,7 +9777,7 @@ initAdmin();
     }
 
     // Fetch via Worker (server-side GitHub call with PAT secret)
-    fetch(_WORKER_BASE + '/admin/requests', { method: 'GET', headers: hdrs })
+    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/admin/requests', { method: 'GET', headers: hdrs })
       .then(function(r) {
         if (r.status === 401) { _clearAdminPw && _clearAdminPw(); throw new Error('Admin password rejected. Please refresh and re-enter.'); }
         if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -9913,7 +9922,7 @@ initAdmin();
     var hdrs = _adminPwHeaders();
     if (!hdrs) { alert('Admin password required.'); return; }
     if (btn) { btn.disabled = true; btn.textContent = 'Approving…'; }
-    fetch(_WORKER_BASE + '/admin/approve', {
+    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/admin/approve', {
       method: 'POST',
       headers: Object.assign({ 'Content-Type': 'application/json' }, hdrs),
       body: JSON.stringify({ issue_number: num })
@@ -9944,7 +9953,7 @@ initAdmin();
     var hdrs = _adminPwHeaders();
     if (!hdrs) { alert('Admin password required.'); return; }
     if (btn) { btn.disabled = true; btn.textContent = 'Denying…'; }
-    fetch(_WORKER_BASE + '/admin/deny', {
+    fetch((window._WORKER_BASE || 'https://hr-tracker-proxy.hr-ai.workers.dev') + '/admin/deny', {
       method: 'POST',
       headers: Object.assign({ 'Content-Type': 'application/json' }, hdrs),
       body: JSON.stringify({ issue_number: num, reason: reason || '' })
