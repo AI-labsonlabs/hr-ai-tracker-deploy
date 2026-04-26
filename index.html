@@ -7248,14 +7248,23 @@ function initAdmin() {
         window.__adminUnlocked = true;
         document.body.classList.add('admin-mode');
         gateErr.textContent = '';
-        // Prompt once for the admin GitHub token (used for reading flag/request
-        // issues and approving/denying). Stored in this browser's localStorage
-        // only; never uploaded. If the user cancels, admin features that need
-        // the token will prompt again on first use.
-        if (typeof _adminGhToken === 'function' && !_adminGhToken()) {
-          try { _promptAdminGhToken(); } catch (e) {}
-        }
-        showContent();
+        // Prompt once for the admin password (used to authorize reads/writes
+        // through the Cloudflare Worker). Stored in this browser's localStorage
+        // only; never uploaded anywhere except the Worker's auth header. If
+        // verification fails, prompt again. If the user cancels, admin features
+        // that need it will prompt on first use.
+        (function ensureAdminPw() {
+          if (typeof _promptAdminPw !== 'function') { showContent(); return; }
+          if (!_adminPw()) { _promptAdminPw(); }
+          _verifyAdminPw().then(function(ok) {
+            if (!ok && _adminPw()) {
+              _clearAdminPw();
+              window.alert('Admin password did not match. Please try again.');
+              _promptAdminPw(true);
+            }
+            showContent();
+          });
+        })();
       } else {
         gateErr.textContent = 'Incorrect password. Please try again.';
         if (pwInput) { pwInput.value = ''; pwInput.focus(); }
@@ -8039,35 +8048,37 @@ function initAdmin() {
     list.innerHTML = '<p style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2);">Loading flags from GitHub...</p>';
     section.style.display = 'block';
 
-    // Ensure admin token available (prompts on first use, then cached locally)
-    var _t = (typeof _adminGhToken === 'function') ? _adminGhToken() : '';
-    if (!_t && typeof _promptAdminGhToken === 'function') _t = _promptAdminGhToken();
-    if (!_t) {
-      list.innerHTML = '<p style="font-size:var(--text-xs);color:var(--color-error);padding:var(--space-2);">Admin token required to load flags.</p>';
+    // Ensure admin password available (prompts on first use, then cached locally)
+    var _pw = (typeof _adminPw === 'function') ? _adminPw() : '';
+    if (!_pw && typeof _promptAdminPw === 'function') _pw = _promptAdminPw();
+    if (!_pw) {
+      list.innerHTML = '<p style="font-size:var(--text-xs);color:var(--color-error);padding:var(--space-2);">Admin password required to load flags.</p>';
       return;
     }
 
-    // Fetch open + closed issues (all issues in this repo are flags)
-    Promise.all([
-      fetch(_GH_API + '?state=open&per_page=50', {
-        headers: { 'Authorization': 'Bearer ' + _t, 'Accept': 'application/vnd.github+json' }
-      }).then(function(r) { return r.ok ? r.json() : []; }),
-      fetch(_GH_API + '?state=closed&per_page=20', {
-        headers: { 'Authorization': 'Bearer ' + _t, 'Accept': 'application/vnd.github+json' }
-      }).then(function(r) { return r.ok ? r.json() : []; })
-    ])
-    .then(function(results) {
-      // Filter to only show flag issues (title starts with flag emoji prefix)
-      function isFlagIssue(issue) { return (issue.title || '').indexOf('\ud83d\udea9 Flag:') === 0; }
-      var openIssues = (results[0] || []).filter(isFlagIssue);
-      var closedIssues = (results[1] || []).filter(isFlagIssue);
-      _flagsCache = { open: openIssues, closed: closedIssues };
-      renderFlaggedSection(openIssues, closedIssues);
+    // Fetch via Worker (server-side GitHub call with PAT secret)
+    fetch(_WORKER_BASE + '/admin/flags', {
+      method: 'GET',
+      headers: { 'X-Admin-Password': _pw }
     })
-    .catch(function(err) {
-      console.error('[flags] Failed to load from GitHub:', err);
-      list.innerHTML = '<p style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2);">Could not load flags.</p>';
-    });
+      .then(function(r) {
+        if (r.status === 401) { _clearAdminPw && _clearAdminPw(); throw new Error('Admin password rejected.'); }
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function(json) {
+        var issues = (json && json.issues) || [];
+        // Filter to flag issues (title starts with flag emoji prefix)
+        function isFlagIssue(issue) { return (issue.title || '').indexOf('\ud83d\udea9 Flag:') === 0; }
+        var openIssues = issues.filter(function(i) { return i.state === 'open' && isFlagIssue(i); });
+        var closedIssues = issues.filter(function(i) { return i.state === 'closed' && isFlagIssue(i); });
+        _flagsCache = { open: openIssues, closed: closedIssues };
+        renderFlaggedSection(openIssues, closedIssues);
+      })
+      .catch(function(err) {
+        console.error('[flags] Failed to load from Worker:', err);
+        list.innerHTML = '<p style="font-size:var(--text-xs);color:var(--color-text-muted);padding:var(--space-2);">Could not load flags: ' + (err.message || 'unknown error') + '</p>';
+      });
   }
 
   function _parseIssueBody(body) {
@@ -8118,13 +8129,18 @@ function initAdmin() {
     }
     list.innerHTML = html;
 
-    // Helper: close a GitHub issue
+    // Helper: close a flag issue via the Worker
     function _closeFlagIssue(issueNum) {
-      return fetch(_GH_API + '/' + issueNum, {
-        method: 'PATCH',
-        headers: { 'Authorization': 'Bearer ' + _ghToken(), 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ state: 'closed' })
-      }).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); });
+      var pw = (typeof _adminPw === 'function') ? _adminPw() : '';
+      if (!pw) return Promise.reject(new Error('Admin password required'));
+      return fetch(_WORKER_BASE + '/admin/close-flag', {
+        method: 'POST',
+        headers: { 'X-Admin-Password': pw, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ issue_number: parseInt(issueNum, 10) })
+      }).then(function(r) {
+        if (r.status === 401) { _clearAdminPw && _clearAdminPw(); throw new Error('Admin password rejected.'); }
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+      });
     }
 
     // Wire action buttons (Delete Signal & Resolve, or Save Changes & Resolve)
@@ -8325,15 +8341,51 @@ var _GH_API = 'https://api.github.com/repos/' + _GH_REPO + '/issues';
 // REPLACE this URL after deploying the Worker (see hr-tracker-worker/README.md).
 var _WORKER_BASE = 'https://hr-tracker-proxy.hr-ai.workers.dev';
 
-// Admin-only GitHub token. Stored in localStorage on the admin's own machine.
-// NEVER hardcoded. NEVER shipped to public visitors. Used only for admin actions
-// (reading flag/request issues, approving/denying, closing).
+// Admin password. Stored in localStorage on the admin's own machine.
+// All privileged operations (approve/deny requests, list/close flags,
+// load analytics) go through the Cloudflare Worker, which checks this
+// password against its secret before calling GitHub server-side.
+var _ADMIN_PW_KEY = 'hrtrk_admin_pw';
+function _adminPw() {
+  try {
+    return (window.localStorage && window.localStorage.getItem(_ADMIN_PW_KEY)) || '';
+  } catch (e) { return ''; }
+}
+function _setAdminPw(p) {
+  try { window.localStorage.setItem(_ADMIN_PW_KEY, p || ''); } catch (e) {}
+}
+function _clearAdminPw() {
+  try { window.localStorage.removeItem(_ADMIN_PW_KEY); } catch (e) {}
+}
+function _promptAdminPw(force) {
+  var existing = _adminPw();
+  if (existing && !force) return existing;
+  var p = window.prompt('Enter the admin password.\n\nThis is stored in this browser only and authenticates admin actions through the Worker.');
+  if (p) { _setAdminPw(p.trim()); }
+  return _adminPw();
+}
+// Verify the stored password against the Worker. If it fails, clear it and
+// re-prompt. Returns a Promise resolving to true on success, false on failure.
+function _verifyAdminPw() {
+  var pw = _adminPw();
+  if (!pw) return Promise.resolve(false);
+  return fetch(_WORKER_BASE + '/admin/verify', {
+    method: 'GET',
+    headers: { 'X-Admin-Password': pw }
+  }).then(function(r) {
+    if (r.status === 401) { _clearAdminPw(); return false; }
+    return r.ok;
+  }).catch(function() { return false; });
+}
+
+// Legacy GitHub token plumbing — retained ONLY because signal edit/delete
+// flows (persistSignalEditToGitHub / persistSignalDeleteToGitHub) still write
+// admin_signals.json directly via the GitHub API. Most admin reads/writes go
+// through the Worker now and do NOT need this token.
 var _ADMIN_TOKEN_KEY = 'hrtrk_admin_gh_token';
 function _adminGhToken() {
-  try {
-    var t = (window.localStorage && window.localStorage.getItem(_ADMIN_TOKEN_KEY)) || '';
-    return t;
-  } catch (e) { return ''; }
+  try { return (window.localStorage && window.localStorage.getItem(_ADMIN_TOKEN_KEY)) || ''; }
+  catch (e) { return ''; }
 }
 function _setAdminGhToken(t) {
   try { window.localStorage.setItem(_ADMIN_TOKEN_KEY, t || ''); } catch (e) {}
@@ -8344,13 +8396,10 @@ function _clearAdminGhToken() {
 function _promptAdminGhToken() {
   var existing = _adminGhToken();
   if (existing) return existing;
-  var t = window.prompt('Paste your admin GitHub token (fine-grained PAT with Issues: read/write).\n\nThis is stored in this browser only and never uploaded.');
+  var t = window.prompt('Signal edit/delete requires a GitHub PAT (fine-grained, Issues + Contents: read/write).\n\nStored in this browser only. You can leave admin_signals.json edits to the daily processor instead and skip this prompt.');
   if (t) { _setAdminGhToken(t.trim()); }
   return _adminGhToken();
 }
-// Backwards-compat shim: any remaining _ghToken() callers will receive the
-// admin token if present (used only on admin paths). Returns empty string for
-// public visitors, which causes the legacy code paths to no-op.
 function _ghToken() { return _adminGhToken(); }
 
 function flagBtnHTML(company, summary, date, type, domain) {
@@ -9307,42 +9356,27 @@ initAdmin();
     if (errEl) errEl.style.display = 'none';
     if (refreshBtn) { refreshBtn.disabled = true; refreshBtn.textContent = 'Loading…'; }
 
-    // Ensure admin token (prompts on first use, cached locally)
-    var _aTok = (typeof _adminGhToken === 'function') ? _adminGhToken() : '';
-    if (!_aTok && typeof _promptAdminGhToken === 'function') _aTok = _promptAdminGhToken();
-    if (!_aTok) {
+    // Ensure admin password (prompts on first use, cached locally)
+    var _aPw = (typeof _adminPw === 'function') ? _adminPw() : '';
+    if (!_aPw && typeof _promptAdminPw === 'function') _aPw = _promptAdminPw();
+    if (!_aPw) {
       _analyticsLoading = false;
       if (spinner) spinner.style.display = 'none';
-      if (errEl) { errEl.textContent = 'Admin token required to load analytics.'; errEl.style.display = 'block'; }
+      if (errEl) { errEl.textContent = 'Admin password required to load analytics.'; errEl.style.display = 'block'; }
       if (refreshBtn) { refreshBtn.disabled = false; refreshBtn.textContent = 'Refresh'; }
       return;
     }
 
-    // Fetch all comments paginated (100/page)
-    var allEvents = [];
-    var baseUrl = 'https://api.github.com/repos/' + _GH_REPO + '/issues/' + ANALYTICS_ISSUE + '/comments';
-
-    function fetchPage(page) {
-      return fetch(baseUrl + '?per_page=100&page=' + page, {
-        headers: { 'Authorization': 'Bearer ' + _aTok, 'Accept': 'application/vnd.github+json' }
-      }).then(function(r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      }).then(function(comments) {
-        comments.forEach(function(comment) {
-          try {
-            var body = (comment.body || '').trim();
-            var parsed = JSON.parse(body);
-            if (Array.isArray(parsed)) {
-              parsed.forEach(function(ev) { allEvents.push(ev); });
-            }
-          } catch(e) { /* skip non-JSON comments */ }
-        });
-        if (comments.length === 100) return fetchPage(page + 1);
-      });
-    }
-
-    fetchPage(1).then(function() {
+    // Fetch via Worker (paginates through analytics issue comments server-side)
+    fetch(_WORKER_BASE + '/admin/analytics', {
+      method: 'GET',
+      headers: { 'X-Admin-Password': _aPw }
+    }).then(function(r) {
+      if (r.status === 401) { _clearAdminPw && _clearAdminPw(); throw new Error('Admin password rejected.'); }
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(json) {
+      var allEvents = (json && json.events) || [];
       _analyticsCache = allEvents;
       _analyticsLoading = false;
       var now = new Date();
@@ -9664,6 +9698,15 @@ initAdmin();
     return token ? { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' } : { 'Accept': 'application/vnd.github+json' };
   }
 
+  // Worker auth: returns headers for the admin password. If no password is
+  // stored, prompts. Returns null if the user declined.
+  function _adminPwHeaders() {
+    var pw = (typeof _adminPw === 'function') ? _adminPw() : '';
+    if (!pw && typeof _promptAdminPw === 'function') pw = _promptAdminPw();
+    if (!pw) return null;
+    return { 'X-Admin-Password': pw };
+  }
+
   // Local HTML escape helper (the outer `esc` is scoped to a different IIFE)
   function esc(s) {
     return String(s == null ? '' : s)
@@ -9706,13 +9749,25 @@ initAdmin();
     if (content) content.style.display = 'none';
     if (err) err.style.display = 'none';
 
-    // Fetch open + closed issues with the company-request label
-    var url = 'https://api.github.com/repos/AI-labsonlabs/hr-ai-tracker-deploy/issues?state=all&labels=company-request&per_page=100';
-    fetch(url, { headers: _ghAuthHeaders() })
-      .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function(issues) {
+    var hdrs = _adminPwHeaders();
+    if (!hdrs) {
+      _requestsLoading = false;
+      if (spinner) spinner.style.display = 'none';
+      if (err) { err.textContent = 'Admin password required to load requests.'; err.style.display = ''; }
+      return;
+    }
+
+    // Fetch via Worker (server-side GitHub call with PAT secret)
+    fetch(_WORKER_BASE + '/admin/requests', { method: 'GET', headers: hdrs })
+      .then(function(r) {
+        if (r.status === 401) { _clearAdminPw && _clearAdminPw(); throw new Error('Admin password rejected. Please refresh and re-enter.'); }
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function(json) {
+        var issues = (json && json.issues) || [];
         // Filter out PRs
-        issues = (issues || []).filter(function(i) { return !i.pull_request; });
+        issues = issues.filter(function(i) { return !i.pull_request; });
         _requestsCache = { issues: issues, fetchedAt: new Date() };
         _renderRequests();
         _updateRequestsBadge();
@@ -9845,9 +9900,19 @@ initAdmin();
 
   window.approveCompanyRequest = function(num, btn) {
     if (!confirm('Approve this company request? It will be queued for the cron job to add the company and build initial signals.')) return;
+    var hdrs = _adminPwHeaders();
+    if (!hdrs) { alert('Admin password required.'); return; }
     if (btn) { btn.disabled = true; btn.textContent = 'Approving…'; }
-    _addLabels(num, ['company-request-approved'])
-      .then(function() { return _commentIssue(num, '✅ Approved by admin on ' + new Date().toLocaleString() + '. Queued for the next scheduled run — the company will be added and 5–15 signals built within the hour.'); })
+    fetch(_WORKER_BASE + '/admin/approve', {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, hdrs),
+      body: JSON.stringify({ issue_number: num })
+    })
+      .then(function(r) {
+        if (r.status === 401) { _clearAdminPw && _clearAdminPw(); throw new Error('Admin password rejected. Please refresh and re-enter.'); }
+        if (!r.ok) return r.text().then(function(t) { throw new Error('HTTP ' + r.status + ' ' + t.slice(0,120)); });
+        return r.json();
+      })
       .then(function() {
         // Update local cache
         if (_requestsCache) {
@@ -9866,13 +9931,19 @@ initAdmin();
   window.denyCompanyRequest = function(num, btn) {
     var reason = prompt('Reason for denying (optional, included in the issue comment):');
     if (reason === null) return; // user cancelled
+    var hdrs = _adminPwHeaders();
+    if (!hdrs) { alert('Admin password required.'); return; }
     if (btn) { btn.disabled = true; btn.textContent = 'Denying…'; }
-    _addLabels(num, ['company-request-denied'])
-      .then(function() {
-        var note = '❌ Denied by admin on ' + new Date().toLocaleString() + (reason ? '. Reason: ' + reason : '.');
-        return _commentIssue(num, note);
+    fetch(_WORKER_BASE + '/admin/deny', {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, hdrs),
+      body: JSON.stringify({ issue_number: num, reason: reason || '' })
+    })
+      .then(function(r) {
+        if (r.status === 401) { _clearAdminPw && _clearAdminPw(); throw new Error('Admin password rejected. Please refresh and re-enter.'); }
+        if (!r.ok) return r.text().then(function(t) { throw new Error('HTTP ' + r.status + ' ' + t.slice(0,120)); });
+        return r.json();
       })
-      .then(function() { return _patchIssue(num, { state: 'closed' }); })
       .then(function() {
         if (_requestsCache) {
           var i = _requestsCache.issues.find(function(x) { return x.number === num; });
