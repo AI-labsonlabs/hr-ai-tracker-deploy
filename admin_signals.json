@@ -1314,5 +1314,44 @@
     "confirmation_level": "Confirmed Deployment",
     "summary": "BlackRock's talent acquisition team uses AI for interview scheduling (confirmed by global head of TA Nigel Williams). Recruiters also actively detect candidate AI use during interviews.",
     "source_url": "https://www.businessinsider.com/blackrock-talent-acquisition-ai-hire-job-hunt-2025-12#interview-scheduling"
+  },
+  {
+    "company_name": "Microsoft",
+    "date_event": "2026-04-20",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "blog post",
+    "confirmation_level": "Confirmed Deployment",
+    "summary": "Microsoft says its Microsoft Digital team led an enterprise-scale deployment of Microsoft 365 Copilot, launching to more than 300,000 employees and vendors worldwide.",
+    "source_urls": [
+      "https://www.microsoft.com/insidetrack/blog/unfolding-our-ai-in-it-story-what-to-expect-at-the-2026-microsoft-365-community-conference/"
+    ],
+    "date_found": "2026-04-27"
+  },
+  {
+    "company_name": "Microsoft",
+    "date_event": "2026-03-25",
+    "signal_type": "I",
+    "HR_domain": "People Analytics",
+    "source_type": "news article",
+    "confirmation_level": "Confirmed Announcement",
+    "summary": "Business Insider reports an internal memo from Microsoft Chief People Officer Amy Coleman describing HR org changes to support AI-first products, including moving the People Analytics team into the Employee Experience org to enable faster insight-to-action loops.",
+    "source_urls": [
+      "https://www.businessinsider.com/microsoft-makes-sweeping-overhaul-of-hr-organization-internal-memo-shows-2026-3"
+    ],
+    "date_found": "2026-04-27"
+  },
+  {
+    "company_name": "Robinhood",
+    "date_event": "2026-04-27",
+    "signal_type": "I",
+    "HR_domain": "People Analytics",
+    "source_type": "vendor case study",
+    "confirmation_level": "PR Mention",
+    "summary": "One Model\u2019s website includes a quote from a Robinhood People Senior Analyst describing using One Model to consolidate workforce planning data into a single source of truth and improve trust in people data.",
+    "source_urls": [
+      "https://www.onemodel.co"
+    ],
+    "date_found": "2026-04-27"
   }
 ]
