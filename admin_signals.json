@@ -1344,10 +1344,10 @@
   {
     "company_name": "Robinhood",
     "date_event": "2026-04-27",
-    "signal_type": "I",
+    "signal_type": "A",
     "HR_domain": "People Analytics",
     "source_type": "vendor case study",
-    "confirmation_level": "PR Mention",
+    "confirmation_level": "Confirmed Deployment",
     "summary": "One Model\u2019s website includes a quote from a Robinhood People Senior Analyst describing using One Model to consolidate workforce planning data into a single source of truth and improve trust in people data.",
     "source_urls": [
       "https://www.onemodel.co"
