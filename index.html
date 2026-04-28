@@ -3416,7 +3416,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
 
       <div class="two-col">
         <div class="section-block">
-          <h2 class="section-title">Industry Median Maturity</h2>
+          <h2 class="section-title">Industry Avg Maturity</h2>
           <div class="bar-chart" id="industryChart"></div>
         </div>
         <div class="section-block" id="stbSection">
@@ -5587,28 +5587,34 @@ function renderOverview() {
   document.getElementById('kpiGrid').innerHTML =
     kpiCard('Companies Tracked', s.total_companies, Object.keys(D.industries).length + ' industries') +
     kpiCard('Total Signals', s.total_signals, 'Across all companies') +
-    kpiCard('Median Maturity', (function(){ var allScores = []; for(var ind in D.industries) D.industries[ind].forEach(function(c){ allScores.push(c.maturity); }); allScores.sort(function(a,b){return a-b;}); var mid=Math.floor(allScores.length/2); return fmt(allScores.length%2?allScores[mid]:(allScores[mid-1]+allScores[mid])/2); })(), 'Score 0\u2013100 scale', 'mobile-hide-median');
+    kpiCard('Avg Maturity', (function(){ var allScores = []; for(var ind in D.industries) D.industries[ind].forEach(function(c){ allScores.push(c.maturity); }); return allScores.length ? fmt(allScores.reduce(function(a,b){return a+b;},0)/allScores.length) : '0'; })(), 'Score 0\u2013100 scale', 'mobile-hide-median');
 
-  // Industry chart — show top 6, collapse rest (using median); exclude Conglomerate
-  const industryAvgs = {};
+  // Industry chart — primary = mean (avg); secondary = median & leaders count.
+  // Sort by mean desc; exclude Conglomerate (single-company category).
+  const LEADER_THRESHOLD = 40; // companies above this maturity count as leaders
+  const industryStats = {};
   for (const [ind, companies] of Object.entries(D.industries)) {
-    if (ind === 'Conglomerate') continue; // skip single-company category
+    if (ind === 'Conglomerate') continue;
+    if (!companies.length) continue;
     const scores = companies.map(c => c.maturity).sort((a, b) => a - b);
     const mid = Math.floor(scores.length / 2);
     const median = scores.length % 2 ? scores[mid] : (scores[mid - 1] + scores[mid]) / 2;
-    industryAvgs[ind] = median;
+    const mean = scores.reduce((a, b) => a + b, 0) / scores.length;
+    const leaders = scores.filter(s => s >= LEADER_THRESHOLD).length;
+    industryStats[ind] = { mean: mean, median: median, leaders: leaders, n: scores.length };
   }
-  const sorted = Object.entries(industryAvgs).sort((a, b) => b[1] - a[1]);
-  const maxInd = sorted[0][1];
+  const sorted = Object.entries(industryStats).sort((a, b) => b[1].mean - a[1].mean);
+  const maxInd = sorted[0][1].mean;
   const SHOW_TOP = 6;
   const topIndustries = sorted.slice(0, SHOW_TOP);
   const restIndustries = sorted.slice(SHOW_TOP);
-  function indBarHtml(name, avg) {
-    return '<div class="bar-row bar-row-clickable ind-filter-bar" data-industry="' + name.replace(/"/g, '&quot;') + '" onclick="filterByIndustryBar(this)"><div class="bar-label">' + name + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (avg / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(avg) + '</div></div>';
+  function indBarHtml(name, st) {
+    var meta = 'Median ' + fmt(st.median) + ' &middot; ' + st.leaders + ' leader' + (st.leaders === 1 ? '' : 's');
+    return '<div class="bar-row bar-row-clickable ind-filter-bar" data-industry="' + name.replace(/"/g, '&quot;') + '" onclick="filterByIndustryBar(this)" title="' + meta.replace(/&middot;/g,'·').replace(/&nbsp;/g,' ') + '"><div class="bar-label">' + name + '<div style="font-size:var(--text-xs);color:var(--color-text-secondary);font-weight:400;margin-top:2px;">' + meta + '</div></div><div class="bar-track"><div class="bar-fill" style="width:' + (st.mean / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(st.mean) + '</div></div>';
   }
-  let chartHtml = topIndustries.map(([name, avg]) => indBarHtml(name, avg)).join('');
+  let chartHtml = topIndustries.map(([name, st]) => indBarHtml(name, st)).join('');
   if (restIndustries.length > 0) {
-    chartHtml += '<div id="industryChartMore" style="display:none;">' + restIndustries.map(([name, avg]) => indBarHtml(name, avg)).join('') + '</div>';
+    chartHtml += '<div id="industryChartMore" style="display:none;">' + restIndustries.map(([name, st]) => indBarHtml(name, st)).join('') + '</div>';
     var moreCount = restIndustries.length;
     chartHtml += '<button id="industryToggleBtn" style="background:none;border:none;color:var(--color-primary);font-size:var(--text-xs);cursor:pointer;padding:var(--space-2) 0 0;font-weight:500;">+ ' + moreCount + ' more industries \u25BC</button>';
     // Attach toggle handler after DOM insert
