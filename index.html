@@ -4170,7 +4170,16 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
           <option value="AI Hiring">AI Hiring</option>
         </select>
       </div>
-
+      <div class="se-field">
+        <label>Confirmation</label>
+        <select id="seConfirmation">
+          <option value="Confirmed Deployment">Confirmed Deployment</option>
+          <option value="Confirmed Announcement">Confirmed Announcement</option>
+          <option value="Pilot">Pilot</option>
+          <option value="PR Mention">PR Mention</option>
+          <option value="Preparing/Exploration">Preparing/Exploration</option>
+        </select>
+      </div>
     </div>
     <div class="se-field">
       <label>Summary</label>
@@ -4889,7 +4898,7 @@ function openProfile(companyName) {
         (s.HR_domain ? '<span class="badge badge-blue">' + s.HR_domain + '</span>' : '') +
         (function() { var _tl = ({A:'Deployment',B:'Pilot',D:'Leadership Hire',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'Announcement',J:'AI Talent Hiring'})[s.signal_type]||''; if (!_tl) return ''; return '<span class="badge badge-gray">' + _tl + '</span>'; })() +
         flagBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'') +
-        adminEditBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_urls||[]) +
+        adminEditBtnHTML(co.company_name, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_urls||[], s.confirmation_level||'') +
         '</div>' +
         '<div class="signal-summary">' + (s.summary || '') + '</div>' +
         sourcesHTML + '</div>';
@@ -6897,7 +6906,7 @@ function buildCompanyProfileHTML(companyName, side) {
       var _peerTypeLabel = ({A:'Deployment',B:'Pilot',D:'Leadership Hire',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'Announcement',J:'AI Talent Hiring'})[s.signal_type]||'';
       if (_peerTypeLabel) html += '<span class="badge badge-gray" style="font-size:10px;">' + _peerTypeLabel + '</span>';
       html += flagBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'');
-      html += adminEditBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_urls||[]);
+      html += adminEditBtnHTML(companyName, s.summary, s.date_event||s.date_found||'', s.signal_type||'', s.HR_domain||'', s.source_urls||[], s.confirmation_level||'');
       html += '</div>';
       html += '<div style="line-height:1.4;">' + (s.summary || '') + '</div>';
       html += sourcesHTML + '</div>';
@@ -7372,7 +7381,7 @@ function renderSignalCards(signals) {
       '<span class="badge badge-blue" style="font-size:10px;">' + s.HR_domain + '</span>' +
       (typeLabel ? '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' : '') +
       flagBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain) +
-      adminEditBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain, s.source_urls) +
+      adminEditBtnHTML(s.company_name, s.summary, s.date, s.signal_type, s.HR_domain, s.source_urls, s.confirmation_level||'') +
       '</div>' +
       '<div class="signal-feed-summary">' + s.summary + '</div>' +
       sourcesHTML +
@@ -8673,9 +8682,10 @@ function flagBtnHTML(company, summary, date, type, domain) {
   return '<button class="flag-btn" data-fc="' + c + '" data-fs="' + s + '" data-fd="' + d + '" data-ft="' + t + '" data-fdm="' + dm + '" onclick="event.stopPropagation();openFlagFromBtn(this)" title="Flag this signal for review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Flag</button>';
 }
 
-function adminEditBtnHTML(company, summary, date, type, domain, sourceUrls) {
+function adminEditBtnHTML(company, summary, date, type, domain, sourceUrls, confirmation) {
   var c = esc(company||''), s = esc((summary||'').replace(/"/g, '&quot;')), d = esc(date||''), t = esc(type||''), dm = esc(domain||''), urls = esc(((sourceUrls||[]).join ? (sourceUrls||[]) : []).join('|'));
-  return '<button class="admin-edit-signal-btn" data-ec="' + c + '" data-es="' + s + '" data-ed="' + d + '" data-et="' + t + '" data-edm="' + dm + '" data-eurls="' + urls + '" onclick="event.stopPropagation();openSignalEdit(this)" title="Edit signal (admin)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>Edit</button>';
+  var cl = esc((confirmation || '').replace(/"/g, '&quot;'));
+  return '<button class="admin-edit-signal-btn" data-ec="' + c + '" data-es="' + s + '" data-ed="' + d + '" data-et="' + t + '" data-edm="' + dm + '" data-ecl="' + cl + '" data-eurls="' + urls + '" onclick="event.stopPropagation();openSignalEdit(this)" title="Edit signal (admin)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>Edit</button>';
 }
 
 window.openFlagFromBtn = function(btn) {
@@ -8787,12 +8797,22 @@ window.openSignalEdit = function(btn) {
     date: btn.dataset.ed || '',
     type: btn.dataset.et || '',
     domain: btn.dataset.edm || '',
+    confirmation: decodeHTMLEntities(btn.dataset.ecl || ''),
     urls: (btn.dataset.eurls || '').split('|').filter(function(u) { return u; })
   };
   document.getElementById('seCompany').value = _seOriginal.company;
   document.getElementById('seDate').value = _seOriginal.date;
   document.getElementById('seType').value = _seOriginal.type;
   document.getElementById('seDomain').value = _seOriginal.domain;
+  // Set confirmation; if it's not one of the known options, leave the select on its first item
+  var seConf = document.getElementById('seConfirmation');
+  if (seConf) {
+    seConf.value = _seOriginal.confirmation || 'Confirmed Deployment';
+    if (seConf.value !== (_seOriginal.confirmation || 'Confirmed Deployment')) {
+      // Value didn't match any option — fall back to first option
+      seConf.selectedIndex = 0;
+    }
+  }
   document.getElementById('seSummary').value = _seOriginal.summary;
   document.getElementById('seStatus').textContent = '';
   document.getElementById('seStatus').className = 'se-status';
@@ -8822,6 +8842,7 @@ window.saveSignalEdit = function() {
     date_event: document.getElementById('seDate').value,
     signal_type: document.getElementById('seType').value,
     HR_domain: document.getElementById('seDomain').value,
+    confirmation_level: (document.getElementById('seConfirmation') || {}).value || _seOriginal.confirmation || '',
     summary: document.getElementById('seSummary').value.trim(),
     source_urls: _seOriginal.urls
   };
@@ -8896,6 +8917,7 @@ function updateSignalInMemory(orig, newData) {
         s.summary = newData.summary;
         s.signal_type = newData.signal_type;
         s.HR_domain = newData.HR_domain;
+        if (newData.confirmation_level) s.confirmation_level = newData.confirmation_level;
         if (s.date_event !== undefined) s.date_event = newData.date_event;
         else s.date_found = newData.date_event;
       }
@@ -8921,6 +8943,7 @@ function updateSignalInMemory(orig, newData) {
         s.date = newData.date_event;
         s.signal_type = newData.signal_type;
         s.HR_domain = newData.HR_domain;
+        if (newData.confirmation_level) s.confirmation_level = newData.confirmation_level;
         s.summary = newData.summary;
       }
     });
@@ -8997,6 +9020,7 @@ function persistSignalEditToGitHub(orig, newData) {
             date_event: newData.date_event,
             signal_type: newData.signal_type,
             HR_domain: newData.HR_domain,
+            confirmation_level: newData.confirmation_level || s.confirmation_level || '',
             source_type: s.source_type || 'edited',
             summary: newData.summary,
             source_urls: s.source_urls || orig.urls,
@@ -9012,6 +9036,7 @@ function persistSignalEditToGitHub(orig, newData) {
           date_event: newData.date_event,
           signal_type: newData.signal_type,
           HR_domain: newData.HR_domain,
+          confirmation_level: newData.confirmation_level || '',
           source_type: 'edited',
           summary: newData.summary,
           source_urls: orig.urls,
