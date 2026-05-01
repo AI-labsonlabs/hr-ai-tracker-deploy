@@ -5794,8 +5794,8 @@ window.filterSignalsByType = function(code, label) {
   if (!code) return;
   // Remember origin so we can show the Back link
   window.signalsFilterOrigin = { from: 'overview', code: code, label: label };
-  // Switch to Signals tab
-  if (typeof window.switchTab === 'function') window.switchTab('signals');
+  // Switch to Signals tab (use closure ref — switchTab is local to the IIFE)
+  if (typeof switchTab === 'function') switchTab('signals');
   // Apply filter — clear other filters first to avoid empty intersection surprises,
   // then set just this signal_type.
   if (typeof sigMultiFilters !== 'undefined' && sigMultiFilters) {
@@ -5835,7 +5835,7 @@ window.backToOverviewFromSignals = function() {
   }
   if (typeof populateSignalsFilters === 'function') populateSignalsFilters();
   if (typeof renderSignalsFeed === 'function') renderSignalsFeed();
-  if (typeof window.switchTab === 'function') window.switchTab('overview');
+  if (typeof switchTab === 'function') switchTab('overview');
 };
 
 // ============================================
