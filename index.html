@@ -5798,13 +5798,15 @@ window.filterSignalsByType = function(code, label) {
   if (typeof window.switchTab === 'function') window.switchTab('signals');
   // Apply filter — clear other filters first to avoid empty intersection surprises,
   // then set just this signal_type.
-  if (window.sigMultiFilters) {
-    Object.keys(window.sigMultiFilters).forEach(function(k) {
-      if (window.sigMultiFilters[k] && typeof window.sigMultiFilters[k].clear === 'function') {
-        window.sigMultiFilters[k].clear();
+  if (typeof sigMultiFilters !== 'undefined' && sigMultiFilters) {
+    Object.keys(sigMultiFilters).forEach(function(k) {
+      if (sigMultiFilters[k] && typeof sigMultiFilters[k].clear === 'function') {
+        sigMultiFilters[k].clear();
       }
     });
-    window.sigMultiFilters.signal_type.add(code);
+    if (sigMultiFilters.signal_type && typeof sigMultiFilters.signal_type.add === 'function') {
+      sigMultiFilters.signal_type.add(code);
+    }
   }
   // Re-render multiselect UI to reflect the checked state
   if (typeof populateSignalsFilters === 'function') {
@@ -5824,10 +5826,10 @@ window.backToOverviewFromSignals = function() {
   if (backBtn) backBtn.style.display = 'none';
   window.signalsFilterOrigin = null;
   // Clear filters so Signals tab returns to default state next time
-  if (window.sigMultiFilters) {
-    Object.keys(window.sigMultiFilters).forEach(function(k) {
-      if (window.sigMultiFilters[k] && typeof window.sigMultiFilters[k].clear === 'function') {
-        window.sigMultiFilters[k].clear();
+  if (typeof sigMultiFilters !== 'undefined' && sigMultiFilters) {
+    Object.keys(sigMultiFilters).forEach(function(k) {
+      if (sigMultiFilters[k] && typeof sigMultiFilters[k].clear === 'function') {
+        sigMultiFilters[k].clear();
       }
     });
   }
