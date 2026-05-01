@@ -562,13 +562,13 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   width: 140px;
   min-width: 140px;
 }
-/* Industry bar: stack name + meta vertically; name is the headline */
+/* Industry + Signal Type bar rows: equalized so the two side-by-side
+   charts align row-for-row regardless of label height differences. */
 #industryChart .bar-row,
-#signalTypeChart .bar-row { min-height: 36px; padding: 4px 0; }
+#signalTypeChart .bar-row { height: 44px; padding: 4px 0; box-sizing: border-box; }
 #industryChart .bar-row-clickable { padding: 4px 4px; }
-/* Match expanded-row spacing so collapsed and expanded sections align */
 #industryChartMore .bar-row,
-#stbChartMore .bar-row { min-height: 36px; padding: 4px 4px; }
+#stbChartMore .bar-row { height: 44px; padding: 4px 4px; box-sizing: border-box; }
 #industryChart .bar-label {
   white-space: normal;
   overflow: visible;
@@ -3602,6 +3602,10 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
 
     <!-- SIGNALS EXPLORER TAB -->
     <section class="tab-panel" id="tab-signals">
+      <button id="signalsBackBtn" onclick="backToOverviewFromSignals()" style="display:none;align-items:center;gap:4px;background:none;border:none;color:var(--color-primary);font-size:var(--text-sm);cursor:pointer;margin-bottom:var(--space-3);font-weight:500;padding:0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to overview
+      </button>
       <h2 class="section-title" style="margin-bottom:var(--space-2);">Signal Explorer</h2>
       <p class="section-subtitle" style="margin-bottom:var(--space-4);">Browse and filter all signals across every tracked company.</p>
       
@@ -5707,7 +5711,13 @@ function renderOverview() {
   var stbRest = stbSorted.slice(STB_SHOW_TOP);
   function stbBarHTML(s) {
     var hoverText = (stbDescriptions[s.code] || '').replace(/'/g, '&#39;').replace(/"/g, '&quot;');
-    return '<div class="bar-row stb-bar" data-stb-label="' + s.label.replace(/"/g, '&quot;') + '" data-stb-desc="' + hoverText + '" style="cursor:help;"><div class="bar-label">' + s.label + '</div><div class="bar-track"><div class="bar-fill" style="width:' + (s.count / maxSTB * 100) + '%;background:' + (stbColors[s.code] || 'var(--color-blue-500)') + ';"></div></div><div class="bar-value">' + s.count + '</div></div>';
+    var safeLabel = s.label.replace(/"/g, '&quot;');
+    var safeCode = (s.code || '').replace(/"/g, '&quot;');
+    return '<div class="bar-row stb-bar" data-stb-label="' + safeLabel + '" data-stb-desc="' + hoverText + '" data-stb-code="' + safeCode + '">' +
+      '<div class="bar-label stb-label" style="cursor:help;">' + s.label + '</div>' +
+      '<div class="bar-track stb-clickable" onclick="filterSignalsByType(\'' + safeCode + '\', \'' + safeLabel + '\')" title="Click to filter signals by ' + safeLabel + '" style="cursor:pointer;"><div class="bar-fill" style="width:' + (s.count / maxSTB * 100) + '%;background:' + (stbColors[s.code] || 'var(--color-blue-500)') + ';"></div></div>' +
+      '<div class="bar-value stb-clickable" onclick="filterSignalsByType(\'' + safeCode + '\', \'' + safeLabel + '\')" style="cursor:pointer;">' + s.count + '</div>' +
+    '</div>';
   }
   var stbChartHtml = stbTop.map(stbBarHTML).join('');
   if (stbRest.length > 0) {
@@ -5736,22 +5746,23 @@ function renderOverview() {
   initStbTooltips();
 }
 
-// Global delegated tooltip handler for .stb-bar elements
+// Global delegated tooltip handler for .stb-bar elements — fires only on .stb-label
 function initStbTooltips() {
   var stbTip = document.getElementById('stbTooltip');
   if (!stbTip || stbTip._delegated) return;
   stbTip._delegated = true;
   document.addEventListener('mouseover', function(e) {
-    var bar = e.target.closest('.stb-bar');
-    if (!bar) { stbTip.classList.remove('visible'); return; }
+    var labelEl = e.target.closest('.stb-label');
+    if (!labelEl) { stbTip.classList.remove('visible'); return; }
+    var bar = labelEl.closest('.stb-bar');
+    if (!bar) return;
     var label = bar.getAttribute('data-stb-label');
     var desc = bar.getAttribute('data-stb-desc');
     if (!desc) return;
     stbTip.innerHTML = '<strong>' + label + '</strong>' + desc;
     stbTip.classList.add('visible');
     // Position to the right of the bar-label element
-    var labelEl = bar.querySelector('.bar-label');
-    var anchor = labelEl ? labelEl.getBoundingClientRect() : bar.getBoundingClientRect();
+    var anchor = labelEl.getBoundingClientRect();
     var tipW = 340;
     var left = anchor.right + 10;
     // If it overflows right edge, flip to below the bar instead
@@ -5771,12 +5782,59 @@ function initStbTooltips() {
     }
   });
   document.addEventListener('mouseout', function(e) {
-    var bar = e.target.closest('.stb-bar');
-    if (bar && !bar.contains(e.relatedTarget)) {
+    var labelEl = e.target.closest('.stb-label');
+    if (labelEl && !labelEl.contains(e.relatedTarget)) {
       stbTip.classList.remove('visible');
     }
   });
 }
+
+// Click a Signal Type bar -> jump to Signals tab filtered by that type
+window.filterSignalsByType = function(code, label) {
+  if (!code) return;
+  // Remember origin so we can show the Back link
+  window.signalsFilterOrigin = { from: 'overview', code: code, label: label };
+  // Switch to Signals tab
+  if (typeof window.switchTab === 'function') window.switchTab('signals');
+  // Apply filter — clear other filters first to avoid empty intersection surprises,
+  // then set just this signal_type.
+  if (window.sigMultiFilters) {
+    Object.keys(window.sigMultiFilters).forEach(function(k) {
+      if (window.sigMultiFilters[k] && typeof window.sigMultiFilters[k].clear === 'function') {
+        window.sigMultiFilters[k].clear();
+      }
+    });
+    window.sigMultiFilters.signal_type.add(code);
+  }
+  // Re-render multiselect UI to reflect the checked state
+  if (typeof populateSignalsFilters === 'function') {
+    populateSignalsFilters();
+  }
+  // Re-render table
+  if (typeof renderSignalsFeed === 'function') renderSignalsFeed();
+  // Show back-to-overview link
+  var backBtn = document.getElementById('signalsBackBtn');
+  if (backBtn) backBtn.style.display = 'inline-flex';
+  // Scroll to top of signals tab
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+window.backToOverviewFromSignals = function() {
+  var backBtn = document.getElementById('signalsBackBtn');
+  if (backBtn) backBtn.style.display = 'none';
+  window.signalsFilterOrigin = null;
+  // Clear filters so Signals tab returns to default state next time
+  if (window.sigMultiFilters) {
+    Object.keys(window.sigMultiFilters).forEach(function(k) {
+      if (window.sigMultiFilters[k] && typeof window.sigMultiFilters[k].clear === 'function') {
+        window.sigMultiFilters[k].clear();
+      }
+    });
+  }
+  if (typeof populateSignalsFilters === 'function') populateSignalsFilters();
+  if (typeof renderSignalsFeed === 'function') renderSignalsFeed();
+  if (typeof window.switchTab === 'function') window.switchTab('overview');
+};
 
 // ============================================
 // OVERVIEW TABLE — interactive column headers
