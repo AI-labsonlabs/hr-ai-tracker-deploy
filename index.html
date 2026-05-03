@@ -2486,7 +2486,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-height: var(--latest-signals-max-h, 288px);
+  max-height: var(--latest-signals-max-h, 344px);
   overflow-y: auto;
   padding-right: 4px;
   scrollbar-width: thin;
@@ -2497,14 +2497,23 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
 #latestSignalsList::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
 
 .latest-signal-card {
+  display: block;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 8px 10px;
   background: var(--color-surface);
-  transition: border-color 150ms;
+  transition: border-color 150ms, background-color 150ms;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 .latest-signal-card:hover {
   border-color: var(--color-primary);
+  background: var(--color-surface-hover, var(--color-surface));
+}
+.latest-signal-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 .latest-signal-head {
   display: flex;
@@ -5798,10 +5807,15 @@ function renderLatestSignals() {
     var summary = s.summary || '';
     var domain = s.HR_domain || '';
     var company = s.company_name || '';
-    return '<div class="latest-signal-card">' +
+    var urls = (s.source_urls || []).filter(function(u) { return u && /^https?:\/\//i.test(u); });
+    var sourceUrl = urls[0] || '';
+    var tag = sourceUrl ? 'a' : 'div';
+    var hrefAttr = sourceUrl ? ' href="' + esc(sourceUrl) + '" target="_blank" rel="noopener noreferrer"' : '';
+    var titleAttr = sourceUrl ? ' title="Open source: ' + esc(sourceUrl) + '"' : '';
+    return '<' + tag + ' class="latest-signal-card"' + hrefAttr + titleAttr + '>' +
       '<div class="latest-signal-head">' +
         '<div class="latest-signal-meta">' +
-          '<button type="button" class="latest-signal-company" onclick="openProfile(\'' + esc(company) + '\')" title="Open ' + esc(company) + ' profile">' + company + '</button>' +
+          '<button type="button" class="latest-signal-company" onclick="event.preventDefault();event.stopPropagation();openProfile(\'' + esc(company) + '\')" title="Open ' + esc(company) + ' profile">' + company + '</button>' +
           '<span class="latest-signal-badges">' +
             (domain ? '<span class="badge badge-blue">' + domain + '</span>' : '') +
             (typeLabel ? '<span class="badge badge-gray">' + typeLabel + '</span>' : '') +
@@ -5810,7 +5824,7 @@ function renderLatestSignals() {
         '<span class="latest-signal-date">' + date + '</span>' +
       '</div>' +
       '<div class="latest-signal-summary">' + summary + '</div>' +
-    '</div>';
+    '</' + tag + '>';
   }).join('');
   list.innerHTML = html;
 
