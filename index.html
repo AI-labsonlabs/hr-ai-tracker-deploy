@@ -1136,6 +1136,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   .sidebar-overlay.open { display: block; }
   .mobile-menu-btn { display: flex !important; }
   .profile-overlay { left: 0; }
+  .tech-detail-overlay { left: 0 !important; }
 }
 .mobile-menu-btn { display: none; }
 .mobile-menu-btn {
@@ -3350,6 +3351,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   .sidebar-overlay { display: none !important; }
   .mobile-menu-btn { display: none !important; }
   .profile-overlay { left: 0; }
+  .tech-detail-overlay { left: 0 !important; }
 }
 </style>
 </head>
@@ -3553,7 +3555,7 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
       <div class="tech-mobile-cards" id="techMobileCards"></div>
 
       <!-- Tech Detail Overlay (inline, not a separate page) -->
-      <div id="techDetailOverlay" style="display:none;position:fixed;top:var(--header-height, 64px);left:0;right:0;bottom:0;z-index:60;background:var(--color-bg);overflow-y:auto;">
+      <div id="techDetailOverlay" class="tech-detail-overlay" style="display:none;position:fixed;top:var(--header-height, 64px);left:220px;right:0;bottom:0;z-index:60;background:var(--color-bg);overflow-y:auto;">
         <div style="max-width:900px;margin:0 auto;padding:var(--space-5) var(--space-4);">
           <button id="techDetailBackBtn" onclick="closeTechDetail()" style="display:inline-flex;align-items:center;gap:4px;background:none;border:none;color:var(--color-primary);font-size:var(--text-sm);cursor:pointer;margin-bottom:var(--space-4);font-weight:500;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
