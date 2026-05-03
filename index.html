@@ -2478,6 +2478,57 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   height: 10px;
   flex-shrink: 0;
 }
+
+/* Latest Signals (overview — right side of the two-col layout) */
+#latestSignalsList { display: flex; flex-direction: column; gap: var(--space-2); }
+.latest-signal-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  transition: border-color 150ms, box-shadow 150ms;
+}
+.latest-signal-card:hover {
+  border-color: var(--color-primary);
+}
+.latest-signal-row1 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: 4px;
+}
+.latest-signal-row2 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.latest-signal-company {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.3;
+}
+.latest-signal-company:hover { text-decoration: underline; }
+.latest-signal-date {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+.latest-signal-summary {
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
 .signals-load-more-btn {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -3303,10 +3354,6 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
     gap: var(--space-3);
   }
 
-  /* --- Signal Type Breakdown: hide on mobile --- */
-  #stbSection {
-    display: none !important;
-  }
 
   /* --- Controls bar compact --- */
   .controls-bar {
@@ -3459,9 +3506,12 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
           <h2 class="section-title">Industry Avg Maturity</h2>
           <div class="bar-chart" id="industryChart"></div>
         </div>
-        <div class="section-block" id="stbSection">
-          <h2 class="section-title">Signal Type Breakdown</h2>
-          <div class="bar-chart" id="signalTypeChart"></div>
+        <div class="section-block" id="latestSignalsSection">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-3);flex-wrap:wrap;">
+            <h2 class="section-title" style="margin-bottom:0;">Latest Signals</h2>
+            <a href="#" id="latestSignalsViewAll" style="font-size:var(--text-xs);color:var(--color-primary);font-weight:500;text-decoration:none;">View all signals →</a>
+          </div>
+          <div id="latestSignalsList"></div>
         </div>
       </div>
       <div class="section-block">
@@ -5684,61 +5734,59 @@ function renderOverview() {
   // Top companies table — rendered separately so filter can update it
   renderOverviewTable();
 
-  // Signal Type Breakdown chart (#4)
-  var stb = D.signal_type_breakdown || [];
-  var stbColors = {A:'#059669',B:'#2563eb',C:'#7c3aed',D:'#d97706',E:'#6366f1',F:'#0ea5e9',G:'#14b8a6',H:'#f59e0b',I:'#9ca3af',J:'#06b6d4'};
-  var stbDescriptions = {
-    A: 'Enterprise-wide production deployment of a specific HR AI tool or platform, confirmed by a credible source (earnings call, vendor case study, press release).',
-    B: 'A named AI tool is being tested in a limited scope — one division, region, or use case — before full rollout.',
-    C: 'Evidence a company has purchased or contracted an HR AI vendor (e.g., Eightfold, Paradox, Beamery) but deployment status is unconfirmed.',
-    D: 'A senior hire specifically tasked with leading AI strategy within HR (e.g., VP of AI for People, Head of HR Technology & AI).',
-    E: 'Formal AI governance structures (ethics boards, responsible AI policies, audit frameworks) that explicitly cover HR use cases.',
-    F: 'Company-wide or HR-specific AI training programs, learning days, or upskilling initiatives to prepare the workforce for AI adoption.',
-    G: 'The company is named in an HR AI vendor\'s published case study or customer success story as a reference customer.',
-    H: 'An executive mentions HR AI initiatives on an earnings call, in an annual report, or SEC filing — signals leadership awareness but not necessarily deployment.',
-    I: 'Press releases, blog posts, or media coverage about AI strategy that lack specifics about tools, timelines, or measurable outcomes.',
-    J: 'Active job postings for AI/ML engineers, data scientists, or AI product managers — indicates investment in building AI capabilities.'
-  };
-  var maxSTB = Math.max.apply(null, stb.map(function(s){return s.count;})) || 1;
-  var stbSorted = stb.filter(function(s){return s.count > 0;}).sort(function(a,b){return b.count - a.count;});
-  var STB_SHOW_TOP = 6;
-  var stbTop = stbSorted.slice(0, STB_SHOW_TOP);
-  var stbRest = stbSorted.slice(STB_SHOW_TOP);
-  function stbBarHTML(s) {
-    var hoverText = (stbDescriptions[s.code] || '').replace(/'/g, '&#39;').replace(/"/g, '&quot;');
-    var safeLabel = s.label.replace(/"/g, '&quot;');
-    var safeCode = (s.code || '').replace(/"/g, '&quot;');
-    return '<div class="bar-row stb-bar" data-stb-label="' + safeLabel + '" data-stb-desc="' + hoverText + '" data-stb-code="' + safeCode + '">' +
-      '<div class="bar-label stb-label" style="cursor:help;">' + s.label + '</div>' +
-      '<div class="bar-track stb-clickable" onclick="filterSignalsByType(\'' + safeCode + '\', \'' + safeLabel + '\')" title="Click to filter signals by ' + safeLabel + '" style="cursor:pointer;"><div class="bar-fill" style="width:' + (s.count / maxSTB * 100) + '%;background:' + (stbColors[s.code] || 'var(--color-blue-500)') + ';"></div></div>' +
-      '<div class="bar-value stb-clickable" onclick="filterSignalsByType(\'' + safeCode + '\', \'' + safeLabel + '\')" style="cursor:pointer;">' + s.count + '</div>' +
-    '</div>';
-  }
-  var stbChartHtml = stbTop.map(stbBarHTML).join('');
-  if (stbRest.length > 0) {
-    stbChartHtml += '<div id="stbChartMore" style="display:none;">' + stbRest.map(stbBarHTML).join('') + '</div>';
-    var stbMoreCount = stbRest.length;
-    stbChartHtml += '<button id="stbToggleBtn" style="background:none;border:none;color:var(--color-primary);font-size:var(--text-xs);cursor:pointer;padding:var(--space-2) 0 0;font-weight:500;">+ ' + stbMoreCount + ' more signal types \u25BC</button>';
-    setTimeout(function() {
-      var sbtn = document.getElementById('stbToggleBtn');
-      var smore = document.getElementById('stbChartMore');
-      if (sbtn && smore) {
-        sbtn.addEventListener('click', function() {
-          if (smore.style.display === 'none') {
-            smore.style.display = 'flex'; smore.style.flexDirection = 'column';
-            sbtn.textContent = 'Show fewer \u25B2';
-          } else {
-            smore.style.display = 'none';
-            sbtn.textContent = '+ ' + stbMoreCount + ' more signal types \u25BC';
-          }
-        });
-      }
-    }, 0);
-  }
-  document.getElementById('signalTypeChart').innerHTML = stbChartHtml;
+  // Latest Signals list (replaced the old Signal Type Breakdown chart)
+  renderLatestSignals();
+}
 
-  // Attach hover listeners for custom tooltip
-  initStbTooltips();
+// Render the most recent N signals as a clickable list on the Overview tab.
+// Pulls from sigAllSignals (already sorted by date desc inside
+// initSignalsExplorer). The company name is clickable → opens that profile.
+function renderLatestSignals() {
+  var list = document.getElementById('latestSignalsList');
+  if (!list) return;
+  if (typeof sigAllSignals === 'undefined' || !sigAllSignals.length) {
+    list.innerHTML = '<div style="color:var(--color-text-muted);font-size:var(--text-sm);padding:var(--space-3) 0;">No recent signals.</div>';
+    return;
+  }
+  var SIG_LABELS_LATEST = {
+    A:'Deployment', B:'Pilot', C:'Procurement',
+    D:'Leadership Hire', F:'Upskilling',
+    G:'Vendor Case Study', H:'Earnings/Report', I:'Announcement', J:'AI Talent Hiring'
+  };
+  var LATEST_LIMIT = 8;
+  var latest = sigAllSignals.slice(0, LATEST_LIMIT);
+  var html = latest.map(function(s) {
+    var typeLabel = SIG_LABELS_LATEST[s.signal_type] || s.signal_type || '';
+    var date = s.date || '';
+    var summary = s.summary || '';
+    // Truncate summary to keep cards compact
+    var maxLen = 140;
+    var summaryDisplay = summary.length > maxLen ? summary.slice(0, maxLen).replace(/\s+\S*$/, '') + '\u2026' : summary;
+    var domain = s.HR_domain || '';
+    var company = s.company_name || '';
+    return '<div class="latest-signal-card">' +
+      '<div class="latest-signal-row1">' +
+        '<button type="button" class="latest-signal-company" onclick="openProfile(\'' + esc(company) + '\')" title="Open ' + esc(company) + ' profile">' + company + '</button>' +
+        '<span class="latest-signal-date">' + date + '</span>' +
+      '</div>' +
+      '<div class="latest-signal-row2">' +
+        (domain ? '<span class="badge badge-blue" style="font-size:10px;">' + domain + '</span>' : '') +
+        (typeLabel ? '<span class="badge badge-gray" style="font-size:10px;">' + typeLabel + '</span>' : '') +
+      '</div>' +
+      '<div class="latest-signal-summary">' + summaryDisplay + '</div>' +
+    '</div>';
+  }).join('');
+  list.innerHTML = html;
+
+  // Wire "View all signals" link to switch to Signals tab
+  var viewAll = document.getElementById('latestSignalsViewAll');
+  if (viewAll && !viewAll._wired) {
+    viewAll._wired = true;
+    viewAll.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (typeof switchTab === 'function') switchTab('signals');
+    });
+  }
 }
 
 // Global delegated tooltip handler for .stb-bar elements — fires only on .stb-label
@@ -7510,6 +7558,9 @@ window.clearSignalsFilters = function() {
 // ============================================
 // INIT EVERYTHING
 // ============================================
+// initSignalsExplorer must run BEFORE renderOverview so that
+// renderLatestSignals() (called from renderOverview) has data.
+initSignalsExplorer();
 renderOverview();
 initOverviewThead();
 initMobileIndustryFilter();
@@ -7520,7 +7571,6 @@ renderMovers();
 initGovernance();
 renderGovernance();
 initPeerComparison();
-initSignalsExplorer();
 
 // Benchmark max-line popover (delegated)
 (function() {
