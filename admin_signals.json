@@ -118,7 +118,7 @@
     "signal_type": "I",
     "HR_domain": "HR Service Delivery",
     "source_type": "edited",
-    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedÃÂÃÂ¢ÃÂÃÂÃÂÃÂsignaling AI-enabled automation of HR and back-office functions.",
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affected\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u00a2\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0080\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0094signaling AI-enabled automation of HR and back-office functions.",
     "source_urls": [
       "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
     ],
@@ -491,12 +491,12 @@
     "date_found": "2026-04-06"
   },
   {
-    "company_name": "Nestlé",
+    "company_name": "Nestl\u00e9",
     "date_event": "2022-12-21",
     "signal_type": "A",
     "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Nestlé deployed Paradox's conversational assistant 'Olivia' to automate recruiting workflows like candidate screening and interview scheduling (integrated with SAP SuccessFactors), reporting ~25,000 interviews scheduled and ~8,000 hours saved in one year.",
+    "summary": "Nestl\u00e9 deployed Paradox's conversational assistant 'Olivia' to automate recruiting workflows like candidate screening and interview scheduling (integrated with SAP SuccessFactors), reporting ~25,000 interviews scheduled and ~8,000 hours saved in one year.",
     "source_urls": [
       "https://www.paradox.ai/blog/8-000-hours-of-work-turned-to-almost-zero-how-nestle-did-it"
     ],
@@ -571,7 +571,7 @@
     "signal_type": "A",
     "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Johnson Controls deployed Paradox's AI recruiting assistant, lowering candidate response time by 98% through automated Q&A — one of the named success metrics on the Paradox client stories page.",
+    "summary": "Johnson Controls deployed Paradox's AI recruiting assistant, lowering candidate response time by 98% through automated Q&A \u2014 one of the named success metrics on the Paradox client stories page.",
     "source_url": "https://www.paradox.ai/clients-stories"
   },
   {
@@ -661,7 +661,7 @@
     "signal_type": "A",
     "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Eaton deployed Eightfold AI talent intelligence platform for recruiting modernization, achieving 50% reduction in time to hire, 30-40% increase in talent network, double-digit improvements in time to market/present/offer, and 4x productivity gains in sourcing — as detailed in Eightfold customer highlights.",
+    "summary": "Eaton deployed Eightfold AI talent intelligence platform for recruiting modernization, achieving 50% reduction in time to hire, 30-40% increase in talent network, double-digit improvements in time to market/present/offer, and 4x productivity gains in sourcing \u2014 as detailed in Eightfold customer highlights.",
     "source_url": "https://eightfold.ai/learn/eightfold-customer-highlights/"
   },
   {
@@ -760,7 +760,7 @@
     "signal_type": "A",
     "HR_domain": "People Analytics",
     "source_type": "conference",
-    "summary": "Eaton Corporation won the Visier Outsmart 2025 'Rookie of the Year' award for an outstanding Visier people analytics implementation — including building a data mesh simultaneously — resulting in widespread and growing user adoption for workforce analytics and insights.",
+    "summary": "Eaton Corporation won the Visier Outsmart 2025 'Rookie of the Year' award for an outstanding Visier people analytics implementation \u2014 including building a data mesh simultaneously \u2014 resulting in widespread and growing user adoption for workforce analytics and insights.",
     "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
   },
   {
@@ -832,7 +832,7 @@
     "signal_type": "I",
     "HR_domain": "Governance",
     "source_type": "vendor case study",
-    "summary": "Mastercard deployed Credo AI's AI governance platform, with Chief Data Officer Andrew Reiskind confirming: 'Using the Credo AI Platform, Mastercard is able to manage AI risk and responsibly implement generative AI – with better speed and scale than ever before. Features like AI Registry and Vendor Registry have allowed us to maintain control of all AI use cases.'",
+    "summary": "Mastercard deployed Credo AI's AI governance platform, with Chief Data Officer Andrew Reiskind confirming: 'Using the Credo AI Platform, Mastercard is able to manage AI risk and responsibly implement generative AI \u2013 with better speed and scale than ever before. Features like AI Registry and Vendor Registry have allowed us to maintain control of all AI use cases.'",
     "source_url": "https://www.credo.ai"
   },
   {
@@ -931,7 +931,7 @@
     "signal_type": "A",
     "HR_domain": "Talent Development",
     "source_type": "blog post",
-    "summary": "General Motors is cited by Gloat as a trust reference in podcast content, with employees accessing talent marketplace opportunities across divisions. GM is named alongside Unilever, Nestlé, Seagate, and Novartis as Gloat clients.",
+    "summary": "General Motors is cited by Gloat as a trust reference in podcast content, with employees accessing talent marketplace opportunities across divisions. GM is named alongside Unilever, Nestl\u00e9, Seagate, and Novartis as Gloat clients.",
     "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8"
   },
   {
@@ -940,16 +940,16 @@
     "signal_type": "A",
     "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Amazon is listed by AppsRunTheWorld as using the Eightfold Talent Intelligence Suite for talent management, alongside Paradox Olivia CRM — confirming Amazon's use of multiple AI recruiting and talent tools concurrently.",
+    "summary": "Amazon is listed by AppsRunTheWorld as using the Eightfold Talent Intelligence Suite for talent management, alongside Paradox Olivia CRM \u2014 confirming Amazon's use of multiple AI recruiting and talent tools concurrently.",
     "source_url": "https://eightfold.ai/customers/"
   },
   {
-    "company_name": "Nestlé",
+    "company_name": "Nestl\u00e9",
     "date_event": "2022-12-21",
     "signal_type": "A",
     "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Nestlé deployed Gloat's talent marketplace alongside its Paradox recruiting deployment. Gloat reference shows Nestlé as a named customer for internal talent marketplace and career development, in addition to the confirmed Paradox recruiting deployment already in admin_signals.",
+    "summary": "Nestl\u00e9 deployed Gloat's talent marketplace alongside its Paradox recruiting deployment. Gloat reference shows Nestl\u00e9 as a named customer for internal talent marketplace and career development, in addition to the confirmed Paradox recruiting deployment already in admin_signals.",
     "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8"
   },
   {
@@ -1192,7 +1192,7 @@
     "signal_type": "A",
     "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "BlackRock launched RockAI, an internal platform that lets employees spin up AI agents without coding. Positioned as driving workforce transformation — employees moving into cross-functional oversight roles as AI handles execution, with new operating models for how work gets done across the firm.",
+    "summary": "BlackRock launched RockAI, an internal platform that lets employees spin up AI agents without coding. Positioned as driving workforce transformation \u2014 employees moving into cross-functional oversight roles as AI handles execution, with new operating models for how work gets done across the firm.",
     "source_url": "https://www.linkedin.com/news/story/blackrock-launches-ai-platform-for-rapid-agent-creation-8711866/"
   },
   {
@@ -1234,19 +1234,19 @@
     "signal_type": "A",
     "HR_domain": "People Analytics",
     "source_type": "vendor case study",
-    "summary": "One Model’s website includes a quote from a Robinhood People Senior Analyst describing using One Model to consolidate workforce planning data into a single source of truth and improve trust in people data.",
+    "summary": "One Model\u2019s website includes a quote from a Robinhood People Senior Analyst describing using One Model to consolidate workforce planning data into a single source of truth and improve trust in people data.",
     "source_urls": [
       "https://www.onemodel.co"
     ],
     "date_found": "2026-04-27"
   },
   {
-    "company_name": "Nestlé",
+    "company_name": "Nestl\u00e9",
     "date_event": "2022-12-21",
     "signal_type": "A",
     "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Nestlé’s recruiting team used Paradox’s conversational assistant (Olivia) to automate recruiting tasks like screening and interview scheduling, reporting roughly 8,000 hours saved and 25,000 interviews scheduled in a year.",
+    "summary": "Nestl\u00e9\u2019s recruiting team used Paradox\u2019s conversational assistant (Olivia) to automate recruiting tasks like screening and interview scheduling, reporting roughly 8,000 hours saved and 25,000 interviews scheduled in a year.",
     "source_url": "https://www.paradox.ai/blog/8-000-hours-of-work-turned-to-almost-zero-how-nestle-did-it"
   },
   {
@@ -1255,7 +1255,7 @@
     "signal_type": "A",
     "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Coforge announced a successful global rollout of ServiceNow’s AI-powered HR Service Delivery (HRSD) platform for its 35,000+ employees, unifying onboarding, background verification, learning, and performance management. The implementation includes GenAI-enabled workflows and AI agents for predictive onboarding, personalized learning journeys, automated goal-setting, and real-time performance analytics.",
+    "summary": "Coforge announced a successful global rollout of ServiceNow\u2019s AI-powered HR Service Delivery (HRSD) platform for its 35,000+ employees, unifying onboarding, background verification, learning, and performance management. The implementation includes GenAI-enabled workflows and AI agents for predictive onboarding, personalized learning journeys, automated goal-setting, and real-time performance analytics.",
     "source_url": "https://www.coforge.com/who-we-are/newsroom/press-release/coforge-modernizes-its-global-employee-experience-by-adopting-servicenows-ai-powered-hr-service-delivery-platform"
   },
   {
@@ -1295,5 +1295,29 @@
     "source_type": "press release",
     "summary": "Workday Government announced a Personnel Action Request (PAR) Agent to automate federal HR personnel actions (hire, promotion, reassignment, pay change, separation) and reduce PAR cycle times by up to 60%; the press release says it is expected to be available to Workday Government customers in 2027.",
     "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Government-Unveils-Personnel-Action-Request-PAR-Agent-to-Modernize-Federal-HR-and-Strengthen-Mission-Readiness/default.aspx"
+  },
+  {
+    "company_name": "HSBC",
+    "date_event": "2022-07-13",
+    "signal_type": "B",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "summary": "HSBC describes a phased rollout of an AI-enabled talent marketplace (Gloat), starting with a ~10,000-person audience and scaling to ~140,000 employees live, with plans to reach ~220,000 employees by Q1 2023; the case study cites outcomes like ~65,000 hours unlocked and 45% cross-functional projects.",
+    "source_urls": [
+      "https://resources.gloat.com/resources/hsbc-customer-success-story/"
+    ],
+    "date_found": "2026-05-11"
+  },
+  {
+    "company_name": "IBM",
+    "date_event": "2026-04-13",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "news article",
+    "summary": "IBM CHRO Nickle LaMoreaux describes production use of the company\u2019s \u201cAsk HR\u201d chatbot to handle a large share of employee HR inquiries, with human follow-up on negative ratings to improve the system, indicating scaled HR service delivery automation.",
+    "source_urls": [
+      "https://hrexecutive.com/ibm-chro-focus-on-ai-productivity-at-your-own-risk/"
+    ],
+    "date_found": "2026-05-11"
   }
 ]
