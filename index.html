@@ -1080,30 +1080,30 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-/* Company Info — description line + stat grid */
+/* Company Info — description line + stat grid. Use flex column so we can push the grid toward the bottom of the card */
+.profile-card-info {
+  display: flex;
+  flex-direction: column;
+}
 .company-info-desc {
   font-size: var(--text-sm);
   color: var(--color-text);
   line-height: 1.5;
-  margin: 0 0 var(--space-3) 0;
+  margin: 0 0 var(--space-4) 0;
 }
 .company-info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-2) var(--space-3);
+  row-gap: var(--space-4);
+  column-gap: var(--space-3);
   font-size: var(--text-sm);
+  margin-top: auto; /* push grid down so it sits below the description with breathing room */
+  padding-bottom: var(--space-2);
 }
 .company-info-cell {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: var(--space-2) 0;
-  border-top: 1px solid var(--color-border);
-}
-.company-info-cell:nth-child(1),
-.company-info-cell:nth-child(2) {
-  border-top: none;
-  padding-top: 0;
+  gap: 4px;
 }
 .company-info-label {
   font-size: 11px;
@@ -1113,26 +1113,22 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   font-weight: 600;
 }
 .company-info-cell strong { font-weight: 600; }
-/* Merged Maturity + Momentum card: two halves side-by-side on desktop */
+/* Merged Maturity + Momentum card: two halves stacked vertically */
 .score-pair-desktop {
-  display: grid;
-  grid-template-columns: 1fr 1px 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-3);
-  align-items: stretch;
 }
 .score-pair-half {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
 }
-.score-pair-divider {
-  background: var(--color-border);
-  width: 1px;
-  height: 100%;
-  min-height: 60px;
+.score-pair-half + .score-pair-half {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
 }
+.score-pair-divider { display: none; } /* deprecated — we now use a top border on the second half */
 .score-sub-label {
   font-size: 10px;
   font-weight: 600;
@@ -1140,51 +1136,36 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   letter-spacing: 0.06em;
   color: var(--color-text-muted);
   margin-bottom: var(--space-2);
-  width: 100%;
-  text-align: center;
 }
-/* Score block — both halves share this so the big number aligns horizontally */
+/* Score block — gauge/number + summary on a single horizontal row */
 .score-block {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 96px;
+  gap: var(--space-4);
   width: 100%;
-}
-/* For the Maturity half: pull the big number up so it sits inside the gauge's empty curve */
-.score-block-gauge {
-  position: relative;
 }
 .score-block-gauge .gauge-svg {
   display: block;
-  margin: 0 auto;
+  flex-shrink: 0;
 }
 .score-block-gauge .gauge-value {
-  margin-top: -22px; /* tuck the number into the bottom of the semi-circle */
-  font-size: var(--text-2xl);
-  line-height: 1.1;
-}
-.score-block-momentum {
-  /* Momentum side — center the big number vertically inside the same min-height */
-  justify-content: center;
+  font-size: var(--text-3xl);
+  line-height: 1;
 }
 .score-block-momentum .gauge-value {
   font-size: var(--text-3xl);
   line-height: 1;
+  min-width: 90px;
 }
 .score-signals-row {
-  margin-top: var(--space-2);
   display: flex;
   gap: var(--space-3);
   font-size: var(--text-xs);
   flex-wrap: wrap;
-  justify-content: center;
 }
-/* Collapsible details inside the merged card — pinned to bottom so left/right align */
+/* Collapsible details inside the merged card */
 .score-details {
-  margin-top: auto;
-  padding-top: var(--space-3);
+  margin-top: var(--space-2);
   font-size: var(--text-xs);
   width: 100%;
 }
@@ -3743,23 +3724,16 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   .profile-grid-3col > .profile-card:nth-child(1) { grid-column: 1 / -1; }
   .profile-grid-3col > .profile-card:nth-child(2),
   .profile-grid-3col > .profile-card:nth-child(3) { grid-column: auto; }
-  /* On the narrowest phones, stack the merged Maturity & Momentum card */
-  .score-pair-desktop {
-    grid-template-columns: 1fr !important;
-  }
-  .score-pair-divider {
-    width: 100%;
-    height: 1px;
-    min-height: 0;
-  }
+  /* Merged Maturity & Momentum card already stacks vertically; just shrink the gauge on phones */
   .profile-card {
     padding: var(--space-3);
   }
   .gauge-desktop { display: none; }
   .gauge-mobile { display: block; }
-  /* Slightly smaller gauge inside the merged Maturity & Momentum card on mobile */
-  .score-pair-half .gauge-svg { width: 90px; height: 50px; }
-  .score-pair-half .gauge-value { font-size: var(--text-xl); }
+  .score-pair-half .gauge-svg { width: 80px; height: 45px; }
+  .score-pair-half .gauge-value { font-size: var(--text-2xl); }
+  .score-block { gap: var(--space-3); }
+  .score-block-momentum .gauge-value { min-width: 0; }
 
   /* --- Methodology --- */
   #tab-methodology div[style*="grid-template-columns:1fr 1fr"],
@@ -5641,7 +5615,6 @@ function openProfile(companyName) {
     '<div class="score-block score-block-gauge">' + gaugeSVG + '<div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);font-weight:500;">/100</span></div></div>' +
     maturityDetailsHTML +
     '</div>' +
-    '<div class="score-pair-divider"></div>' +
     '<div class="score-pair-half">' +
     '<div class="score-sub-label">Momentum</div>' +
     '<div class="score-block score-block-momentum">' +
@@ -5663,8 +5636,6 @@ function openProfile(companyName) {
     '<div class="company-info-cell"><span class="company-info-label">Revenue</span><strong>' + revenueHTML + '</strong></div>' +
     '<div class="company-info-cell"><span class="company-info-label">Market Cap</span><strong>' + mktCapHTML + '</strong></div>' +
     '<div class="company-info-cell"><span class="company-info-label">Geography</span><strong>' + (co.geographic_footprint || '\u2014') + '</strong></div>' +
-    '<div class="company-info-cell"><span class="company-info-label" title="Organizational complexity proxy (1\u20135) \u2014 higher means more divisions, geographies, and reporting layers">Complexity</span><strong>' + (co.organizational_complexity_proxy ? co.organizational_complexity_proxy + '/5' : '\u2014') + '</strong></div>' +
-    '<div class="company-info-cell"><span class="company-info-label" title="Regulatory intensity (1\u20135) \u2014 higher means more regulated industry exposure">Regulatory</span><strong>' + (co.regulatory_intensity_score ? co.regulatory_intensity_score + '/5' : '\u2014') + '</strong></div>' +
     '</div>' +
     '</div>' +
     '</div>' +
