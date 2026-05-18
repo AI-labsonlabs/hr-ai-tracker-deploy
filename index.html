@@ -313,6 +313,129 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   }
 }
 
+/* ============================================
+   UNIFIED MOBILE SEARCH (icon + sheet)
+   Mobile only — hides both header search inputs in favor of a single icon
+   that opens a sheet with a Companies/Tech toggle.
+   ============================================ */
+.mobile-search-btn { display: none; }
+.mobile-search-sheet { display: none; }
+@media (max-width: 768px) {
+  /* Hide the two inline search inputs on mobile (when in the header) */
+  .header-meta > #companySearchWrap,
+  .header-meta > #techSearchWrap { display: none !important; }
+  /* Inline search icon button in the header */
+  .mobile-search-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    padding: 0;
+  }
+  .mobile-search-btn:active { transform: scale(0.96); }
+  .mobile-search-btn svg { display: block; }
+
+  /* Full-screen sheet (hidden by default; .open shows it) */
+  .mobile-search-sheet {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: rgba(0, 0, 0, 0.45);
+    align-items: flex-start;
+    justify-content: stretch;
+  }
+  .mobile-search-sheet.open { display: flex; }
+  .mobile-search-sheet-panel {
+    width: 100%;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 100%;
+  }
+  .mobile-search-sheet-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: space-between;
+  }
+  .mobile-search-tabs {
+    display: inline-flex;
+    gap: 4px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 3px;
+  }
+  .mobile-search-tab {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--color-text-muted);
+    font: inherit;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .mobile-search-tab.active {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .mobile-search-close {
+    appearance: none;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+  /* Slot host — the moved .company-search-wrap lives here and must override
+     the desktop sizing rules so the input fills the sheet. */
+  .mobile-search-slot { width: 100%; }
+  .mobile-search-slot .company-search-wrap {
+    display: block !important;
+    width: 100%;
+  }
+  .mobile-search-slot .company-search-input,
+  .mobile-search-slot .company-search-input:focus {
+    width: 100% !important;
+    box-sizing: border-box;
+    font-size: 16px; /* prevent iOS zoom */
+    padding: 10px 12px 10px 36px;
+  }
+  /* Inside the sheet, anchor the dropdown directly below the input rather
+     than to the header. Use absolute positioning relative to the wrap. */
+  .mobile-search-slot .company-search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: auto;
+    max-width: none;
+    max-height: 60vh;
+    margin-top: 4px;
+  }
+  .mobile-search-slot .company-search-wrap { position: relative; }
+}
+
 /* MAIN */
 .main {
   flex: 1;
@@ -366,10 +489,10 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 }
 .tech-mobile-cards { display: none; }
 
-/* TECH DETAIL — KPI STATS ROW */
+/* TECH DETAIL — KPI STATS ROW (3-up on all viewports; extra tiles wrap) */
 .tech-detail-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-3);
   margin-bottom: var(--space-5);
 }
@@ -1187,61 +1310,110 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   .profile-overlay { left: 0; }
   .tech-detail-overlay { left: 0 !important; }
 
-  /* Top-industries side-by-side cards on mobile (overview tab) */
+  /* Top-industries podium on mobile (overview tab) */
   #industryChart {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    align-items: end;
     gap: 8px;
+    padding: 0 4px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
   }
+  /* Podium ordering: 2nd | 1st | 3rd */
+  #industryChart .bar-row[data-ind-rank="1"] { order: 2; }
+  #industryChart .bar-row[data-ind-rank="2"] { order: 1; }
+  #industryChart .bar-row[data-ind-rank="3"] { order: 3; }
   #industryChart .bar-row {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
     height: auto !important;
-    align-items: stretch;
     gap: 4px;
-    padding: 10px 8px !important;
+    padding: 10px 6px !important;
     margin: 0 !important;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
     text-align: center;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
   }
+  /* Pedestal heights so it looks like an Olympic podium */
+  #industryChart .bar-row[data-ind-rank="1"] {
+    min-height: 140px;
+    background: linear-gradient(180deg, rgba(37,99,235,0.08) 0%, rgba(37,99,235,0.18) 100%);
+    border-color: rgba(37,99,235,0.45);
+  }
+  #industryChart .bar-row[data-ind-rank="2"] {
+    min-height: 115px;
+    background: linear-gradient(180deg, rgba(37,99,235,0.04) 0%, rgba(37,99,235,0.10) 100%);
+  }
+  #industryChart .bar-row[data-ind-rank="3"] {
+    min-height: 95px;
+    background: linear-gradient(180deg, rgba(37,99,235,0.02) 0%, rgba(37,99,235,0.07) 100%);
+  }
+  #industryChart .bar-row::before {
+    content: attr(data-ind-rank);
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    opacity: 0.7;
+  }
+  #industryChart .bar-row[data-ind-rank="1"]::before { color: var(--color-primary); opacity: 1; }
+  /* Hide everything except name + score on the podium */
+  #industryChart .bar-track,
+  #industryChart .bar-label .ind-meta { display: none !important; }
   #industryChart .bar-label {
     width: 100% !important;
     min-width: 0 !important;
     text-align: center;
     white-space: normal;
-    font-size: 11px;
-    line-height: 1.25;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    display: block;
+    margin-top: auto;
   }
   #industryChart .bar-label .ind-name {
     font-weight: 600;
     color: var(--color-text);
     font-size: 11px;
-    line-height: 1.2;
-  }
-  #industryChart .bar-label .ind-meta {
-    font-size: 9px;
-    color: var(--color-text-muted);
+    line-height: 1.25;
     display: block;
-  }
-  #industryChart .bar-track {
-    width: 100%;
-    height: 6px;
+    word-break: break-word;
   }
   #industryChart .bar-value {
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 700;
     color: var(--color-text);
-    text-align: center;
     font-family: var(--font-mono);
+    line-height: 1;
   }
-  /* Hide "+ N more industries" on mobile to keep the row compact */
+  #industryChart .bar-row[data-ind-rank="1"] .bar-value { font-size: 26px; color: var(--color-primary); }
+  /* Hide ranks 4+ and "+ N more industries" on mobile to keep the podium compact */
+  #industryChart .bar-row:not([data-ind-rank="1"]):not([data-ind-rank="2"]):not([data-ind-rank="3"]) { display: none !important; }
   #industryChart #industryToggleBtn,
   #industryChart #industryChartMore { display: none !important; }
+
+  /* Hide Latest Signals on mobile (desktop keeps the two-column layout) */
+  #latestSignalsSection { display: none !important; }
+  /* Collapse the .two-col wrapper to single column behavior on mobile so
+     the industry section spans the full width. */
+  #tab-overview .two-col {
+    display: block;
+  }
+
 }
+
+/* Hide the Companies table at the bottom of tech detail on ALL viewports —
+   it duplicates the Companies stat already shown in the widgets row. */
+.tech-detail-companies { display: none !important; }
 .mobile-menu-btn { display: none; }
 .mobile-menu-btn {
   width: 36px; height: 36px;
@@ -3599,6 +3771,22 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   <!-- MOBILE SIDEBAR OVERLAY -->
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+  <!-- MOBILE UNIFIED SEARCH SHEET -->
+  <div class="mobile-search-sheet" id="mobileSearchSheet" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="mobile-search-sheet-panel">
+      <div class="mobile-search-sheet-head">
+        <div class="mobile-search-tabs" role="tablist">
+          <button type="button" class="mobile-search-tab active" data-mobile-search="companies" role="tab" aria-selected="true">Companies</button>
+          <button type="button" class="mobile-search-tab" data-mobile-search="tech" role="tab" aria-selected="false">Tech</button>
+        </div>
+        <button type="button" class="mobile-search-close" id="mobileSearchClose" aria-label="Close search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="mobile-search-slot" id="mobileSearchSlot"></div>
+    </div>
+  </div>
+
   <!-- HEADER -->
   <header class="header">
     <div style="display: flex; align-items: center; gap: var(--space-3);">
@@ -3608,6 +3796,9 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
       <h1 class="header-title">HR AI Adoption Tracker</h1>
     </div>
     <div class="header-meta">
+      <button type="button" class="mobile-search-btn" id="mobileSearchBtn" aria-label="Open search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
       <div class="company-search-wrap" id="companySearchWrap">
         <svg class="company-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="search" id="companySearchInput" class="company-search-input" placeholder="Search companies" autocomplete="off" aria-label="Search companies">
@@ -3647,9 +3838,18 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
         <div class="kpi-grid" id="kpiGrid"></div>
       </div>
 
-      <div class="section-block" id="industrySection">
-        <h2 class="section-title">Top Industries by Avg Maturity</h2>
-        <div class="bar-chart" id="industryChart"></div>
+      <div class="two-col">
+        <div class="section-block" id="industrySection">
+          <h2 class="section-title">Industry Avg Maturity</h2>
+          <div class="bar-chart" id="industryChart"></div>
+        </div>
+        <div class="section-block" id="latestSignalsSection">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-3);flex-wrap:wrap;">
+            <h2 class="section-title" style="margin-bottom:0;">Latest Signals</h2>
+            <a href="#" id="latestSignalsViewAll" style="font-size:var(--text-xs);color:var(--color-primary);font-weight:500;text-decoration:none;">View all signals →</a>
+          </div>
+          <div id="latestSignalsList"></div>
+        </div>
       </div>
       <div class="section-block">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-3);margin-bottom:var(--space-4);">
@@ -4519,6 +4719,88 @@ if (overlay) {
     document.body.classList.remove('sidebar-open');
   });
 }
+
+// ============================================
+// UNIFIED MOBILE SEARCH SHEET
+// Moves the existing #companySearchWrap / #techSearchWrap into the sheet
+// when open (and back to the header on close) so existing JS keeps working.
+// ============================================
+(function setupMobileSearchSheet() {
+  const btn = document.getElementById('mobileSearchBtn');
+  const sheet = document.getElementById('mobileSearchSheet');
+  const closeBtn = document.getElementById('mobileSearchClose');
+  const slot = document.getElementById('mobileSearchSlot');
+  const tabs = document.querySelectorAll('.mobile-search-tab');
+  const headerMeta = document.querySelector('.header-meta');
+  if (!btn || !sheet || !slot || !headerMeta) return;
+
+  const wraps = {
+    companies: document.getElementById('companySearchWrap'),
+    tech: document.getElementById('techSearchWrap')
+  };
+  const inputs = {
+    companies: document.getElementById('companySearchInput'),
+    tech: document.getElementById('techSearchInput')
+  };
+  let activeMode = 'companies';
+
+  function placeInSlot(mode) {
+    activeMode = mode;
+    Object.keys(wraps).forEach(k => {
+      if (!wraps[k]) return;
+      if (k === mode) {
+        slot.appendChild(wraps[k]);
+      } else {
+        // Park inactive wrap back in the header so the DOM stays valid.
+        headerMeta.appendChild(wraps[k]);
+      }
+    });
+    tabs.forEach(t => {
+      const on = t.dataset.mobileSearch === mode;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    // Focus the input after the panel becomes visible.
+    setTimeout(() => {
+      const inp = inputs[mode];
+      if (inp) {
+        try { inp.focus({ preventScroll: true }); } catch (e) { inp.focus(); }
+      }
+    }, 30);
+  }
+
+  function openSheet(mode) {
+    placeInSlot(mode || activeMode);
+    sheet.classList.add('open');
+    document.body.classList.add('mobile-search-open');
+  }
+  function closeSheet() {
+    sheet.classList.remove('open');
+    document.body.classList.remove('mobile-search-open');
+    // Close any open dropdowns and return both wraps to the header.
+    Object.keys(wraps).forEach(k => {
+      if (!wraps[k]) return;
+      headerMeta.appendChild(wraps[k]);
+      const dd = wraps[k].querySelector('.company-search-dropdown');
+      if (dd) dd.classList.remove('open');
+      const inp = inputs[k];
+      if (inp) { inp.value = ''; inp.blur(); }
+    });
+  }
+
+  btn.addEventListener('click', () => openSheet(activeMode));
+  closeBtn.addEventListener('click', closeSheet);
+  // Click backdrop (outside panel) closes the sheet.
+  sheet.addEventListener('click', (e) => { if (e.target === sheet) closeSheet(); });
+  // Esc key closes.
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sheet.classList.contains('open')) closeSheet();
+  });
+  tabs.forEach(t => {
+    t.addEventListener('click', () => placeInSlot(t.dataset.mobileSearch));
+  });
+})();
+
 // ============================================
 // NAV TABS
 // ============================================
@@ -4542,6 +4824,15 @@ function switchTab(tabId) {
   });
   panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + tabId));
   profileOverlay.classList.remove('active');
+  // Dismiss the tech detail overlay if it's open — otherwise it floats on top
+  // and visually blocks the newly active tab, making the menu feel unresponsive.
+  var techDetailOv = document.getElementById('techDetailOverlay');
+  if (techDetailOv && techDetailOv.style.display !== 'none') {
+    techDetailOv.style.display = 'none';
+    window.techDetailOrigin = null;
+    var lbl = document.getElementById('techDetailBackLabel');
+    if (lbl) lbl.textContent = 'Back';
+  }
   document.getElementById('mainContent').scrollTop = 0;
   sidebar.classList.remove('open');
   overlay.classList.remove('open');
@@ -5843,15 +6134,16 @@ function renderOverview() {
   }
   const sorted = Object.entries(industryStats).sort((a, b) => b[1].mean - a[1].mean);
   const maxInd = sorted[0][1].mean;
-  const SHOW_TOP = 3;
+  const SHOW_TOP = 6;
   const topIndustries = sorted.slice(0, SHOW_TOP);
   const restIndustries = sorted.slice(SHOW_TOP);
-  function indBarHtml(name, st) {
+  function indBarHtml(name, st, rank) {
     var meta = 'Median ' + fmt(st.median) + ' &middot; ' + st.leaders + ' leader' + (st.leaders === 1 ? '' : 's');
     var titleAttr = meta.replace(/&middot;/g, '·').replace(/&nbsp;/g, ' ');
-    return '<div class="bar-row bar-row-clickable ind-filter-bar" data-industry="' + name.replace(/"/g, '&quot;') + '" onclick="filterByIndustryBar(this)" title="' + titleAttr + '"><div class="bar-label"><span class="ind-name">' + name + '</span><span class="ind-meta">' + meta + '</span></div><div class="bar-track"><div class="bar-fill" style="width:' + (st.mean / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(st.mean) + '</div></div>';
+    var rankAttr = (typeof rank === 'number') ? ' data-ind-rank="' + rank + '"' : '';
+    return '<div class="bar-row bar-row-clickable ind-filter-bar"' + rankAttr + ' data-industry="' + name.replace(/"/g, '&quot;') + '" onclick="filterByIndustryBar(this)" title="' + titleAttr + '"><div class="bar-label"><span class="ind-name">' + name + '</span><span class="ind-meta">' + meta + '</span></div><div class="bar-track"><div class="bar-fill" style="width:' + (st.mean / maxInd * 100) + '%;background:var(--color-blue-500);"></div></div><div class="bar-value">' + fmt(st.mean) + '</div></div>';
   }
-  let chartHtml = topIndustries.map(([name, st]) => indBarHtml(name, st)).join('');
+  let chartHtml = topIndustries.map(([name, st], i) => indBarHtml(name, st, i + 1)).join('');
   if (restIndustries.length > 0) {
     chartHtml += '<div id="industryChartMore" style="display:none;">' + restIndustries.map(([name, st]) => indBarHtml(name, st)).join('') + '</div>';
     var moreCount = restIndustries.length;
@@ -5880,6 +6172,9 @@ function renderOverview() {
 
   // Top companies table — rendered separately so filter can update it
   renderOverviewTable();
+
+  // Latest Signals list (desktop only — hidden via CSS on mobile)
+  renderLatestSignals();
 }
 
 // Render the most recent N signals as a clickable list on the Overview tab.
@@ -9638,6 +9933,29 @@ initAdmin();
           '<div style="width:32px;font-size:var(--text-xs);font-family:var(--font-mono);text-align:right;">' + entry[1] + '</div>' +
         '</div>';
       });
+      html += '</div>';
+    }
+
+    // Companies table (hidden on mobile via CSS — .tech-detail-companies)
+    var companies = (tech.companies || []).slice().sort(function(a, b) { return b.signal_count - a.signal_count; });
+    if (companies.length) {
+      html += '<div class="tech-detail-companies" style="margin-bottom:var(--space-5);">';
+      html += '<h3 style="font-size:var(--text-base);font-weight:600;margin-bottom:var(--space-3);">Companies (' + companies.length + ')</h3>';
+      html += '<div class="data-table-wrap"><div class="data-table-scroll" style="max-height:400px;overflow-y:auto;">';
+      html += '<table class="data-table" style="font-size:var(--text-xs);">';
+      html += '<thead><tr><th>Company</th><th>Industry</th><th>Status</th><th style="text-align:right;">Signals</th><th style="text-align:right;">Latest</th></tr></thead>';
+      html += '<tbody>';
+      companies.forEach(function(c) {
+        var statusColor = c.status === 'Deployed' ? '#10b981' : c.status === 'Piloting' ? '#f59e0b' : '#6b7280';
+        html += '<tr>' +
+          '<td><span class="company-name" style="cursor:pointer;" onclick="closeTechDetail();openProfile(\'' + c.name.replace(/'/g, "\\'") + '\')">' + c.name + '</span></td>' +
+          '<td>' + (c.industry || '') + '</td>' +
+          '<td><span style="color:' + statusColor + ';font-weight:500;">' + c.status + '</span></td>' +
+          '<td style="text-align:right;font-family:var(--font-mono);">' + c.signal_count + '</td>' +
+          '<td style="text-align:right;font-family:var(--font-mono);">' + (c.latest_date || '') + '</td>' +
+        '</tr>';
+      });
+      html += '</tbody></table></div></div>';
       html += '</div>';
     }
 
