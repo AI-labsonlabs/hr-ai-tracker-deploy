@@ -1258,20 +1258,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 }
 
 /* ============================================
-   PR RATIO INDICATOR
-   ============================================ */
-.pr-ratio-bar {
-  display: flex;
-  width: 60px;
-  height: 6px;
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  background: var(--color-surface-offset);
-}
-.pr-ratio-deploy { background: var(--color-primary); height: 100%; }
-.pr-ratio-pr { background: var(--color-warning); height: 100%; }
-
-/* ============================================
    TWO-COLUMN LAYOUT
    ============================================ */
 .two-col {
@@ -4871,10 +4857,6 @@ function signalTypeBadge(type) {
   var labels = {A:'Deployment',B:'Pilot',C:'Procurement',D:'Leadership Hire',F:'Upskilling',G:'Vendor Case Study',H:'Earnings/Report',I:'Announcement',J:'AI Talent Hiring'};
   return labels[type] || type || '';
 }
-function prRatioBar(pr) {
-  if (!pr) return '—';
-  return '<div style="display:flex;align-items:center;gap:6px;"><div class="pr-ratio-bar"><div class="pr-ratio-deploy" style="width:' + pr.deploy_pct + '%"></div><div class="pr-ratio-pr" style="width:' + pr.pr_pct + '%"></div></div><span style="font-size:var(--text-xs);font-family:var(--font-mono);">' + fmt(pr.deploy_pct || 0, 0) + '%</span></div>';
-}
 function domainHeatColor(v) {
   if (!v || v === 0) return 'background: transparent;';
   const intensity = Math.min(v / 100, 1);
@@ -5449,9 +5431,6 @@ function openProfile(companyName) {
     '<div class="gauge-value"><span class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span></div>' +
     '<div style="display:flex;gap:var(--space-3);font-size:var(--text-xs);"><div><span style="color:var(--color-text-muted);">&lt;30d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</strong></div><div><span style="color:var(--color-text-muted);">30&#x2011;60d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_30_60d || 0) + '</strong></div><div><span style="color:var(--color-text-muted);">60&#x2011;90d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_60_90d || 0) + '</strong></div></div>' +
     '</div>' +
-    '<div style="font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted);margin-bottom:4px;"><span style="color:var(--color-primary);">Deploy</span> vs <span style="color:var(--color-warning);">PR</span></div>' +
-    '<div style="display:flex;height:8px;border-radius:var(--radius-full);overflow:hidden;background:var(--color-surface-offset);margin-bottom:4px;"><div style="width:' + (pr.deploy_pct || 0) + '%;background:var(--color-primary);"></div><div style="width:' + (pr.pr_pct || 0) + '%;background:var(--color-warning);"></div></div>' +
-    '<div style="font-size:10px;display:flex;gap:var(--space-3);"><span><span style="display:inline-block;width:6px;height:6px;background:var(--color-primary);border-radius:1px;"></span> ' + fmt(pr.deploy_pct || 0, 0) + '%</span><span><span style="display:inline-block;width:6px;height:6px;background:var(--color-warning);border-radius:1px;"></span> ' + fmt(pr.pr_pct || 0, 0) + '%</span><span style="color:var(--color-text-muted);">' + (pr.label || '') + '</span></div>' +
     '</div>' +
     '<div class="profile-card"><div class="profile-card-title">Company Info</div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);font-size:var(--text-sm);">' +
@@ -7453,11 +7432,6 @@ function buildCompanyProfileHTML(companyName, side) {
     '<span style="display:inline-flex;align-items:center;gap:3px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;background:var(--color-surface-offset-2);border-radius:2px;flex-shrink:0;"><span style="width:0;height:8px;border-left:2.5px solid var(--color-success);"></span></span>max</span>' +
     '</div></div>';
   html += '</div>';
-
-  // --- PR vs Deploy (compact) ---
-  html += '<div style="margin-top:var(--space-2);font-size:var(--text-xs);display:flex;align-items:center;gap:var(--space-2);">';
-  html += '<span><span style="color:var(--color-primary);">Deploy</span> vs <span style="color:var(--color-warning);">PR</span>:</span> ' + prRatioBar(pr);
-  html += ' <span style="color:var(--color-text-muted);">(' + (pr.label || '\u2014') + ')</span></div>';
 
   // --- DEPLOYED TECH STACK ---
   var techStack = detail.tech_stack || [];
