@@ -994,9 +994,10 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
 .gauge-container {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  flex-wrap: wrap;
 }
-.gauge-svg { width: 120px; height: 70px; }
+.gauge-svg { width: 100px; height: 55px; flex-shrink: 0; }
 .gauge-mobile { display: none; }
 .gauge-label {
   font-size: var(--text-xs);
@@ -1047,11 +1048,15 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   gap: var(--space-5);
   margin-bottom: var(--space-6);
 }
+/* 3-column grid used on the company profile: HR Domain Scores | Maturity & Momentum | Company Info */
+.profile-grid-3col {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(0, 0.9fr);
+}
 .profile-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-5);
+  padding: var(--space-4);
 }
 .profile-card-title {
   font-size: var(--text-xs);
@@ -1061,6 +1066,66 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   color: var(--color-text-muted);
   margin-bottom: var(--space-3);
 }
+/* Title row used on Company Info card so 'updated 5.18.26' floats to the right */
+.profile-card-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.profile-card-meta {
+  font-size: 11px;
+  color: var(--color-text-faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* Merged Maturity + Momentum card: two halves side-by-side on desktop */
+.score-pair-desktop {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+.score-pair-half { min-width: 0; }
+.score-pair-divider {
+  background: var(--color-border);
+  width: 1px;
+  height: 100%;
+  min-height: 60px;
+}
+.score-sub-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+/* Collapsible details inside the merged card */
+.score-details {
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+}
+.score-details > summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: var(--space-1) 0;
+  color: var(--color-text-muted);
+  list-style: revert;
+}
+.score-details > summary:hover { color: var(--color-text); }
+.score-details-body {
+  padding: var(--space-2);
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-1);
+  line-height: 1.6;
+}
+/* Compact bar chart used inside the HR Domain Scores card */
+.bar-chart-compact .bar-row { padding: 2px 0; }
+.bar-chart-compact .bar-label { font-size: 11px; }
+.bar-chart-compact .bar-value { font-size: 11px; }
 .signal-item {
   padding: var(--space-3);
   border: 1px solid var(--color-divider);
@@ -3590,11 +3655,30 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   .profile-grid .profile-card:nth-child(n+3) {
     grid-column: 1 / -1;
   }
+  /* 3-column profile grid collapses on mobile: HR Domain Scores spans 2 cols, then Maturity/Momentum + Company Info side-by-side */
+  .profile-grid-3col {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .profile-grid-3col > .profile-card:nth-child(1) { grid-column: 1 / -1; }
+  .profile-grid-3col > .profile-card:nth-child(2),
+  .profile-grid-3col > .profile-card:nth-child(3) { grid-column: auto; }
+  /* On the narrowest phones, stack the merged Maturity & Momentum card */
+  .score-pair-desktop {
+    grid-template-columns: 1fr !important;
+  }
+  .score-pair-divider {
+    width: 100%;
+    height: 1px;
+    min-height: 0;
+  }
   .profile-card {
     padding: var(--space-3);
   }
   .gauge-desktop { display: none; }
   .gauge-mobile { display: block; }
+  /* Slightly smaller gauge inside the merged Maturity & Momentum card on mobile */
+  .score-pair-half .gauge-svg { width: 90px; height: 50px; }
+  .score-pair-half .gauge-value { font-size: var(--text-xl); }
 
   /* --- Methodology --- */
   #tab-methodology div[style*="grid-template-columns:1fr 1fr"],
@@ -5369,16 +5453,16 @@ function openProfile(companyName) {
     }
   }
 
-  // Gauge SVG
+  // Gauge SVG — half-circle sweeping from 9 o'clock (left, score 0) through 12 (top, score 50) to 3 o'clock (right, score 100)
   const matScore = detail.maturity_score || 0;
-  const gaugeAngle = (matScore / 100) * 180;
-  const gaugeRad = (gaugeAngle - 90) * Math.PI / 180;
+  const gaugeRad = Math.PI - (Math.min(Math.max(matScore, 0), 100) / 100) * Math.PI;
   const cx = 60, cy = 55, r = 40;
   const endX = cx + r * Math.cos(gaugeRad);
-  const endY = cy + r * Math.sin(gaugeRad);
-  const largeArc = gaugeAngle > 90 ? 1 : 0;
+  const endY = cy - r * Math.sin(gaugeRad);
   const gaugeColor = matScore > 50 ? '#059669' : matScore >= 20 ? '#d97706' : '#dc2626';
-  const gaugeSVG = '<svg viewBox="0 0 120 65" class="gauge-svg"><path d="M 20 55 A 40 40 0 0 1 100 55" fill="none" stroke="var(--color-surface-offset)" stroke-width="8" stroke-linecap="round"/><path d="M 20 55 A 40 40 0 ' + largeArc + ' 1 ' + endX.toFixed(1) + ' ' + endY.toFixed(1) + '" fill="none" stroke="' + gaugeColor + '" stroke-width="8" stroke-linecap="round"/></svg>';
+  const gaugeSVG = '<svg viewBox="0 0 120 65" class="gauge-svg"><path d="M 20 55 A 40 40 0 0 1 100 55" fill="none" stroke="var(--color-surface-offset)" stroke-width="8" stroke-linecap="round"/>' +
+    (matScore > 0 ? '<path d="M 20 55 A 40 40 0 0 1 ' + endX.toFixed(1) + ' ' + endY.toFixed(1) + '" fill="none" stroke="' + gaugeColor + '" stroke-width="8" stroke-linecap="round"/>' : '') +
+    '</svg>';
 
   // --- Collapsible Maturity & Momentum Breakdown ---
   var accelPct = mfc.monthly_baseline > 0 ? Math.round(mfc.acceleration * 100) : 0;
@@ -5395,15 +5479,18 @@ function openProfile(companyName) {
       '<span class="mono" style="min-width:28px;text-align:right;">' + fmt(val, 1) + '</span></div>';
   });
 
-  var detailsHTML = '<details style="margin-top:var(--space-3);font-size:var(--text-xs);">' +
-    '<summary style="cursor:pointer;font-weight:600;padding:var(--space-2) 0;color:var(--color-text-muted);border-top:1px solid var(--color-border);margin-top:var(--space-2);">Maturity & Momentum Details</summary>' +
-    '<div style="padding:var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-md);margin-top:var(--space-1);">' +
-    '<strong>Maturity Breakdown</strong><br>' +
+  var maturityDetailsHTML = '<details class="score-details">' +
+    '<summary>Maturity details</summary>' +
+    '<div class="score-details-body">' +
     'Mean (all 7 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>' +
     'Base score (60% breadth + 40% depth): ' + fmt(fc.base_score, 1) + '<br>' +
     'Size norm: \u00d7' + fmt(fc.sqrt_size_norm, 3) + ' \u00b7 Complexity: \u00d7' + fmt(fc.sqrt_complexity, 3) + '<br>' +
-    '<strong>Final: ' + fmt(md.score, 1) + '</strong><br><br>' +
-    '<strong>Momentum Breakdown</strong><br>' +
+    '<strong>Final: ' + fmt(md.score, 1) + '</strong>' +
+    '</div></details>';
+
+  var momentumDetailsHTML = '<details class="score-details">' +
+    '<summary>Momentum details</summary>' +
+    '<div class="score-details-body">' +
     'Baseline: ' + fmt(mfc.w365, 1) + ' weighted signals/yr \u2192 ' + fmt(mfc.monthly_baseline, 1) + '/mo<br>' +
     'Weighted signals (last 30 days): ' + fmt(mfc.w30, 1) + ' \u00d7 size factor ' + fmt(mfc.size_factor, 2) + ' = ' + fmt(mfc.recent_monthly, 1) + '/mo<br>' +
     'Growth rate: (' + fmt(mfc.recent_monthly,1) + ' \u2212 baseline ' + fmt(mfc.monthly_baseline,1) + ') / ' + fmt(mfc.monthly_baseline,1) + ' = ' + fmt(mfc.acceleration, 2) + ' (' + accelPct + '% above baseline)<br>' +
@@ -5412,6 +5499,21 @@ function openProfile(companyName) {
     '<strong>Final: ' + fmtMomentum(mom.score || detail.momentum_score) + '</strong> (tanh scaled)' +
     '</div></details>';
 
+  // Format "Attributes last updated" → "updated M.D.YY"
+  var attrDate = co.attributes_updated || D.attributes_last_updated || '';
+  var attrShort = '';
+  if (attrDate) {
+    var m = attrDate.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (m) {
+      var mm = parseInt(m[2], 10);
+      var dd = parseInt(m[3], 10);
+      var yy = m[1].slice(2);
+      attrShort = 'updated ' + mm + '.' + dd + '.' + yy;
+    } else {
+      attrShort = 'updated ' + attrDate;
+    }
+  }
+
   const html = '<div class="profile-back" onclick="closeProfile()" role="button" tabindex="0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</div>' +
     '<div class="profile-header"><span class="profile-company-name">' + co.company_name + '</span>' +
     '<div class="profile-tags-row">' +
@@ -5419,31 +5521,41 @@ function openProfile(companyName) {
     '<span class="badge badge-gray">' + (co.sub_industry || '') + '</span>' +
     (co.public_or_private === 'Public' ? '<span class="badge badge-green">Public</span>' : '<span class="badge badge-gray">Private</span>') +
     '</div></div>' +
-    '<div class="profile-grid">' +
-    '<div class="profile-card"><div class="profile-card-title">Maturity Score</div>' +
-    '<div class="gauge-container gauge-desktop">' + gaugeSVG + '<div><div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);">/100</span></div></div></div>' +
-    '<div class="gauge-mobile">' +
-    '<div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);">/100</span></div>' +
-    '<div style="height:8px;border-radius:var(--radius-full);background:var(--color-surface-offset);margin:var(--space-2) 0;overflow:hidden;"><div style="height:100%;width:' + Math.min(matScore, 100) + '%;border-radius:var(--radius-full);background:' + gaugeColor + ';"></div></div>' +
-    '</div></div>' +
-    '<div class="profile-card"><div class="profile-card-title">Momentum</div>' +
-    '<div style="display:flex;align-items:baseline;gap:var(--space-4);margin-bottom:var(--space-3);">' +
-    '<div class="gauge-value"><span class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span></div>' +
-    '<div style="display:flex;gap:var(--space-3);font-size:var(--text-xs);"><div><span style="color:var(--color-text-muted);">&lt;30d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</strong></div><div><span style="color:var(--color-text-muted);">30&#x2011;60d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_30_60d || 0) + '</strong></div><div><span style="color:var(--color-text-muted);">60&#x2011;90d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_60_90d || 0) + '</strong></div></div>' +
+    '<div class="profile-grid profile-grid-3col">' +
+    // HR DOMAIN SCORES (left)
+    '<div class="profile-card"><div class="profile-card-title">HR Domain Scores <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--color-text-muted);">(click to filter signals)</span></div>' +
+    '<div class="bar-chart bar-chart-compact" id="profileDomainChart">' + domainBarsHTML + '</div>' +
+    '</div>' +
+    // MATURITY & MOMENTUM (center, merged)
+    '<div class="profile-card"><div class="profile-card-title">Maturity &amp; Momentum</div>' +
+    '<div class="score-pair-desktop">' +
+    '<div class="score-pair-half">' +
+    '<div class="score-sub-label">Maturity</div>' +
+    '<div class="gauge-container">' + gaugeSVG + '<div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);font-weight:500;">/100</span></div></div>' +
+    maturityDetailsHTML +
+    '</div>' +
+    '<div class="score-pair-divider"></div>' +
+    '<div class="score-pair-half">' +
+    '<div class="score-sub-label">Momentum</div>' +
+    '<div class="gauge-value" style="margin-bottom:var(--space-2);"><span class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span></div>' +
+    '<div style="display:flex;gap:var(--space-3);font-size:var(--text-xs);flex-wrap:wrap;"><div><span style="color:var(--color-text-muted);">&lt;30d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</strong></div><div><span style="color:var(--color-text-muted);">30&#x2011;60d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_30_60d || 0) + '</strong></div><div><span style="color:var(--color-text-muted);">60&#x2011;90d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_60_90d || 0) + '</strong></div></div>' +
+    momentumDetailsHTML +
     '</div>' +
     '</div>' +
-    '<div class="profile-card"><div class="profile-card-title">Company Info</div>' +
+    '</div>' +
+    // COMPANY INFO (right)
+    '<div class="profile-card profile-card-info">' +
+    '<div class="profile-card-title-row"><div class="profile-card-title" style="margin:0;">Company Info</div>' +
+    (attrShort ? '<span class="profile-card-meta" title="Attributes last updated: ' + attrDate + '">' + attrShort + '</span>' : '') +
+    '</div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);font-size:var(--text-sm);">' +
     '<div><span style="color:var(--color-text-muted);">Employees</span><br><strong>' + empHTML + '</strong></div>' +
     '<div><span style="color:var(--color-text-muted);">Revenue</span><br><strong>' + revenueHTML + '</strong></div>' +
     '<div><span style="color:var(--color-text-muted);">Market Cap</span><br><strong>' + mktCapHTML + '</strong></div>' +
     '<div><span style="color:var(--color-text-muted);">Geography</span><br><strong>' + (co.geographic_footprint || '\u2014') + '</strong></div>' +
     '</div>' +
-    '<div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-faint);">Attributes last updated: ' + (co.attributes_updated || D.attributes_last_updated || '\u2014') + '</div>' +
     '</div>' +
     '</div>' +
-    detailsHTML +
-    '<div class="section-block"><h2 class="section-title">HR Domain Scores <span style="font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);">(click to filter signals)</span></h2><div style="max-width:500px;" class="bar-chart" id="profileDomainChart">' + domainBarsHTML + '</div></div>' +
     (function() {
       var ts = detail.tech_stack || [];
       if (ts.length === 0) return '';
@@ -7354,14 +7466,12 @@ function buildCompanyProfileHTML(companyName, side) {
 
   // --- MATURITY + MOMENTUM HERO ---
   var matScore = detail.maturity_score || 0;
-  var gaugeAngle = (matScore / 100) * 180;
-  var gaugeRad = (gaugeAngle - 90) * Math.PI / 180;
   var gCx = 60, gCy = 55, gR = 40;
-  var endX = gCx + gR * Math.cos(gaugeRad);
-  var endY = gCy + gR * Math.sin(gaugeRad);
-  var largeArc = gaugeAngle > 90 ? 1 : 0;
+  var pcGaugeRad = Math.PI - (Math.min(Math.max(matScore, 0), 100) / 100) * Math.PI;
+  var endX = gCx + gR * Math.cos(pcGaugeRad);
+  var endY = gCy - gR * Math.sin(pcGaugeRad);
   var gaugeColor = matScore > 50 ? '#059669' : matScore >= 20 ? '#d97706' : '#dc2626';
-  var gaugeSVG = '<svg viewBox="0 0 120 65" style="width:100px;height:55px;"><path d="M 20 55 A 40 40 0 0 1 100 55" fill="none" stroke="var(--color-surface-offset)" stroke-width="8" stroke-linecap="round"/><path d="M 20 55 A 40 40 0 ' + largeArc + ' 1 ' + endX.toFixed(1) + ' ' + endY.toFixed(1) + '" fill="none" stroke="' + gaugeColor + '" stroke-width="8" stroke-linecap="round"/></svg>';
+  var gaugeSVG = '<svg viewBox="0 0 120 65" style="width:100px;height:55px;"><path d="M 20 55 A 40 40 0 0 1 100 55" fill="none" stroke="var(--color-surface-offset)" stroke-width="8" stroke-linecap="round"/>' + (matScore > 0 ? '<path d="M 20 55 A 40 40 0 0 1 ' + endX.toFixed(1) + ' ' + endY.toFixed(1) + '" fill="none" stroke="' + gaugeColor + '" stroke-width="8" stroke-linecap="round"/>' : '') + '</svg>';
 
   html += '<div style="display:flex;gap:var(--space-4);margin-top:var(--space-3);">';
   // Maturity card
