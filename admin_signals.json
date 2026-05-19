@@ -1319,5 +1319,17 @@
       "https://hrexecutive.com/ibm-chro-focus-on-ai-productivity-at-your-own-risk/"
     ],
     "date_found": "2026-05-11"
+  },
+  {
+    "company_name": "General Motors",
+    "date_event": "2026-05-18",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "summary": "Paradox case study says GM uses its conversational recruiting assistant (Ev-e) to automate interview scheduling, cutting time-to-schedule and saving $2M annually.",
+    "source_urls": [
+      "https://www.paradox.ai/case-studies/general-motors"
+    ],
+    "date_found": "2026-05-18"
   }
 ]
