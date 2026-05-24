@@ -1080,7 +1080,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-/* Company Info — description line + stat grid. Use flex column so we can push the grid toward the bottom of the card */
+/* Company Info — description, then divider line, then stat grid. Leftover whitespace sits at the bottom. */
 .profile-card-info {
   display: flex;
   flex-direction: column;
@@ -1089,16 +1089,16 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   font-size: var(--text-sm);
   color: var(--color-text);
   line-height: 1.5;
-  margin: 0 0 var(--space-4) 0;
+  margin: 0 0 var(--space-3) 0;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
 }
 .company-info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  row-gap: var(--space-4);
+  row-gap: var(--space-3);
   column-gap: var(--space-3);
   font-size: var(--text-sm);
-  margin-top: auto; /* push grid down so it sits below the description with breathing room */
-  padding-bottom: var(--space-2);
 }
 .company-info-cell {
   display: flex;
@@ -1113,7 +1113,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   font-weight: 600;
 }
 .company-info-cell strong { font-weight: 600; }
-/* Merged Maturity + Momentum card: two halves stacked vertically */
+/* Merged Maturity + Momentum card: two halves stacked vertically with aligned rows */
 .score-pair-desktop {
   display: flex;
   flex-direction: column;
@@ -1123,49 +1123,80 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   min-width: 0;
   display: flex;
   flex-direction: column;
+  gap: var(--space-2);
 }
 .score-pair-half + .score-pair-half {
   border-top: 1px solid var(--color-border);
   padding-top: var(--space-3);
 }
-.score-pair-divider { display: none; } /* deprecated — we now use a top border on the second half */
+.score-pair-divider { display: none; } /* deprecated — use top border on the second half */
+
+/* Aligned label-left / number-right header row (same grid in both halves) */
+.score-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+}
 .score-sub-label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-text-muted);
-  margin-bottom: var(--space-2);
 }
-/* Score block — gauge/number + summary on a single horizontal row */
-.score-block {
+.score-big-number {
+  font-size: var(--text-3xl);
+  line-height: 1;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+.score-unit {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+/* Visual row — same min height in both halves so the labels/numbers/details rows align horizontally */
+.score-visual {
+  min-height: 56px;
   display: flex;
   align-items: center;
-  gap: var(--space-4);
   width: 100%;
 }
-.score-block-gauge .gauge-svg {
+.score-visual .gauge-svg {
   display: block;
-  flex-shrink: 0;
-}
-.score-block-gauge .gauge-value {
-  font-size: var(--text-3xl);
-  line-height: 1;
-}
-.score-block-momentum .gauge-value {
-  font-size: var(--text-3xl);
-  line-height: 1;
-  min-width: 90px;
 }
 .score-signals-row {
-  display: flex;
-  gap: var(--space-3);
-  font-size: var(--text-xs);
+  gap: var(--space-2);
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
+.score-signal-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-surface-offset);
+  font-size: var(--text-xs);
+  line-height: 1;
+}
+.score-signal-chip .score-signal-label {
+  color: var(--color-text-muted);
+}
+.score-signal-chip strong {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
 /* Collapsible details inside the merged card */
 .score-details {
-  margin-top: var(--space-2);
   font-size: var(--text-xs);
   width: 100%;
 }
@@ -1517,8 +1548,14 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
     line-height: 1;
   }
   #industryChart .bar-row[data-ind-rank="1"] .bar-value { font-size: 26px; color: var(--color-primary); }
-  /* Disable click affordance on mobile — podium is visual only */
-  #industryChart .bar-row-clickable { cursor: default !important; }
+  /* Disable click affordance on mobile — podium is visual only.
+     Need !important + ind-filter-bar to override the desktop cursor/hover rules. */
+  #industryChart .bar-row-clickable,
+  #industryChart .ind-filter-bar { cursor: default !important; pointer-events: none !important; }
+  #industryChart .bar-row-clickable:hover,
+  #industryChart .ind-filter-bar:hover { background: transparent !important; }
+  #industryChart .bar-row-clickable:hover .bar-label,
+  #industryChart .ind-filter-bar:hover .bar-label { color: inherit !important; }
   /* Hide ranks 4+ and "+ N more industries" on mobile to keep the podium compact */
   #industryChart .bar-row:not([data-ind-rank="1"]):not([data-ind-rank="2"]):not([data-ind-rank="3"]) { display: none !important; }
   #industryChart #industryToggleBtn,
@@ -3729,19 +3766,15 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   }
   .gauge-desktop { display: none; }
   .gauge-mobile { display: block; }
-  /* Maturity gauge sized for full-width mobile card */
+  /* Gauge sized for full-width mobile card */
   .score-pair-half .gauge-svg { width: 110px; height: 60px; }
-  .score-pair-half .gauge-value { font-size: var(--text-3xl); }
-  .score-block { gap: var(--space-4); }
-  .score-block-momentum .gauge-value { min-width: 0; }
+  .score-big-number { font-size: var(--text-3xl); }
+  .score-visual { min-height: 60px; }
   /* Allow the card title and meta to share a row without wrapping */
   .profile-card-title-row { align-items: baseline; gap: var(--space-2); }
   .profile-card-meta { font-size: 10px; }
-  /* Company Info on mobile: don't push stats to the bottom — sit them right under the description */
-  .company-info-grid {
-    margin-top: 0;
-    row-gap: var(--space-3);
-  }
+  /* Company Info on mobile: tighten the divider spacing */
+  .company-info-desc { padding-bottom: var(--space-2); margin-bottom: var(--space-2); }
   .company-info-label { font-size: 10px; }
 
   /* --- Methodology --- */
@@ -5619,18 +5652,27 @@ function openProfile(companyName) {
     // MATURITY & MOMENTUM (center, merged)
     '<div class="profile-card"><div class="profile-card-title">Maturity &amp; Momentum</div>' +
     '<div class="score-pair-desktop">' +
+    // ----- Maturity half -----
     '<div class="score-pair-half">' +
-    '<div class="score-sub-label">Maturity</div>' +
-    '<div class="score-block score-block-gauge">' + gaugeSVG + '<div class="gauge-value">' + fmt(matScore) + '<span style="font-size:var(--text-sm);color:var(--color-text-muted);font-weight:500;">/100</span></div></div>' +
-    maturityDetailsHTML +
+      '<div class="score-row">' +
+        '<span class="score-sub-label">Maturity</span>' +
+        '<span class="score-big-number">' + fmt(matScore) + '<span class="score-unit">/100</span></span>' +
+      '</div>' +
+      '<div class="score-visual">' + gaugeSVG + '</div>' +
+      maturityDetailsHTML +
     '</div>' +
+    // ----- Momentum half -----
     '<div class="score-pair-half">' +
-    '<div class="score-sub-label">Momentum</div>' +
-    '<div class="score-block score-block-momentum">' +
-      '<div class="gauge-value"><span class="' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span></div>' +
-      '<div class="score-signals-row"><div><span style="color:var(--color-text-muted);">&lt;30d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_30d || 0) + '</strong></div><div><span style="color:var(--color-text-muted);">30&#x2011;60d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_30_60d || 0) + '</strong></div><div><span style="color:var(--color-text-muted);">60&#x2011;90d</span> <strong style="font-family:var(--font-mono);">' + (mom.signals_60_90d || 0) + '</strong></div></div>' +
-    '</div>' +
-    momentumDetailsHTML +
+      '<div class="score-row">' +
+        '<span class="score-sub-label">Momentum</span>' +
+        '<span class="score-big-number ' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span>' +
+      '</div>' +
+      '<div class="score-visual score-signals-row">' +
+        '<div class="score-signal-chip"><span class="score-signal-label">&lt;30d</span><strong>' + (mom.signals_30d || 0) + '</strong></div>' +
+        '<div class="score-signal-chip"><span class="score-signal-label">30&#x2011;60d</span><strong>' + (mom.signals_30_60d || 0) + '</strong></div>' +
+        '<div class="score-signal-chip"><span class="score-signal-label">60&#x2011;90d</span><strong>' + (mom.signals_60_90d || 0) + '</strong></div>' +
+      '</div>' +
+      momentumDetailsHTML +
     '</div>' +
     '</div>' +
     '</div>' +
