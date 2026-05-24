@@ -1125,24 +1125,52 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   height: 100%;
 }
 
-/* --- Maturity block: gauge + numeric stack side-by-side --- */
+/* --- Maturity block: numeric stack on left, stacked bar visual on right --- */
 .maturity-block {
   display: flex;
   align-items: center;
   gap: var(--space-4);
 }
-.maturity-block .gauge-svg {
-  flex: 0 0 auto;
-  width: 140px;
-  height: 78px;
-  display: block;
-}
 .maturity-numbers {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 110px;
+}
+.maturity-visual {
   flex: 1 1 auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 6px;
+  align-items: stretch;
+}
+.maturity-stacked-bar {
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--color-surface-offset);
+  overflow: hidden;
+  display: flex;
+}
+.maturity-stacked-bar-fill {
+  height: 100%;
+  background: var(--color-success);
+  border-radius: 999px 0 0 999px;
+  transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.maturity-stacked-bar-fill.is-full {
+  border-radius: 999px;
+}
+.maturity-stacked-bar-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 .score-eyebrow {
   font-size: 11px;
@@ -1224,7 +1252,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
   align-items: end;
-  height: 34px;
+  height: 42px;
 }
 .momentum-bar-col {
   display: flex;
@@ -1246,9 +1274,9 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   background: var(--color-surface-offset);
 }
 .momentum-bar-value {
-  font-size: 11px;
+  font-size: 16px;
   font-variant-numeric: tabular-nums;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text);
   line-height: 1;
 }
@@ -1256,10 +1284,11 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--color-text-muted);
   text-align: center;
   font-variant-numeric: tabular-nums;
+  font-weight: 500;
 }
 
 /* --- Footer row: details disclosures --- */
@@ -3845,9 +3874,11 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   .gauge-mobile { display: block; }
   /* Maturity/Momentum card sizing on mobile */
   .maturity-block { gap: var(--space-3); }
-  .maturity-block .gauge-svg { width: 110px; height: 62px; }
+  .maturity-numbers { min-width: 100px; }
   .score-hero-number { font-size: 36px; }
   .score-sub-number { font-size: 28px; }
+  .momentum-bar-value { font-size: 18px; }
+  .momentum-axis { font-size: 12px; }
   /* Mobile: stack momentum number above trend chart so bars don't overflow narrow card */
   .momentum-block {
     flex-direction: column;
@@ -5678,9 +5709,17 @@ function openProfile(companyName) {
       '<div class="momentum-bar' + emptyClass + '" style="height:' + (v === 0 ? 2 : pct) + '%;"></div>' +
       '</div>';
   }
-  // Note: bars rendered oldest → newest (left to right) so the visual reads "is activity trending up?"
-  var momentumBarsHTML = '<div class="momentum-bars">' + barHTML(s90) + barHTML(s60) + barHTML(s30) + '</div>' +
-    '<div class="momentum-axis"><span>60\u201390d</span><span>30\u201360d</span><span>&lt;30d</span></div>';
+  // Bars rendered newest → oldest (left to right): most recent first
+  var momentumBarsHTML = '<div class="momentum-bars">' + barHTML(s30) + barHTML(s60) + barHTML(s90) + '</div>' +
+    '<div class="momentum-axis"><span>&lt;30d</span><span>30\u201360d</span><span>60\u201390d</span></div>';
+
+  // Maturity stacked bar (horizontal progress bar showing score vs 100)
+  var matPct = Math.max(0, Math.min(100, matScore));
+  var fullClass = matPct >= 99.5 ? ' is-full' : '';
+  var maturityStackedBarHTML = '<div class="maturity-stacked-bar">' +
+      (matPct > 0 ? '<div class="maturity-stacked-bar-fill' + fullClass + '" style="width:' + matPct + '%;background:' + gaugeColor + ';"></div>' : '') +
+    '</div>' +
+    '<div class="maturity-stacked-bar-axis"><span>0</span><span>50</span><span>100</span></div>';
 
   // --- Collapsible Maturity & Momentum Breakdown ---
   var accelPct = mfc.monthly_baseline > 0 ? Math.round(mfc.acceleration * 100) : 0;
@@ -5773,14 +5812,14 @@ function openProfile(companyName) {
     // MATURITY & MOMENTUM (center)
     '<div class="profile-card">' +
     '<div class="score-card-body">' +
-      // ----- Maturity (hero) -----
+      // ----- Maturity (hero): number stack on left, stacked progress bar on right -----
       '<div class="maturity-block">' +
-        gaugeSVG +
         '<div class="maturity-numbers">' +
           '<span class="score-eyebrow">Maturity</span>' +
           '<span class="score-hero-number">' + fmt(matScore) + '<span class="score-unit">/100</span></span>' +
           '<span class="score-caption">' + matLabel + '</span>' +
         '</div>' +
+        '<div class="maturity-visual">' + maturityStackedBarHTML + '</div>' +
       '</div>' +
       '<div class="score-divider"></div>' +
       // ----- Momentum (supporting) -----
