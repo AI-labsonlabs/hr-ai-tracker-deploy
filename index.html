@@ -1113,92 +1113,167 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   font-weight: 600;
 }
 .company-info-cell strong { font-weight: 600; }
-/* Merged Maturity + Momentum card: two halves stacked vertically with aligned rows */
-.score-pair-desktop {
+/* ============================================================
+   Maturity & Momentum card — primary/secondary hierarchy
+   Maturity = hero metric (gauge + large number side-by-side)
+   Momentum = supporting metric (number + trend mini-chart)
+   ============================================================ */
+.score-card-body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
+  height: 100%;
 }
-.score-pair-half {
+
+/* --- Maturity block: gauge + numeric stack side-by-side --- */
+.maturity-block {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.maturity-block .gauge-svg {
+  flex: 0 0 auto;
+  width: 140px;
+  height: 78px;
+  display: block;
+}
+.maturity-numbers {
+  flex: 1 1 auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: 2px;
 }
-.score-pair-half + .score-pair-half {
-  border-top: 1px solid var(--color-border);
-  padding-top: var(--space-3);
-}
-.score-pair-divider { display: none; } /* deprecated — use top border on the second half */
-
-/* Aligned label-left / number-right header row (same grid in both halves) */
-.score-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-  width: 100%;
-}
-.score-sub-label {
+.score-eyebrow {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--color-text-muted);
 }
-.score-big-number {
-  font-size: var(--text-3xl);
+.score-hero-number {
+  font-size: 44px;
   line-height: 1;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  text-align: right;
-  white-space: nowrap;
-}
-.score-unit {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  font-weight: 500;
-  margin-left: 2px;
-}
-
-/* Visual row — same min height in both halves so the labels/numbers/details rows align horizontally */
-.score-visual {
-  min-height: 56px;
+  letter-spacing: -0.02em;
   display: flex;
-  align-items: center;
-  width: 100%;
-}
-.score-visual .gauge-svg {
-  display: block;
-}
-.score-signals-row {
-  gap: var(--space-2);
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-.score-signal-chip {
-  display: inline-flex;
   align-items: baseline;
   gap: 4px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--color-surface-offset);
-  font-size: var(--text-xs);
-  line-height: 1;
 }
-.score-signal-chip .score-signal-label {
+.score-hero-number .score-unit {
+  font-size: var(--text-base);
   color: var(--color-text-muted);
+  font-weight: 500;
 }
-.score-signal-chip strong {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  color: var(--color-text);
+.score-caption {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  margin-top: 2px;
 }
 
-/* Collapsible details inside the merged card */
+/* --- Divider between maturity and momentum --- */
+.score-divider {
+  height: 1px;
+  background: var(--color-border);
+  width: 100%;
+}
+
+/* --- Momentum block: number + trend chart row --- */
+.momentum-block {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.momentum-numbers {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 90px;
+}
+.score-sub-number {
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.score-sub-number.momentum-pos { color: var(--color-success); }
+.score-sub-number.momentum-neg { color: var(--color-error); }
+.score-sub-number.momentum-flat { color: var(--color-text-muted); }
+
+/* Trend mini-chart — three bars showing signal counts by recency bucket */
+.momentum-trend {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.momentum-trend-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+.momentum-bars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  align-items: end;
+  height: 34px;
+}
+.momentum-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  height: 100%;
+  justify-content: flex-end;
+  min-width: 0;
+}
+.momentum-bar {
+  width: 100%;
+  background: var(--color-primary);
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  transition: height 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.momentum-bar.is-empty {
+  background: var(--color-surface-offset);
+}
+.momentum-bar-value {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1;
+}
+.momentum-axis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Footer row: details disclosures --- */
+.score-details-row {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-border);
+}
 .score-details {
   font-size: var(--text-xs);
-  width: 100%;
+  flex: 1 1 0;
+  min-width: 0;
 }
 .score-details > summary {
   cursor: pointer;
@@ -1206,6 +1281,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   padding: var(--space-1) 0;
   color: var(--color-text-muted);
   list-style: revert;
+  font-size: 11px;
 }
 .score-details > summary:hover { color: var(--color-text); }
 .score-details-body {
@@ -1214,6 +1290,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   border-radius: var(--radius-md);
   margin-top: var(--space-1);
   line-height: 1.6;
+  font-size: 11px;
 }
 /* Compact bar chart used inside the HR Domain Scores card */
 .bar-chart-compact .bar-row { padding: 2px 0; }
@@ -3766,10 +3843,20 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   }
   .gauge-desktop { display: none; }
   .gauge-mobile { display: block; }
-  /* Gauge sized for full-width mobile card */
-  .score-pair-half .gauge-svg { width: 110px; height: 60px; }
-  .score-big-number { font-size: var(--text-3xl); }
-  .score-visual { min-height: 60px; }
+  /* Maturity/Momentum card sizing on mobile */
+  .maturity-block { gap: var(--space-3); }
+  .maturity-block .gauge-svg { width: 110px; height: 62px; }
+  .score-hero-number { font-size: 36px; }
+  .score-sub-number { font-size: 28px; }
+  /* Mobile: stack momentum number above trend chart so bars don't overflow narrow card */
+  .momentum-block {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+  .momentum-numbers { min-width: 0; }
+  /* Stack details disclosures vertically on mobile to avoid cramping */
+  .score-details-row { flex-direction: column; gap: var(--space-1); }
   /* Allow the card title and meta to share a row without wrapping */
   .profile-card-title-row { align-items: baseline; gap: var(--space-2); }
   .profile-card-meta { font-size: 10px; }
@@ -5561,6 +5648,40 @@ function openProfile(companyName) {
     (matScore > 0 ? '<path d="M 20 55 A 40 40 0 0 1 ' + endX.toFixed(1) + ' ' + endY.toFixed(1) + '" fill="none" stroke="' + gaugeColor + '" stroke-width="8" stroke-linecap="round"/>' : '') +
     '</svg>';
 
+  // Plain-language maturity tier (used as caption beside the big number)
+  var matLabel;
+  if (matScore >= 70) matLabel = 'Leading';
+  else if (matScore >= 50) matLabel = 'Established';
+  else if (matScore >= 30) matLabel = 'Adopting';
+  else if (matScore > 0) matLabel = 'Emerging';
+  else matLabel = 'No signals yet';
+
+  // Plain-language momentum descriptor
+  var momScore = detail.momentum_score || 0;
+  var momLabel;
+  if (momScore >= 3) momLabel = 'Accelerating';
+  else if (momScore >= 1) momLabel = 'Picking up';
+  else if (momScore > -1) momLabel = 'Steady';
+  else if (momScore > -3) momLabel = 'Slowing';
+  else momLabel = 'Cooling';
+
+  // Momentum trend mini-chart: 3 bars showing weighted signal counts by recency bucket
+  var s30 = mom.signals_30d || 0;
+  var s60 = mom.signals_30_60d || 0;
+  var s90 = mom.signals_60_90d || 0;
+  var sMax = Math.max(s30, s60, s90, 1);
+  function barHTML(v) {
+    var pct = (v / sMax) * 100;
+    var emptyClass = v === 0 ? ' is-empty' : '';
+    return '<div class="momentum-bar-col">' +
+      '<span class="momentum-bar-value">' + v + '</span>' +
+      '<div class="momentum-bar' + emptyClass + '" style="height:' + (v === 0 ? 2 : pct) + '%;"></div>' +
+      '</div>';
+  }
+  // Note: bars rendered oldest → newest (left to right) so the visual reads "is activity trending up?"
+  var momentumBarsHTML = '<div class="momentum-bars">' + barHTML(s90) + barHTML(s60) + barHTML(s30) + '</div>' +
+    '<div class="momentum-axis"><span>60\u201390d</span><span>30\u201360d</span><span>&lt;30d</span></div>';
+
   // --- Collapsible Maturity & Momentum Breakdown ---
   var accelPct = mfc.monthly_baseline > 0 ? Math.round(mfc.acceleration * 100) : 0;
   var patternNames = ['Governance', 'Tool', 'Talent', 'AI Hiring', 'PR'];
@@ -5649,31 +5770,36 @@ function openProfile(companyName) {
     '<div class="profile-card"><div class="profile-card-title">HR Domain Scores <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--color-text-muted);">(click to filter signals)</span></div>' +
     '<div class="bar-chart bar-chart-compact" id="profileDomainChart">' + domainBarsHTML + '</div>' +
     '</div>' +
-    // MATURITY & MOMENTUM (center, merged)
-    '<div class="profile-card"><div class="profile-card-title">Maturity &amp; Momentum</div>' +
-    '<div class="score-pair-desktop">' +
-    // ----- Maturity half -----
-    '<div class="score-pair-half">' +
-      '<div class="score-row">' +
-        '<span class="score-sub-label">Maturity</span>' +
-        '<span class="score-big-number">' + fmt(matScore) + '<span class="score-unit">/100</span></span>' +
+    // MATURITY & MOMENTUM (center)
+    '<div class="profile-card">' +
+    '<div class="score-card-body">' +
+      // ----- Maturity (hero) -----
+      '<div class="maturity-block">' +
+        gaugeSVG +
+        '<div class="maturity-numbers">' +
+          '<span class="score-eyebrow">Maturity</span>' +
+          '<span class="score-hero-number">' + fmt(matScore) + '<span class="score-unit">/100</span></span>' +
+          '<span class="score-caption">' + matLabel + '</span>' +
+        '</div>' +
       '</div>' +
-      '<div class="score-visual">' + gaugeSVG + '</div>' +
-      maturityDetailsHTML +
-    '</div>' +
-    // ----- Momentum half -----
-    '<div class="score-pair-half">' +
-      '<div class="score-row">' +
-        '<span class="score-sub-label">Momentum</span>' +
-        '<span class="score-big-number ' + momentumClass(detail.momentum_score) + '">' + fmtMomentum(detail.momentum_score) + '</span>' +
+      '<div class="score-divider"></div>' +
+      // ----- Momentum (supporting) -----
+      '<div class="momentum-block">' +
+        '<div class="momentum-numbers">' +
+          '<span class="score-eyebrow">Momentum</span>' +
+          '<span class="score-sub-number ' + momentumClass(momScore) + '">' + fmtMomentum(momScore) + '</span>' +
+          '<span class="score-caption">' + momLabel + '</span>' +
+        '</div>' +
+        '<div class="momentum-trend">' +
+          '<span class="momentum-trend-label">Weighted signals \u00b7 last 90 days</span>' +
+          momentumBarsHTML +
+        '</div>' +
       '</div>' +
-      '<div class="score-visual score-signals-row">' +
-        '<div class="score-signal-chip"><span class="score-signal-label">&lt;30d</span><strong>' + (mom.signals_30d || 0) + '</strong></div>' +
-        '<div class="score-signal-chip"><span class="score-signal-label">30&#x2011;60d</span><strong>' + (mom.signals_30_60d || 0) + '</strong></div>' +
-        '<div class="score-signal-chip"><span class="score-signal-label">60&#x2011;90d</span><strong>' + (mom.signals_60_90d || 0) + '</strong></div>' +
+      // ----- Footer: collapsible details, side by side -----
+      '<div class="score-details-row">' +
+        maturityDetailsHTML +
+        momentumDetailsHTML +
       '</div>' +
-      momentumDetailsHTML +
-    '</div>' +
     '</div>' +
     '</div>' +
     // COMPANY INFO (right)
