@@ -1136,7 +1136,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   display: flex;
   flex-direction: column;
   gap: 2px;
-  min-width: 110px;
+  width: 110px;
 }
 .maturity-visual {
   flex: 1 1 auto;
@@ -1180,7 +1180,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   color: var(--color-text-muted);
 }
 .score-hero-number {
-  font-size: 44px;
+  font-size: 32px;
   line-height: 1;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -1190,7 +1190,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   gap: 4px;
 }
 .score-hero-number .score-unit {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
   font-weight: 500;
 }
@@ -1219,7 +1219,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; }
   display: flex;
   flex-direction: column;
   gap: 2px;
-  min-width: 90px;
+  width: 110px;
 }
 .score-sub-number {
   font-size: 32px;
@@ -3874,9 +3874,8 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
   .gauge-mobile { display: block; }
   /* Maturity/Momentum card sizing on mobile */
   .maturity-block { gap: var(--space-3); }
-  .maturity-numbers { min-width: 100px; }
-  .score-hero-number { font-size: 36px; }
-  .score-sub-number { font-size: 28px; }
+  .maturity-numbers, .momentum-numbers { width: 100px; }
+  .score-hero-number, .score-sub-number { font-size: 28px; }
   .momentum-bar-value { font-size: 18px; }
   .momentum-axis { font-size: 12px; }
   /* Mobile: stack momentum number above trend chart so bars don't overflow narrow card */
