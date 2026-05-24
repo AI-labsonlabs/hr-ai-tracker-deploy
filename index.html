@@ -5601,8 +5601,14 @@ function openProfile(companyName) {
     revenueHTML = '<a href="' + earningsUrl + '" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary);text-decoration:none;" title="View latest financials">' + revenueVal + '</a>';
   }
 
-  // Market cap display
-  var mktCapVal = co.market_cap ? '$' + (co.market_cap >= 1000 ? (co.market_cap / 1000).toFixed(1) + 'B' : co.market_cap + 'M') : '\u2014';
+  // Market cap display — trillions when ≥ $1T, billions when ≥ $1B, else millions
+  var mktCapVal = co.market_cap
+    ? '$' + (
+        co.market_cap >= 1000000 ? (co.market_cap / 1000000).toFixed(2) + 'T' :
+        co.market_cap >= 1000    ? (co.market_cap / 1000).toFixed(1) + 'B' :
+                                   co.market_cap + 'M'
+      )
+    : '\u2014';
   var mktCapHTML = mktCapVal;
   if (co.market_cap && isPrivate) mktCapHTML += estTag;
   if (co.market_cap && !isPrivate) {
@@ -5735,7 +5741,7 @@ function openProfile(companyName) {
       '<span class="mono" style="min-width:28px;text-align:right;">' + fmt(val, 1) + '</span></div>';
   });
 
-  var maturityDetailsHTML = '<details class="score-details">' +
+  var maturityDetailsHTML = '<details class="score-details score-details-linked" data-score-group="mm">' +
     '<summary>Maturity details</summary>' +
     '<div class="score-details-body">' +
     'Mean (all 7 domains): ' + fmt(fc.mean_all_6, 1) + ' \u00b7 Mean (top 3): ' + fmt(fc.mean_top_3, 1) + '<br>' +
@@ -5744,7 +5750,7 @@ function openProfile(companyName) {
     '<strong>Final: ' + fmt(md.score, 1) + '</strong>' +
     '</div></details>';
 
-  var momentumDetailsHTML = '<details class="score-details">' +
+  var momentumDetailsHTML = '<details class="score-details score-details-linked" data-score-group="mm">' +
     '<summary>Momentum details</summary>' +
     '<div class="score-details-body">' +
     'Baseline: ' + fmt(mfc.w365, 1) + ' weighted signals/yr \u2192 ' + fmt(mfc.monthly_baseline, 1) + '/mo<br>' +
@@ -5871,6 +5877,32 @@ function openProfile(companyName) {
   profileOverlay.dataset.company = companyName;
   profileOverlay.classList.add('active');
   profileOverlay.scrollTop = 0;
+
+  // Link the Maturity/Momentum details disclosures so they open/close together.
+  // Uses a guard flag to avoid an infinite toggle loop when we sync the sibling.
+  (function linkScoreDetails() {
+    var groups = {};
+    document.querySelectorAll('.score-details-linked').forEach(function(el) {
+      var g = el.getAttribute('data-score-group');
+      if (!g) return;
+      (groups[g] = groups[g] || []).push(el);
+    });
+    Object.keys(groups).forEach(function(g) {
+      var els = groups[g];
+      els.forEach(function(el) {
+        el.addEventListener('toggle', function() {
+          if (el.__syncing) return;
+          els.forEach(function(other) {
+            if (other === el) return;
+            if (other.open === el.open) return;
+            other.__syncing = true;
+            other.open = el.open;
+            other.__syncing = false;
+          });
+        });
+      });
+    });
+  })();
 
   // Attach domain bar click handlers for filtering
   var activeDomainFilter = null;
@@ -7748,7 +7780,13 @@ function buildCompanyProfileHTML(companyName, side) {
     var rUrl = co.ticker ? 'https://www.google.com/finance/quote/' + co.ticker + ':' + (co.exchange || 'NYSE') : 'https://www.google.com/search?q=' + encodeURIComponent(companyName + ' latest earnings report');
     revenue = '<a href="' + rUrl + '" target="_blank" rel="noopener" style="color:var(--color-primary);text-decoration:none;">' + revenue + '</a>';
   }
-  var marketCap = co.market_cap ? (co.market_cap >= 1000 ? '$' + (co.market_cap / 1000).toFixed(1) + 'B' : '$' + co.market_cap + 'M') : '\u2014';
+  var marketCap = co.market_cap
+    ? (
+        co.market_cap >= 1000000 ? '$' + (co.market_cap / 1000000).toFixed(2) + 'T' :
+        co.market_cap >= 1000    ? '$' + (co.market_cap / 1000).toFixed(1) + 'B' :
+                                   '$' + co.market_cap + 'M'
+      )
+    : '\u2014';
   if (co.market_cap && isPrivate) marketCap += estTag;
   else if (co.market_cap && !isPrivate) {
     var mcUrl = co.ticker ? 'https://www.google.com/finance/quote/' + co.ticker + ':' + (co.exchange || 'NYSE') : 'https://www.google.com/search?q=' + encodeURIComponent(companyName + ' market cap');
