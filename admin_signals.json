@@ -1343,5 +1343,32 @@
       "https://careers.bankofamerica.com/en-us/job-detail/26013698/conversational-ai-language-engineering-lead-multiple-locations-esomprank-nv8icpgyzj-3"
     ],
     "date_found": "2026-05-24"
+  },
+  {
+    "company_name": "Accenture",
+    "date_event": "2026-04-28",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "summary": "Accenture is rolling out Microsoft 365 Copilot across ~743,000 employees; Accenture reported 97% of surveyed employees completed routine tasks 15x faster and monthly active usage reached 89% in a 200,000-license tranche.",
+    "source_url": "https://news.microsoft.com/source/features/digital-transformation/accenture-is-rolling-out-copilot-to-a-workforce-the-size-of-denver/"
+  },
+  {
+    "company_name": "Amazon",
+    "date_event": "2026-04-27",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "summary": "Business Insider reported Amazon expanded its internal AI tool “AI Teammate” to 700+ active teams and tracks adoption metrics including Net Promoter Scores and guidance for managers to set adoption/engagement targets.",
+    "source_url": "https://www.businessinsider.com/amazon-tracks-ai-use-engineers-internal-friction-2026-4"
+  },
+  {
+    "company_name": "Walmart",
+    "date_event": "2026-05-08",
+    "signal_type": "I",
+    "HR_domain": "Talent Development",
+    "source_type": "podcast",
+    "summary": "Omni Talk reported (citing CIO Dive) that Walmart will train all 2.1M employees on AI tools; EVP & Chief People Officer Donna Morris announced role-based certifications (1.7M US/Canada associates) via Walmart’s “Squiggly” platform with OpenAI and Google Gemini support.",
+    "source_url": "https://omnitalk.blog/2026/05/08/transcript-of-fast-five-episode-target-says-move-or-go-walmart-bets-on-beauty-claude-wants-your-cart-fast-five-video/"
   }
 ]
