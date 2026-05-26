@@ -1370,5 +1370,17 @@
     "source_type": "podcast",
     "summary": "Omni Talk reported (citing CIO Dive) that Walmart will train all 2.1M employees on AI tools; EVP & Chief People Officer Donna Morris announced role-based certifications (1.7M US/Canada associates) via Walmart’s “Squiggly” platform with OpenAI and Google Gemini support.",
     "source_url": "https://omnitalk.blog/2026/05/08/transcript-of-fast-five-episode-target-says-move-or-go-walmart-bets-on-beauty-claude-wants-your-cart-fast-five-video/"
+  },
+  {
+    "company_name": "Cardinal Health",
+    "date_event": "2026-05-20",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "job post",
+    "summary": "Job posting for Director of HR Technology & Corporate Applications states the leader will implement AI agents and intelligent automation across Workday and ServiceNow, and prioritize/pilot/scale agentic capabilities (including “Sana from Workday”), indicating active deployment work inside core HR platforms.",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/director-application-development-maintenance-hr-technology-and-corporate-applications-at-cardinal-health-4413609462"
+    ],
+    "date_found": "2026-05-26"
   }
 ]
