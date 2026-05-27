@@ -1382,5 +1382,29 @@
       "https://www.linkedin.com/jobs/view/director-application-development-maintenance-hr-technology-and-corporate-applications-at-cardinal-health-4413609462"
     ],
     "date_found": "2026-05-26"
+  },
+  {
+    "company_name": "AbbVie",
+    "date_event": "2026-04-28",
+    "signal_type": "I",
+    "HR_domain": "People Analytics",
+    "source_type": "vendor case study",
+    "summary": "Visier named AbbVie the 2026 Workforce AI Innovation Award winner, describing AbbVie using Visier’s “Vee” alongside an internal LLM to generate and operationalize a 30-60-90 day retention plan grounded in live workforce data.",
+    "source_urls": [
+      "https://www.visier.com/company/news/visier-announces-2026-vizzie-award-winners-at-outsmart-conference-in-palm-springs/"
+    ],
+    "date_found": "2026-05-27"
+  },
+  {
+    "company_name": "Newell Brands",
+    "date_event": "2026-04-28",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "vendor case study",
+    "summary": "Visier named Newell Brands the 2026 Rookie of the Year winner, stating it grew Visier platform adoption tenfold in its first year and used unified workforce data to identify drivers of attrition and take targeted action.",
+    "source_urls": [
+      "https://www.visier.com/company/news/visier-announces-2026-vizzie-award-winners-at-outsmart-conference-in-palm-springs/"
+    ],
+    "date_found": "2026-05-27"
   }
 ]
