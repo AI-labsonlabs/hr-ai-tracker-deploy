@@ -1,5 +1,29 @@
 [
   {
+    "company_name": "CrowdStrike",
+    "date_event": "2026-05-20",
+    "signal_type": "J",
+    "HR_domain": "AI Hiring",
+    "source_type": "job post",
+    "summary": "CrowdStrike posted an Applied AI Developer role on its HR Data and Analytics (HRDA) team to build internal AI systems for HR processes, including agentic applications, workflow automations, data pipelines, enterprise integrations, and shared infrastructure for a multi-agent AI ecosystem.",
+    "source_urls": [
+      "https://www.builtinchicago.org/job/applied-ai-developer-remote/9429682"
+    ],
+    "date_found": "2026-05-30"
+  },
+  {
+    "company_name": "CSX Corporation",
+    "date_event": "2026-04-13",
+    "signal_type": "J",
+    "HR_domain": "AI Hiring",
+    "source_type": "job post",
+    "summary": "CSX posted a Manager, People Systems role describing work to enable AI-powered employee experiences in Oracle HCM, including configuring Redwood-embedded AI features (AI-driven recommendations and guided experiences) and using Oracle AI technologies to streamline HR workflows.",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/mgr-people-systems-remote-at-csx-4410207901"
+    ],
+    "date_found": "2026-05-30"
+  },
+  {
     "company_name": "Capital Group",
     "date_event": "2026-02-26",
     "signal_type": "A",
