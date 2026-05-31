@@ -1432,12 +1432,12 @@
     "date_found": "2026-05-27"
   },
   {
-    "company_name": "Alphabet",
+    "company_name": "Google",
     "date_event": "2026-05-28",
     "signal_type": "I",
     "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Workday and Google Cloud announced Alphabet will leverage the Gemini Enterprise Agent Platform to build and run a custom Workday agent to streamline and automate key workflows for Workday administrators (HR/Workday admin operations).",
+    "summary": "Workday and Google Cloud announced Google will leverage the Gemini Enterprise Agent Platform to build and run a custom Workday agent to streamline and automate key workflows for Workday administrators (HR/Workday admin operations).",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx"
     ],
