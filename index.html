@@ -5172,6 +5172,17 @@ function momentumBar(v) {
 }
 
 function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/'/g,"\'").replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+// Normalize a source URL entry: if it's a markdown-formatted link [label](url), extract url; otherwise return as-is.
+// Returns empty string for non-URL strings so callers' http filters drop them.
+function normalizeSourceUrl(u) {
+  if (!u || typeof u !== 'string') return '';
+  var m = u.match(/^\s*\[[^\]]*\]\((https?:\/\/[^\s]+?)\)\s*$/);
+  if (m) return m[1];
+  return u;
+}
+function normalizeSourceUrls(arr) {
+  return (arr || []).map(normalizeSourceUrl).filter(function(u) { return u && /^https?:\/\//i.test(u); });
+}
 
 // ============================================
 // CLIENT-SIDE RESCORING ENGINE
@@ -5651,10 +5662,10 @@ function openProfile(companyName) {
     signalsHTML = '<p style="color:var(--color-text-faint);font-size:var(--text-sm);">No signals available.</p>';
   } else {
     for (const s of signals) {
-      const urls = s.source_urls || [];
+      const urls = normalizeSourceUrls(s.source_urls || []);
       let sourcesHTML = '';
       if (urls.length > 0) {
-        const links = urls.filter(u => u && u.startsWith('http')).map(function(u) {
+        const links = urls.map(function(u) {
           let domain;
           try { domain = new URL(u).hostname.replace('www.', ''); } catch(e) { domain = 'Source'; }
           return '<a href="' + u + '" target="_blank" rel="noopener noreferrer">' + linkIcon + ' ' + domain + '</a>';
@@ -6612,7 +6623,7 @@ function renderLatestSignals() {
     var summary = s.summary || '';
     var domain = s.HR_domain || '';
     var company = s.company_name || '';
-    var urls = (s.source_urls || []).filter(function(u) { return u && /^https?:\/\//i.test(u); });
+    var urls = normalizeSourceUrls(s.source_urls);
     var sourceUrl = urls[0] || '';
     var tag = sourceUrl ? 'a' : 'div';
     var hrefAttr = sourceUrl ? ' href="' + esc(sourceUrl) + '" target="_blank" rel="noopener noreferrer"' : '';
@@ -8379,7 +8390,7 @@ function renderSignalCards(signals) {
     
     // Source links
     var sourcesHTML = '';
-    var urls = (s.source_urls || []).filter(function(u) { return u && u.startsWith('http'); });
+    var urls = normalizeSourceUrls(s.source_urls);
     if (urls.length > 0) {
       var links = urls.map(function(u) {
         var domain;
