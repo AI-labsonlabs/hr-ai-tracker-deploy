@@ -1,5 +1,29 @@
 [
   {
+    "company_name": "Alphabet",
+    "date_event": "2026-05-29",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "news article",
+    "summary": "People Matters reports that Alphabet will use the Gemini Enterprise Agent Platform to build a customized Workday agent aimed at automating and streamlining administrative workflows for Workday administrators, as part of the Google Cloud\u2013Workday partnership announcement.",
+    "source_urls": [
+      "https://www.peoplematters.in/news/hr-technology/google-and-workday-target-hr-transformation-with-enterprise-ai-agents-49988"
+    ],
+    "date_found": "2026-05-31"
+  },
+  {
+    "company_name": "Orange",
+    "date_event": "2026-05-29",
+    "signal_type": "F",
+    "HR_domain": "Talent Development",
+    "source_type": "podcast",
+    "summary": "Orange Business (Orange) describes a company-wide generative AI transformation program, stating that over 90% of the 30,000-person workforce is trained in generative AI and more than 60% use it regularly as part of daily work, supported by reskilling/upskilling programs and dedicated learning time.",
+    "source_urls": [
+      "https://joshbersin.com/podcast/laurent-aufiels-chief-people-officer-at-orange-business-ai-transformation-is-a-people-project/"
+    ],
+    "date_found": "2026-05-31"
+  },
+  {
     "company_name": "CrowdStrike",
     "date_event": "2026-05-20",
     "signal_type": "J",
