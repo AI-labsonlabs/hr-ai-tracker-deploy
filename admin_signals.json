@@ -1514,5 +1514,17 @@
       "https://www.microsoft.com/insidetrack/blog/transforming-it-support-across-microsoft-with-the-employee-self-service-agent/"
     ],
     "date_found": "2026-06-01"
+  },
+  {
+    "company_name": "Elevance Health",
+    "date_event": "2026-05-27",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "job post",
+    "summary": "Elevance Health posted a 'Workday HR Technology Analyst Senior (Recruiting)' role describing active configuration and optimization of Workday Recruiting (ATS) plus integrations with recruiting vendors including Paradox and HiredScore, indicating production deployment of these HR recruiting platforms.",
+    "source_urls": [
+      "https://careers.elevancehealth.com/workday-hr-technology-analyst-senior/job/47E29F240D0589E11D5EF8EDB29B61EE"
+    ],
+    "date_found": "2026-06-02"
   }
 ]
