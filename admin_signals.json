@@ -1538,5 +1538,17 @@
       "https://hrexecutive.com/fedex-taps-accenture-for-ai-training-across-500000-employee-workforce/"
     ],
     "date_found": "2026-06-03"
+  },
+  {
+    "company_name": "Ford Motor",
+    "date_event": "2026-06-04",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "job post",
+    "summary": "Ford posted a Senior Specialist \u2013 HR Technology & AI Solutions role describing implementation of AI-enabled HR workflows and deployment of AI models using Microsoft Dynamics 365/Power Platform (AI Builder), including support for UAT and production releases.",
+    "source_urls": [
+      "https://www.careers.ford.com/job/chennai/senior-specialist-hr-technology-and-ai-solutions/48560/95850386560"
+    ],
+    "date_found": "2026-06-04"
   }
 ]
