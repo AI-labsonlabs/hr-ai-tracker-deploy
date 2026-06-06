@@ -1562,5 +1562,17 @@
       "https://careers.gevernova.com/hr-ai-enablement-innovation-program-manager/job/R5043429"
     ],
     "date_found": "2026-06-05"
+  },
+  {
+    "company_name": "Datadog",
+    "date_event": "2026-06-06",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "job post",
+    "summary": "Datadog posted a People Systems Developer role describing the People Technology team building and deploying AI-native workflows across HR processes (talent acquisition, onboarding, performance, workforce planning, and internal service delivery), with integrations to Workday and Greenhouse; the posting frames these as productionized, adopted workflows rather than exploratory research.",
+    "source_urls": [
+      "https://www.builtinboston.com/job/people-systems-developer/9375426"
+    ],
+    "date_found": "2026-06-06"
   }
 ]
