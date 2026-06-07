@@ -1508,5 +1508,17 @@
       "https://www.builtinboston.com/job/people-systems-developer/9375426"
     ],
     "date_found": "2026-06-06"
+  },
+  {
+    "company_name": "ServiceNow",
+    "date_event": "2026-05-19",
+    "signal_type": "I",
+    "HR_domain": "Governance",
+    "source_type": "news article",
+    "summary": "People Matters notes ServiceNow has a 'Chief People and AI Enablement Officer' role, highlighting HR leadership explicitly tied to AI deployment and workforce planning.",
+    "source_urls": [
+      "https://www.peoplematters.in/article/leadership/international-hr-day-2026-how-hr-became-the-fastest-rising-power-function-in-corporate-leadership-49824"
+    ],
+    "date_found": "2026-06-07"
   }
 ]
