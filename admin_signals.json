@@ -1574,5 +1574,29 @@
     "source_type": "news article",
     "summary": "Infosys expanded Microsoft 365 Copilot to more than 100,000 employees and reported employees creating thousands of internal AI agents, indicating scaled workforce AI enablement beyond pilot stage.",
     "source_url": "https://enterpriseai.economictimes.indiatimes.com/amp/news/industry/infosys-tcs-and-wipro-expand-microsoft-copilot-rollout-to-over-3-lakh-employees/131487144"
+  },
+  {
+    "company_name": "Johnson Controls",
+    "date_event": "2026-06-09",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "job post",
+    "summary": "Job posting for Manager, Talent Acquisition Technology & Operations describes deploying and optimizing enterprise talent acquisition platforms and integrating tools including conversational AI/AI chat solutions across a global footprint.",
+    "source_urls": [
+      "https://jobs.johnsoncontrols.com/job/WD30260657"
+    ],
+    "date_found": "2026-06-09"
+  },
+  {
+    "company_name": "Kimberly-Clark",
+    "date_event": "2026-05-21",
+    "signal_type": "F",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "summary": "Executive comments that Kimberly-Clark is rolling out company-wide AI training initiatives to retrain employees as AI changes hiring and job roles.",
+    "source_urls": [
+      "https://hr.economictimes.indiatimes.com/news/hrtech/talent-acquisition-and-management/ai-shift-forces-skills-rethink-at-india-tech-hubs-kimberly-clark-executive-says/131254548"
+    ],
+    "date_found": "2026-06-09"
   }
 ]
