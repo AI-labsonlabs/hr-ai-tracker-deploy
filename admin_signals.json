@@ -1706,5 +1706,29 @@
       "https://iireporter.com/guardian-builds-ai-ready-talent-for-enterprise-change/"
     ],
     "date_found": "2026-06-13"
+  },
+  {
+    "company_name": "Netflix",
+    "date_event": "2026-05-19",
+    "signal_type": "J",
+    "HR_domain": "AI Hiring",
+    "source_type": "job post",
+    "summary": "Netflix posted a “Senior Applied AI Lead, Talent” role for its Talent AI team, describing work to identify, prototype, and ship AI-powered capabilities across the full Talent lifecycle (attract, develop, retain) and drive broader AI adoption and fluency across Talent.",
+    "source_urls": [
+      "https://explore.jobs.netflix.net/careers/job/790315961316"
+    ],
+    "date_found": "2026-06-14"
+  },
+  {
+    "company_name": "New York Life",
+    "date_event": "2026-05-20",
+    "signal_type": "F",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "summary": "An Unleash interview describes New York Life enabling employees to work confidently with AI as a partner and introducing “Career Hub,” an AI-native tool to help employees think through skills and career paths and identify short-term gigs and learning opportunities.",
+    "source_urls": [
+      "https://www.unleash.ai/company-culture/interview/people-are-really-our-biggest-differentiator-inside-new-york-lifes-approach-to-future-proofing-skills"
+    ],
+    "date_found": "2026-06-14"
   }
 ]
