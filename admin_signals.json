@@ -1742,5 +1742,32 @@
       "https://www.cornerstoneondemand.com/company/news-room/press-releases/cornerstone-launches-cornerstone-workforce-ai-the-intelligence-platform-for-workforce-readiness-built-to-amplify-human-potential-exponentially-with-ai/"
     ],
     "date_found": "2026-06-15"
+  },
+  {
+    "company_name": "SAP",
+    "date_event": "2026-06-09",
+    "signal_type": "B",
+    "HR_domain": "AI Hiring",
+    "source_type": "news article",
+    "summary": "LinkedIn says SAP is an early adopter of LinkedIn Hiring Assistant in the DACH region as LinkedIn made the tool available in German; LinkedIn reports reduced manual profile screening and time saved per open position.",
+    "source_url": "https://www.ad-hoc-news.de/boerse/news/ueberblick/ai-powered-recruiting-tool-lands-in-german-as-recruiters-report-cv-blind/69504442"
+  },
+  {
+    "company_name": "ServiceNow",
+    "date_event": "2026-05-26",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "news article",
+    "summary": "In an interview at ATxSG 2026, ServiceNow describes internal production outcomes from AI-powered self-service, including 3\u20135x faster resolution of HR queries.",
+    "source_url": "https://www.thefastmode.com/expert-opinion/48645-servicenow-at-atxsg-2026-autonomous-ai-enterprise-workflows-and-the-future-of-productivity"
+  },
+  {
+    "company_name": "CVS Health",
+    "date_event": "2026-05-26",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "news article",
+    "summary": "ServiceNow cites CVS Health as a customer example: cutting live agent chats by 50% in 30 days and enabling 2.5M AI-powered conversations by connecting AI to employee workflows.",
+    "source_url": "https://www.thefastmode.com/expert-opinion/48645-servicenow-at-atxsg-2026-autonomous-ai-enterprise-workflows-and-the-future-of-productivity"
   }
 ]
