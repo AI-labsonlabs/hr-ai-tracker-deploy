@@ -1,5 +1,17 @@
 [
   {
+    "company_name": "Tesco",
+    "date_event": "2026-06-02",
+    "signal_type": "I",
+    "HR_domain": "People Analytics",
+    "source_type": "press release",
+    "summary": "Perceptyx announced a partnership with Tesco to enhance its employee experience program by capturing, analyzing, and acting on employee feedback across its global workforce, using AI-powered capabilities to automate analysis and support insight-led action.",
+    "source_urls": [
+      "https://blog.perceptyx.com/tesco-partners-with-perceptyx-to-advance-employee-experience?hs_amp=true"
+    ],
+    "date_found": "2026-06-18"
+  },
+  {
     "company_name": "Google",
     "date_event": "2026-05-29",
     "signal_type": "I",
