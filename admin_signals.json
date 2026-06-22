@@ -1793,5 +1793,59 @@
       "https://www.unleash.ai/artificial-intelligence/interview/netflix-we-talk-about-ai-as-something-revolutionary-but-soon-itll-be-just-another-feature"
     ],
     "date_found": "2026-06-16"
+  },
+  {
+    "company_name": "Cognizant",
+    "date_event": "2026-06-11",
+    "signal_type": "I",
+    "HR_domain": "AI Hiring",
+    "source_type": "press release",
+    "summary": "Cognizant selected Oracle Fusion Cloud Recruiting to pursue a more AI-driven approach to talent acquisition, citing embedded AI and automation to streamline recruiting workflows and personalize candidate experiences.",
+    "source_url": "https://www.oracle.com/news/announcement/cognizant-powers-ai-driven-talent-acquisition-with-oracle-fusion-cloud-recruiting-2026-06-11/"
+  },
+  {
+    "company_name": "Workday",
+    "date_event": "2026-05-28",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "press release",
+    "summary": "Workday and Google Cloud announced an integration that brings Workday’s Sana Self‑Service Agent into Gemini Enterprise (early access), enabling employees and managers to complete HR self-service actions like time-off requests and payslip/tax info queries with Workday permissions applied.",
+    "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx"
+  },
+  {
+    "company_name": "Alphabet",
+    "date_event": "2026-05-28",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "press release",
+    "summary": "Workday and Google Cloud said Alphabet will leverage the Gemini Enterprise Agent Platform to build and run a custom Workday agent intended to streamline and automate workflows for Workday administrators.",
+    "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx"
+  },
+  {
+    "company_name": "NTT DATA",
+    "date_event": "2026-06-15",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "summary": "Eightfold’s customer page states NTT DATA uses Eightfold AI (with SAP SuccessFactors) to enhance recruitment and internal placement, reporting more than doubled employee self-nominations and referral rates.",
+    "source_url": "https://eightfold.ai/customers/"
+  },
+  {
+    "company_name": "Forvia",
+    "date_event": "2026-06-15",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "summary": "Eightfold’s customer page says Forvia uses Eightfold AI to support skills sourcing as it shifts from manufacturing toward becoming a technology-focused company.",
+    "source_url": "https://eightfold.ai/customers/"
+  },
+  {
+    "company_name": "Softtek",
+    "date_event": "2026-06-15",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "vendor case study",
+    "summary": "Eightfold’s customer page says Softtek uses Eightfold’s Talent Intelligence Platform to unify global talent processes.",
+    "source_url": "https://eightfold.ai/customers/"
   }
 ]
