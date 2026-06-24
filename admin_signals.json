@@ -1847,5 +1847,17 @@
     "source_type": "vendor case study",
     "summary": "Eightfold’s customer page says Softtek uses Eightfold’s Talent Intelligence Platform to unify global talent processes.",
     "source_url": "https://eightfold.ai/customers/"
+  },
+  {
+    "company_name": "Williams Companies",
+    "date_event": "2026-06-01",
+    "signal_type": "I",
+    "HR_domain": "Governance",
+    "source_type": "blog post",
+    "summary": "Williams said more than 90% of employees are using Microsoft Copilot and other approved AI tools as part of governed, day-to-day work, with its CHRO emphasizing culture as the key to scaling AI adoption.",
+    "source_urls": [
+      "https://www.williams.com/2026/06/01/williams-tops-90-ai-adoption-as-approved-tools-become-part-of-everyday-work/"
+    ],
+    "date_found": "2026-06-24"
   }
 ]
