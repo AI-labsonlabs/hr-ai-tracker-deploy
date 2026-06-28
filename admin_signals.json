@@ -1859,5 +1859,41 @@
       "https://www.williams.com/2026/06/01/williams-tops-90-ai-adoption-as-approved-tools-become-part-of-everyday-work/"
     ],
     "date_found": "2026-06-24"
+  },
+  {
+    "company_name": "Walmart",
+    "date_event": "2026-06-05",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "summary": "Reuters coverage reports Walmart is leaning into AI-driven training tools; an AI training presentation at Associates Week emphasized “AI learning should build confidence, not pressure.”",
+    "source_urls": [
+      "https://hr.economictimes.indiatimes.com/amp/news/industry/walmart-shareholder-vote-rejects-ai-impact-report-amid-automation-growth/131536299"
+    ],
+    "date_found": "2026-06-28"
+  },
+  {
+    "company_name": "Wells Fargo",
+    "date_event": "2026-06-01",
+    "signal_type": "F",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "summary": "Wells Fargo CEO Charlie Scharf said most employees had been given basic AI tools and the bank is considering employee retraining to address AI-driven role shifts.",
+    "source_urls": [
+      "https://www.esgdive.com/news/wells-fargo-ceo-scharf-ai-tech-employment-jobs/821602/"
+    ],
+    "date_found": "2026-06-28"
+  },
+  {
+    "company_name": "Wells Fargo",
+    "date_event": "2026-06-01",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "summary": "Wells Fargo job posting for “Technology Director – HR Data, Analytics, and Reporting Systems” states the leader will drive adoption of AI and generative AI capabilities for HR data platforms and insights, aligned with governance and regulatory expectations.",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/technology-director-hr-data-analytics-and-reporting-systems-at-wells-fargo-4416902035"
+    ],
+    "date_found": "2026-06-28"
   }
 ]
