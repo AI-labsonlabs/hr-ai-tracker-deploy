@@ -1,1923 +1,1949 @@
 [
   {
+    "HR_domain": "People Analytics",
     "company_name": "Tesco",
     "date_event": "2026-06-02",
+    "date_found": "2026-06-18",
     "signal_type": "I",
-    "HR_domain": "People Analytics",
     "source_type": "press release",
-    "summary": "Perceptyx announced a partnership with Tesco to enhance its employee experience program by capturing, analyzing, and acting on employee feedback across its global workforce, using AI-powered capabilities to automate analysis and support insight-led action.",
     "source_urls": [
       "https://blog.perceptyx.com/tesco-partners-with-perceptyx-to-advance-employee-experience?hs_amp=true"
     ],
-    "date_found": "2026-06-18"
+    "summary": "Perceptyx announced a partnership with Tesco to enhance its employee experience program by capturing, analyzing, and acting on employee feedback across its global workforce, using AI-powered capabilities to automate analysis and support insight-led action."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Google",
     "date_event": "2026-05-29",
+    "date_found": "2026-05-31",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "news article",
-    "summary": "People Matters reports that Alphabet will use the Gemini Enterprise Agent Platform to build a customized Workday agent aimed at automating and streamlining administrative workflows for Workday administrators, as part of the Google Cloud\u2013Workday partnership announcement.",
     "source_urls": [
       "https://www.peoplematters.in/news/hr-technology/google-and-workday-target-hr-transformation-with-enterprise-ai-agents-49988"
     ],
-    "date_found": "2026-05-31"
+    "summary": "People Matters reports that Alphabet will use the Gemini Enterprise Agent Platform to build a customized Workday agent aimed at automating and streamlining administrative workflows for Workday administrators, as part of the Google Cloud\u2013Workday partnership announcement."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Orange",
     "date_event": "2026-05-29",
+    "date_found": "2026-05-31",
     "signal_type": "F",
-    "HR_domain": "Talent Development",
     "source_type": "podcast",
-    "summary": "Orange Business (Orange) describes a company-wide generative AI transformation program, stating that over 90% of the 30,000-person workforce is trained in generative AI and more than 60% use it regularly as part of daily work, supported by reskilling/upskilling programs and dedicated learning time.",
     "source_urls": [
       "https://joshbersin.com/podcast/laurent-aufiels-chief-people-officer-at-orange-business-ai-transformation-is-a-people-project/"
     ],
-    "date_found": "2026-05-31"
+    "summary": "Orange Business (Orange) describes a company-wide generative AI transformation program, stating that over 90% of the 30,000-person workforce is trained in generative AI and more than 60% use it regularly as part of daily work, supported by reskilling/upskilling programs and dedicated learning time."
   },
   {
+    "HR_domain": "AI Hiring",
     "company_name": "CrowdStrike",
     "date_event": "2026-05-20",
+    "date_found": "2026-05-30",
     "signal_type": "J",
-    "HR_domain": "AI Hiring",
     "source_type": "job post",
-    "summary": "CrowdStrike posted an Applied AI Developer role on its HR Data and Analytics (HRDA) team to build internal AI systems for HR processes, including agentic applications, workflow automations, data pipelines, enterprise integrations, and shared infrastructure for a multi-agent AI ecosystem.",
     "source_urls": [
       "https://www.builtinchicago.org/job/applied-ai-developer-remote/9429682"
     ],
-    "date_found": "2026-05-30"
+    "summary": "CrowdStrike posted an Applied AI Developer role on its HR Data and Analytics (HRDA) team to build internal AI systems for HR processes, including agentic applications, workflow automations, data pipelines, enterprise integrations, and shared infrastructure for a multi-agent AI ecosystem."
   },
   {
+    "HR_domain": "AI Hiring",
     "company_name": "CSX Corporation",
     "date_event": "2026-04-13",
+    "date_found": "2026-05-30",
     "signal_type": "J",
-    "HR_domain": "AI Hiring",
     "source_type": "job post",
-    "summary": "CSX posted a Manager, People Systems role describing work to enable AI-powered employee experiences in Oracle HCM, including configuring Redwood-embedded AI features (AI-driven recommendations and guided experiences) and using Oracle AI technologies to streamline HR workflows.",
     "source_urls": [
       "https://www.linkedin.com/jobs/view/mgr-people-systems-remote-at-csx-4410207901"
     ],
-    "date_found": "2026-05-30"
+    "summary": "CSX posted a Manager, People Systems role describing work to enable AI-powered employee experiences in Oracle HCM, including configuring Redwood-embedded AI features (AI-driven recommendations and guided experiences) and using Oracle AI technologies to streamline HR workflows."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Capital Group",
     "date_event": "2026-02-26",
+    "date_found": "2026-03-13",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "social media",
-    "summary": "Capital Group panelists discuss launching an HR AI chatbot internally to all employees.",
     "source_urls": [
       "https://www.youtube.com/watch?v=jl2oxhluERQ"
     ],
-    "date_found": "2026-03-13"
+    "summary": "Capital Group panelists discuss launching an HR AI chatbot internally to all employees."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Walmart",
     "date_event": "2026-03-09",
     "signal_type": "F",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Walmart CPO Donna Morris described a nearly $1B AI upskilling initiative and partnership with Google to offer the Google AI Professional Certificate to associates, positioning it as role-agnostic AI enablement.",
     "source_urls": [
       "https://aimagazine.com/news/donna-morris-the-us-must-prioritise-ai-upskilling"
-    ]
+    ],
+    "summary": "Walmart CPO Donna Morris described a nearly $1B AI upskilling initiative and partnership with Google to offer the Google AI Professional Certificate to associates, positioning it as role-agnostic AI enablement."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Kroger",
     "date_event": "2026-03-10",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "news article",
-    "summary": "Kroger deploying AI tools for frontline store-level associates, part of broader grocery industry push to use AI for workforce management at store level.",
     "source_urls": [
       "https://www.grocerydive.com/news/grocery-ai-frontline-workers-store-level-associates-technology-retail-media/813196/"
-    ]
+    ],
+    "summary": "Kroger deploying AI tools for frontline store-level associates, part of broader grocery industry push to use AI for workforce management at store level."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "SAP",
     "date_event": "2026-03-11",
     "signal_type": "I",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "SAP announced SmartRecruiters for SAP SuccessFactors, providing AI-driven hiring capabilities connected to their HCM platform.",
     "source_urls": [
       "https://news.sap.com/2026/03/smartrecruiters-for-sap-successfactors-ai-driven-hiring-connected-hcm/"
-    ]
+    ],
+    "summary": "SAP announced SmartRecruiters for SAP SuccessFactors, providing AI-driven hiring capabilities connected to their HCM platform."
   },
   {
-    "company_name": "Vanguard",
-    "date_event": "2025-10-15",
-    "signal_type": "F",
     "HR_domain": "Talent Development",
-    "source_type": "edited",
-    "summary": "Vanguard hosted an Innovation With Impact webinar focused on building an AI-ready workforce, fostering AI literacy, and training teams within an ethical framework to promote responsible AI adoption across the organization.",
-    "source_urls": [
-      "https://innovationatvanguard.events.vanguard.com"
-    ],
     "_edited": "2026-03-15T17:56:32.182Z",
     "_original": {
       "company": "Vanguard",
       "date": "2025-10-15",
       "summary_start": "Vanguard hosted an Innovation With Impact webinar focused on"
-    }
+    },
+    "company_name": "Vanguard",
+    "date_event": "2025-10-15",
+    "signal_type": "F",
+    "source_type": "edited",
+    "source_urls": [
+      "https://innovationatvanguard.events.vanguard.com"
+    ],
+    "summary": "Vanguard hosted an Innovation With Impact webinar focused on building an AI-ready workforce, fostering AI literacy, and training teams within an ethical framework to promote responsible AI adoption across the organization."
   },
   {
+    "HR_domain": "People Analytics",
+    "_deleted": true,
+    "_deleted_at": "2026-03-16T19:16:07.651Z",
     "company_name": "Cogent Communications",
     "date_event": "2026-03-15",
     "signal_type": "B",
-    "HR_domain": "People Analytics",
-    "summary": "Cogent relies on a manual careers page (cogentco.com/careers) that requires applicants to email resumes directly, indicating no confirmed ATS or AI recruiting tool in place. The company does use HRIS data analytics for workforce decisions per HR Director's profile, suggesting basic HR analytics capability exists.",
     "source_urls": [
       "https://www.cogentco.com/en/about-cogent/careers"
     ],
-    "_deleted": true,
-    "_deleted_at": "2026-03-16T19:16:07.651Z"
+    "summary": "Cogent relies on a manual careers page (cogentco.com/careers) that requires applicants to email resumes directly, indicating no confirmed ATS or AI recruiting tool in place. The company does use HRIS data analytics for workforce decisions per HR Director's profile, suggesting basic HR analytics capability exists."
   },
   {
-    "company_name": "Gap Inc.",
-    "date_event": "2026-03-06",
-    "signal_type": "F",
     "HR_domain": "Talent Development",
-    "source_type": "edited",
-    "summary": "In Q4 2025 earnings call, Gap Inc. outlined its AI strategy focused on 'enable' for enterprise-wide adoption and building AI fluency across the organization, as part of three areas: enable, optimize, and reinvent.",
-    "source_urls": [
-      "https://www.investing.com/news/transcripts/earnings-call-transcript-gap-inc-meets-q4-2025-expectations-stock-dips-93CH-4545777"
-    ],
     "_edited": "2026-03-16T19:16:43.300Z",
     "_original": {
       "company": "Gap Inc.",
       "date": "2026-03-06",
       "summary_start": "In Q4 2025 earnings call, Gap Inc. outlined its AI strategy "
-    }
+    },
+    "company_name": "Gap Inc.",
+    "date_event": "2026-03-06",
+    "signal_type": "F",
+    "source_type": "edited",
+    "source_urls": [
+      "https://www.investing.com/news/transcripts/earnings-call-transcript-gap-inc-meets-q4-2025-expectations-stock-dips-93CH-4545777"
+    ],
+    "summary": "In Q4 2025 earnings call, Gap Inc. outlined its AI strategy focused on 'enable' for enterprise-wide adoption and building AI fluency across the organization, as part of three areas: enable, optimize, and reinvent."
   },
   {
-    "company_name": "Cigna",
-    "date_event": "2026-03-05",
-    "signal_type": "I",
     "HR_domain": "HR Service Delivery",
-    "source_type": "edited",
-    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affected\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u00a2\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0080\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0094signaling AI-enabled automation of HR and back-office functions.",
-    "source_urls": [
-      "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
-    ],
     "_edited": "2026-03-16T19:17:16.410Z",
     "_original": {
       "company": "Cigna",
       "date": "2026-03-05",
       "summary_start": "Forbes reported that Cigna is reducing its workforce by appr"
-    }
-  },
-  {
-    "company_name": "W.W. Grainger",
+    },
+    "company_name": "Cigna",
     "date_event": "2026-03-05",
     "signal_type": "I",
-    "HR_domain": "AI Hiring",
     "source_type": "edited",
-    "summary": "Grainger's careers site highlights that women make up 40%+ of the US/Canadian workforce and features strong wellbeing and development offerings as part of its employee value proposition.",
     "source_urls": [
-      "https://jobs.grainger.com/go/Information-technology/2432200/"
+      "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
     ],
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affected\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u00a2\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0080\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0094signaling AI-enabled automation of HR and back-office functions."
+  },
+  {
+    "HR_domain": "AI Hiring",
     "_edited": "2026-03-16T19:17:38.540Z",
     "_original": {
       "company": "W.W. Grainger",
       "date": "2026-03-05",
       "summary_start": "Grainger's careers site highlights that women make up 40%+ o"
-    }
-  },
-  {
+    },
     "company_name": "W.W. Grainger",
     "date_event": "2026-03-05",
     "signal_type": "I",
-    "HR_domain": "AI Hiring",
-    "summary": "Grainger's careers site highlights that women make up 40%+ of the US/Canadian workforce and features strong wellbeing and development offerings as part of its employee value proposition.",
+    "source_type": "edited",
     "source_urls": [
       "https://jobs.grainger.com/go/Information-technology/2432200/"
     ],
-    "_deleted": true,
-    "_deleted_at": "2026-03-16T19:18:02.139Z"
+    "summary": "Grainger's careers site highlights that women make up 40%+ of the US/Canadian workforce and features strong wellbeing and development offerings as part of its employee value proposition."
   },
   {
+    "HR_domain": "AI Hiring",
+    "_deleted": true,
+    "_deleted_at": "2026-03-16T19:18:02.139Z",
+    "company_name": "W.W. Grainger",
+    "date_event": "2026-03-05",
+    "signal_type": "I",
+    "source_urls": [
+      "https://jobs.grainger.com/go/Information-technology/2432200/"
+    ],
+    "summary": "Grainger's careers site highlights that women make up 40%+ of the US/Canadian workforce and features strong wellbeing and development offerings as part of its employee value proposition."
+  },
+  {
+    "HR_domain": "People Analytics",
     "company_name": "Microsoft",
     "date_event": "2026-03-16",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "news article",
-    "summary": "Microsoft expanded 'People Skills' (AI-inferred skills from Microsoft 365 activity) across more users and surfaces for workforce insights and learning/talent experiences. Skills Agent removed for new installs.",
     "source_urls": [
       "https://techcommunity.microsoft.com/blog/microsoft365copilotblog/people-skills-expanding-skills-intelligence-to-more-users-and-surfaces-across-mi/4497646"
-    ]
+    ],
+    "summary": "Microsoft expanded 'People Skills' (AI-inferred skills from Microsoft 365 activity) across more users and surfaces for workforce insights and learning/talent experiences. Skills Agent removed for new installs."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "XPO",
     "date_event": "2026-03-21",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "XPO Logistics deployed an AI HR chatbot ('Andrea') for chat-based initial interview and candidate screening in recruiting.",
     "source_urls": [
       "https://europenews.xpo.com/en/2958/xpo-logistics-uses-ai-to-improves-candidate-experience-in-new-hr-chatbot/"
-    ]
+    ],
+    "summary": "XPO Logistics deployed an AI HR chatbot ('Andrea') for chat-based initial interview and candidate screening in recruiting."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "United Airlines",
     "date_event": "2026-03-11",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "United Airlines deployed Phenom's AI-powered high-volume hiring and automated scheduling across Customer Service, Ramp, and Intern positions, with full adoption across 150-200 recruiting team members. Results: 10,000 hours saved per quarter, 750% increase in interviews scheduled, 30% faster screening.",
     "source_urls": [
       "https://www.phenom.com/press-release/phenom-2026-hr-award-winners"
-    ]
+    ],
+    "summary": "United Airlines deployed Phenom's AI-powered high-volume hiring and automated scheduling across Customer Service, Ramp, and Intern positions, with full adoption across 150-200 recruiting team members. Results: 10,000 hours saved per quarter, 750% increase in interviews scheduled, 30% faster screening."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "ServiceNow",
     "date_event": "2026-03-13",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "product release notes",
-    "summary": "ServiceNow's March 2026 HRSD Store Release introduced AI-agentic interview self-scheduling V2, generative onboarding ramp-up plan builder, Voice Agents for HRSD V3.0 with 8-language support, AI-generated offboarding knowledge transfer plan, and employee feedback agentic flows.",
     "source_urls": [
       "https://www.servicenow.com/community/hrsd-blog/march-2026-store-release-deep-dive-blog-hrsd/ba-p/3506473"
-    ]
+    ],
+    "summary": "ServiceNow's March 2026 HRSD Store Release introduced AI-agentic interview self-scheduling V2, generative onboarding ramp-up plan builder, Voice Agents for HRSD V3.0 with 8-language support, AI-generated offboarding knowledge transfer plan, and employee feedback agentic flows."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Ace Hardware",
     "date_event": "2026-01-08",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Ace Hardware deployed Workday's Paradox Conversational ATS (post-acquisition), automating up to 90% of hiring tasks from screening to onboarding via text-based AI conversation, achieving an 86% candidate conversation rate.",
     "source_urls": [
       "https://newsroom.workday.com/2026-01-08-Workday-Accelerates-Retail-and-Hospitality-Momentum-with-New-Customer-Wins-and-AI-Innovations-for-the-Frontline"
-    ]
+    ],
+    "summary": "Ace Hardware deployed Workday's Paradox Conversational ATS (post-acquisition), automating up to 90% of hiring tasks from screening to onboarding via text-based AI conversation, achieving an 86% candidate conversation rate."
   },
   {
+    "HR_domain": "Learning & Development",
     "company_name": "PNC Financial",
     "date_event": "2026-03-19",
     "signal_type": "F",
-    "HR_domain": "Learning & Development",
     "source_type": "news article",
-    "summary": "PNC Financial's CIO described AI workforce upskilling as a 2026 priority, equipping employees with AI tools across the organization as part of broader responsible AI adoption efforts.",
     "source_urls": [
       "https://biztechmagazine.com/article/2026/03/inside-banks-2026-priorities-efficiency-resilience-and-better-customer-service"
-    ]
+    ],
+    "summary": "PNC Financial's CIO described AI workforce upskilling as a 2026 priority, equipping employees with AI tools across the organization as part of broader responsible AI adoption efforts."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Workday",
     "date_event": "2026-01-08",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Workday announced that customers including 7-Eleven and Ace Hardware deployed the Workday Paradox Candidate Experience Agent and Paradox Conversational ATS, automating up to 90% of hiring tasks. Early customers reported conversion rates above 70% and time-to-hire as fast as 3.5 days.",
     "source_urls": [
       "https://newsroom.workday.com/2026-01-08-Workday-Accelerates-Retail-and-Hospitality-Momentum-with-New-Customer-Wins-and-AI-Innovations-for-the-Frontline"
-    ]
+    ],
+    "summary": "Workday announced that customers including 7-Eleven and Ace Hardware deployed the Workday Paradox Candidate Experience Agent and Paradox Conversational ATS, automating up to 90% of hiring tasks. Early customers reported conversion rates above 70% and time-to-hire as fast as 3.5 days."
   },
   {
+    "HR_domain": "Learning & Development",
     "company_name": "KeyCorp",
     "date_event": "2026-03-19",
     "signal_type": "F",
-    "HR_domain": "Learning & Development",
     "source_type": "news article",
-    "summary": "KeyCorp's CIO described accelerated AI talent and upskilling investment as a central 2026 workforce priority.",
     "source_urls": [
       "https://biztechmagazine.com/article/2026/03/inside-banks-2026-priorities-efficiency-resilience-and-better-customer-service"
-    ]
+    ],
+    "summary": "KeyCorp's CIO described accelerated AI talent and upskilling investment as a central 2026 workforce priority."
   },
   {
+    "HR_domain": "Learning & Development",
     "company_name": "U.S. Bancorp",
     "date_event": "2026-03-19",
     "signal_type": "F",
-    "HR_domain": "Learning & Development",
     "source_type": "news article",
-    "summary": "U.S. Bancorp's CIO described ensuring the right skills for responsible AI adoption as a 2026 workforce priority.",
     "source_urls": [
       "https://biztechmagazine.com/article/2026/03/inside-banks-2026-priorities-efficiency-resilience-and-better-customer-service"
-    ]
+    ],
+    "summary": "U.S. Bancorp's CIO described ensuring the right skills for responsible AI adoption as a 2026 workforce priority."
   },
   {
+    "HR_domain": "Governance",
+    "_deleted": true,
+    "_deleted_at": "2026-03-23T23:01:54.560Z",
     "company_name": "Capital Group",
     "date_event": "2025-07-15",
     "signal_type": "A",
-    "HR_domain": "Governance",
-    "summary": "Capital Group's Workday ATS is actively used for talent acquisition with AI-powered disclosure statements visible on all job postings, indicating enterprise-wide deployment of AI-assisted hiring processes.",
     "source_urls": [
       "https://www.capitalgroup.com/about-us/careers/how-we-hire.html"
     ],
-    "_deleted": true,
-    "_deleted_at": "2026-03-23T23:01:54.560Z"
+    "summary": "Capital Group's Workday ATS is actively used for talent acquisition with AI-powered disclosure statements visible on all job postings, indicating enterprise-wide deployment of AI-assisted hiring processes."
   },
   {
+    "HR_domain": "Governance",
+    "_deleted": true,
+    "_deleted_at": "2026-03-24T00:07:20.684Z",
     "company_name": "Capital Group",
     "date_event": "2025-07-15",
     "signal_type": "A",
-    "HR_domain": "Governance",
-    "summary": "Capital Group's Workday ATS is actively used for talent acquisition with AI-powered disclosure statements visible on all job postings, indicating enterprise-wide deployment of AI-assisted hiring processes.",
     "source_urls": [
       "https://www.capitalgroup.com/about-us/careers/how-we-hire.html"
     ],
-    "_deleted": true,
-    "_deleted_at": "2026-03-24T00:07:20.684Z"
+    "summary": "Capital Group's Workday ATS is actively used for talent acquisition with AI-powered disclosure statements visible on all job postings, indicating enterprise-wide deployment of AI-assisted hiring processes."
   },
   {
+    "HR_domain": "Governance",
+    "_deleted": true,
+    "_deleted_at": "2026-03-24T00:22:57.980Z",
     "company_name": "Capital Group",
     "date_event": "2025-07-15",
     "signal_type": "A",
-    "HR_domain": "Governance",
-    "summary": "Capital Group's Workday ATS is actively used for talent acquisition with AI-powered disclosure statements visible on all job postings, indicating enterprise-wide deployment of AI-assisted hiring processes.",
     "source_urls": [
       "https://www.capitalgroup.com/about-us/careers/how-we-hire.html"
     ],
-    "_deleted": true,
-    "_deleted_at": "2026-03-24T00:22:57.980Z"
+    "summary": "Capital Group's Workday ATS is actively used for talent acquisition with AI-powered disclosure statements visible on all job postings, indicating enterprise-wide deployment of AI-assisted hiring processes."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Huawei",
     "date_event": "2026-03-03",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "press release",
-    "summary": "Huawei announced an 'AI Talent Development Service' solution (planning, training, evaluation) plus an AI Talent Competence Map and certification upgrades to help organizations train and assess AI skills.",
     "source_urls": [
       "https://www.huawei.com/en/news/2026/3/ai-talent-development"
-    ]
+    ],
+    "summary": "Huawei announced an 'AI Talent Development Service' solution (planning, training, evaluation) plus an AI Talent Competence Map and certification upgrades to help organizations train and assess AI skills."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "AGCO Corporation",
     "date_event": "2026-01-27",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "podcast/video",
-    "summary": "In a From Day One HR panel, an AGCO talent leader described launching an AI-driven career pathing marketplace that uses AI to analyze job titles, infer/suggest skills, and recommend career paths for employees.",
     "source_urls": [
       "https://www.youtube.com/watch?v=MvNEAKr5rkI"
-    ]
+    ],
+    "summary": "In a From Day One HR panel, an AGCO talent leader described launching an AI-driven career pathing marketplace that uses AI to analyze job titles, infer/suggest skills, and recommend career paths for employees."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Fanatics",
     "date_event": "2026-01-27",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "podcast/video",
-    "summary": "In a From Day One HR panel, a Fanatics talent leader described using an internal AI coach for performance management (e.g., drafting performance reviews and tough feedback) and using Oracle's AI assist for writing goals and assessments.",
     "source_urls": [
       "https://www.youtube.com/watch?v=MvNEAKr5rkI"
-    ]
+    ],
+    "summary": "In a From Day One HR panel, a Fanatics talent leader described using an internal AI coach for performance management (e.g., drafting performance reviews and tough feedback) and using Oracle's AI assist for writing goals and assessments."
   },
   {
+    "HR_domain": "Employee Engagement",
     "company_name": "Toast",
     "date_event": "2026-01-27",
     "signal_type": "A",
-    "HR_domain": "Employee Engagement",
     "source_type": "podcast/video",
-    "summary": "In a From Day One HR panel, a Toast employee relations leader described using AI to generate structured performance reviews/check-ins using prompts grounded in company values, job descriptions, and feedback notes.",
     "source_urls": [
       "https://www.youtube.com/watch?v=MvNEAKr5rkI"
-    ]
+    ],
+    "summary": "In a From Day One HR panel, a Toast employee relations leader described using AI to generate structured performance reviews/check-ins using prompts grounded in company values, job descriptions, and feedback notes."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Workday",
     "date_event": "2026-03-17",
+    "date_found": "2026-04-03",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Workday launched Sana from Workday, a conversational AI interface built on its $1.1B acquisition of Sana Labs. Includes Sana Self-Service Agent with 300+ skills for HR and finance tasks, Sana Enterprise for cross-system orchestration, and AI Agent Studio for custom agent development. Now available to all Workday customers worldwide via Flex Credits.",
     "source_urls": [
       "https://newsroom.workday.com/2026-03-17-Introducing-Sana-from-Workday-Superintelligence-for-Work-That-Finds-Answers,-Takes-Action,-and-Automates-Workflows"
     ],
-    "date_found": "2026-04-03"
+    "summary": "Workday launched Sana from Workday, a conversational AI interface built on its $1.1B acquisition of Sana Labs. Includes Sana Self-Service Agent with 300+ skills for HR and finance tasks, Sana Enterprise for cross-system orchestration, and AI Agent Studio for custom agent development. Now available to all Workday customers worldwide via Flex Credits."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Workday",
     "date_event": "2026-03-26",
+    "date_found": "2026-04-03",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "blog post",
-    "summary": "Workday's Spring 2026 release delivers a new wave of AI Agents for HR including a Talent Management Agent (Early Access) that drafts evidence-based performance reviews using real-time contribution signals, plus new AI capabilities for hiring, compensation, and employee listening. Also launched Workday Data Cloud expansion.",
     "source_urls": [
       "https://blog.workday.com/en-us/workday-delivers-next-wave-agentic-ai-power-new-work-day.html"
     ],
-    "date_found": "2026-04-03"
+    "summary": "Workday's Spring 2026 release delivers a new wave of AI Agents for HR including a Talent Management Agent (Early Access) that drafts evidence-based performance reviews using real-time contribution signals, plus new AI capabilities for hiring, compensation, and employee listening. Also launched Workday Data Cloud expansion."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Oracle",
     "date_event": "2026-02-05",
+    "date_found": "2026-04-03",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "blog post",
-    "summary": "Oracle Fusion Cloud HCM Release 26A delivers new AI agents across Core HR, Talent Management, and Workforce Management. Includes Employee Concierge AI subagents for absence/benefits/comp/payroll, Journeys Assistant for onboarding, AI-powered candidate authenticity scoring for recruiting, Payroll Run Analyst agent, and Employee Goals Assistant for conversational goal creation.",
     "source_urls": [
       "https://blogs.oracle.com/fusioninsider/roadmaps"
     ],
-    "date_found": "2026-04-03"
+    "summary": "Oracle Fusion Cloud HCM Release 26A delivers new AI agents across Core HR, Talent Management, and Workforce Management. Includes Employee Concierge AI subagents for absence/benefits/comp/payroll, Journeys Assistant for onboarding, AI-powered candidate authenticity scoring for recruiting, Payroll Run Analyst agent, and Employee Goals Assistant for conversational goal creation."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Oracle",
     "date_event": "2026-02-05",
+    "date_found": "2026-04-03",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "blog post",
-    "summary": "Oracle HCM 26A introduces AI-powered candidate authenticity scoring to identify fraudulent or AI-generated applicants, plus AI Agent Studio integration for recruiters during offer creation using uploaded policies and prompts. GenAI capabilities added for note and approval fields across HR workflows.",
     "source_urls": [
       "https://www.kyteconsulting.com.au/insights/oracle-fusion-cloud-hcm-release-26a-ai-takes-centre-stage"
     ],
-    "date_found": "2026-04-03"
+    "summary": "Oracle HCM 26A introduces AI-powered candidate authenticity scoring to identify fraudulent or AI-generated applicants, plus AI Agent Studio integration for recruiters during offer creation using uploaded policies and prompts. GenAI capabilities added for note and approval fields across HR workflows."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "SAP",
     "date_event": "2026-04-01",
+    "date_found": "2026-04-03",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "press release",
-    "summary": "ChartHop's AI-powered people operations platform, including the new ChartHop AI Pro with agentic actions and custom AI agents, is now available on the SAP Store. Integration with SAP SuccessFactors Employee Central delivers unified workforce intelligence, headcount planning, and real-time people analytics with AI-powered insights.",
     "source_urls": [
       "https://www.businesswire.com/news/home/20260401921547/en/ChartHop-AI-Powered-People-Operations-Platform-Now-Available-on-SAP-Store"
     ],
-    "date_found": "2026-04-03"
+    "summary": "ChartHop's AI-powered people operations platform, including the new ChartHop AI Pro with agentic actions and custom AI agents, is now available on the SAP Store. Integration with SAP SuccessFactors Employee Central delivers unified workforce intelligence, headcount planning, and real-time people analytics with AI-powered insights."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Microsoft",
     "date_event": "2026-03-27",
+    "date_found": "2026-04-03",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "industry report",
-    "summary": "Korn Ferry's 2026 TA Trends Report notes Microsoft is issuing security IDs to AI agents and building infrastructure for human-AI hybrid teams, with 52% of talent leaders planning to add autonomous AI agents to their teams in 2026.",
     "source_urls": [
       "https://www.kornferry.com/insights/featured-topics/talent-recruitment/ai-in-recruitment-trends"
     ],
-    "date_found": "2026-04-03"
+    "summary": "Korn Ferry's 2026 TA Trends Report notes Microsoft is issuing security IDs to AI agents and building infrastructure for human-AI hybrid teams, with 52% of talent leaders planning to add autonomous AI agents to their teams in 2026."
   },
   {
+    "HR_domain": "People Analytics",
+    "_deleted": true,
     "company_name": "Walt Disney",
     "date_event": "2026-04-03",
+    "date_found": "2026-04-04",
     "signal_type": "I",
-    "HR_domain": "People Analytics",
     "source_type": "news article",
-    "summary": "AI industry digest reported that The Walt Disney Company has moved past pilots to embed generative AI across its operating structure; HR-specific use cases were not specified.",
     "source_urls": [
       "https://asanify.com/blog/news/ai-recruiting-data-breach-april--3-2026/"
     ],
-    "date_found": "2026-04-04",
-    "_deleted": true
+    "summary": "AI industry digest reported that The Walt Disney Company has moved past pilots to embed generative AI across its operating structure; HR-specific use cases were not specified."
   },
   {
+    "HR_domain": "HR Technology",
     "company_name": "Workday",
     "date_event": "2026-03-26",
+    "date_found": "2026-04-06",
     "signal_type": "I",
-    "HR_domain": "HR Technology",
     "source_type": "company blog",
-    "summary": "Workday announced the next wave of agentic AI for HR, including a Payroll Agent (available now) plus Total Rewards Agent and Talent Management Agent (early access), positioned as agent-driven workflows for recruiting/onboarding/performance/payroll.",
     "source_urls": [
       "https://blog.workday.com/en-us/workday-delivers-next-wave-agentic-ai-power-new-work-day.html"
     ],
-    "date_found": "2026-04-06"
+    "summary": "Workday announced the next wave of agentic AI for HR, including a Payroll Agent (available now) plus Total Rewards Agent and Talent Management Agent (early access), positioned as agent-driven workflows for recruiting/onboarding/performance/payroll."
   },
   {
+    "HR_domain": "Governance",
     "company_name": "Oracle",
     "date_event": "2026-03-24",
+    "date_found": "2026-04-06",
     "signal_type": "I",
-    "HR_domain": "Governance",
     "source_type": "company press release",
-    "summary": "Oracle announced updates to Oracle AI Agent Studio for Fusion Applications, emphasizing built-in security, auditability, governance, observability, and ROI measurement for agent deployments, with Fusion Cloud HCM positioned as an AI-powered HR platform.",
     "source_urls": [
       "https://www.oracle.com/news/announcement/oracle-expands-ai-agent-studio-for-fusion-applications-with-agentic-applications-builder-2026-03-24/"
     ],
-    "date_found": "2026-04-06"
+    "summary": "Oracle announced updates to Oracle AI Agent Studio for Fusion Applications, emphasizing built-in security, auditability, governance, observability, and ROI measurement for agent deployments, with Fusion Cloud HCM positioned as an AI-powered HR platform."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Nestl\u00e9",
     "date_event": "2022-12-21",
+    "date_found": "2026-04-12",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Nestl\u00e9 deployed Paradox's conversational assistant 'Olivia' to automate recruiting workflows like candidate screening and interview scheduling (integrated with SAP SuccessFactors), reporting ~25,000 interviews scheduled and ~8,000 hours saved in one year.",
     "source_urls": [
       "https://www.paradox.ai/blog/8-000-hours-of-work-turned-to-almost-zero-how-nestle-did-it"
     ],
-    "date_found": "2026-04-12"
+    "summary": "Nestl\u00e9 deployed Paradox's conversational assistant 'Olivia' to automate recruiting workflows like candidate screening and interview scheduling (integrated with SAP SuccessFactors), reporting ~25,000 interviews scheduled and ~8,000 hours saved in one year."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "AMD",
     "date_event": "2025-09-03",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "LinkedIn reported that AMD is using LinkedIn Hiring Assistant (an AI agent for recruiters) to find qualified talent faster, with early adopters saving 4+ hours per role and reviewing fewer profiles.",
-    "source_url": "https://news.linkedin.com/2025/hiring-assistant-globally-available"
+    "source_url": "https://news.linkedin.com/2025/hiring-assistant-globally-available",
+    "summary": "LinkedIn reported that AMD is using LinkedIn Hiring Assistant (an AI agent for recruiters) to find qualified talent faster, with early adopters saving 4+ hours per role and reviewing fewer profiles."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "SAP",
     "date_event": "2025-03-25",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "SAP was named as a charter customer of LinkedIn Hiring Assistant, with recruiter Rachel Gold reporting the AI learned from feedback to surface higher-quality candidates and saved significant sourcing time, resulting in a confirmed hire from a Hiring Assistant-sourced candidate.",
-    "source_url": "https://www.linkedin.com/business/talent/blog/talent-acquisition/early-impact-of-linkedin-hiring-assistant-and-ai-agent"
+    "source_url": "https://www.linkedin.com/business/talent/blog/talent-acquisition/early-impact-of-linkedin-hiring-assistant-and-ai-agent",
+    "summary": "SAP was named as a charter customer of LinkedIn Hiring Assistant, with recruiter Rachel Gold reporting the AI learned from feedback to surface higher-quality candidates and saved significant sourcing time, resulting in a confirmed hire from a Hiring Assistant-sourced candidate."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Verizon",
     "date_event": "2025-03-25",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Verizon was a charter customer of LinkedIn Hiring Assistant, with recruiter Bhavana Preet reporting that the tool translated job descriptions and intake notes into project details and was impressed with the quality of top-rated candidates presented.",
-    "source_url": "https://www.linkedin.com/business/talent/blog/talent-acquisition/early-impact-of-linkedin-hiring-assistant-and-ai-agent"
+    "source_url": "https://www.linkedin.com/business/talent/blog/talent-acquisition/early-impact-of-linkedin-hiring-assistant-and-ai-agent",
+    "summary": "Verizon was a charter customer of LinkedIn Hiring Assistant, with recruiter Bhavana Preet reporting that the tool translated job descriptions and intake notes into project details and was impressed with the quality of top-rated candidates presented."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Verizon",
     "date_event": "2025-02-27",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Verizon used Beamery to build a skills-based talent mobility strategy for its customer service department. Beamery AI inferred skills from employee profiles, generated an AI Talent Match Score for each role, and enabled skills-based career pathing to reskill and redeploy talent facing automation.",
-    "source_url": "https://beamery.com/resources/case-studies/beamery-tech-company-job-architecture-case-study-apr-2025"
+    "source_url": "https://beamery.com/resources/case-studies/beamery-tech-company-job-architecture-case-study-apr-2025",
+    "summary": "Verizon used Beamery to build a skills-based talent mobility strategy for its customer service department. Beamery AI inferred skills from employee profiles, generated an AI Talent Match Score for each role, and enabled skills-based career pathing to reskill and redeploy talent facing automation."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "General Motors",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "General Motors deployed Paradox's AI assistant to automate interview scheduling, reducing time-to-schedule from 5 days to 29 minutes and saving $2 million annually through automated interview scheduling with AI.",
-    "source_url": "https://www.paradox.ai/clients-stories"
+    "source_url": "https://www.paradox.ai/clients-stories",
+    "summary": "General Motors deployed Paradox's AI assistant to automate interview scheduling, reducing time-to-schedule from 5 days to 29 minutes and saving $2 million annually through automated interview scheduling with AI."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "3M",
     "date_event": "2021-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "3M deployed Paradox Olivia Chatbot as a recruiting chatbot on its careers website in 2021, supporting conversational screening, candidate scheduling, and automated responses to common careers and application questions.",
-    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/paradox-olivia-chatbot"
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/paradox-olivia-chatbot",
+    "summary": "3M deployed Paradox Olivia Chatbot as a recruiting chatbot on its careers website in 2021, supporting conversational screening, candidate scheduling, and automated responses to common careers and application questions."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Medtronic",
     "date_event": "2023-06-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Medtronic is listed as a Paradox Olivia customer, deploying the conversational AI recruiting assistant for talent acquisition automation including candidate screening and interview scheduling.",
-    "source_url": "https://www.paradox.ai/clients-stories"
+    "source_url": "https://www.paradox.ai/clients-stories",
+    "summary": "Medtronic is listed as a Paradox Olivia customer, deploying the conversational AI recruiting assistant for talent acquisition automation including candidate screening and interview scheduling."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Johnson Controls",
     "date_event": "2022-06-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Johnson Controls deployed Paradox's AI recruiting assistant, lowering candidate response time by 98% through automated Q&A \u2014 one of the named success metrics on the Paradox client stories page.",
-    "source_url": "https://www.paradox.ai/clients-stories"
+    "source_url": "https://www.paradox.ai/clients-stories",
+    "summary": "Johnson Controls deployed Paradox's AI recruiting assistant, lowering candidate response time by 98% through automated Q&A \u2014 one of the named success metrics on the Paradox client stories page."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Dell Technologies",
     "date_event": "2023-06-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Dell is listed as a Paradox Olivia customer on the Paradox client stories page, using the conversational AI recruiting assistant for talent acquisition processes.",
-    "source_url": "https://www.paradox.ai/clients-stories"
+    "source_url": "https://www.paradox.ai/clients-stories",
+    "summary": "Dell is listed as a Paradox Olivia customer on the Paradox client stories page, using the conversational AI recruiting assistant for talent acquisition processes."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Amazon",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Amazon is listed as a Paradox Olivia Chatbot customer per AppsRunTheWorld, using the conversational AI for recruiting at scale across its large talent acquisition operations.",
-    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/paradox-olivia-chatbot"
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/paradox-olivia-chatbot",
+    "summary": "Amazon is listed as a Paradox Olivia Chatbot customer per AppsRunTheWorld, using the conversational AI for recruiting at scale across its large talent acquisition operations."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "CVS Health",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "CVS Health is listed as a Paradox Olivia Chatbot customer per AppsRunTheWorld, deploying the conversational AI recruiting chatbot as part of its high-volume talent acquisition operations.",
-    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/paradox-olivia-chatbot"
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/paradox-olivia-chatbot",
+    "summary": "CVS Health is listed as a Paradox Olivia Chatbot customer per AppsRunTheWorld, deploying the conversational AI recruiting chatbot as part of its high-volume talent acquisition operations."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Tractor Supply Company",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Tractor Supply Company deployed Paradox conversational AI (named 'Cory') for recruiting automation, achieving 80% chat-to-apply conversion rate and a 58% decrease in time to apply, as detailed in a Paradox case study.",
-    "source_url": "https://www.paradox.ai/clients-stories"
+    "source_url": "https://www.paradox.ai/clients-stories",
+    "summary": "Tractor Supply Company deployed Paradox conversational AI (named 'Cory') for recruiting automation, achieving 80% chat-to-apply conversion rate and a 58% decrease in time to apply, as detailed in a Paradox case study."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Southwest Airlines",
     "date_event": "2024-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Southwest Airlines deployed Phenom's talent platform achieving a 30% hire rate from the Phenom talent community, with head of Talent Acquisition Greg Muccio citing end-to-end data visibility as a major benefit, reducing need to parse data from five different systems.",
-    "source_url": "https://www.phenom.com/customers"
+    "source_url": "https://www.phenom.com/customers",
+    "summary": "Southwest Airlines deployed Phenom's talent platform achieving a 30% hire rate from the Phenom talent community, with head of Talent Acquisition Greg Muccio citing end-to-end data visibility as a major benefit, reducing need to parse data from five different systems."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Cigna",
     "date_event": "2024-01-01",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Cigna Group deployed Phenom's talent marketplace for internal mobility, with VP Talent Acquisition Amanda Day describing an ecosystem for job finding, internal growth, networking, and mentoring that retained employees who would have otherwise left. Third-party analysis noted 60% of employees completed their talent profiles, demonstrating strong adoption.",
-    "source_url": "https://www.phenom.com/customers"
+    "source_url": "https://www.phenom.com/customers",
+    "summary": "Cigna Group deployed Phenom's talent marketplace for internal mobility, with VP Talent Acquisition Amanda Day describing an ecosystem for job finding, internal growth, networking, and mentoring that retained employees who would have otherwise left. Third-party analysis noted 60% of employees completed their talent profiles, demonstrating strong adoption."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Mastercard",
     "date_event": "2024-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Mastercard deployed Phenom's talent platform achieving 900% more candidate profiles, with Matthias Leitzmann (Director, Global Talent Attraction) citing access to foundational solutions and tools 'all under one roof' for talent attraction.",
-    "source_url": "https://www.phenom.com/customers"
+    "source_url": "https://www.phenom.com/customers",
+    "summary": "Mastercard deployed Phenom's talent platform achieving 900% more candidate profiles, with Matthias Leitzmann (Director, Global Talent Attraction) citing access to foundational solutions and tools 'all under one roof' for talent attraction."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Honda",
     "date_event": "2026-03-11",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Honda won a 2026 Phenom HR Award, having deployed Phenom's talent platform with event functionality and CRM capabilities. Since launch, they hosted 158 recruiting events attracting 5,000+ attendees, generated 3,000+ new CRM entries, and 1,798 job applications directly linked to event participation.",
-    "source_url": "https://finance.yahoo.com/news/phenom-announces-2026-hr-award-110000501.html"
+    "source_url": "https://finance.yahoo.com/news/phenom-announces-2026-hr-award-110000501.html",
+    "summary": "Honda won a 2026 Phenom HR Award, having deployed Phenom's talent platform with event functionality and CRM capabilities. Since launch, they hosted 158 recruiting events attracting 5,000+ attendees, generated 3,000+ new CRM entries, and 1,798 job applications directly linked to event participation."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Southwest Airlines",
     "date_event": "2024-09-12",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Southwest Airlines deployed HiredScore AI for Recruiting with Workday, as featured in a Workday webinar where Southwest shared how the company harnesses AI with HiredScore and Workday Recruiting to enhance productivity, impact, and strategic TA capability.",
-    "source_url": "https://explore.workday.com/hiredscore-healthcare/items/southwest-airlines-taking-recruiting-to-new-heights"
+    "source_url": "https://explore.workday.com/hiredscore-healthcare/items/southwest-airlines-taking-recruiting-to-new-heights",
+    "summary": "Southwest Airlines deployed HiredScore AI for Recruiting with Workday, as featured in a Workday webinar where Southwest shared how the company harnesses AI with HiredScore and Workday Recruiting to enhance productivity, impact, and strategic TA capability."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Eaton Corporation",
     "date_event": "2024-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Eaton deployed Eightfold AI talent intelligence platform for recruiting modernization, achieving 50% reduction in time to hire, 30-40% increase in talent network, double-digit improvements in time to market/present/offer, and 4x productivity gains in sourcing \u2014 as detailed in Eightfold customer highlights.",
-    "source_url": "https://eightfold.ai/learn/eightfold-customer-highlights/"
+    "source_url": "https://eightfold.ai/learn/eightfold-customer-highlights/",
+    "summary": "Eaton deployed Eightfold AI talent intelligence platform for recruiting modernization, achieving 50% reduction in time to hire, 30-40% increase in talent network, double-digit improvements in time to market/present/offer, and 4x productivity gains in sourcing \u2014 as detailed in Eightfold customer highlights."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Fortive",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Fortive is listed as an Eightfold Talent Intelligence Suite customer per AppsRunTheWorld, using the AI talent intelligence platform for talent management across the manufacturing enterprise.",
-    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/eightfold-talent-intelligence-suite"
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/eightfold-talent-intelligence-suite",
+    "summary": "Fortive is listed as an Eightfold Talent Intelligence Suite customer per AppsRunTheWorld, using the AI talent intelligence platform for talent management across the manufacturing enterprise."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Regeneron Pharmaceuticals",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Regeneron Pharmaceuticals is listed as a Beamery customer per AppsRunTheWorld, using the AI-powered talent lifecycle management platform for candidate relationship management and recruiting.",
-    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery"
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery",
+    "summary": "Regeneron Pharmaceuticals is listed as a Beamery customer per AppsRunTheWorld, using the AI-powered talent lifecycle management platform for candidate relationship management and recruiting."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Wells Fargo",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Wells Fargo is listed as a Beamery customer per AppsRunTheWorld, using the AI-powered talent management platform for candidate relationship management and talent acquisition.",
-    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery"
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery",
+    "summary": "Wells Fargo is listed as a Beamery customer per AppsRunTheWorld, using the AI-powered talent management platform for candidate relationship management and talent acquisition."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "HSBC",
     "date_event": "2024-01-01",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "HSBC deployed Gloat's talent marketplace to power a future-fit skills agenda, with HSBC's head of Future Workforce Hamish Nesbit sharing the skills-based transformation and game-changing success metrics in a customer story on gloat.com.",
-    "source_url": "https://gloat.com/resources/customer-stories/"
+    "source_url": "https://gloat.com/resources/customer-stories/",
+    "summary": "HSBC deployed Gloat's talent marketplace to power a future-fit skills agenda, with HSBC's head of Future Workforce Hamish Nesbit sharing the skills-based transformation and game-changing success metrics in a customer story on gloat.com."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Nationwide",
     "date_event": "2024-01-01",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Nationwide deployed Gloat's talent marketplace and used 1.6 million data points to anticipate future skills needs. Head of Future Workforce Mark Jackson described how the organization uses this data for strategic workforce planning decisions.",
-    "source_url": "https://gloat.com/resources/customer-stories/"
+    "source_url": "https://gloat.com/resources/customer-stories/",
+    "summary": "Nationwide deployed Gloat's talent marketplace and used 1.6 million data points to anticipate future skills needs. Head of Future Workforce Mark Jackson described how the organization uses this data for strategic workforce planning decisions."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Mastercard",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Mastercard deployed Gloat's talent marketplace for internal mobility, with the initiative unlocking over 900,000 hours of workforce productivity. TA leaders Lucrecia Borgonovo and Heather Yurko described the marketplace as critical to bringing the internal mobility initiative to speed and scale.",
-    "source_url": "https://gloat.com/resources/customer-stories/"
+    "source_url": "https://gloat.com/resources/customer-stories/",
+    "summary": "Mastercard deployed Gloat's talent marketplace for internal mobility, with the initiative unlocking over 900,000 hours of workforce productivity. TA leaders Lucrecia Borgonovo and Heather Yurko described the marketplace as critical to bringing the internal mobility initiative to speed and scale."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Accenture",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Accenture is a named Workera customer, using the AI skills intelligence platform to accelerate global hiring of Machine Learning Engineers and Data Scientists by leveraging verified skills intelligence for candidate assessment.",
-    "source_url": "https://www.workera.ai/customer-stories"
+    "source_url": "https://www.workera.ai/customer-stories",
+    "summary": "Accenture is a named Workera customer, using the AI skills intelligence platform to accelerate global hiring of Machine Learning Engineers and Data Scientists by leveraging verified skills intelligence for candidate assessment."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "United Airlines",
     "date_event": "2024-04-24",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "United Airlines deployed Cornerstone's Learning Management, Learning Experience, Content, Performance, and Compensation solutions with AI-driven personalized learning. Results include managing 5 million training activities per year, onboarding ~20,000 new hires, and launching Leadership, Digital, and HR learning institutes.",
-    "source_url": "https://www.cornerstoneondemand.com/resources/article/elevating-excellence-with-united-airlines-innovative-learning-solutions/"
+    "source_url": "https://www.cornerstoneondemand.com/resources/article/elevating-excellence-with-united-airlines-innovative-learning-solutions/",
+    "summary": "United Airlines deployed Cornerstone's Learning Management, Learning Experience, Content, Performance, and Compensation solutions with AI-driven personalized learning. Results include managing 5 million training activities per year, onboarding ~20,000 new hires, and launching Leadership, Digital, and HR learning institutes."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Aflac",
     "date_event": "2021-01-01",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Aflac deployed Cornerstone Saba (since 2011) and expanded with Cornerstone Learning Experience in 2021 for AI-powered personalized learning, achieving 200% increase in conversion rate for engaged onboarding program participants and broad sales training improvements.",
-    "source_url": "https://www.cornerstoneondemand.com/resources/article/aflac-sets-up-its-agents-for-success-with-a-complete-learning-experience/"
+    "source_url": "https://www.cornerstoneondemand.com/resources/article/aflac-sets-up-its-agents-for-success-with-a-complete-learning-experience/",
+    "summary": "Aflac deployed Cornerstone Saba (since 2011) and expanded with Cornerstone Learning Experience in 2021 for AI-powered personalized learning, achieving 200% increase in conversion rate for engaged onboarding program participants and broad sales training improvements."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "T. Rowe Price",
     "date_event": "2025-04-17",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "conference",
-    "summary": "T. Rowe Price won the Visier Outsmart 2025 'Best Use of AI with Vee' award for their thoughtful, data-driven approach to training users on Visier's AI digital assistant (Vee), demonstrating commitment to continuous improvement, user feedback, and data literacy for real business impact.",
-    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html",
+    "summary": "T. Rowe Price won the Visier Outsmart 2025 'Best Use of AI with Vee' award for their thoughtful, data-driven approach to training users on Visier's AI digital assistant (Vee), demonstrating commitment to continuous improvement, user feedback, and data literacy for real business impact."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Eaton Corporation",
     "date_event": "2025-04-17",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "conference",
-    "summary": "Eaton Corporation won the Visier Outsmart 2025 'Rookie of the Year' award for an outstanding Visier people analytics implementation \u2014 including building a data mesh simultaneously \u2014 resulting in widespread and growing user adoption for workforce analytics and insights.",
-    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html",
+    "summary": "Eaton Corporation won the Visier Outsmart 2025 'Rookie of the Year' award for an outstanding Visier people analytics implementation \u2014 including building a data mesh simultaneously \u2014 resulting in widespread and growing user adoption for workforce analytics and insights."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "IQVIA",
     "date_event": "2025-04-17",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "conference",
-    "summary": "IQVIA won the Visier Outsmart 2025 'Best Technical Innovation' award for leveraging Visier in groundbreaking ways including optimizing global hiring with Top Location Recommendations and integrating financial KPIs for deeper business insights across HR, finance, and executive leadership.",
-    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html",
+    "summary": "IQVIA won the Visier Outsmart 2025 'Best Technical Innovation' award for leveraging Visier in groundbreaking ways including optimizing global hiring with Top Location Recommendations and integrating financial KPIs for deeper business insights across HR, finance, and executive leadership."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Johnson & Johnson",
     "date_event": "2025-04-17",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "conference",
-    "summary": "Johnson & Johnson won the Visier Outsmart 2025 'Democratizing Data Beyond HR' award for bridging HR and Finance with a unified headcount source of truth enabling the C-suite to make more informed workforce decisions and expanding Visier's impact beyond HR to finance teams.",
-    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html",
+    "summary": "Johnson & Johnson won the Visier Outsmart 2025 'Democratizing Data Beyond HR' award for bridging HR and Finance with a unified headcount source of truth enabling the C-suite to make more informed workforce decisions and expanding Visier's impact beyond HR to finance teams."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Merck",
     "date_event": "2025-04-17",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "conference",
-    "summary": "Merck deployed Visier for people analytics, with Jeremy Shapiro (AVP, Human Resources, Workforce Analytics) presenting at Visier Outsmart 2025 on how AI is reshaping job roles and organizational structures, and how Merck uses analytics to reshape workforce decisions.",
-    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html",
+    "summary": "Merck deployed Visier for people analytics, with Jeremy Shapiro (AVP, Human Resources, Workforce Analytics) presenting at Visier Outsmart 2025 on how AI is reshaping job roles and organizational structures, and how Merck uses analytics to reshape workforce decisions."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Zimmer Biomet",
     "date_event": "2026-01-22",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "blog post",
-    "summary": "Zimmer Biomet deployed Visier people analytics, with Global Talent and Engagement Leader Andrea Lebar describing how they embedded KPIs throughout operating mechanisms on a monthly and quarterly basis, getting business leaders to speak to workforce metrics as standard practice.",
-    "source_url": "https://www.visier.com/blog/building-the-business-case-for-people-analytics/"
+    "source_url": "https://www.visier.com/blog/building-the-business-case-for-people-analytics/",
+    "summary": "Zimmer Biomet deployed Visier people analytics, with Global Talent and Engagement Leader Andrea Lebar describing how they embedded KPIs throughout operating mechanisms on a monthly and quarterly basis, getting business leaders to speak to workforce metrics as standard practice."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Amgen",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "press release",
-    "summary": "Amgen is named as a Visier enterprise customer, using the AI-powered people analytics platform for workforce intelligence and planning decisions. Listed in Visier's profile of enterprise customers including Ford Motor Company, BASF, and Panasonic.",
-    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html",
+    "summary": "Amgen is named as a Visier enterprise customer, using the AI-powered people analytics platform for workforce intelligence and planning decisions. Listed in Visier's profile of enterprise customers including Ford Motor Company, BASF, and Panasonic."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Ford Motor",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "press release",
-    "summary": "Ford Motor Company is named as a Visier enterprise customer for AI-powered people analytics. Listed alongside BASF, Panasonic, Experian, Amgen, and eBay as enterprises using Visier for workforce intelligence and HR data platform.",
-    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html"
+    "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html",
+    "summary": "Ford Motor Company is named as a Visier enterprise customer for AI-powered people analytics. Listed alongside BASF, Panasonic, Experian, Amgen, and eBay as enterprises using Visier for workforce intelligence and HR data platform."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Fidelity Investments",
     "date_event": "2022-01-01",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Fidelity International (international arm) deployed Gloat's talent marketplace to create purpose-led career development, as listed in the Gloat case studies featuring the 'How Fidelity International created purpose-led career development' customer story.",
-    "source_url": "https://www.featuredcustomers.com/vendor/innermobility-gloat/case-studies"
+    "source_url": "https://www.featuredcustomers.com/vendor/innermobility-gloat/case-studies",
+    "summary": "Fidelity International (international arm) deployed Gloat's talent marketplace to create purpose-led career development, as listed in the Gloat case studies featuring the 'How Fidelity International created purpose-led career development' customer story."
   },
   {
+    "HR_domain": "Governance",
     "company_name": "Mastercard",
     "date_event": "2024-01-01",
     "signal_type": "I",
-    "HR_domain": "Governance",
     "source_type": "vendor case study",
-    "summary": "Mastercard deployed Credo AI's AI governance platform, with Chief Data Officer Andrew Reiskind confirming: 'Using the Credo AI Platform, Mastercard is able to manage AI risk and responsibly implement generative AI \u2013 with better speed and scale than ever before. Features like AI Registry and Vendor Registry have allowed us to maintain control of all AI use cases.'",
-    "source_url": "https://www.credo.ai"
+    "source_url": "https://www.credo.ai",
+    "summary": "Mastercard deployed Credo AI's AI governance platform, with Chief Data Officer Andrew Reiskind confirming: 'Using the Credo AI Platform, Mastercard is able to manage AI risk and responsibly implement generative AI \u2013 with better speed and scale than ever before. Features like AI Registry and Vendor Registry have allowed us to maintain control of all AI use cases.'"
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Amazon",
     "date_event": "2018-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Amazon deployed Beamery as a Candidate Relationship Management platform in 2018 to support talent acquisition across seven business units, with Beamery configured for sourcing, candidate profiling, pipeline management, screening and interview scheduling, integrated with LinkedIn Recruiter, iCIMS, Hire, and Slack.",
-    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery"
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery",
+    "summary": "Amazon deployed Beamery as a Candidate Relationship Management platform in 2018 to support talent acquisition across seven business units, with Beamery configured for sourcing, candidate profiling, pipeline management, screening and interview scheduling, integrated with LinkedIn Recruiter, iCIMS, Hire, and Slack."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Altice USA",
     "date_event": "2022-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Altice is listed as a Paradox Olivia conversational AI recruiting customer on the Paradox client stories page, deploying the AI assistant for talent acquisition automation.",
-    "source_url": "https://www.paradox.ai/clients-stories"
+    "source_url": "https://www.paradox.ai/clients-stories",
+    "summary": "Altice is listed as a Paradox Olivia conversational AI recruiting customer on the Paradox client stories page, deploying the AI assistant for talent acquisition automation."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Allstate",
     "date_event": "2016-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Allstate deployed Beamery as its Candidate Relationship Management solution in 2016, centralizing talent pool profiles, campaign orchestration, and candidate engagement workflows for Talent Acquisition and Employer Branding teams with candidate profiling, segmentation, and nurture campaigns.",
-    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery"
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/beamery",
+    "summary": "Allstate deployed Beamery as its Candidate Relationship Management solution in 2016, centralizing talent pool profiles, campaign orchestration, and candidate engagement workflows for Talent Acquisition and Employer Branding teams with candidate profiling, segmentation, and nurture campaigns."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Southwest Airlines",
     "date_event": "2025-04-17",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "conference",
-    "summary": "Southwest Airlines is named as a Visier people analytics customer, with Head of Talent Acquisition Greg Muccio featured in Visier content and listed as a customer at Visier Outsmart 2025, using the platform for end-to-end talent data visibility.",
-    "source_url": "https://www.visier.com/people-analytics/"
+    "source_url": "https://www.visier.com/people-analytics/",
+    "summary": "Southwest Airlines is named as a Visier people analytics customer, with Head of Talent Acquisition Greg Muccio featured in Visier content and listed as a customer at Visier Outsmart 2025, using the platform for end-to-end talent data visibility."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "General Mills",
     "date_event": "2023-01-01",
     "signal_type": "I",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "General Mills is listed on the Paradox website as a customer displaying their logo, indicating deployment of Paradox's conversational AI recruiting platform, though no specific case study details are publicly available.",
-    "source_url": "https://www.nbcnews.com/tech/innovation/ai-job-recruiters-used-top-companies-glitches-rcna215128"
+    "source_url": "https://www.nbcnews.com/tech/innovation/ai-job-recruiters-used-top-companies-glitches-rcna215128",
+    "summary": "General Mills is listed on the Paradox website as a customer displaying their logo, indicating deployment of Paradox's conversational AI recruiting platform, though no specific case study details are publicly available."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Kraft Heinz",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "news article",
-    "summary": "Kraft Heinz is named by NBC News as one of the major brands displaying their logo on the Paradox website, indicating deployment of Paradox's AI recruiting platform (Olivia) for talent acquisition automation.",
-    "source_url": "https://www.nbcnews.com/tech/innovation/ai-job-recruiters-used-top-companies-glitches-rcna215128"
+    "source_url": "https://www.nbcnews.com/tech/innovation/ai-job-recruiters-used-top-companies-glitches-rcna215128",
+    "summary": "Kraft Heinz is named by NBC News as one of the major brands displaying their logo on the Paradox website, indicating deployment of Paradox's AI recruiting platform (Olivia) for talent acquisition automation."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "FedEx",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "news article",
-    "summary": "FedEx is named by NBC News as one of the major brands displaying their logo on the Paradox website, indicating deployment of Paradox's conversational AI recruiting platform (Olivia) for talent acquisition.",
-    "source_url": "https://www.nbcnews.com/tech/innovation/ai-job-recruiters-used-top-companies-glitches-rcna215128"
+    "source_url": "https://www.nbcnews.com/tech/innovation/ai-job-recruiters-used-top-companies-glitches-rcna215128",
+    "summary": "FedEx is named by NBC News as one of the major brands displaying their logo on the Paradox website, indicating deployment of Paradox's conversational AI recruiting platform (Olivia) for talent acquisition."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Eaton Corporation",
     "date_event": "2025-04-15",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Eaton is named as an Eightfold customer in the 2025 Customer Stories PDF, with results including a 50% reduction in time to hire, 30-40% increase in talent network, double-digit improvements in candidate metrics, and 4x productivity gains in sourcing. Eaton received the 'Rookie of the Year' award at Visier Outsmart 2025 separately for Visier.",
-    "source_url": "https://eightfold.ai/wp-content/uploads/customer_stories_2025_digital.pdf"
+    "source_url": "https://eightfold.ai/wp-content/uploads/customer_stories_2025_digital.pdf",
+    "summary": "Eaton is named as an Eightfold customer in the 2025 Customer Stories PDF, with results including a 50% reduction in time to hire, 30-40% increase in talent network, double-digit improvements in candidate metrics, and 4x productivity gains in sourcing. Eaton received the 'Rookie of the Year' award at Visier Outsmart 2025 separately for Visier."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "IBM",
     "date_event": "2025-10-08",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "blog post",
-    "summary": "Josh Bersin reported that IBM switched from Workday to SAP SuccessFactors. IBM is described as a current SAP SuccessFactors (Joule AI) customer in the context of Josh Bersin's SAP Connect report, which noted several clients including IBM and Disney switched from Workday to SuccessFactors.",
-    "source_url": "https://joshbersin.com/2025/10/sap-jumps-ahead-in-ai-agents-with-joule-hcm-features-and-more/"
+    "source_url": "https://joshbersin.com/2025/10/sap-jumps-ahead-in-ai-agents-with-joule-hcm-features-and-more/",
+    "summary": "Josh Bersin reported that IBM switched from Workday to SAP SuccessFactors. IBM is described as a current SAP SuccessFactors (Joule AI) customer in the context of Josh Bersin's SAP Connect report, which noted several clients including IBM and Disney switched from Workday to SuccessFactors."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Walt Disney",
     "date_event": "2025-10-08",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "blog post",
-    "summary": "Josh Bersin reported that Walt Disney Company switched from Workday to SAP SuccessFactors, noting Disney is now a SAP SuccessFactors (with Joule AI) customer, in the context of the Josh Bersin SAP Connect analysis.",
-    "source_url": "https://joshbersin.com/2025/10/sap-jumps-ahead-in-ai-agents-with-joule-hcm-features-and-more/"
+    "source_url": "https://joshbersin.com/2025/10/sap-jumps-ahead-in-ai-agents-with-joule-hcm-features-and-more/",
+    "summary": "Josh Bersin reported that Walt Disney Company switched from Workday to SAP SuccessFactors, noting Disney is now a SAP SuccessFactors (with Joule AI) customer, in the context of the Josh Bersin SAP Connect analysis."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "General Motors",
     "date_event": "2021-10-01",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "blog post",
-    "summary": "General Motors is cited by Gloat as a trust reference in podcast content, with employees accessing talent marketplace opportunities across divisions. GM is named alongside Unilever, Nestl\u00e9, Seagate, and Novartis as Gloat clients.",
-    "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8"
+    "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8",
+    "summary": "General Motors is cited by Gloat as a trust reference in podcast content, with employees accessing talent marketplace opportunities across divisions. GM is named alongside Unilever, Nestl\u00e9, Seagate, and Novartis as Gloat clients."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Amazon",
     "date_event": "2023-01-01",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Amazon is listed by AppsRunTheWorld as using the Eightfold Talent Intelligence Suite for talent management, alongside Paradox Olivia CRM \u2014 confirming Amazon's use of multiple AI recruiting and talent tools concurrently.",
-    "source_url": "https://eightfold.ai/customers/"
+    "source_url": "https://eightfold.ai/customers/",
+    "summary": "Amazon is listed by AppsRunTheWorld as using the Eightfold Talent Intelligence Suite for talent management, alongside Paradox Olivia CRM \u2014 confirming Amazon's use of multiple AI recruiting and talent tools concurrently."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Nestl\u00e9",
     "date_event": "2022-12-21",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Nestl\u00e9 deployed Gloat's talent marketplace alongside its Paradox recruiting deployment. Gloat reference shows Nestl\u00e9 as a named customer for internal talent marketplace and career development, in addition to the confirmed Paradox recruiting deployment already in admin_signals.",
-    "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8"
+    "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8",
+    "summary": "Nestl\u00e9 deployed Gloat's talent marketplace alongside its Paradox recruiting deployment. Gloat reference shows Nestl\u00e9 as a named customer for internal talent marketplace and career development, in addition to the confirmed Paradox recruiting deployment already in admin_signals."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "MetLife",
     "date_event": "2024-01-01",
     "signal_type": "I",
-    "HR_domain": "People Analytics",
     "source_type": "vendor case study",
-    "summary": "MetLife is listed as a Crunchr people analytics platform customer, using Crunchr for workforce analytics including headcount, turnover, DE&I, and organizational structure metrics.",
-    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/crunchr-people-analytics"
+    "source_url": "https://www.appsruntheworld.com/customers-database/products/view/crunchr-people-analytics",
+    "summary": "MetLife is listed as a Crunchr people analytics platform customer, using Crunchr for workforce analytics including headcount, turnover, DE&I, and organizational structure metrics."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Trane Technologies",
     "date_event": "2022-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Trane Technologies deployed Fuel50's AI-powered talent marketplace for internal career pathing and talent mobility; internal recruitment rose from 38.7% to 55% since the Fuel50 platform introduction.",
-    "source_url": "https://fuel50.com/stories/"
+    "source_url": "https://fuel50.com/stories/",
+    "summary": "Trane Technologies deployed Fuel50's AI-powered talent marketplace for internal career pathing and talent mobility; internal recruitment rose from 38.7% to 55% since the Fuel50 platform introduction."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Johnson & Johnson",
     "date_event": "2022-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Johnson & Johnson is listed as a Fuel50 talent marketplace customer, using the platform for internal mobility, career pathing, and talent agility across the enterprise.",
-    "source_url": "https://lhra.io/wp-content/uploads/2022/11/HR-Tech-Awards-2022-Case-Study-Fuel50.pdf"
+    "source_url": "https://lhra.io/wp-content/uploads/2022/11/HR-Tech-Awards-2022-Case-Study-Fuel50.pdf",
+    "summary": "Johnson & Johnson is listed as a Fuel50 talent marketplace customer, using the platform for internal mobility, career pathing, and talent agility across the enterprise."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "CVS Health",
     "date_event": "2022-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "CVS Health is listed as a Fuel50 talent marketplace customer, using the platform for AI-powered internal talent mobility, career pathing, and workforce reskilling.",
-    "source_url": "https://lhra.io/wp-content/uploads/2022/11/HR-Tech-Awards-2022-Case-Study-Fuel50.pdf"
+    "source_url": "https://lhra.io/wp-content/uploads/2022/11/HR-Tech-Awards-2022-Case-Study-Fuel50.pdf",
+    "summary": "CVS Health is listed as a Fuel50 talent marketplace customer, using the platform for AI-powered internal talent mobility, career pathing, and workforce reskilling."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Fidelity Investments",
     "date_event": "2022-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Fidelity Investments is listed as a Fuel50 talent marketplace customer, deploying the platform for talent mobility and career development to help employees discover internal opportunities.",
-    "source_url": "https://lhra.io/wp-content/uploads/2022/11/HR-Tech-Awards-2022-Case-Study-Fuel50.pdf"
+    "source_url": "https://lhra.io/wp-content/uploads/2022/11/HR-Tech-Awards-2022-Case-Study-Fuel50.pdf",
+    "summary": "Fidelity Investments is listed as a Fuel50 talent marketplace customer, deploying the platform for talent mobility and career development to help employees discover internal opportunities."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Vanguard",
     "date_event": "2022-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Vanguard deployed Fuel50's talent intelligence platform for internal mobility and career pathing; mentioned by name as a Fuel50 enterprise customer in analyst coverage.",
-    "source_url": "https://fuel50.com/stories/"
+    "source_url": "https://fuel50.com/stories/",
+    "summary": "Vanguard deployed Fuel50's talent intelligence platform for internal mobility and career pathing; mentioned by name as a Fuel50 enterprise customer in analyst coverage."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Accenture",
     "date_event": "2024-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "press release",
-    "summary": "Accenture selected Workera as Skills Intelligence Partner for its LearnVantage platform, integrating Workera's AI-powered skills assessments to personalize learning journeys and optimize workforce capabilities across the enterprise.",
-    "source_url": "https://www.workera.ai/blog/workera-is-enabling-skills-based-talent-strategies-using-ai"
+    "source_url": "https://www.workera.ai/blog/workera-is-enabling-skills-based-talent-strategies-using-ai",
+    "summary": "Accenture selected Workera as Skills Intelligence Partner for its LearnVantage platform, integrating Workera's AI-powered skills assessments to personalize learning journeys and optimize workforce capabilities across the enterprise."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Eli Lilly",
     "date_event": "2023-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Eli Lilly deployed Workera's AI-powered skills intelligence platform for workforce upskilling and skills assessment across technical and AI-related roles.",
-    "source_url": "https://www.workera.ai/blog/workera-is-enabling-skills-based-talent-strategies-using-ai"
+    "source_url": "https://www.workera.ai/blog/workera-is-enabling-skills-based-talent-strategies-using-ai",
+    "summary": "Eli Lilly deployed Workera's AI-powered skills intelligence platform for workforce upskilling and skills assessment across technical and AI-related roles."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "CVS Health",
     "date_event": "2024-01-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "vendor case study",
-    "summary": "CVS Health deployed Moveworks AI Assistant for HR and IT service delivery, achieving a 50% reduction in live agent chats across HR, procurement, corporate communications, and store operations.",
-    "source_url": "https://www.moveworks.com/us/en/customers"
+    "source_url": "https://www.moveworks.com/us/en/customers",
+    "summary": "CVS Health deployed Moveworks AI Assistant for HR and IT service delivery, achieving a 50% reduction in live agent chats across HR, procurement, corporate communications, and store operations."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Broadcom",
     "date_event": "2023-01-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "vendor case study",
-    "summary": "Broadcom deployed Moveworks AI Assistant across engineering support and HR teams enterprise-wide, tracking an 88% autonomous resolution rate (trending over 89% in Q2 2025).",
-    "source_url": "https://www.moveworks.com/us/en/customers"
+    "source_url": "https://www.moveworks.com/us/en/customers",
+    "summary": "Broadcom deployed Moveworks AI Assistant across engineering support and HR teams enterprise-wide, tracking an 88% autonomous resolution rate (trending over 89% in Q2 2025)."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Ciena Corporation",
     "date_event": "2023-01-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "vendor case study",
-    "summary": "Ciena Corporation deployed Moveworks AI Assistant (branded 'Navi') in Microsoft Teams as a single entry point for HR, IT, legal, and facilities support, cutting approval times from 3 days to 30 minutes and saving 16K+ employee hours per month.",
-    "source_url": "https://www.moveworks.com/us/en/resources/blog/real-world-enterprise-hr-transformation-examples-case-studies"
+    "source_url": "https://www.moveworks.com/us/en/resources/blog/real-world-enterprise-hr-transformation-examples-case-studies",
+    "summary": "Ciena Corporation deployed Moveworks AI Assistant (branded 'Navi') in Microsoft Teams as a single entry point for HR, IT, legal, and facilities support, cutting approval times from 3 days to 30 minutes and saving 16K+ employee hours per month."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Leidos",
     "date_event": "2023-01-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "vendor case study",
-    "summary": "Leidos deployed Moveworks AI Assistant for employee IT and HR service delivery, achieving a 180x drop in support resolution time (mean time to repair).",
-    "source_url": "https://www.moveworks.com/us/en/customers"
+    "source_url": "https://www.moveworks.com/us/en/customers",
+    "summary": "Leidos deployed Moveworks AI Assistant for employee IT and HR service delivery, achieving a 180x drop in support resolution time (mean time to repair)."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Databricks",
     "date_event": "2023-01-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "vendor case study",
-    "summary": "Databricks deployed Moveworks AI Assistant (branded 'R2DB') in Slack to scale HR and IT support during hypergrowth, reaching 73% ticket deflection, NPS of 70, and saving an estimated $1.5M annually in hiring costs for 8,000 employees.",
-    "source_url": "https://www.moveworks.com/us/en/resources/blog/real-world-enterprise-hr-transformation-examples-case-studies"
+    "source_url": "https://www.moveworks.com/us/en/resources/blog/real-world-enterprise-hr-transformation-examples-case-studies",
+    "summary": "Databricks deployed Moveworks AI Assistant (branded 'R2DB') in Slack to scale HR and IT support during hypergrowth, reaching 73% ticket deflection, NPS of 70, and saving an estimated $1.5M annually in hiring costs for 8,000 employees."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Unilever",
     "date_event": "2024-01-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "vendor case study",
-    "summary": "Unilever deployed Moveworks AI Assistant enterprise-wide for employee self-service and support; Unilever is cited as a named Moveworks customer in the company's acquisition by ServiceNow announcement and marketing materials.",
-    "source_url": "https://www.moveworks.com/us/en/resources/videos/employee-self-service-and-support-made-easy"
+    "source_url": "https://www.moveworks.com/us/en/resources/videos/employee-self-service-and-support-made-easy",
+    "summary": "Unilever deployed Moveworks AI Assistant enterprise-wide for employee self-service and support; Unilever is cited as a named Moveworks customer in the company's acquisition by ServiceNow announcement and marketing materials."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Toyota North America",
     "date_event": "2024-01-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "vendor case study",
-    "summary": "Toyota North America deployed Moveworks AI Assistant to improve employee efficiency by streamlining everyday IT and HR tasks; cited as a named Moveworks customer in acquisition announcement and CEO keynote coverage.",
-    "source_url": "https://www.moveworks.com/us/en/resources/videos/how-toyota-siemens-cvs-and-marriott-rely-on-moveworks"
+    "source_url": "https://www.moveworks.com/us/en/resources/videos/how-toyota-siemens-cvs-and-marriott-rely-on-moveworks",
+    "summary": "Toyota North America deployed Moveworks AI Assistant to improve employee efficiency by streamlining everyday IT and HR tasks; cited as a named Moveworks customer in acquisition announcement and CEO keynote coverage."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Palo Alto Networks",
     "date_event": "2024-01-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Palo Alto Networks is a named Moveworks AI Assistant customer, deploying the platform to automate repetitive employee support and IT/HR issues across the enterprise.",
-    "source_url": "https://www.moveworks.com/us/en/company/news/press-releases/moveworks-unveils-ai-agent-marketplace-to-enable-ai-agent-discovery-and-deployment-in-minute"
+    "source_url": "https://www.moveworks.com/us/en/company/news/press-releases/moveworks-unveils-ai-agent-marketplace-to-enable-ai-agent-discovery-and-deployment-in-minute",
+    "summary": "Palo Alto Networks is a named Moveworks AI Assistant customer, deploying the platform to automate repetitive employee support and IT/HR issues across the enterprise."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Johnson Controls",
     "date_event": "2023-01-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "vendor case study",
-    "summary": "Johnson Controls deployed Moveworks AI Assistant (branded 'Omni') in Slack for HR service delivery, covering onboarding, policy clarifications, payroll, and benefits inquiries; over 100,000 employees use the system, cutting HR call volume by 30-40%.",
-    "source_url": "https://www.moveworks.com/us/en/resources/blog/real-world-enterprise-hr-transformation-examples-case-studies"
+    "source_url": "https://www.moveworks.com/us/en/resources/blog/real-world-enterprise-hr-transformation-examples-case-studies",
+    "summary": "Johnson Controls deployed Moveworks AI Assistant (branded 'Omni') in Slack for HR service delivery, covering onboarding, policy clarifications, payroll, and benefits inquiries; over 100,000 employees use the system, cutting HR call volume by 30-40%."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "General Mills",
     "date_event": "2020-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "General Mills is listed as a named Udemy Business enterprise customer, using the AI-powered learning platform to deliver employee skills development and corporate training.",
-    "source_url": "https://www.intercom.com/blog/podcasts/scale-from-marketplace-to-saas-business-how-udemy-acquired-80-of-the-fortune-100/"
+    "source_url": "https://www.intercom.com/blog/podcasts/scale-from-marketplace-to-saas-business-how-udemy-acquired-80-of-the-fortune-100/",
+    "summary": "General Mills is listed as a named Udemy Business enterprise customer, using the AI-powered learning platform to deliver employee skills development and corporate training."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Pinterest",
     "date_event": "2020-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Pinterest is listed as a named Udemy Business enterprise customer, using the platform for AI-powered employee skills development and corporate learning.",
-    "source_url": "https://www.intercom.com/blog/podcasts/scale-from-marketplace-to-saas-business-how-udemy-acquired-80-of-the-fortune-100/"
+    "source_url": "https://www.intercom.com/blog/podcasts/scale-from-marketplace-to-saas-business-how-udemy-acquired-80-of-the-fortune-100/",
+    "summary": "Pinterest is listed as a named Udemy Business enterprise customer, using the platform for AI-powered employee skills development and corporate learning."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Lyft",
     "date_event": "2021-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Lyft is listed as a named Udemy Business enterprise customer, using the AI-powered learning platform for employee skills development and professional development programs.",
-    "source_url": "https://www.sramanamitra.com/2021/11/05/udemy-targets-223-billion-market-opportunity/"
+    "source_url": "https://www.sramanamitra.com/2021/11/05/udemy-targets-223-billion-market-opportunity/",
+    "summary": "Lyft is listed as a named Udemy Business enterprise customer, using the AI-powered learning platform for employee skills development and professional development programs."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Motorola Solutions",
     "date_event": "2024-01-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "vendor case study",
-    "summary": "Motorola Solutions scaled employee support by migrating 300+ automations to Moveworks enterprise AI platform, expanding the AI assistant business-wide for IT and HR service delivery.",
-    "source_url": "https://www.moveworks.com/us/en/resources/videos/how-toyota-siemens-cvs-and-marriott-rely-on-moveworks"
+    "source_url": "https://www.moveworks.com/us/en/resources/videos/how-toyota-siemens-cvs-and-marriott-rely-on-moveworks",
+    "summary": "Motorola Solutions scaled employee support by migrating 300+ automations to Moveworks enterprise AI platform, expanding the AI assistant business-wide for IT and HR service delivery."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Autodesk",
     "date_event": "2019-04-17",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Autodesk deployed Moveworks AI Assistant as an early customer to provide conversational AI for employee IT and HR support, enabling modern AI capabilities for the workforce and improving employee experience and retention.",
-    "source_url": "https://www.prnewswire.com/news-releases/moveworks-unveils-advanced-ai-solution-to-autonomously-resolve-employee-it-support-issues-300833734.html"
+    "source_url": "https://www.prnewswire.com/news-releases/moveworks-unveils-advanced-ai-solution-to-autonomously-resolve-employee-it-support-issues-300833734.html",
+    "summary": "Autodesk deployed Moveworks AI Assistant as an early customer to provide conversational AI for employee IT and HR support, enabling modern AI capabilities for the workforce and improving employee experience and retention."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Philip Morris International",
     "date_event": "2023-01-01",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Philip Morris International partnered with edX for Business on a multi-year roadmap for global workforce transformation and enterprise employee learning and development.",
-    "source_url": "https://business.edx.org/resources/case-studies/"
+    "source_url": "https://business.edx.org/resources/case-studies/",
+    "summary": "Philip Morris International partnered with edX for Business on a multi-year roadmap for global workforce transformation and enterprise employee learning and development."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Microsoft",
     "date_event": "2025-09-03",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Microsoft is named as a charter customer of LinkedIn Hiring Assistant (LinkedIn's AI recruiting agent), deployed to help recruiting teams uncover qualified talent faster and improve hiring outcomes; cited in LinkedIn's global availability announcement.",
-    "source_url": "https://news.linkedin.com/2025/hiring-assistant-globally-available"
+    "source_url": "https://news.linkedin.com/2025/hiring-assistant-globally-available",
+    "summary": "Microsoft is named as a charter customer of LinkedIn Hiring Assistant (LinkedIn's AI recruiting agent), deployed to help recruiting teams uncover qualified talent faster and improve hiring outcomes; cited in LinkedIn's global availability announcement."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Mastercard",
     "date_event": "2025-09-03",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Mastercard is named as a charter customer of LinkedIn Hiring Assistant (LinkedIn's AI recruiting agent), deploying the AI agent to help recruiting teams source and screen qualified candidates faster.",
-    "source_url": "https://www.webwire.com/ViewPressRel.asp?aId=343351"
+    "source_url": "https://www.webwire.com/ViewPressRel.asp?aId=343351",
+    "summary": "Mastercard is named as a charter customer of LinkedIn Hiring Assistant (LinkedIn's AI recruiting agent), deploying the AI agent to help recruiting teams source and screen qualified candidates faster."
   },
   {
+    "HR_domain": "AI Hiring",
     "company_name": "BlackRock",
     "date_event": "2025-12-13",
     "signal_type": "A",
-    "HR_domain": "AI Hiring",
     "source_type": "news article",
-    "summary": "BlackRock's global head of talent acquisition Nigel Williams confirmed AI fluency is now a hiring priority across all roles, with candidates expected to demonstrate prompt engineering skills and AI tool familiarity.",
-    "source_url": "https://www.businessinsider.com/blackrock-talent-acquisition-ai-hire-job-hunt-2025-12"
+    "source_url": "https://www.businessinsider.com/blackrock-talent-acquisition-ai-hire-job-hunt-2025-12",
+    "summary": "BlackRock's global head of talent acquisition Nigel Williams confirmed AI fluency is now a hiring priority across all roles, with candidates expected to demonstrate prompt engineering skills and AI tool familiarity."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "BlackRock",
     "date_event": "2026-04-15",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "BlackRock launched RockAI, an internal platform that lets employees spin up AI agents without coding. Positioned as driving workforce transformation \u2014 employees moving into cross-functional oversight roles as AI handles execution, with new operating models for how work gets done across the firm.",
-    "source_url": "https://www.linkedin.com/news/story/blackrock-launches-ai-platform-for-rapid-agent-creation-8711866/"
+    "source_url": "https://www.linkedin.com/news/story/blackrock-launches-ai-platform-for-rapid-agent-creation-8711866/",
+    "summary": "BlackRock launched RockAI, an internal platform that lets employees spin up AI agents without coding. Positioned as driving workforce transformation \u2014 employees moving into cross-functional oversight roles as AI handles execution, with new operating models for how work gets done across the firm."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "BlackRock",
     "date_event": "2025-12-13",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "news article",
-    "summary": "BlackRock's talent acquisition team uses AI for interview scheduling (confirmed by global head of TA Nigel Williams). Recruiters also actively detect candidate AI use during interviews.",
-    "source_url": "https://www.businessinsider.com/blackrock-talent-acquisition-ai-hire-job-hunt-2025-12#interview-scheduling"
+    "source_url": "https://www.businessinsider.com/blackrock-talent-acquisition-ai-hire-job-hunt-2025-12#interview-scheduling",
+    "summary": "BlackRock's talent acquisition team uses AI for interview scheduling (confirmed by global head of TA Nigel Williams). Recruiters also actively detect candidate AI use during interviews."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Microsoft",
     "date_event": "2026-04-20",
+    "date_found": "2026-04-27",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "blog post",
-    "summary": "Microsoft says its Microsoft Digital team led an enterprise-scale deployment of Microsoft 365 Copilot, launching to more than 300,000 employees and vendors worldwide.",
     "source_urls": [
       "https://www.microsoft.com/insidetrack/blog/unfolding-our-ai-in-it-story-what-to-expect-at-the-2026-microsoft-365-community-conference/"
     ],
-    "date_found": "2026-04-27"
+    "summary": "Microsoft says its Microsoft Digital team led an enterprise-scale deployment of Microsoft 365 Copilot, launching to more than 300,000 employees and vendors worldwide."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Microsoft",
     "date_event": "2026-03-25",
+    "date_found": "2026-04-27",
     "signal_type": "I",
-    "HR_domain": "People Analytics",
     "source_type": "news article",
-    "summary": "Business Insider reports an internal memo from Microsoft Chief People Officer Amy Coleman describing HR org changes to support AI-first products, including moving the People Analytics team into the Employee Experience org to enable faster insight-to-action loops.",
     "source_urls": [
       "https://www.businessinsider.com/microsoft-makes-sweeping-overhaul-of-hr-organization-internal-memo-shows-2026-3"
     ],
-    "date_found": "2026-04-27"
+    "summary": "Business Insider reports an internal memo from Microsoft Chief People Officer Amy Coleman describing HR org changes to support AI-first products, including moving the People Analytics team into the Employee Experience org to enable faster insight-to-action loops."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Robinhood",
     "date_event": "2026-04-27",
+    "date_found": "2026-04-27",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "vendor case study",
-    "summary": "One Model\u2019s website includes a quote from a Robinhood People Senior Analyst describing using One Model to consolidate workforce planning data into a single source of truth and improve trust in people data.",
     "source_urls": [
       "https://www.onemodel.co"
     ],
-    "date_found": "2026-04-27"
+    "summary": "One Model\u2019s website includes a quote from a Robinhood People Senior Analyst describing using One Model to consolidate workforce planning data into a single source of truth and improve trust in people data."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Nestl\u00e9",
     "date_event": "2022-12-21",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Nestl\u00e9\u2019s recruiting team used Paradox\u2019s conversational assistant (Olivia) to automate recruiting tasks like screening and interview scheduling, reporting roughly 8,000 hours saved and 25,000 interviews scheduled in a year.",
-    "source_url": "https://www.paradox.ai/blog/8-000-hours-of-work-turned-to-almost-zero-how-nestle-did-it"
+    "source_url": "https://www.paradox.ai/blog/8-000-hours-of-work-turned-to-almost-zero-how-nestle-did-it",
+    "summary": "Nestl\u00e9\u2019s recruiting team used Paradox\u2019s conversational assistant (Olivia) to automate recruiting tasks like screening and interview scheduling, reporting roughly 8,000 hours saved and 25,000 interviews scheduled in a year."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "ServiceNow",
     "date_event": "2026-03-24",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Coforge announced a successful global rollout of ServiceNow\u2019s AI-powered HR Service Delivery (HRSD) platform for its 35,000+ employees, unifying onboarding, background verification, learning, and performance management. The implementation includes GenAI-enabled workflows and AI agents for predictive onboarding, personalized learning journeys, automated goal-setting, and real-time performance analytics.",
-    "source_url": "https://www.coforge.com/who-we-are/newsroom/press-release/coforge-modernizes-its-global-employee-experience-by-adopting-servicenows-ai-powered-hr-service-delivery-platform"
+    "source_url": "https://www.coforge.com/who-we-are/newsroom/press-release/coforge-modernizes-its-global-employee-experience-by-adopting-servicenows-ai-powered-hr-service-delivery-platform",
+    "summary": "Coforge announced a successful global rollout of ServiceNow\u2019s AI-powered HR Service Delivery (HRSD) platform for its 35,000+ employees, unifying onboarding, background verification, learning, and performance management. The implementation includes GenAI-enabled workflows and AI agents for predictive onboarding, personalized learning journeys, automated goal-setting, and real-time performance analytics."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "ServiceNow",
     "date_event": "2026-02-26",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "ServiceNow announced 'EmployeeWorks', combining Moveworks conversational AI and enterprise search with ServiceNow workflows to turn employee requests (including HR/employee service) into governed end-to-end execution; the announcement also positioned an 'Employee Service Agent' role within its new Autonomous Workforce concept.",
     "source_urls": [
       "https://www.businesswire.com/news/home/20260226739690/en/"
-    ]
+    ],
+    "summary": "ServiceNow announced 'EmployeeWorks', combining Moveworks conversational AI and enterprise search with ServiceNow workflows to turn employee requests (including HR/employee service) into governed end-to-end execution; the announcement also positioned an 'Employee Service Agent' role within its new Autonomous Workforce concept."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Microsoft",
     "date_event": "2026-04-10",
     "signal_type": "I",
-    "HR_domain": "People Analytics",
     "source_type": "news article",
-    "summary": "Microsoft Chief People Officer Amy Coleman outlined HR org changes intended to support 'AI-first products and experiences,' including moving people analytics under employee experience and creating a Workforce Acceleration team focused on workforce planning, internal mobility, and reskilling.",
-    "source_url": "https://www.hr-brew.com/stories/2026/04/10/microsoft-ai-hr-changes"
+    "source_url": "https://www.hr-brew.com/stories/2026/04/10/microsoft-ai-hr-changes",
+    "summary": "Microsoft Chief People Officer Amy Coleman outlined HR org changes intended to support 'AI-first products and experiences,' including moving people analytics under employee experience and creating a Workforce Acceleration team focused on workforce planning, internal mobility, and reskilling."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "IBM",
     "date_event": "2025-04-29",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "blog post",
-    "summary": "IBM CHRO describes rolling out AskHR (digital-first HR assistant) and scaling it to production use, citing 11.5M interactions and 1M+ completed transactions in 2024 with 94% containment and a 40% reduction in HR operating budget over four years.",
-    "source_url": "https://www.ibm.com/think/insights/embracing-future-of-hr-ai-first-enterprise"
+    "source_url": "https://www.ibm.com/think/insights/embracing-future-of-hr-ai-first-enterprise",
+    "summary": "IBM CHRO describes rolling out AskHR (digital-first HR assistant) and scaling it to production use, citing 11.5M interactions and 1M+ completed transactions in 2024 with 94% containment and a 40% reduction in HR operating budget over four years."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Workday",
     "date_event": "2026-04-28",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Workday Government announced a Personnel Action Request (PAR) Agent to automate federal HR personnel actions (hire, promotion, reassignment, pay change, separation) and reduce PAR cycle times by up to 60%; the press release says it is expected to be available to Workday Government customers in 2027.",
-    "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Government-Unveils-Personnel-Action-Request-PAR-Agent-to-Modernize-Federal-HR-and-Strengthen-Mission-Readiness/default.aspx"
+    "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Government-Unveils-Personnel-Action-Request-PAR-Agent-to-Modernize-Federal-HR-and-Strengthen-Mission-Readiness/default.aspx",
+    "summary": "Workday Government announced a Personnel Action Request (PAR) Agent to automate federal HR personnel actions (hire, promotion, reassignment, pay change, separation) and reduce PAR cycle times by up to 60%; the press release says it is expected to be available to Workday Government customers in 2027."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "HSBC",
     "date_event": "2022-07-13",
+    "date_found": "2026-05-11",
     "signal_type": "B",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "HSBC describes a phased rollout of an AI-enabled talent marketplace (Gloat), starting with a ~10,000-person audience and scaling to ~140,000 employees live, with plans to reach ~220,000 employees by Q1 2023; the case study cites outcomes like ~65,000 hours unlocked and 45% cross-functional projects.",
     "source_urls": [
       "https://resources.gloat.com/resources/hsbc-customer-success-story/"
     ],
-    "date_found": "2026-05-11"
+    "summary": "HSBC describes a phased rollout of an AI-enabled talent marketplace (Gloat), starting with a ~10,000-person audience and scaling to ~140,000 employees live, with plans to reach ~220,000 employees by Q1 2023; the case study cites outcomes like ~65,000 hours unlocked and 45% cross-functional projects."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "IBM",
     "date_event": "2026-04-13",
+    "date_found": "2026-05-11",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "news article",
-    "summary": "IBM CHRO Nickle LaMoreaux describes production use of the company\u2019s \u201cAsk HR\u201d chatbot to handle a large share of employee HR inquiries, with human follow-up on negative ratings to improve the system, indicating scaled HR service delivery automation.",
     "source_urls": [
       "https://hrexecutive.com/ibm-chro-focus-on-ai-productivity-at-your-own-risk/"
     ],
-    "date_found": "2026-05-11"
+    "summary": "IBM CHRO Nickle LaMoreaux describes production use of the company\u2019s \u201cAsk HR\u201d chatbot to handle a large share of employee HR inquiries, with human follow-up on negative ratings to improve the system, indicating scaled HR service delivery automation."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "General Motors",
     "date_event": "2026-05-18",
+    "date_found": "2026-05-18",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "Paradox case study says GM uses its conversational recruiting assistant (Ev-e) to automate interview scheduling, cutting time-to-schedule and saving $2M annually.",
     "source_urls": [
       "https://www.paradox.ai/case-studies/general-motors"
     ],
-    "date_found": "2026-05-18"
+    "summary": "Paradox case study says GM uses its conversational recruiting assistant (Ev-e) to automate interview scheduling, cutting time-to-schedule and saving $2M annually."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Bank of America",
     "date_event": "2026-05-19",
+    "date_found": "2026-05-24",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "job post",
-    "summary": "Job posting for a Conversational AI & Language Engineering Lead describes machine-learning capabilities powering Bank of America\u2019s employee-facing virtual assistant, with intent domain coverage including human resources and a roadmap toward generative/agentic AI.",
     "source_urls": [
       "https://careers.bankofamerica.com/en-us/job-detail/26013698/conversational-ai-language-engineering-lead-multiple-locations-esomprank-nv8icpgyzj-3"
     ],
-    "date_found": "2026-05-24"
+    "summary": "Job posting for a Conversational AI & Language Engineering Lead describes machine-learning capabilities powering Bank of America\u2019s employee-facing virtual assistant, with intent domain coverage including human resources and a roadmap toward generative/agentic AI."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Accenture",
     "date_event": "2026-04-28",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Accenture is rolling out Microsoft 365 Copilot across ~743,000 employees; Accenture reported 97% of surveyed employees completed routine tasks 15x faster and monthly active usage reached 89% in a 200,000-license tranche.",
-    "source_url": "https://news.microsoft.com/source/features/digital-transformation/accenture-is-rolling-out-copilot-to-a-workforce-the-size-of-denver/"
+    "source_url": "https://news.microsoft.com/source/features/digital-transformation/accenture-is-rolling-out-copilot-to-a-workforce-the-size-of-denver/",
+    "summary": "Accenture is rolling out Microsoft 365 Copilot across ~743,000 employees; Accenture reported 97% of surveyed employees completed routine tasks 15x faster and monthly active usage reached 89% in a 200,000-license tranche."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Amazon",
     "date_event": "2026-04-27",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Business Insider reported Amazon expanded its internal AI tool \u201cAI Teammate\u201d to 700+ active teams and tracks adoption metrics including Net Promoter Scores and guidance for managers to set adoption/engagement targets.",
-    "source_url": "https://www.businessinsider.com/amazon-tracks-ai-use-engineers-internal-friction-2026-4"
+    "source_url": "https://www.businessinsider.com/amazon-tracks-ai-use-engineers-internal-friction-2026-4",
+    "summary": "Business Insider reported Amazon expanded its internal AI tool \u201cAI Teammate\u201d to 700+ active teams and tracks adoption metrics including Net Promoter Scores and guidance for managers to set adoption/engagement targets."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Walmart",
     "date_event": "2026-05-08",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "podcast",
-    "summary": "Omni Talk reported (citing CIO Dive) that Walmart will train all 2.1M employees on AI tools; EVP & Chief People Officer Donna Morris announced role-based certifications (1.7M US/Canada associates) via Walmart\u2019s \u201cSquiggly\u201d platform with OpenAI and Google Gemini support.",
-    "source_url": "https://omnitalk.blog/2026/05/08/transcript-of-fast-five-episode-target-says-move-or-go-walmart-bets-on-beauty-claude-wants-your-cart-fast-five-video/"
+    "source_url": "https://omnitalk.blog/2026/05/08/transcript-of-fast-five-episode-target-says-move-or-go-walmart-bets-on-beauty-claude-wants-your-cart-fast-five-video/",
+    "summary": "Omni Talk reported (citing CIO Dive) that Walmart will train all 2.1M employees on AI tools; EVP & Chief People Officer Donna Morris announced role-based certifications (1.7M US/Canada associates) via Walmart\u2019s \u201cSquiggly\u201d platform with OpenAI and Google Gemini support."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Cardinal Health",
     "date_event": "2026-05-20",
+    "date_found": "2026-05-26",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "job post",
-    "summary": "Job posting for Director of HR Technology & Corporate Applications states the leader will implement AI agents and intelligent automation across Workday and ServiceNow, and prioritize/pilot/scale agentic capabilities (including \u201cSana from Workday\u201d), indicating active deployment work inside core HR platforms.",
     "source_urls": [
       "https://www.linkedin.com/jobs/view/director-application-development-maintenance-hr-technology-and-corporate-applications-at-cardinal-health-4413609462"
     ],
-    "date_found": "2026-05-26"
+    "summary": "Job posting for Director of HR Technology & Corporate Applications states the leader will implement AI agents and intelligent automation across Workday and ServiceNow, and prioritize/pilot/scale agentic capabilities (including \u201cSana from Workday\u201d), indicating active deployment work inside core HR platforms."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "AbbVie",
     "date_event": "2026-04-28",
+    "date_found": "2026-05-27",
     "signal_type": "I",
-    "HR_domain": "People Analytics",
     "source_type": "vendor case study",
-    "summary": "Visier named AbbVie the 2026 Workforce AI Innovation Award winner, describing AbbVie using Visier\u2019s \u201cVee\u201d alongside an internal LLM to generate and operationalize a 30-60-90 day retention plan grounded in live workforce data.",
     "source_urls": [
       "https://www.visier.com/company/news/visier-announces-2026-vizzie-award-winners-at-outsmart-conference-in-palm-springs/"
     ],
-    "date_found": "2026-05-27"
+    "summary": "Visier named AbbVie the 2026 Workforce AI Innovation Award winner, describing AbbVie using Visier\u2019s \u201cVee\u201d alongside an internal LLM to generate and operationalize a 30-60-90 day retention plan grounded in live workforce data."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Newell Brands",
     "date_event": "2026-04-28",
+    "date_found": "2026-05-27",
     "signal_type": "A",
-    "HR_domain": "People Analytics",
     "source_type": "vendor case study",
-    "summary": "Visier named Newell Brands the 2026 Rookie of the Year winner, stating it grew Visier platform adoption tenfold in its first year and used unified workforce data to identify drivers of attrition and take targeted action.",
     "source_urls": [
       "https://www.visier.com/company/news/visier-announces-2026-vizzie-award-winners-at-outsmart-conference-in-palm-springs/"
     ],
-    "date_found": "2026-05-27"
+    "summary": "Visier named Newell Brands the 2026 Rookie of the Year winner, stating it grew Visier platform adoption tenfold in its first year and used unified workforce data to identify drivers of attrition and take targeted action."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Google",
     "date_event": "2026-05-28",
+    "date_found": "2026-05-29",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Workday and Google Cloud announced Google will leverage the Gemini Enterprise Agent Platform to build and run a custom Workday agent to streamline and automate key workflows for Workday administrators (HR/Workday admin operations).",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx"
     ],
-    "date_found": "2026-05-29"
+    "summary": "Workday and Google Cloud announced Google will leverage the Gemini Enterprise Agent Platform to build and run a custom Workday agent to streamline and automate key workflows for Workday administrators (HR/Workday admin operations)."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Accenture",
     "date_event": "2026-05-28",
+    "date_found": "2026-05-29",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "In the Workday/Google Cloud partnership announcement, Accenture is quoted describing using the expanded partnership to accelerate how it reinvents HR internally (positioned as HR transformation enabled by Workday + Google AI).",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx"
     ],
-    "date_found": "2026-05-29"
+    "summary": "In the Workday/Google Cloud partnership announcement, Accenture is quoted describing using the expanded partnership to accelerate how it reinvents HR internally (positioned as HR transformation enabled by Workday + Google AI)."
   },
   {
+    "HR_domain": "AI Hiring",
     "company_name": "ConocoPhillips",
     "date_event": "2026-05-21",
+    "date_found": "2026-05-29",
     "signal_type": "J",
-    "HR_domain": "AI Hiring",
     "source_type": "job post",
-    "summary": "ConocoPhillips posted a \u201cSolution Architect \u2013 HR & Corp Staffs\u201d role that explicitly lists agentic AI, generative AI, and intelligent agents as part of innovation and AI responsibilities for the HR and Corporate Staff application portfolio.",
     "source_urls": [
       "https://www.linkedin.com/jobs/view/solution-architect-hr-corp-staffs-at-conocophillips-4407087320"
     ],
-    "date_found": "2026-05-29"
+    "summary": "ConocoPhillips posted a \u201cSolution Architect \u2013 HR & Corp Staffs\u201d role that explicitly lists agentic AI, generative AI, and intelligent agents as part of innovation and AI responsibilities for the HR and Corporate Staff application portfolio."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Workday",
     "date_event": "2026-05-28",
+    "date_found": "2026-06-01",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Workday and Google Cloud announced integration of Workday's Sana Self-Service Agent into Gemini Enterprise, enabling employees and managers to complete common HR self-service tasks (e.g., time off, payslips, performance review actions) from Gemini with Workday permissions and approvals; available in early access for eligible customers.",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx"
     ],
-    "date_found": "2026-06-01"
+    "summary": "Workday and Google Cloud announced integration of Workday's Sana Self-Service Agent into Gemini Enterprise, enabling employees and managers to complete common HR self-service tasks (e.g., time off, payslips, performance review actions) from Gemini with Workday permissions and approvals; available in early access for eligible customers."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Microsoft",
     "date_event": "2026-05-07",
+    "date_found": "2026-06-01",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "blog post",
-    "summary": "Microsoft described rolling out its Employee Self-Service Agent (built in Microsoft 365 Copilot) across its global workforce as a single front door for employee support including HR, with staged pilots and eventual rollout to more than 300,000 employees and vendors in 103 countries/regions.",
     "source_urls": [
       "https://www.microsoft.com/insidetrack/blog/transforming-it-support-across-microsoft-with-the-employee-self-service-agent/"
     ],
-    "date_found": "2026-06-01"
+    "summary": "Microsoft described rolling out its Employee Self-Service Agent (built in Microsoft 365 Copilot) across its global workforce as a single front door for employee support including HR, with staged pilots and eventual rollout to more than 300,000 employees and vendors in 103 countries/regions."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Elevance Health",
     "date_event": "2026-05-27",
+    "date_found": "2026-06-02",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "job post",
-    "summary": "Elevance Health posted a 'Workday HR Technology Analyst Senior (Recruiting)' role describing active configuration and optimization of Workday Recruiting (ATS) plus integrations with recruiting vendors including Paradox and HiredScore, indicating production deployment of these HR recruiting platforms.",
     "source_urls": [
       "https://careers.elevancehealth.com/workday-hr-technology-analyst-senior/job/47E29F240D0589E11D5EF8EDB29B61EE"
     ],
-    "date_found": "2026-06-02"
+    "summary": "Elevance Health posted a 'Workday HR Technology Analyst Senior (Recruiting)' role describing active configuration and optimization of Workday Recruiting (ATS) plus integrations with recruiting vendors including Paradox and HiredScore, indicating production deployment of these HR recruiting platforms."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "FedEx",
     "date_event": "2025-12-15",
+    "date_found": "2026-06-03",
     "signal_type": "F",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "FedEx announced an enterprise-wide AI education and literacy program with personalized, role-based training for team members worldwide, delivered with Accenture via its LearnVantage training platform, to build AI fluency and responsible-use skills across its 500,000+ employee workforce.",
     "source_urls": [
       "https://hrexecutive.com/fedex-taps-accenture-for-ai-training-across-500000-employee-workforce/"
     ],
-    "date_found": "2026-06-03"
+    "summary": "FedEx announced an enterprise-wide AI education and literacy program with personalized, role-based training for team members worldwide, delivered with Accenture via its LearnVantage training platform, to build AI fluency and responsible-use skills across its 500,000+ employee workforce."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Ford Motor",
     "date_event": "2026-06-04",
+    "date_found": "2026-06-04",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "job post",
-    "summary": "Ford posted a Senior Specialist \u2013 HR Technology & AI Solutions role describing implementation of AI-enabled HR workflows and deployment of AI models using Microsoft Dynamics 365/Power Platform (AI Builder), including support for UAT and production releases.",
     "source_urls": [
       "https://www.careers.ford.com/job/chennai/senior-specialist-hr-technology-and-ai-solutions/48560/95850386560"
     ],
-    "date_found": "2026-06-04"
+    "summary": "Ford posted a Senior Specialist \u2013 HR Technology & AI Solutions role describing implementation of AI-enabled HR workflows and deployment of AI models using Microsoft Dynamics 365/Power Platform (AI Builder), including support for UAT and production releases."
   },
   {
+    "HR_domain": "AI Hiring",
     "company_name": "GE Vernova",
     "date_event": "2026-05-29",
+    "date_found": "2026-06-05",
     "signal_type": "J",
-    "HR_domain": "AI Hiring",
     "source_type": "job post",
-    "summary": "GE Vernova posted an 'HR AI Enablement & Innovation Program Manager' role to scale HR AI adoption via an HR AI community of practice, AI fluency programs, and use-case prototyping, explicitly referencing Workday-native AI enablement and enterprise AI tools (e.g., Copilot) for HR workflows.",
     "source_urls": [
       "https://careers.gevernova.com/hr-ai-enablement-innovation-program-manager/job/R5043429"
     ],
-    "date_found": "2026-06-05"
+    "summary": "GE Vernova posted an 'HR AI Enablement & Innovation Program Manager' role to scale HR AI adoption via an HR AI community of practice, AI fluency programs, and use-case prototyping, explicitly referencing Workday-native AI enablement and enterprise AI tools (e.g., Copilot) for HR workflows."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Datadog",
     "date_event": "2026-06-06",
+    "date_found": "2026-06-06",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "job post",
-    "summary": "Datadog posted a People Systems Developer role describing the People Technology team building and deploying AI-native workflows across HR processes (talent acquisition, onboarding, performance, workforce planning, and internal service delivery), with integrations to Workday and Greenhouse; the posting frames these as productionized, adopted workflows rather than exploratory research.",
     "source_urls": [
       "https://www.builtinboston.com/job/people-systems-developer/9375426"
     ],
-    "date_found": "2026-06-06"
+    "summary": "Datadog posted a People Systems Developer role describing the People Technology team building and deploying AI-native workflows across HR processes (talent acquisition, onboarding, performance, workforce planning, and internal service delivery), with integrations to Workday and Greenhouse; the posting frames these as productionized, adopted workflows rather than exploratory research."
   },
   {
+    "HR_domain": "Governance",
     "company_name": "ServiceNow",
     "date_event": "2026-05-19",
+    "date_found": "2026-06-07",
     "signal_type": "I",
-    "HR_domain": "Governance",
     "source_type": "news article",
-    "summary": "People Matters notes ServiceNow has a 'Chief People and AI Enablement Officer' role, highlighting HR leadership explicitly tied to AI deployment and workforce planning.",
     "source_urls": [
       "https://www.peoplematters.in/article/leadership/international-hr-day-2026-how-hr-became-the-fastest-rising-power-function-in-corporate-leadership-49824"
     ],
-    "date_found": "2026-06-07"
+    "summary": "People Matters notes ServiceNow has a 'Chief People and AI Enablement Officer' role, highlighting HR leadership explicitly tied to AI deployment and workforce planning."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "IKEA",
     "date_event": "2026-01-26",
+    "date_found": "2026-06-08",
     "signal_type": "F",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Forbes profile of IKEA's Ingka Group describes structured AI literacy program that trained ~30,000 co-workers and ~500 senior leaders on responsible AI; CPO Ulrika Biesert leads with values-driven framework that pairs AI rollout with role-by-role task analysis.",
     "source_urls": [
       "https://www.forbes.com/sites/keithferrazzi/2026/01/26/how-ikea-is-protecting-its-values-culture-while-embracing-ai/"
     ],
-    "date_found": "2026-06-08"
+    "summary": "Forbes profile of IKEA's Ingka Group describes structured AI literacy program that trained ~30,000 co-workers and ~500 senior leaders on responsible AI; CPO Ulrika Biesert leads with values-driven framework that pairs AI rollout with role-by-role task analysis."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "IKEA",
     "date_event": "2026-02-08",
+    "date_found": "2026-06-08",
     "signal_type": "F",
-    "HR_domain": "Talent Development",
     "source_type": "social media",
-    "summary": "IKEA rolling out AI literacy training to 160,000 employees across 31 countries with a tiered curriculum (AI Fundamentals through 'Mastering GenAI for Power Users'); AI proficiency now tracked as a KPI for managers.",
     "source_urls": [
       "https://www.linkedin.com/posts/build-club-ai_ikea-has-made-a-strategic-decision-regarding-activity-7419378305998663680-jLhu"
     ],
-    "date_found": "2026-06-08"
+    "summary": "IKEA rolling out AI literacy training to 160,000 employees across 31 countries with a tiered curriculum (AI Fundamentals through 'Mastering GenAI for Power Users'); AI proficiency now tracked as a KPI for managers."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "J.B. Hunt Transport Services",
     "date_event": "2026-02-23",
+    "date_found": "2026-06-08",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "blog post",
-    "summary": "J.B. Hunt official blog states employees use approximately 45 internal AI agents day-to-day to save hours each week, with the company directing automation savings back into customer/carrier support work.",
     "source_urls": [
       "https://www.jbhunt.com/blog/j-b-hunt-360/driving-efficiency-with-innovative-freight-technology"
     ],
-    "date_found": "2026-06-08"
+    "summary": "J.B. Hunt official blog states employees use approximately 45 internal AI agents day-to-day to save hours each week, with the company directing automation savings back into customer/carrier support work."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Workday",
     "date_event": "2026-05-21",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "earnings call",
-    "summary": "Workday reported that more than 4,000 enterprise customers are actively using at least one Workday AI agent, and described production-scale use cases including an onboarding-focused IT Service Management Agent that provisions access and drafts manager communications.",
-    "source_url": "https://enterprisedna.co/resources/news/workday-q1-fy2027-agentic-ai-4000-customers-500m-arr-2026/"
+    "source_url": "https://enterprisedna.co/resources/news/workday-q1-fy2027-agentic-ai-4000-customers-500m-arr-2026/",
+    "summary": "Workday reported that more than 4,000 enterprise customers are actively using at least one Workday AI agent, and described production-scale use cases including an onboarding-focused IT Service Management Agent that provisions access and drafts manager communications."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Infosys",
     "date_event": "2026-06-03",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Infosys expanded Microsoft 365 Copilot to more than 100,000 employees and reported employees creating thousands of internal AI agents, indicating scaled workforce AI enablement beyond pilot stage.",
-    "source_url": "https://enterpriseai.economictimes.indiatimes.com/amp/news/industry/infosys-tcs-and-wipro-expand-microsoft-copilot-rollout-to-over-3-lakh-employees/131487144"
+    "source_url": "https://enterpriseai.economictimes.indiatimes.com/amp/news/industry/infosys-tcs-and-wipro-expand-microsoft-copilot-rollout-to-over-3-lakh-employees/131487144",
+    "summary": "Infosys expanded Microsoft 365 Copilot to more than 100,000 employees and reported employees creating thousands of internal AI agents, indicating scaled workforce AI enablement beyond pilot stage."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Johnson Controls",
     "date_event": "2026-06-09",
+    "date_found": "2026-06-09",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "job post",
-    "summary": "Job posting for Manager, Talent Acquisition Technology & Operations describes deploying and optimizing enterprise talent acquisition platforms and integrating tools including conversational AI/AI chat solutions across a global footprint.",
     "source_urls": [
       "https://jobs.johnsoncontrols.com/job/WD30260657"
     ],
-    "date_found": "2026-06-09"
+    "summary": "Job posting for Manager, Talent Acquisition Technology & Operations describes deploying and optimizing enterprise talent acquisition platforms and integrating tools including conversational AI/AI chat solutions across a global footprint."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Kimberly-Clark",
     "date_event": "2026-05-21",
+    "date_found": "2026-06-09",
     "signal_type": "F",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Executive comments that Kimberly-Clark is rolling out company-wide AI training initiatives to retrain employees as AI changes hiring and job roles.",
     "source_urls": [
       "https://hr.economictimes.indiatimes.com/news/hrtech/talent-acquisition-and-management/ai-shift-forces-skills-rethink-at-india-tech-hubs-kimberly-clark-executive-says/131254548"
     ],
-    "date_found": "2026-06-09"
+    "summary": "Executive comments that Kimberly-Clark is rolling out company-wide AI training initiatives to retrain employees as AI changes hiring and job roles."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Capita",
     "date_event": "2026-05-13",
+    "date_found": "2026-06-11",
     "signal_type": "I",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox.",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Named-a-Leader-in-the-2026-Gartner-Magic-Quadrant-for-Talent-Acquisition-Recruiting-Suites/default.aspx"
     ],
-    "date_found": "2026-06-11"
+    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Hungry Jacks",
     "date_event": "2026-05-13",
+    "date_found": "2026-06-11",
     "signal_type": "I",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox.",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Named-a-Leader-in-the-2026-Gartner-Magic-Quadrant-for-Talent-Acquisition-Recruiting-Suites/default.aspx"
     ],
-    "date_found": "2026-06-11"
+    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "JLL",
     "date_event": "2026-05-13",
+    "date_found": "2026-06-11",
     "signal_type": "I",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox.",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Named-a-Leader-in-the-2026-Gartner-Magic-Quadrant-for-Talent-Acquisition-Recruiting-Suites/default.aspx"
     ],
-    "date_found": "2026-06-11"
+    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Medtronic",
     "date_event": "2026-05-13",
+    "date_found": "2026-06-11",
     "signal_type": "I",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox.",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Named-a-Leader-in-the-2026-Gartner-Magic-Quadrant-for-Talent-Acquisition-Recruiting-Suites/default.aspx"
     ],
-    "date_found": "2026-06-11"
+    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Signify",
     "date_event": "2026-05-13",
+    "date_found": "2026-06-11",
     "signal_type": "I",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox.",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Named-a-Leader-in-the-2026-Gartner-Magic-Quadrant-for-Talent-Acquisition-Recruiting-Suites/default.aspx"
     ],
-    "date_found": "2026-06-11"
+    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Thomson Reuters",
     "date_event": "2026-05-13",
+    "date_found": "2026-06-11",
     "signal_type": "I",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox.",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Named-a-Leader-in-the-2026-Gartner-Magic-Quadrant-for-Talent-Acquisition-Recruiting-Suites/default.aspx"
     ],
-    "date_found": "2026-06-11"
+    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Valvoline",
     "date_event": "2026-05-13",
+    "date_found": "2026-06-11",
     "signal_type": "I",
-    "HR_domain": "Recruiting",
     "source_type": "press release",
-    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox.",
     "source_urls": [
       "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Named-a-Leader-in-the-2026-Gartner-Magic-Quadrant-for-Talent-Acquisition-Recruiting-Suites/default.aspx"
     ],
-    "date_found": "2026-06-11"
+    "summary": "Workday press release states the company uses Workday's talent acquisition solutions; the release describes Workday Recruiting unified with HiredScore AI for Recruiting and Workday Paradox."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Mastercard",
     "date_event": "2026-05-20",
+    "date_found": "2026-06-12",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "news article",
-    "summary": "Unleash reports that Mastercard is using AI to automatically place interviews on hiring managers\u2019 calendars, reducing scheduling back-and-forth and resulting in interviews being confirmed 90% faster (deployment evidence for recruiting workflow automation).",
     "source_urls": [
       "https://www.unleash.ai/artificial-intelligence/interview/how-mastercard-is-building-ai-into-every-point-of-the-employee-experience"
     ],
-    "date_found": "2026-06-12"
+    "summary": "Unleash reports that Mastercard is using AI to automatically place interviews on hiring managers\u2019 calendars, reducing scheduling back-and-forth and resulting in interviews being confirmed 90% faster (deployment evidence for recruiting workflow automation)."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Guardian Life",
     "date_event": "2026-05-22",
+    "date_found": "2026-06-13",
     "signal_type": "F",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Guardian Life described investing in enterprise AI literacy and embedding AI into everyday workflows as part of a broader enterprise capability shift, in partnership with HR (upskilling signal rather than an HR-tool deployment).",
     "source_urls": [
       "https://iireporter.com/guardian-builds-ai-ready-talent-for-enterprise-change/"
     ],
-    "date_found": "2026-06-13"
+    "summary": "Guardian Life described investing in enterprise AI literacy and embedding AI into everyday workflows as part of a broader enterprise capability shift, in partnership with HR (upskilling signal rather than an HR-tool deployment)."
   },
   {
+    "HR_domain": "AI Hiring",
     "company_name": "Netflix",
     "date_event": "2026-05-19",
+    "date_found": "2026-06-14",
     "signal_type": "J",
-    "HR_domain": "AI Hiring",
     "source_type": "job post",
-    "summary": "Netflix posted a \u201cSenior Applied AI Lead, Talent\u201d role for its Talent AI team, describing work to identify, prototype, and ship AI-powered capabilities across the full Talent lifecycle (attract, develop, retain) and drive broader AI adoption and fluency across Talent.",
     "source_urls": [
       "https://explore.jobs.netflix.net/careers/job/790315961316"
     ],
-    "date_found": "2026-06-14"
+    "summary": "Netflix posted a \u201cSenior Applied AI Lead, Talent\u201d role for its Talent AI team, describing work to identify, prototype, and ship AI-powered capabilities across the full Talent lifecycle (attract, develop, retain) and drive broader AI adoption and fluency across Talent."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "New York Life",
     "date_event": "2026-05-20",
+    "date_found": "2026-06-14",
     "signal_type": "F",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "An Unleash interview describes New York Life enabling employees to work confidently with AI as a partner and introducing \u201cCareer Hub,\u201d an AI-native tool to help employees think through skills and career paths and identify short-term gigs and learning opportunities.",
     "source_urls": [
       "https://www.unleash.ai/company-culture/interview/people-are-really-our-biggest-differentiator-inside-new-york-lifes-approach-to-future-proofing-skills"
     ],
-    "date_found": "2026-06-14"
+    "summary": "An Unleash interview describes New York Life enabling employees to work confidently with AI as a partner and introducing \u201cCareer Hub,\u201d an AI-native tool to help employees think through skills and career paths and identify short-term gigs and learning opportunities."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Cisco",
     "date_event": "2024-04-24",
+    "date_found": "2026-06-15",
     "signal_type": "I",
-    "HR_domain": "Talent Development",
     "source_type": "press release",
-    "summary": "Cornerstone OnDemand press release announcing Cornerstone Workforce AI includes a quote from Cisco Chief Learning Officer Marci Paino describing Cornerstone as central to Cisco\u2019s skills intelligence and talent development/mobilization efforts.",
     "source_urls": [
       "https://www.cornerstoneondemand.com/company/news-room/press-releases/cornerstone-launches-cornerstone-workforce-ai-the-intelligence-platform-for-workforce-readiness-built-to-amplify-human-potential-exponentially-with-ai/"
     ],
-    "date_found": "2026-06-15"
+    "summary": "Cornerstone OnDemand press release announcing Cornerstone Workforce AI includes a quote from Cisco Chief Learning Officer Marci Paino describing Cornerstone as central to Cisco\u2019s skills intelligence and talent development/mobilization efforts."
   },
   {
+    "HR_domain": "AI Hiring",
     "company_name": "SAP",
     "date_event": "2026-06-09",
     "signal_type": "B",
-    "HR_domain": "AI Hiring",
     "source_type": "news article",
-    "summary": "LinkedIn says SAP is an early adopter of LinkedIn Hiring Assistant in the DACH region as LinkedIn made the tool available in German; LinkedIn reports reduced manual profile screening and time saved per open position.",
-    "source_url": "https://www.ad-hoc-news.de/boerse/news/ueberblick/ai-powered-recruiting-tool-lands-in-german-as-recruiters-report-cv-blind/69504442"
+    "source_url": "https://www.ad-hoc-news.de/boerse/news/ueberblick/ai-powered-recruiting-tool-lands-in-german-as-recruiters-report-cv-blind/69504442",
+    "summary": "LinkedIn says SAP is an early adopter of LinkedIn Hiring Assistant in the DACH region as LinkedIn made the tool available in German; LinkedIn reports reduced manual profile screening and time saved per open position."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "ServiceNow",
     "date_event": "2026-05-26",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "news article",
-    "summary": "In an interview at ATxSG 2026, ServiceNow describes internal production outcomes from AI-powered self-service, including 3\u20135x faster resolution of HR queries.",
-    "source_url": "https://www.thefastmode.com/expert-opinion/48645-servicenow-at-atxsg-2026-autonomous-ai-enterprise-workflows-and-the-future-of-productivity"
+    "source_url": "https://www.thefastmode.com/expert-opinion/48645-servicenow-at-atxsg-2026-autonomous-ai-enterprise-workflows-and-the-future-of-productivity",
+    "summary": "In an interview at ATxSG 2026, ServiceNow describes internal production outcomes from AI-powered self-service, including 3\u20135x faster resolution of HR queries."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "CVS Health",
     "date_event": "2026-05-26",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "news article",
-    "summary": "ServiceNow cites CVS Health as a customer example: cutting live agent chats by 50% in 30 days and enabling 2.5M AI-powered conversations by connecting AI to employee workflows.",
-    "source_url": "https://www.thefastmode.com/expert-opinion/48645-servicenow-at-atxsg-2026-autonomous-ai-enterprise-workflows-and-the-future-of-productivity"
+    "source_url": "https://www.thefastmode.com/expert-opinion/48645-servicenow-at-atxsg-2026-autonomous-ai-enterprise-workflows-and-the-future-of-productivity",
+    "summary": "ServiceNow cites CVS Health as a customer example: cutting live agent chats by 50% in 30 days and enabling 2.5M AI-powered conversations by connecting AI to employee workflows."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Netflix",
     "date_event": "2026-05-20",
+    "date_found": "2026-06-16",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "news article",
-    "summary": "Netflix says it is piloting generative AI features inside its internally developed employee feedback solution, including helping employees craft constructive feedback and summarizing feedback into key themes.",
     "source_urls": [
       "https://www.unleash.ai/artificial-intelligence/interview/netflix-we-talk-about-ai-as-something-revolutionary-but-soon-itll-be-just-another-feature"
     ],
-    "date_found": "2026-06-16"
+    "summary": "Netflix says it is piloting generative AI features inside its internally developed employee feedback solution, including helping employees craft constructive feedback and summarizing feedback into key themes."
   },
   {
+    "HR_domain": "AI Hiring",
     "company_name": "Cognizant",
     "date_event": "2026-06-11",
     "signal_type": "I",
-    "HR_domain": "AI Hiring",
     "source_type": "press release",
-    "summary": "Cognizant selected Oracle Fusion Cloud Recruiting to pursue a more AI-driven approach to talent acquisition, citing embedded AI and automation to streamline recruiting workflows and personalize candidate experiences.",
-    "source_url": "https://www.oracle.com/news/announcement/cognizant-powers-ai-driven-talent-acquisition-with-oracle-fusion-cloud-recruiting-2026-06-11/"
+    "source_url": "https://www.oracle.com/news/announcement/cognizant-powers-ai-driven-talent-acquisition-with-oracle-fusion-cloud-recruiting-2026-06-11/",
+    "summary": "Cognizant selected Oracle Fusion Cloud Recruiting to pursue a more AI-driven approach to talent acquisition, citing embedded AI and automation to streamline recruiting workflows and personalize candidate experiences."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Workday",
     "date_event": "2026-05-28",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Workday and Google Cloud announced an integration that brings Workday\u2019s Sana Self\u2011Service Agent into Gemini Enterprise (early access), enabling employees and managers to complete HR self-service actions like time-off requests and payslip/tax info queries with Workday permissions applied.",
-    "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx"
+    "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx",
+    "summary": "Workday and Google Cloud announced an integration that brings Workday\u2019s Sana Self\u2011Service Agent into Gemini Enterprise (early access), enabling employees and managers to complete HR self-service actions like time-off requests and payslip/tax info queries with Workday permissions applied."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Alphabet",
     "date_event": "2026-05-28",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "press release",
-    "summary": "Workday and Google Cloud said Alphabet will leverage the Gemini Enterprise Agent Platform to build and run a custom Workday agent intended to streamline and automate workflows for Workday administrators.",
-    "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx"
+    "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx",
+    "summary": "Workday and Google Cloud said Alphabet will leverage the Gemini Enterprise Agent Platform to build and run a custom Workday agent intended to streamline and automate workflows for Workday administrators."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "NTT DATA",
     "date_event": "2026-06-15",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Eightfold\u2019s customer page states NTT DATA uses Eightfold AI (with SAP SuccessFactors) to enhance recruitment and internal placement, reporting more than doubled employee self-nominations and referral rates.",
-    "source_url": "https://eightfold.ai/customers/"
+    "source_url": "https://eightfold.ai/customers/",
+    "summary": "Eightfold\u2019s customer page states NTT DATA uses Eightfold AI (with SAP SuccessFactors) to enhance recruitment and internal placement, reporting more than doubled employee self-nominations and referral rates."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Forvia",
     "date_event": "2026-06-15",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Eightfold\u2019s customer page says Forvia uses Eightfold AI to support skills sourcing as it shifts from manufacturing toward becoming a technology-focused company.",
-    "source_url": "https://eightfold.ai/customers/"
+    "source_url": "https://eightfold.ai/customers/",
+    "summary": "Eightfold\u2019s customer page says Forvia uses Eightfold AI to support skills sourcing as it shifts from manufacturing toward becoming a technology-focused company."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Softtek",
     "date_event": "2026-06-15",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "vendor case study",
-    "summary": "Eightfold\u2019s customer page says Softtek uses Eightfold\u2019s Talent Intelligence Platform to unify global talent processes.",
-    "source_url": "https://eightfold.ai/customers/"
+    "source_url": "https://eightfold.ai/customers/",
+    "summary": "Eightfold\u2019s customer page says Softtek uses Eightfold\u2019s Talent Intelligence Platform to unify global talent processes."
   },
   {
+    "HR_domain": "Governance",
     "company_name": "Williams Companies",
     "date_event": "2026-06-01",
+    "date_found": "2026-06-24",
     "signal_type": "I",
-    "HR_domain": "Governance",
     "source_type": "blog post",
-    "summary": "Williams said more than 90% of employees are using Microsoft Copilot and other approved AI tools as part of governed, day-to-day work, with its CHRO emphasizing culture as the key to scaling AI adoption.",
     "source_urls": [
       "https://www.williams.com/2026/06/01/williams-tops-90-ai-adoption-as-approved-tools-become-part-of-everyday-work/"
     ],
-    "date_found": "2026-06-24"
+    "summary": "Williams said more than 90% of employees are using Microsoft Copilot and other approved AI tools as part of governed, day-to-day work, with its CHRO emphasizing culture as the key to scaling AI adoption."
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Walmart",
     "date_event": "2026-06-05",
+    "date_found": "2026-06-28",
     "signal_type": "A",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Reuters coverage reports Walmart is leaning into AI-driven training tools; an AI training presentation at Associates Week emphasized \u201cAI learning should build confidence, not pressure.\u201d",
     "source_urls": [
       "https://hr.economictimes.indiatimes.com/amp/news/industry/walmart-shareholder-vote-rejects-ai-impact-report-amid-automation-growth/131536299"
     ],
-    "date_found": "2026-06-28"
+    "summary": "Reuters coverage reports Walmart is leaning into AI-driven training tools; an AI training presentation at Associates Week emphasized \u201cAI learning should build confidence, not pressure.\u201d"
   },
   {
+    "HR_domain": "Talent Development",
     "company_name": "Wells Fargo",
     "date_event": "2026-06-01",
+    "date_found": "2026-06-28",
     "signal_type": "F",
-    "HR_domain": "Talent Development",
     "source_type": "news article",
-    "summary": "Wells Fargo CEO Charlie Scharf said most employees had been given basic AI tools and the bank is considering employee retraining to address AI-driven role shifts.",
     "source_urls": [
       "https://www.esgdive.com/news/wells-fargo-ceo-scharf-ai-tech-employment-jobs/821602/"
     ],
-    "date_found": "2026-06-28"
+    "summary": "Wells Fargo CEO Charlie Scharf said most employees had been given basic AI tools and the bank is considering employee retraining to address AI-driven role shifts."
   },
   {
+    "HR_domain": "People Analytics",
     "company_name": "Wells Fargo",
     "date_event": "2026-06-01",
+    "date_found": "2026-06-28",
     "signal_type": "J",
-    "HR_domain": "People Analytics",
     "source_type": "job post",
-    "summary": "Wells Fargo job posting for \u201cTechnology Director \u2013 HR Data, Analytics, and Reporting Systems\u201d states the leader will drive adoption of AI and generative AI capabilities for HR data platforms and insights, aligned with governance and regulatory expectations.",
     "source_urls": [
       "https://www.linkedin.com/jobs/view/technology-director-hr-data-analytics-and-reporting-systems-at-wells-fargo-4416902035"
     ],
-    "date_found": "2026-06-28"
+    "summary": "Wells Fargo job posting for \u201cTechnology Director \u2013 HR Data, Analytics, and Reporting Systems\u201d states the leader will drive adoption of AI and generative AI capabilities for HR data platforms and insights, aligned with governance and regulatory expectations."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "Booking.com",
     "date_event": "2026-06-03",
+    "date_found": "2026-06-29",
     "signal_type": "I",
-    "HR_domain": "HR Service Delivery",
     "source_type": "conference",
-    "summary": "ServiceNow's Knowledge 2026 HR-leader highlights cites Booking.com as a customer story discussing what it takes to move from AI strategy to AI production for HR/employee experience, emphasizing governance, measurement, and data quality.",
     "source_urls": [
       "https://www.servicenow.com/fr-ca/workflow/hr/knowledge-2026-highlights-hr-leaders.html"
     ],
-    "date_found": "2026-06-29"
+    "summary": "ServiceNow's Knowledge 2026 HR-leader highlights cites Booking.com as a customer story discussing what it takes to move from AI strategy to AI production for HR/employee experience, emphasizing governance, measurement, and data quality."
   },
   {
+    "HR_domain": "HR Service Delivery",
     "company_name": "CVS Health",
     "date_event": "2026-06-03",
+    "date_found": "2026-06-29",
     "signal_type": "A",
-    "HR_domain": "HR Service Delivery",
     "source_type": "conference",
-    "summary": "ServiceNow's Knowledge 2026 HR-leader highlights describes CVS Health using ServiceNow EmployeeWorks at scale for employee service, reporting 30% fewer live agent chats across ~300,000 colleagues and 300,000 calls deflected.",
     "source_urls": [
       "https://www.servicenow.com/fr-ca/workflow/hr/knowledge-2026-highlights-hr-leaders.html"
     ],
-    "date_found": "2026-06-29"
+    "summary": "ServiceNow's Knowledge 2026 HR-leader highlights describes CVS Health using ServiceNow EmployeeWorks at scale for employee service, reporting 30% fewer live agent chats across ~300,000 colleagues and 300,000 calls deflected."
+  },
+  {
+    "HR_domain": "People Analytics",
+    "company_name": "Banner Health",
+    "date_event": "2023-01-25",
+    "date_found": "2026-06-29",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_url": "https://blog.perceptyx.com/perceptyx-adds-more-than-100-new-enterprise-customers-including-gannett-and-banner-health",
+    "source_urls": [
+      "https://blog.perceptyx.com/perceptyx-adds-more-than-100-new-enterprise-customers-including-gannett-and-banner-health"
+    ],
+    "summary": "Perceptyx announced Banner Health as a new enterprise customer for its employee listening and people analytics platform (publication date used)."
+  },
+  {
+    "HR_domain": "People Analytics",
+    "company_name": "Gannett",
+    "date_event": "2023-01-25",
+    "date_found": "2026-06-29",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_url": "https://blog.perceptyx.com/perceptyx-adds-more-than-100-new-enterprise-customers-including-gannett-and-banner-health",
+    "source_urls": [
+      "https://blog.perceptyx.com/perceptyx-adds-more-than-100-new-enterprise-customers-including-gannett-and-banner-health"
+    ],
+    "summary": "Perceptyx announced Gannett as a new enterprise customer for its employee listening and people analytics platform (publication date used)."
   }
 ]
