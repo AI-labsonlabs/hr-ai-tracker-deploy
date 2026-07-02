@@ -1957,5 +1957,17 @@
       "https://careers.agcocorp.com/job/Duluth-VP,-Global-Talent-Solutions-GA-30026/1394273600/"
     ],
     "date_found": "2026-06-30"
+  },
+  {
+    "company_name": "Amazon",
+    "date_event": "2026-06-18",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "vendor case study",
+    "summary": "AWS case study describes Amazon WFS using an AWS ML/analytics-based talent acquisition platform (‘Amazon Intelligent Talent Acquisition’) to manage the recruitment funnel and hiring, including ML-driven workforce marketing optimization and staffing plans; the case study states the solution was used to hire hundreds of thousands of people and reduced workforce marketing spend by 90% over two years.",
+    "source_urls": [
+      "https://aws.amazon.com/solutions/case-studies/amazon-intelligent-talent-acquisition-case-study/"
+    ],
+    "date_found": "2026-07-02"
   }
 ]
