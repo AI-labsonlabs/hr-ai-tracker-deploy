@@ -21,7 +21,7 @@
     "source_urls": [
       "https://www.peoplematters.in/news/hr-technology/google-and-workday-target-hr-transformation-with-enterprise-ai-agents-49988"
     ],
-    "summary": "People Matters reports that Alphabet will use the Gemini Enterprise Agent Platform to build a customized Workday agent aimed at automating and streamlining administrative workflows for Workday administrators, as part of the Google Cloud–Workday partnership announcement."
+    "summary": "People Matters reports that Alphabet will use the Gemini Enterprise Agent Platform to build a customized Workday agent aimed at automating and streamlining administrative workflows for Workday administrators, as part of the Google Cloud\u2013Workday partnership announcement."
   },
   {
     "HR_domain": "Talent Development",
@@ -165,7 +165,7 @@
     "source_urls": [
       "https://www.forbes.com/sites/jonmarkman/2026/03/05/the-healthcare-efficiency-gap-why-ai-layoffs-may-backfire-in-medicine/"
     ],
-    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affectedÃÂÃÂ¢ÃÂÃÂÃÂÃÂsignaling AI-enabled automation of HR and back-office functions."
+    "summary": "Forbes reported that Cigna is reducing its workforce by approximately 2,000 employees (nearly 3% of its 73,500 workforce) by February 2026 to 'drive greater efficiency,' with corporate and administrative roles primarily affected\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u00a2\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0080\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0094signaling AI-enabled automation of HR and back-office functions."
   },
   {
     "HR_domain": "AI Hiring",
@@ -486,7 +486,7 @@
   },
   {
     "HR_domain": "Recruiting",
-    "company_name": "Nestlé",
+    "company_name": "Nestl\u00e9",
     "date_event": "2022-12-21",
     "date_found": "2026-04-12",
     "signal_type": "A",
@@ -494,7 +494,7 @@
     "source_urls": [
       "https://www.paradox.ai/blog/8-000-hours-of-work-turned-to-almost-zero-how-nestle-did-it"
     ],
-    "summary": "Nestlé deployed Paradox's conversational assistant 'Olivia' to automate recruiting workflows like candidate screening and interview scheduling (integrated with SAP SuccessFactors), reporting ~25,000 interviews scheduled and ~8,000 hours saved in one year."
+    "summary": "Nestl\u00e9 deployed Paradox's conversational assistant 'Olivia' to automate recruiting workflows like candidate screening and interview scheduling (integrated with SAP SuccessFactors), reporting ~25,000 interviews scheduled and ~8,000 hours saved in one year."
   },
   {
     "HR_domain": "Recruiting",
@@ -566,7 +566,7 @@
     "signal_type": "A",
     "source_type": "vendor case study",
     "source_url": "https://www.paradox.ai/clients-stories",
-    "summary": "Johnson Controls deployed Paradox's AI recruiting assistant, lowering candidate response time by 98% through automated Q&A — one of the named success metrics on the Paradox client stories page."
+    "summary": "Johnson Controls deployed Paradox's AI recruiting assistant, lowering candidate response time by 98% through automated Q&A \u2014 one of the named success metrics on the Paradox client stories page."
   },
   {
     "HR_domain": "Recruiting",
@@ -656,7 +656,7 @@
     "signal_type": "A",
     "source_type": "vendor case study",
     "source_url": "https://eightfold.ai/learn/eightfold-customer-highlights/",
-    "summary": "Eaton deployed Eightfold AI talent intelligence platform for recruiting modernization, achieving 50% reduction in time to hire, 30-40% increase in talent network, double-digit improvements in time to market/present/offer, and 4x productivity gains in sourcing — as detailed in Eightfold customer highlights."
+    "summary": "Eaton deployed Eightfold AI talent intelligence platform for recruiting modernization, achieving 50% reduction in time to hire, 30-40% increase in talent network, double-digit improvements in time to market/present/offer, and 4x productivity gains in sourcing \u2014 as detailed in Eightfold customer highlights."
   },
   {
     "HR_domain": "Talent Development",
@@ -755,7 +755,7 @@
     "signal_type": "A",
     "source_type": "conference",
     "source_url": "https://www.prnewswire.com/news-releases/visiers-outsmart-2025-global-customer-conference-delivers-record-attendance-ushers-in-the-age-of-workforce-ai-302431609.html",
-    "summary": "Eaton Corporation won the Visier Outsmart 2025 'Rookie of the Year' award for an outstanding Visier people analytics implementation — including building a data mesh simultaneously — resulting in widespread and growing user adoption for workforce analytics and insights."
+    "summary": "Eaton Corporation won the Visier Outsmart 2025 'Rookie of the Year' award for an outstanding Visier people analytics implementation \u2014 including building a data mesh simultaneously \u2014 resulting in widespread and growing user adoption for workforce analytics and insights."
   },
   {
     "HR_domain": "People Analytics",
@@ -827,7 +827,7 @@
     "signal_type": "I",
     "source_type": "vendor case study",
     "source_url": "https://www.credo.ai",
-    "summary": "Mastercard deployed Credo AI's AI governance platform, with Chief Data Officer Andrew Reiskind confirming: 'Using the Credo AI Platform, Mastercard is able to manage AI risk and responsibly implement generative AI – with better speed and scale than ever before. Features like AI Registry and Vendor Registry have allowed us to maintain control of all AI use cases.'"
+    "summary": "Mastercard deployed Credo AI's AI governance platform, with Chief Data Officer Andrew Reiskind confirming: 'Using the Credo AI Platform, Mastercard is able to manage AI risk and responsibly implement generative AI \u2013 with better speed and scale than ever before. Features like AI Registry and Vendor Registry have allowed us to maintain control of all AI use cases.'"
   },
   {
     "HR_domain": "Recruiting",
@@ -926,7 +926,7 @@
     "signal_type": "A",
     "source_type": "blog post",
     "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8",
-    "summary": "General Motors is cited by Gloat as a trust reference in podcast content, with employees accessing talent marketplace opportunities across divisions. GM is named alongside Unilever, Nestlé, Seagate, and Novartis as Gloat clients."
+    "summary": "General Motors is cited by Gloat as a trust reference in podcast content, with employees accessing talent marketplace opportunities across divisions. GM is named alongside Unilever, Nestl\u00e9, Seagate, and Novartis as Gloat clients."
   },
   {
     "HR_domain": "Recruiting",
@@ -935,16 +935,16 @@
     "signal_type": "A",
     "source_type": "vendor case study",
     "source_url": "https://eightfold.ai/customers/",
-    "summary": "Amazon is listed by AppsRunTheWorld as using the Eightfold Talent Intelligence Suite for talent management, alongside Paradox Olivia CRM — confirming Amazon's use of multiple AI recruiting and talent tools concurrently."
+    "summary": "Amazon is listed by AppsRunTheWorld as using the Eightfold Talent Intelligence Suite for talent management, alongside Paradox Olivia CRM \u2014 confirming Amazon's use of multiple AI recruiting and talent tools concurrently."
   },
   {
     "HR_domain": "Talent Development",
-    "company_name": "Nestlé",
+    "company_name": "Nestl\u00e9",
     "date_event": "2022-12-21",
     "signal_type": "A",
     "source_type": "vendor case study",
     "source_url": "https://www.youtube.com/watch?v=cNPg4sHnkc8",
-    "summary": "Nestlé deployed Gloat's talent marketplace alongside its Paradox recruiting deployment. Gloat reference shows Nestlé as a named customer for internal talent marketplace and career development, in addition to the confirmed Paradox recruiting deployment already in admin_signals."
+    "summary": "Nestl\u00e9 deployed Gloat's talent marketplace alongside its Paradox recruiting deployment. Gloat reference shows Nestl\u00e9 as a named customer for internal talent marketplace and career development, in addition to the confirmed Paradox recruiting deployment already in admin_signals."
   },
   {
     "HR_domain": "People Analytics",
@@ -1187,7 +1187,7 @@
     "signal_type": "A",
     "source_type": "news article",
     "source_url": "https://www.linkedin.com/news/story/blackrock-launches-ai-platform-for-rapid-agent-creation-8711866/",
-    "summary": "BlackRock launched RockAI, an internal platform that lets employees spin up AI agents without coding. Positioned as driving workforce transformation — employees moving into cross-functional oversight roles as AI handles execution, with new operating models for how work gets done across the firm."
+    "summary": "BlackRock launched RockAI, an internal platform that lets employees spin up AI agents without coding. Positioned as driving workforce transformation \u2014 employees moving into cross-functional oversight roles as AI handles execution, with new operating models for how work gets done across the firm."
   },
   {
     "HR_domain": "Recruiting",
@@ -1232,16 +1232,16 @@
     "source_urls": [
       "https://www.onemodel.co"
     ],
-    "summary": "One Model’s website includes a quote from a Robinhood People Senior Analyst describing using One Model to consolidate workforce planning data into a single source of truth and improve trust in people data."
+    "summary": "One Model\u2019s website includes a quote from a Robinhood People Senior Analyst describing using One Model to consolidate workforce planning data into a single source of truth and improve trust in people data."
   },
   {
     "HR_domain": "Recruiting",
-    "company_name": "Nestlé",
+    "company_name": "Nestl\u00e9",
     "date_event": "2022-12-21",
     "signal_type": "A",
     "source_type": "vendor case study",
     "source_url": "https://www.paradox.ai/blog/8-000-hours-of-work-turned-to-almost-zero-how-nestle-did-it",
-    "summary": "Nestlé’s recruiting team used Paradox’s conversational assistant (Olivia) to automate recruiting tasks like screening and interview scheduling, reporting roughly 8,000 hours saved and 25,000 interviews scheduled in a year."
+    "summary": "Nestl\u00e9\u2019s recruiting team used Paradox\u2019s conversational assistant (Olivia) to automate recruiting tasks like screening and interview scheduling, reporting roughly 8,000 hours saved and 25,000 interviews scheduled in a year."
   },
   {
     "HR_domain": "HR Service Delivery",
@@ -1250,7 +1250,7 @@
     "signal_type": "A",
     "source_type": "press release",
     "source_url": "https://www.coforge.com/who-we-are/newsroom/press-release/coforge-modernizes-its-global-employee-experience-by-adopting-servicenows-ai-powered-hr-service-delivery-platform",
-    "summary": "Coforge announced a successful global rollout of ServiceNow’s AI-powered HR Service Delivery (HRSD) platform for its 35,000+ employees, unifying onboarding, background verification, learning, and performance management. The implementation includes GenAI-enabled workflows and AI agents for predictive onboarding, personalized learning journeys, automated goal-setting, and real-time performance analytics."
+    "summary": "Coforge announced a successful global rollout of ServiceNow\u2019s AI-powered HR Service Delivery (HRSD) platform for its 35,000+ employees, unifying onboarding, background verification, learning, and performance management. The implementation includes GenAI-enabled workflows and AI agents for predictive onboarding, personalized learning journeys, automated goal-setting, and real-time performance analytics."
   },
   {
     "HR_domain": "HR Service Delivery",
@@ -1312,7 +1312,7 @@
     "source_urls": [
       "https://hrexecutive.com/ibm-chro-focus-on-ai-productivity-at-your-own-risk/"
     ],
-    "summary": "IBM CHRO Nickle LaMoreaux describes production use of the company’s “Ask HR” chatbot to handle a large share of employee HR inquiries, with human follow-up on negative ratings to improve the system, indicating scaled HR service delivery automation."
+    "summary": "IBM CHRO Nickle LaMoreaux describes production use of the company\u2019s \u201cAsk HR\u201d chatbot to handle a large share of employee HR inquiries, with human follow-up on negative ratings to improve the system, indicating scaled HR service delivery automation."
   },
   {
     "HR_domain": "Recruiting",
@@ -1336,7 +1336,7 @@
     "source_urls": [
       "https://careers.bankofamerica.com/en-us/job-detail/26013698/conversational-ai-language-engineering-lead-multiple-locations-esomprank-nv8icpgyzj-3"
     ],
-    "summary": "Job posting for a Conversational AI & Language Engineering Lead describes machine-learning capabilities powering Bank of America’s employee-facing virtual assistant, with intent domain coverage including human resources and a roadmap toward generative/agentic AI."
+    "summary": "Job posting for a Conversational AI & Language Engineering Lead describes machine-learning capabilities powering Bank of America\u2019s employee-facing virtual assistant, with intent domain coverage including human resources and a roadmap toward generative/agentic AI."
   },
   {
     "HR_domain": "Talent Development",
@@ -1354,7 +1354,7 @@
     "signal_type": "I",
     "source_type": "news article",
     "source_url": "https://www.businessinsider.com/amazon-tracks-ai-use-engineers-internal-friction-2026-4",
-    "summary": "Business Insider reported Amazon expanded its internal AI tool “AI Teammate” to 700+ active teams and tracks adoption metrics including Net Promoter Scores and guidance for managers to set adoption/engagement targets."
+    "summary": "Business Insider reported Amazon expanded its internal AI tool \u201cAI Teammate\u201d to 700+ active teams and tracks adoption metrics including Net Promoter Scores and guidance for managers to set adoption/engagement targets."
   },
   {
     "HR_domain": "Talent Development",
@@ -1363,7 +1363,7 @@
     "signal_type": "I",
     "source_type": "podcast",
     "source_url": "https://omnitalk.blog/2026/05/08/transcript-of-fast-five-episode-target-says-move-or-go-walmart-bets-on-beauty-claude-wants-your-cart-fast-five-video/",
-    "summary": "Omni Talk reported (citing CIO Dive) that Walmart will train all 2.1M employees on AI tools; EVP & Chief People Officer Donna Morris announced role-based certifications (1.7M US/Canada associates) via Walmart’s “Squiggly” platform with OpenAI and Google Gemini support."
+    "summary": "Omni Talk reported (citing CIO Dive) that Walmart will train all 2.1M employees on AI tools; EVP & Chief People Officer Donna Morris announced role-based certifications (1.7M US/Canada associates) via Walmart\u2019s \u201cSquiggly\u201d platform with OpenAI and Google Gemini support."
   },
   {
     "HR_domain": "HR Service Delivery",
@@ -1375,7 +1375,7 @@
     "source_urls": [
       "https://www.linkedin.com/jobs/view/director-application-development-maintenance-hr-technology-and-corporate-applications-at-cardinal-health-4413609462"
     ],
-    "summary": "Job posting for Director of HR Technology & Corporate Applications states the leader will implement AI agents and intelligent automation across Workday and ServiceNow, and prioritize/pilot/scale agentic capabilities (including “Sana from Workday”), indicating active deployment work inside core HR platforms."
+    "summary": "Job posting for Director of HR Technology & Corporate Applications states the leader will implement AI agents and intelligent automation across Workday and ServiceNow, and prioritize/pilot/scale agentic capabilities (including \u201cSana from Workday\u201d), indicating active deployment work inside core HR platforms."
   },
   {
     "HR_domain": "People Analytics",
@@ -1387,7 +1387,7 @@
     "source_urls": [
       "https://www.visier.com/company/news/visier-announces-2026-vizzie-award-winners-at-outsmart-conference-in-palm-springs/"
     ],
-    "summary": "Visier named AbbVie the 2026 Workforce AI Innovation Award winner, describing AbbVie using Visier’s “Vee” alongside an internal LLM to generate and operationalize a 30-60-90 day retention plan grounded in live workforce data."
+    "summary": "Visier named AbbVie the 2026 Workforce AI Innovation Award winner, describing AbbVie using Visier\u2019s \u201cVee\u201d alongside an internal LLM to generate and operationalize a 30-60-90 day retention plan grounded in live workforce data."
   },
   {
     "HR_domain": "People Analytics",
@@ -1435,7 +1435,7 @@
     "source_urls": [
       "https://www.linkedin.com/jobs/view/solution-architect-hr-corp-staffs-at-conocophillips-4407087320"
     ],
-    "summary": "ConocoPhillips posted a “Solution Architect – HR & Corp Staffs” role that explicitly lists agentic AI, generative AI, and intelligent agents as part of innovation and AI responsibilities for the HR and Corporate Staff application portfolio."
+    "summary": "ConocoPhillips posted a \u201cSolution Architect \u2013 HR & Corp Staffs\u201d role that explicitly lists agentic AI, generative AI, and intelligent agents as part of innovation and AI responsibilities for the HR and Corporate Staff application portfolio."
   },
   {
     "HR_domain": "HR Service Delivery",
@@ -1495,7 +1495,7 @@
     "source_urls": [
       "https://www.careers.ford.com/job/chennai/senior-specialist-hr-technology-and-ai-solutions/48560/95850386560"
     ],
-    "summary": "Ford posted a Senior Specialist – HR Technology & AI Solutions role describing implementation of AI-enabled HR workflows and deployment of AI models using Microsoft Dynamics 365/Power Platform (AI Builder), including support for UAT and production releases."
+    "summary": "Ford posted a Senior Specialist \u2013 HR Technology & AI Solutions role describing implementation of AI-enabled HR workflows and deployment of AI models using Microsoft Dynamics 365/Power Platform (AI Builder), including support for UAT and production releases."
   },
   {
     "HR_domain": "AI Hiring",
@@ -1705,7 +1705,7 @@
     "source_urls": [
       "https://www.unleash.ai/artificial-intelligence/interview/how-mastercard-is-building-ai-into-every-point-of-the-employee-experience"
     ],
-    "summary": "Unleash reports that Mastercard is using AI to automatically place interviews on hiring managers’ calendars, reducing scheduling back-and-forth and resulting in interviews being confirmed 90% faster (deployment evidence for recruiting workflow automation)."
+    "summary": "Unleash reports that Mastercard is using AI to automatically place interviews on hiring managers\u2019 calendars, reducing scheduling back-and-forth and resulting in interviews being confirmed 90% faster (deployment evidence for recruiting workflow automation)."
   },
   {
     "HR_domain": "Talent Development",
@@ -1729,7 +1729,7 @@
     "source_urls": [
       "https://explore.jobs.netflix.net/careers/job/790315961316"
     ],
-    "summary": "Netflix posted a “Senior Applied AI Lead, Talent” role for its Talent AI team, describing work to identify, prototype, and ship AI-powered capabilities across the full Talent lifecycle (attract, develop, retain) and drive broader AI adoption and fluency across Talent."
+    "summary": "Netflix posted a \u201cSenior Applied AI Lead, Talent\u201d role for its Talent AI team, describing work to identify, prototype, and ship AI-powered capabilities across the full Talent lifecycle (attract, develop, retain) and drive broader AI adoption and fluency across Talent."
   },
   {
     "HR_domain": "Talent Development",
@@ -1741,7 +1741,7 @@
     "source_urls": [
       "https://www.unleash.ai/company-culture/interview/people-are-really-our-biggest-differentiator-inside-new-york-lifes-approach-to-future-proofing-skills"
     ],
-    "summary": "An Unleash interview describes New York Life enabling employees to work confidently with AI as a partner and introducing “Career Hub,” an AI-native tool to help employees think through skills and career paths and identify short-term gigs and learning opportunities."
+    "summary": "An Unleash interview describes New York Life enabling employees to work confidently with AI as a partner and introducing \u201cCareer Hub,\u201d an AI-native tool to help employees think through skills and career paths and identify short-term gigs and learning opportunities."
   },
   {
     "HR_domain": "Talent Development",
@@ -1753,7 +1753,7 @@
     "source_urls": [
       "https://www.cornerstoneondemand.com/company/news-room/press-releases/cornerstone-launches-cornerstone-workforce-ai-the-intelligence-platform-for-workforce-readiness-built-to-amplify-human-potential-exponentially-with-ai/"
     ],
-    "summary": "Cornerstone OnDemand press release announcing Cornerstone Workforce AI includes a quote from Cisco Chief Learning Officer Marci Paino describing Cornerstone as central to Cisco’s skills intelligence and talent development/mobilization efforts."
+    "summary": "Cornerstone OnDemand press release announcing Cornerstone Workforce AI includes a quote from Cisco Chief Learning Officer Marci Paino describing Cornerstone as central to Cisco\u2019s skills intelligence and talent development/mobilization efforts."
   },
   {
     "HR_domain": "AI Hiring",
@@ -1771,7 +1771,7 @@
     "signal_type": "A",
     "source_type": "news article",
     "source_url": "https://www.thefastmode.com/expert-opinion/48645-servicenow-at-atxsg-2026-autonomous-ai-enterprise-workflows-and-the-future-of-productivity",
-    "summary": "In an interview at ATxSG 2026, ServiceNow describes internal production outcomes from AI-powered self-service, including 3–5x faster resolution of HR queries."
+    "summary": "In an interview at ATxSG 2026, ServiceNow describes internal production outcomes from AI-powered self-service, including 3\u20135x faster resolution of HR queries."
   },
   {
     "HR_domain": "HR Service Delivery",
@@ -1810,7 +1810,7 @@
     "signal_type": "I",
     "source_type": "press release",
     "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx",
-    "summary": "Workday and Google Cloud announced an integration that brings Workday’s Sana Self‑Service Agent into Gemini Enterprise (early access), enabling employees and managers to complete HR self-service actions like time-off requests and payslip/tax info queries with Workday permissions applied."
+    "summary": "Workday and Google Cloud announced an integration that brings Workday\u2019s Sana Self\u2011Service Agent into Gemini Enterprise (early access), enabling employees and managers to complete HR self-service actions like time-off requests and payslip/tax info queries with Workday permissions applied."
   },
   {
     "HR_domain": "HR Service Delivery",
@@ -1828,7 +1828,7 @@
     "signal_type": "A",
     "source_type": "vendor case study",
     "source_url": "https://eightfold.ai/customers/",
-    "summary": "Eightfold’s customer page states NTT DATA uses Eightfold AI (with SAP SuccessFactors) to enhance recruitment and internal placement, reporting more than doubled employee self-nominations and referral rates."
+    "summary": "Eightfold\u2019s customer page states NTT DATA uses Eightfold AI (with SAP SuccessFactors) to enhance recruitment and internal placement, reporting more than doubled employee self-nominations and referral rates."
   },
   {
     "HR_domain": "Talent Development",
@@ -1837,7 +1837,7 @@
     "signal_type": "A",
     "source_type": "vendor case study",
     "source_url": "https://eightfold.ai/customers/",
-    "summary": "Eightfold’s customer page says Forvia uses Eightfold AI to support skills sourcing as it shifts from manufacturing toward becoming a technology-focused company."
+    "summary": "Eightfold\u2019s customer page says Forvia uses Eightfold AI to support skills sourcing as it shifts from manufacturing toward becoming a technology-focused company."
   },
   {
     "HR_domain": "Talent Development",
@@ -1846,7 +1846,7 @@
     "signal_type": "A",
     "source_type": "vendor case study",
     "source_url": "https://eightfold.ai/customers/",
-    "summary": "Eightfold’s customer page says Softtek uses Eightfold’s Talent Intelligence Platform to unify global talent processes."
+    "summary": "Eightfold\u2019s customer page says Softtek uses Eightfold\u2019s Talent Intelligence Platform to unify global talent processes."
   },
   {
     "HR_domain": "Governance",
@@ -1870,7 +1870,7 @@
     "source_urls": [
       "https://hr.economictimes.indiatimes.com/amp/news/industry/walmart-shareholder-vote-rejects-ai-impact-report-amid-automation-growth/131536299"
     ],
-    "summary": "Reuters coverage reports Walmart is leaning into AI-driven training tools; an AI training presentation at Associates Week emphasized “AI learning should build confidence, not pressure.”"
+    "summary": "Reuters coverage reports Walmart is leaning into AI-driven training tools; an AI training presentation at Associates Week emphasized \u201cAI learning should build confidence, not pressure.\u201d"
   },
   {
     "HR_domain": "Talent Development",
@@ -1894,7 +1894,7 @@
     "source_urls": [
       "https://www.linkedin.com/jobs/view/technology-director-hr-data-analytics-and-reporting-systems-at-wells-fargo-4416902035"
     ],
-    "summary": "Wells Fargo job posting for “Technology Director – HR Data, Analytics, and Reporting Systems” states the leader will drive adoption of AI and generative AI capabilities for HR data platforms and insights, aligned with governance and regulatory expectations."
+    "summary": "Wells Fargo job posting for \u201cTechnology Director \u2013 HR Data, Analytics, and Reporting Systems\u201d states the leader will drive adoption of AI and generative AI capabilities for HR data platforms and insights, aligned with governance and regulatory expectations."
   },
   {
     "HR_domain": "HR Service Delivery",
@@ -1947,27 +1947,39 @@
     "summary": "Perceptyx announced Gannett as a new enterprise customer for its employee listening and people analytics platform (publication date used)."
   },
   {
+    "HR_domain": "AI Hiring",
     "company_name": "AGCO Corporation",
     "date_event": "2026-06-27",
+    "date_found": "2026-06-30",
     "signal_type": "J",
-    "HR_domain": "AI Hiring",
     "source_type": "job post",
-    "summary": "Job posting for VP, Global Talent Solutions describes leading global rollout of talent solutions leveraging AI and analytics, including “skills-based…AI-supported hiring” and embedding predictive insights into workforce planning and hiring decisions.",
     "source_urls": [
       "https://careers.agcocorp.com/job/Duluth-VP,-Global-Talent-Solutions-GA-30026/1394273600/"
     ],
-    "date_found": "2026-06-30"
+    "summary": "Job posting for VP, Global Talent Solutions describes leading global rollout of talent solutions leveraging AI and analytics, including \u201cskills-based\u2026AI-supported hiring\u201d and embedding predictive insights into workforce planning and hiring decisions."
   },
   {
+    "HR_domain": "Recruiting",
     "company_name": "Amazon",
     "date_event": "2026-06-18",
+    "date_found": "2026-07-02",
     "signal_type": "A",
-    "HR_domain": "Recruiting",
     "source_type": "vendor case study",
-    "summary": "AWS case study describes Amazon WFS using an AWS ML/analytics-based talent acquisition platform (‘Amazon Intelligent Talent Acquisition’) to manage the recruitment funnel and hiring, including ML-driven workforce marketing optimization and staffing plans; the case study states the solution was used to hire hundreds of thousands of people and reduced workforce marketing spend by 90% over two years.",
     "source_urls": [
       "https://aws.amazon.com/solutions/case-studies/amazon-intelligent-talent-acquisition-case-study/"
     ],
-    "date_found": "2026-07-02"
+    "summary": "AWS case study describes Amazon WFS using an AWS ML/analytics-based talent acquisition platform (\u2018Amazon Intelligent Talent Acquisition\u2019) to manage the recruitment funnel and hiring, including ML-driven workforce marketing optimization and staffing plans; the case study states the solution was used to hire hundreds of thousands of people and reduced workforce marketing spend by 90% over two years."
+  },
+  {
+    "HR_domain": "People Analytics",
+    "company_name": "Apple",
+    "date_event": "2026-06-14",
+    "date_found": "2026-07-03",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.apple.com/en-us/details/200665705-0836/machine-learning-engineer-people-analytics?team=CORSV"
+    ],
+    "summary": "Apple posted a Machine Learning Engineer role on its People Analytics team to build and operate predictive modeling and machine-learning solutions supporting talent management, employee surveys, compensation, and recruiting."
   }
 ]
