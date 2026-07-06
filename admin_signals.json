@@ -1981,5 +1981,29 @@
       "https://jobs.apple.com/en-us/details/200665705-0836/machine-learning-engineer-people-analytics?team=CORSV"
     ],
     "summary": "Apple posted a Machine Learning Engineer role on its People Analytics team to build and operate predictive modeling and machine-learning solutions supporting talent management, employee surveys, compensation, and recruiting."
+  },
+  {
+    "HR_domain": "HR Service Delivery",
+    "company_name": "Booking.com",
+    "date_event": "2026-06-25",
+    "date_found": "2026-07-05",
+    "signal_type": "A",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.servicenow.com/customers/booking.html"
+    ],
+    "summary": "ServiceNow customer story: Booking.com deployed the Employee Service Center spanning HR/IT/Legal/Finance/Procurement, plus an Automatic Ticket Classification Agent that routes 97% of tickets to the correct team/priority/catalog item on first pass without human intervention, driving a 33% reduction in time to resolution across 16,200 employees."
+  },
+  {
+    "HR_domain": "HR Service Delivery",
+    "company_name": "AT&T",
+    "date_event": "2025-11-26",
+    "date_found": "2026-07-06",
+    "signal_type": "A",
+    "source_type": "news article",
+    "source_urls": [
+      "https://btw.media/all/news/att-launches-internal-ai-assistant-for-employees/"
+    ],
+    "summary": "AT&T deployed Ask AT&T, an internal generative-AI platform (OpenAI ChatGPT architecture on dedicated Azure tenant) that lets employees query internal data, translate/simplify documentation, and reduce time on routine HR and operational tasks; initial rollout scales across engineering, HR, and customer operations."
   }
 ]
