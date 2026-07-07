@@ -2005,5 +2005,17 @@
       "https://btw.media/all/news/att-launches-internal-ai-assistant-for-employees/"
     ],
     "summary": "AT&T deployed Ask AT&T, an internal generative-AI platform (OpenAI ChatGPT architecture on dedicated Azure tenant) that lets employees query internal data, translate/simplify documentation, and reduce time on routine HR and operational tasks; initial rollout scales across engineering, HR, and customer operations."
+  },
+  {
+    "HR_domain": "People Analytics",
+    "company_name": "SAP",
+    "date_event": "2026-07-07",
+    "date_found": "2026-07-07",
+    "signal_type": "A",
+    "source_type": "vendor blog / press",
+    "source_urls": [
+      "https://news.sap.com/2026/07/how-sap-is-reinventing-people-analytics/"
+    ],
+    "summary": "SAP describes its internal People Analytics team using People Intelligence in SAP Business Data Cloud plus Joule (natural-language Q&A with visualized charts) to deliver self-service people metrics and reduce HR data inquiries; SAP also notes plans to adopt Joule Assistants/Agents on governed HR data products (including a People Intelligence Assistant slated for Nov 2026)."
   }
 ]
