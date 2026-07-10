@@ -2017,5 +2017,17 @@
       "https://news.sap.com/2026/07/how-sap-is-reinventing-people-analytics/"
     ],
     "summary": "SAP describes its internal People Analytics team using People Intelligence in SAP Business Data Cloud plus Joule (natural-language Q&A with visualized charts) to deliver self-service people metrics and reduce HR data inquiries; SAP also notes plans to adopt Joule Assistants/Agents on governed HR data products (including a People Intelligence Assistant slated for Nov 2026)."
+  },
+  {
+    "company_name": "Capita",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "press release",
+    "date_event": "2026-06-18",
+    "date_found": "2026-07-08",
+    "source_urls": [
+      "https://www.capita.com/news-and-insights/news/2026/capita-salesforce-ai-enabled-solutions-defence-education-enterprise"
+    ],
+    "summary": "Capita says it deployed Salesforce Agentforce for recruitment (since 2025), reporting >1,000 management and recruitment hours saved in the first four months and a 43% reduction in candidate screening time."
   }
 ]
