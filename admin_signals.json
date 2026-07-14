@@ -1,5 +1,17 @@
 [
   {
+    "company_name": "EchoStar",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.echostar.com/careers/life-at-echostar/team-stories/scaling-the-ai-office-at-echostar"
+    ],
+    "date_event": "2024-11-20",
+    "date_found": "2026-07-14",
+    "summary": "EchoStar describes having deployed a centralized 'HR AI partner' for employees that provides instant answers and workflow management, integrating case management and AI analytics to streamline HR workflows (e.g., profile summaries and incident reporting)."
+  },
+  {
     "HR_domain": "People Analytics",
     "company_name": "Tesco",
     "date_event": "2026-06-02",
