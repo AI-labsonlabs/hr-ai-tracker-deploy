@@ -2041,5 +2041,17 @@
       "https://www.capita.com/news-and-insights/news/2026/capita-salesforce-ai-enabled-solutions-defence-education-enterprise"
     ],
     "summary": "Capita says it deployed Salesforce Agentforce for recruitment (since 2025), reporting >1,000 management and recruitment hours saved in the first four months and a 43% reduction in candidate screening time."
+  },
+  {
+    "HR_domain": "HR Service Delivery",
+    "company_name": "Wells Fargo",
+    "date_event": "2026-07-15",
+    "date_found": "2026-07-15",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.hiringourheroes.org/jobs/517669375-senior-lead-product-manager-hr-ai"
+    ],
+    "summary": "Wells Fargo hiring Senior Lead Product Manager - HR AI to 'define and execute the HR AI product strategy, roadmap, and delivery model for capabilities that enable AI-powered employee, manager, and HR experiences,' referencing platforms like Workday, ServiceNow HRSD, SAP, and Oracle."
   }
 ]
