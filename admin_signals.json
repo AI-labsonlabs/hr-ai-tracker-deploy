@@ -2053,5 +2053,29 @@
       "https://jobs.hiringourheroes.org/jobs/517669375-senior-lead-product-manager-hr-ai"
     ],
     "summary": "Wells Fargo hiring Senior Lead Product Manager - HR AI to 'define and execute the HR AI product strategy, roadmap, and delivery model for capabilities that enable AI-powered employee, manager, and HR experiences,' referencing platforms like Workday, ServiceNow HRSD, SAP, and Oracle."
+  },
+  {
+    "company_name": "IBM",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "news article",
+    "date_event": "2026-07-09",
+    "date_found": "2026-07-20",
+    "source_urls": [
+      "https://www.inc.com/heather-wilde/ibm-let-ai-handle-94-of-hr-then-it-decided-to-hire-more-people/91370155"
+    ],
+    "summary": "IBM says its AI assistant “AskHR” “now resolves 94 percent of its routine HR queries,” signaling mature HR self-service automation; the article notes the remaining exceptions require ethical judgment."
+  },
+  {
+    "company_name": "Workday",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "case study",
+    "date_event": "2026-07-10",
+    "date_found": "2026-07-20",
+    "source_urls": [
+      "https://www.workday.com/en-us/customer-stories/q-z/workday-saves-thousands-hours-annually-conversational-ai.html"
+    ],
+    "summary": "Workday reports deploying Paradox “Candidate Experience Agent” (an AI agent named “Sunny”) to automate interview scheduling; it says scheduling went from taking “more than three days” to being “completed in under six hours,” and that it is “saving thousands of hours every year.”"
   }
 ]
