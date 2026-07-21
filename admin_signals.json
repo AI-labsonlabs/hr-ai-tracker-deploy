@@ -2077,5 +2077,17 @@
       "https://www.workday.com/en-us/customer-stories/q-z/workday-saves-thousands-hours-annually-conversational-ai.html"
     ],
     "summary": "Workday reports deploying Paradox “Candidate Experience Agent” (an AI agent named “Sunny”) to automate interview scheduling; it says scheduling went from taking “more than three days” to being “completed in under six hours,” and that it is “saving thousands of hours every year.”"
+  },
+  {
+    "company_name": "Paychex",
+    "signal_type": "I",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "SEC filing",
+    "date_event": "2026-07-17",
+    "date_found": "2026-07-21",
+    "source_urls": [
+      "https://www.stocktitan.net/sec-filings/PAYX/10-k-paychex-inc-files-annual-report-a77aae817892.html"
+    ],
+    "summary": "In its FY2026 10-K, Paychex describes launching WISE (Workforce Intelligence Strengthened by Expertise), an AI-powered workforce intelligence engine extending into agentic AI; the filing states that as of May 31, 2026 WISE powers ~600 AI features and agents across Paychex solutions and operations and draws on 26+ trillion data points."
   }
 ]
