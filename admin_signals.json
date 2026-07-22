@@ -2089,5 +2089,17 @@
       "https://www.stocktitan.net/sec-filings/PAYX/10-k-paychex-inc-files-annual-report-a77aae817892.html"
     ],
     "summary": "In its FY2026 10-K, Paychex describes launching WISE (Workforce Intelligence Strengthened by Expertise), an AI-powered workforce intelligence engine extending into agentic AI; the filing states that as of May 31, 2026 WISE powers ~600 AI features and agents across Paychex solutions and operations and draws on 26+ trillion data points."
+  },
+  {
+    "company_name": "GE Vernova",
+    "signal_type": "J",
+    "HR_domain": "Governance",
+    "source_type": "job post",
+    "date_event": "2026-07-01",
+    "date_found": "2026-07-22",
+    "source_urls": [
+      "https://work180.com/en-gb/for-women/employer/qualcomm/job/1039033/hr-ai-enablement-innovation-program-manager"
+    ],
+    "summary": "GE Vernova is hiring an \"HR AI Enablement & Innovation Program Manager\" to build HR AI fluency, run an HR AI community of practice, and incubate HR AI prototypes. The posting explicitly calls out increasing responsible HR use of \"Copilot\" and \"Workday-native\" AI, plus an intake/triage model with a dedicated \"AI Governance Project Manager\" and \"Workday AI Enablement Lead\"."
   }
 ]
