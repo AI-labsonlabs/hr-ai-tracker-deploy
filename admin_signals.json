@@ -2101,5 +2101,29 @@
       "https://work180.com/en-gb/for-women/employer/qualcomm/job/1039033/hr-ai-enablement-innovation-program-manager"
     ],
     "summary": "GE Vernova is hiring an \"HR AI Enablement & Innovation Program Manager\" to build HR AI fluency, run an HR AI community of practice, and incubate HR AI prototypes. The posting explicitly calls out increasing responsible HR use of \"Copilot\" and \"Workday-native\" AI, plus an intake/triage model with a dedicated \"AI Governance Project Manager\" and \"Workday AI Enablement Lead\"."
+  },
+  {
+    "company_name": "L'Oréal",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "news article",
+    "date_event": "2026-07-09",
+    "date_found": "2026-07-23",
+    "source_urls": [
+      "https://www.recruitmenttech.nl/2026/07/09/van-miljoen-sollicitaties-naar-meest-diverse-stageklas-ooit-zo-gebruikt-loreal-ai-in-recruitment/"
+    ],
+    "summary": "Recruitmenttech.nl reports L’Oréal uses the Mya chatbot for initial screening questions and Pera (formerly Seedlink) for open-question assessment, with early rollout results including 92% engagement, ~40 minutes saved per screening, and $250k recruiter-cost savings; it also cites 875 hours saved (2018–2022) and ~£225k savings (2020–2021) from avoiding physical interview rounds."
+  },
+  {
+    "company_name": "LVMH",
+    "signal_type": "J",
+    "HR_domain": "Governance",
+    "source_type": "job post",
+    "date_event": "2026-07-08",
+    "date_found": "2026-07-23",
+    "source_urls": [
+      "https://www.lvmh.com/fr/nous-rejoindre/nos-offres/LVMH03117"
+    ],
+    "summary": "LVMH posted an HR internship role focused on driving the 'People' workstream of its 'AI for ALL' transformation program, including organizing 'Agentic Days' workshops/hackathons to create deployable AI agents and running an 'AI Change Ambassadors' community to support AI transformation adoption."
   }
 ]
