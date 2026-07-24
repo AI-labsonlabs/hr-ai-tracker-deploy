@@ -2125,5 +2125,17 @@
       "https://www.lvmh.com/fr/nous-rejoindre/nos-offres/LVMH03117"
     ],
     "summary": "LVMH posted an HR internship role focused on driving the 'People' workstream of its 'AI for ALL' transformation program, including organizing 'Agentic Days' workshops/hackathons to create deployable AI agents and running an 'AI Change Ambassadors' community to support AI transformation adoption."
+  },
+  {
+    "company_name": "Leidos",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "news article",
+    "date_event": "2026-07-22",
+    "date_found": "2026-07-24",
+    "source_urls": [
+      "https://lasvegassun.com/news/2026/jul/22/leidos-reimagines-experiences-for-50000-employees-/"
+    ],
+    "summary": "Leidos says it is expanding its use of the ServiceNow AI Platform (Now Assist, EmployeeWorks and HR Service Delivery) to provide a conversational AI front door for employee requests and automate routine service work across IT/HR/shared services. The announcement cites scale of ~50,000 employees and outcomes including $3M+ projected annual savings, up to 60% autonomous IT ticket resolution, and the potential to eliminate ~80,000 tickets annually."
   }
 ]
