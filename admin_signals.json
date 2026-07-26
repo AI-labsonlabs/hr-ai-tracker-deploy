@@ -2137,5 +2137,29 @@
       "https://lasvegassun.com/news/2026/jul/22/leidos-reimagines-experiences-for-50000-employees-/"
     ],
     "summary": "Leidos says it is expanding its use of the ServiceNow AI Platform (Now Assist, EmployeeWorks and HR Service Delivery) to provide a conversational AI front door for employee requests and automate routine service work across IT/HR/shared services. The announcement cites scale of ~50,000 employees and outcomes including $3M+ projected annual savings, up to 60% autonomous IT ticket resolution, and the potential to eliminate ~80,000 tickets annually."
+  },
+  {
+    "company_name": "Matson",
+    "signal_type": "J",
+    "HR_domain": "Governance",
+    "source_type": "job post",
+    "date_event": "2025-10-22",
+    "date_found": "2026-07-26",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/enterprise-ai-specialist-%E2%80%93-law-hr-and-government-community-relations-departments-at-matson-inc-4435276308"
+    ],
+    "summary": "Matson posted an 'Enterprise AI Specialist' role to support adoption, implementation, and optimization of AI tools and workflows across HR (plus Law, Government & Community Relations), including enablement/training, pilot support, and KPI tracking."
+  },
+  {
+    "company_name": "Micron Technology",
+    "signal_type": "I",
+    "HR_domain": "Recruiting",
+    "source_type": "job post",
+    "date_event": "2026-07-08",
+    "date_found": "2026-07-26",
+    "source_urls": [
+      "https://careers.micron.com/careers/job/42992026-ai-workforce-development-engineer-boise-idaho-united-states-of-america?domain=micron.com"
+    ],
+    "summary": "Micron’s careers site includes a notice that it uses Eightfold AI recruiting software to assist recruiting by inferring candidate skills and producing match scores; Micron says recruiters make final decisions and the tool is treated as a 'high-risk' AI system under the EU AI Act for employment use cases."
   }
 ]
