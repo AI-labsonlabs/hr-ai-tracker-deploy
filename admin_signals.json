@@ -2161,5 +2161,17 @@
       "https://careers.micron.com/careers/job/42992026-ai-workforce-development-engineer-boise-idaho-united-states-of-america?domain=micron.com"
     ],
     "summary": "Micron’s careers site includes a notice that it uses Eightfold AI recruiting software to assist recruiting by inferring candidate skills and producing match scores; Micron says recruiters make final decisions and the tool is treated as a 'high-risk' AI system under the EU AI Act for employment use cases."
+  },
+  {
+    "company_name": "Tesco",
+    "signal_type": "I",
+    "HR_domain": "Employee Engagement",
+    "source_type": "press release",
+    "date_event": "2026-07-17",
+    "date_found": "2026-07-27",
+    "source_urls": [
+      "https://go.perceptyx.com/media-room"
+    ],
+    "summary": "Perceptyx says Tesco is bringing AI-powered capabilities into its employee experience program to enable insight-led action across its ~340,000-strong workforce."
   }
 ]
