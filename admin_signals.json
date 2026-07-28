@@ -2173,5 +2173,41 @@
       "https://go.perceptyx.com/media-room"
     ],
     "summary": "Perceptyx says Tesco is bringing AI-powered capabilities into its employee experience program to enable insight-led action across its ~340,000-strong workforce."
+  },
+  {
+    "company_name": "Nestlé",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "case study",
+    "date_event": "2026-07-27",
+    "date_found": "2026-07-28",
+    "source_urls": [
+      "https://www.sap.com/about/customer-stories/nestle.html"
+    ],
+    "summary": "SAP customer story says Nestlé automated recruiting operations (e.g., high-volume hiring) using SuccessFactors extensions and a multilingual candidate chatbot; it reports 70% of hiring tasks automated and processing time cut by up to 90% in some markets, with the chatbot answering common candidate questions in 20+ languages for thousands of candidates each week."
+  },
+  {
+    "company_name": "NextEra Energy",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-06-30",
+    "date_found": "2026-07-28",
+    "source_urls": [
+      "https://jobs.nexteraenergy.com/job/Juno-Beach-Senior-Data-Management-Engineer-FL-33408/1404511400/"
+    ],
+    "summary": "NextEra Energy job posting for Senior Data Management Engineer describes building a next-generation People Analytics function delivering predictive, AI-enabled workforce intelligence and data infrastructure to support advanced analytics and AI use cases across workforce decision-making."
+  },
+  {
+    "company_name": "Nordstrom",
+    "signal_type": "J",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "job post",
+    "date_event": "2026-07-08",
+    "date_found": "2026-07-28",
+    "source_urls": [
+      "https://careers.nordstrom.com/sr-engineering-manager-hr-technology-hybrid-seattle-wa/job/D85D10221C0F0A779C8A3C55A0DA5EBB"
+    ],
+    "summary": "Nordstrom job posting for Sr. Engineering Manager (HR Technology) says the leader will define and drive AI and automation strategy across HR and Legal technology platforms (Workday HCM/WFM, Cornerstone Learning, integrations), including building team fluency in agentic workflows, LLM integration, and intelligent automation."
   }
 ]
