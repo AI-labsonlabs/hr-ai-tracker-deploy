@@ -485,8 +485,10 @@ Check for new company/tech requests submitted to the HR AI Adoption Intelligence
 Read state.json. If missing, treat seen_issue_numbers as [] and last_checked_iso as "".
 
 ## Step 2: Fetch open requests from GitHub
-    gh issue list --label company-request --state open --json number,title,body,createdAt,user,html_url --repo AI-labsonlabs/hr-ai-tracker-deploy --limit 50
-    gh issue list --label tech-request --state open --json number,title,body,createdAt,user,html_url --repo AI-labsonlabs/hr-ai-tracker-deploy --limit 50
+    gh issue list --label company-request --state open --json number,title,body,createdAt,author,url --repo AI-labsonlabs/hr-ai-tracker-deploy --limit 50
+    gh issue list --label tech-request --state open --json number,title,body,createdAt,author,url --repo AI-labsonlabs/hr-ai-tracker-deploy --limit 50
+
+    (Note: the `gh` CLI removed the `user` and `html_url` JSON fields in favor of `author` and `url`. Use `author.login` for the submitter's username and `url` for the issue's HTML link.)
 Merge results, tagging each with request_type = 'company' or 'tech'.
 
 ## Step 3: Filter to NEW requests
