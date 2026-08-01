@@ -2209,5 +2209,17 @@
       "https://careers.nordstrom.com/sr-engineering-manager-hr-technology-hybrid-seattle-wa/job/D85D10221C0F0A779C8A3C55A0DA5EBB"
     ],
     "summary": "Nordstrom job posting for Sr. Engineering Manager (HR Technology) says the leader will define and drive AI and automation strategy across HR and Legal technology platforms (Workday HCM/WFM, Cornerstone Learning, integrations), including building team fluency in agentic workflows, LLM integration, and intelligent automation."
+  },
+  {
+    "company_name": "Regions Financial",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "case study",
+    "date_event": "2024-11-11",
+    "date_found": "2026-08-01",
+    "source_urls": [
+      "https://www.phenom.com/blog/future-financial-recruitment-regions-bank-ai-hiring"
+    ],
+    "summary": "Phenom reports that Regions Bank leverages Phenom X+ generative AI in recruiting to improve candidate communication (AI drafts recruiter responses to candidate inquiries) and uses AI to mine past-candidate data for sourcing and to process high application volumes; the piece notes candidates can apply in 5–10 minutes."
   }
 ]
