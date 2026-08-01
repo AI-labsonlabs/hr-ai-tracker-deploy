@@ -735,7 +735,7 @@ Every signal MUST resolve its `company_name` to a universe entry. Orphaned signa
 **In the Cloudflare Worker (`hr-tracker-proxy`):**
 - `GITHUB_TOKEN` — fine-grained PAT with Issues:read/write on `AI-labsonlabs/hr-ai-tracker-deploy`. Stored via `wrangler secret put GITHUB_TOKEN`. **Rotate on transition.**
 - KV namespace `RATE_LIMIT` (id `96b88b26fc614b31a338cbf211a1e1d9`) bound in `wrangler.toml`.
-- Admin UI password: hardcoded in `worker.js`. Owner-shared value: `[REDACTED-ROTATED-2026-07-31]`. **Rotate on transition.**
+- Admin UI password: stored as the `ADMIN_PASSWORD` Cloudflare Worker secret (managed via `wrangler secret put ADMIN_PASSWORD`). Not stored in source or documentation. Owner holds the current value; ask the owner directly if you need it.
 
 **In the Perplexity agent runtime:**
 - `api_credentials=["github"]` — GitHub credential for git push (managed by Perplexity platform, no manual setup)
@@ -790,7 +790,7 @@ Adding a Pages health probe is on the improvements list (§7).
 3. **HR_domain taxonomy drift.** 5 admin signals use non-canonical domain values (`Learning & Development`, `Employee Engagement`, `HR Technology`, `null`). Should be reconciled — either add to canonical vocabulary or remap.
 4. **`source_type: null` in 5 admin signals.** Missing field, should be filled.
 5. **Universe gap pattern.** Daily crons regularly surface strong signals for companies not in the universe. Currently 7 companies queued in `/home/user/workspace/tracker/universe_expansion_queue.md`: ManpowerGroup, 7-Eleven, PostNL, HR Path Group, Timken, Compass Group, Wood, plus Health Connect America. Owner has agreed to a batch expansion but it hasn't been executed yet.
-6. **Admin UI password is plaintext in `worker.js`.** Should move to a secret. `[REDACTED-ROTATED-2026-07-31]` is the current value — **rotate on transition**.
+6. **Admin UI password.** Stored as the `ADMIN_PASSWORD` Cloudflare Worker secret (set via `wrangler secret put ADMIN_PASSWORD`). Rotated 2026-07-31 after a prior value was inadvertently included in an earlier revision of this document — history has been rewritten to purge the leaked value. Rotate again on any future ownership transition.
 7. **No automated health check** on the live site or Worker.
 8. **Stale tickers accumulating.** 11 tickers now flagged as stale (ATUS, CNSL, CPI, EDR, FL, HES, HYMTF, LGF-A, ORAN, PARA, WBA) — these are delisted/merged/renamed companies that need universe cleanup.
 9. **No test suite.** All pipeline scripts are run-and-inspect. Regression testing depends on comparing against `current_data.json` (from Apr 28), which is now itself outdated.
@@ -857,7 +857,7 @@ Everything a new agent must recreate or verify to safely take over.
 
 ### Secrets to rotate on transition
 - [ ] `GITHUB_TOKEN` in the Cloudflare Worker — regenerate PAT and re-run `wrangler secret put GITHUB_TOKEN`.
-- [ ] Admin UI password in `worker.js` (currently `[REDACTED-ROTATED-2026-07-31]`) — change and share new value with owner.
+- [ ] Admin UI password: rotate the `ADMIN_PASSWORD` Cloudflare Worker secret (`wrangler secret put ADMIN_PASSWORD`) and confirm with the owner via a secure channel — never in git, chat transcripts, or documentation.
 - [ ] Any Perplexity-side API credentials tied to the prior agent's identity.
 
 ### Files that must be transferred outside git (research workspace)
