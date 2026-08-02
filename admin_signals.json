@@ -2221,5 +2221,41 @@
       "https://www.phenom.com/blog/future-financial-recruitment-regions-bank-ai-hiring"
     ],
     "summary": "Phenom reports that Regions Bank leverages Phenom X+ generative AI in recruiting to improve candidate communication (AI drafts recruiter responses to candidate inquiries) and uses AI to mine past-candidate data for sourcing and to process high application volumes; the piece notes candidates can apply in 5–10 minutes."
+  },
+  {
+    "company_name": "Rivian",
+    "signal_type": "J",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "job post",
+    "date_event": "2026-07-18",
+    "date_found": "2026-08-02",
+    "source_urls": [
+      "https://careers.rivian.com/careers-home/jobs/32335?lang=en-us"
+    ],
+    "summary": "Rivian is hiring a Senior Lead, People Process Excellence & AI to own the People function's AI adoption strategy and AI-enabled automation across the employee lifecycle. The posting names Talent Acquisition transformation, internal mobility, onboarding, employee support and shared services, with AI-and-Workday solutions and integrations spanning Workday, ServiceNow and iCIMS."
+  },
+  {
+    "company_name": "Rockwell Automation",
+    "signal_type": "A",
+    "HR_domain": "People Analytics",
+    "source_type": "social media",
+    "date_event": "2026-06-09",
+    "date_found": "2026-08-02",
+    "source_urls": [
+      "https://www.linkedin.com/posts/moseeker-inc_hrtech-talentmanagement-aiinhr-activity-7469943543294234625-BszN"
+    ],
+    "summary": "A MoSeeker LinkedIn post quoting Rockwell Automation Head of HRBP Julia Xing describes an end-to-end HR AI deployment: advanced analytics for workforce planning and dynamic attrition forecasting, AI-assisted recruiting and onboarding, skill-gap analysis, AI-supported performance management, and exit-interview analysis."
+  },
+  {
+    "company_name": "Roblox",
+    "signal_type": "I",
+    "HR_domain": "Recruiting",
+    "source_type": "blog post",
+    "date_event": "2026-01-01",
+    "date_found": "2026-08-02",
+    "source_urls": [
+      "https://about.roblox.com/newsroom/2026/01/now-live-the-immersive-roblox-careers-experience"
+    ],
+    "summary": "Roblox announced its public careers experience and said it is thoughtfully embracing AI to move faster and create more personalized, meaningful candidate experiences. The announcement frames AI as supporting people-centric recruiting touchpoints rather than replacing them."
   }
 ]
