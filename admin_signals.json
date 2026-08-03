@@ -2281,5 +2281,41 @@
       "https://www.teamohana.com/customer-stories/how-scale-ai-built-a-headcount-planning-engine-to-10x-its-hiring-velocity-with-teamohana"
     ],
     "summary": "Scale AI uses TeamOhana as a governed headcount-planning and recruiting-execution system: 100% of backfills and incremental requests run through it, requisition submission is under two minutes, and the company reports 99% org-wide headcount alignment. The team is exploring AI agents to draft planning scenarios across job levels, seasonality, location, and recruiting capacity; this AI capability is planned, not confirmed production use."
+  },
+  {
+    "company_name": "ServiceNow",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.servicenow.com/customers/now-on-now-ai-experience.html"
+    ],
+    "date_event": "2025-11-30",
+    "date_found": "2026-08-03",
+    "summary": "ServiceNow documents production use of its AI Platform for employee HR service delivery, onboarding, benefits, career growth, routine requests, and self-service HR. Internal outcomes include 20x faster HR query resolution, 410,000 hours saved annually through AI search and virtual agents, 81% employee satisfaction, $17.7M annual cost avoidance from self-service HR, and 81% employee engagement in AI learning and skills development."
+  },
+  {
+    "company_name": "Danone",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.servicenow.com/uk/customers/danone.html"
+    ],
+    "date_event": "2024-05-01",
+    "date_found": "2026-08-03",
+    "summary": "Danone uses ServiceNow HR Service Delivery in production for MyDanone employee self-service and HR case management. The case study reports 14,000 hours saved, €600,000 in help-desk savings, 4.7 customer satisfaction, one-third of tickets resolved through self-service, resolution time reduced from two weeks to two days, and 32% of onboarding automated across a 96,000-employee workforce (figures reported as of May 2024)."
+  },
+  {
+    "company_name": "Walmart",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://corporate.walmart.com/news/2025/09/04/donna-morris-to-associates-being-people-led-means-investing-in-you"
+    ],
+    "date_event": "2025-09-04",
+    "date_found": "2026-08-03",
+    "summary": "Walmart Chief People Officer Donna Morris announced a collaboration with OpenAI to provide customized AI training and certifications for U.S. associates. The company framed the program as workforce upskilling and reported nearly $1B committed to skills training through 2026, with Walmart Academy having reached more than 3.5M participants."
   }
 ]
