@@ -2257,5 +2257,29 @@
       "https://about.roblox.com/newsroom/2026/01/now-live-the-immersive-roblox-careers-experience"
     ],
     "summary": "Roblox announced its public careers experience and said it is thoughtfully embracing AI to move faster and create more personalized, meaningful candidate experiences. The announcement frames AI as supporting people-centric recruiting touchpoints rather than replacing them."
+  },
+  {
+    "company_name": "IBM",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "case study",
+    "date_event": "2026-07-17",
+    "date_found": "2026-08-03",
+    "source_urls": [
+      "https://www.ibm.com/case-studies/ibm-transformation/ask-hr"
+    ],
+    "summary": "IBM consolidated 25 HR chatbots into the AskHR interface for questions about programs and benefits, then required 21,000 first-line managers worldwide to use AskHR instead of dedicated HR business-partner support, email, or phone. The official case study describes this as full-scale adoption and reports that the separate AskIT assistant resolves 86% of routine IT issues."
+  },
+  {
+    "company_name": "Scale AI",
+    "signal_type": "I",
+    "HR_domain": "People Analytics",
+    "source_type": "case study",
+    "date_event": "2026-07-10",
+    "date_found": "2026-08-03",
+    "source_urls": [
+      "https://www.teamohana.com/customer-stories/how-scale-ai-built-a-headcount-planning-engine-to-10x-its-hiring-velocity-with-teamohana"
+    ],
+    "summary": "Scale AI uses TeamOhana as a governed headcount-planning and recruiting-execution system: 100% of backfills and incremental requests run through it, requisition submission is under two minutes, and the company reports 99% org-wide headcount alignment. The team is exploring AI agents to draft planning scenarios across job levels, seasonality, location, and recruiting capacity; this AI capability is planned, not confirmed production use."
   }
 ]
