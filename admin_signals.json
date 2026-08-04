@@ -2317,5 +2317,65 @@
     "date_event": "2025-09-04",
     "date_found": "2026-08-03",
     "summary": "Walmart Chief People Officer Donna Morris announced a collaboration with OpenAI to provide customized AI training and certifications for U.S. associates. The company framed the program as workforce upskilling and reported nearly $1B committed to skills training through 2026, with Walmart Academy having reached more than 3.5M participants."
+  },
+  {
+    "company_name": "Snowflake",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "blog post",
+    "date_event": "2025-10-09",
+    "date_found": "2026-08-04",
+    "source_urls": [
+      "https://www.snowflake.com/en/blog/ai-in-hr-people-analytics-strategy/"
+    ],
+    "summary": "Snowflake says it uses AI to analyze and standardize job descriptions through a custom Streamlit app. Recruiting and people-operations teams partnered to automate the process for certain functions and countries, unlocking unstructured data about the skills Snowflake is hiring for and how those skills are changing over time."
+  },
+  {
+    "company_name": "Snowflake",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-02-05",
+    "date_found": "2026-08-04",
+    "source_urls": [
+      "https://jobs.ashbyhq.com/snowflake/3c0c0a7a-e75a-44d9-a220-8ea667e6ae4a"
+    ],
+    "summary": "Snowflake’s Director, People Analytics posting calls for AI-driven people analytics experiences, including production-grade AI agents embedded in employee workflows, governed people data, and insights tied to productivity, attrition risk, talent gaps, and cost efficiency."
+  },
+  {
+    "company_name": "Spotify",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "blog post",
+    "date_event": "2026-08-04",
+    "date_found": "2026-08-04",
+    "source_urls": [
+      "https://www.lifeatspotify.com/ai-notice"
+    ],
+    "summary": "Spotify’s current recruiting AI notice says AI and automated tools assist recruiting teams with organizing and evaluating candidate information. It states that human recruiters and hiring managers make all interview-selection, advancement, and hiring decisions, while Spotify monitors the tools for fairness, transparency, and compliance; the page is undated, so the scan date is used as the event date."
+  },
+  {
+    "company_name": "Spotify",
+    "signal_type": "B",
+    "HR_domain": "People Analytics",
+    "source_type": "news article",
+    "date_event": "2025-06-18",
+    "date_found": "2026-08-04",
+    "source_urls": [
+      "https://www.hr-brew.com/stories/2025/06/18/spotify-chro-anna-lundstrom-ai-internal-mobility"
+    ],
+    "summary": "Spotify CHRO Anna Lundström said the company was experimenting with an AI analyst that could answer real-time workforce questions such as current attrition rates and engagement scores. Because the source explicitly describes this as an experiment, it is classified as a pilot signal."
+  },
+  {
+    "company_name": "Spotify",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "news article",
+    "date_event": "2025-12-11",
+    "date_found": "2026-08-04",
+    "source_urls": [
+      "https://www.raconteur.net/talent-culture/bops-and-bots-spotifys-chro-on-chatbots-culture-and-live-music"
+    ],
+    "summary": "Spotify’s AI-powered Echo internal talent marketplace matches employees to open roles and supports career growth without leaving the company. The company reported that its internal position fill rate rose from 22% to nearly 40%, improving retention and mobility."
   }
 ]
