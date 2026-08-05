@@ -2377,5 +2377,41 @@
       "https://www.raconteur.net/talent-culture/bops-and-bots-spotifys-chro-on-chatbots-culture-and-live-music"
     ],
     "summary": "Spotify’s AI-powered Echo internal talent marketplace matches employees to open roles and supports career growth without leaving the company. The company reported that its internal position fill rate rose from 22% to nearly 40%, improving retention and mobility."
+  },
+  {
+    "company_name": "State Street",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-07-30",
+    "date_found": "2026-08-05",
+    "source_urls": [
+      "https://careers.statestreet.com/global/en/job/STSTGLOBALR794573EXTERNALENGLOBAL/Head-of-HR-Technology-Integrations-Platform-Engineering-VP-Director"
+    ],
+    "summary": "State Street posted a Head of HR Technology Integrations & Platform Engineering role to own 180+ Workday integrations and modernize the global HR data ecosystem. The role explicitly includes enabling analytics, workforce insights, and AI-driven HR use cases, signaling investment in HR AI platform capability."
+  },
+  {
+    "company_name": "Stripe",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-07-27",
+    "date_found": "2026-08-05",
+    "source_urls": [
+      "https://stripe.com/careers/listing/people-analytics-analyst-business-partner/8069694"
+    ],
+    "summary": "Stripe is hiring a People Analytics Analyst & Business Partner to build analytics products and self-service tooling through Visier and AI-powered solutions. The posting also calls for hands-on use of Anthropic, OpenAI, or Google AI platforms to develop tooling and accelerate people-analytics workflows."
+  },
+  {
+    "company_name": "Sysco",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-07-30",
+    "date_found": "2026-08-05",
+    "source_urls": [
+      "https://careers.sysco.com/en/job/houston/manager-global-hr-reporting/1105/98541906912"
+    ],
+    "summary": "Sysco is hiring a Manager, Global HR Reporting to lead HR analytics strategy across Workday data, predictive modeling, workforce planning, engagement, retention, and diversity analytics. The role also lists AI analytics tools as part of the capability set, indicating continued investment in HR data and AI enablement."
   }
 ]
