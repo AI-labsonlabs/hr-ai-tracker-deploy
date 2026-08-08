@@ -2449,5 +2449,41 @@
       "https://www.workday.com/en-gb/customer-stories/q-z/thomson-reuters-smart-tech-accelerates-career-growth.html"
     ],
     "summary": "Workday's customer story says Thomson Reuters uses Workday AI and machine learning internally to automate routine work in Microsoft Office and Slack, surface personalised career-advancement opportunities, simplify internal recruiting, and direct employees to learning through Workday Assistant and Workday Talent. The page describes deployed internal use but reports no quantified HR outcome."
+  },
+  {
+    "company_name": "Tractor Supply Company",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "case study",
+    "date_event": "2026-07-23",
+    "date_found": "2026-08-08",
+    "source_urls": [
+      "https://www.workday.com/en-us/customer-stories/q-z/tractor-supply-co-increases-candidate-conversion-conversational-ai.html"
+    ],
+    "summary": "Workday's customer story says Tractor Supply implemented the Workday Paradox Candidate Experience Agent, using the AI agent Cory to engage candidates 24/7, screen qualifications, provide culture information, and invite candidates to hiring events by text. The story title reports a 58% reduction in time-to-apply, confirming production recruiting deployment."
+  },
+  {
+    "company_name": "Twilio",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-02-19",
+    "date_found": "2026-08-08",
+    "source_urls": [
+      "https://job-boards.greenhouse.io/twilio/jobs/7575253"
+    ],
+    "summary": "Twilio's Director, HR Business Partner (Global Operations) posting calls for HR analytics, predictive modeling, and AI-enabled workforce tools to generate insights, guide executive decisions, anticipate talent needs, and scale AI-powered assistants and data-orchestration frameworks with the People Data Solutions & AI team. This is a job-posting signal of investment in AI-enabled people analytics and workforce strategy."
+  },
+  {
+    "company_name": "TSMC",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2024-09-20",
+    "date_found": "2026-08-08",
+    "source_urls": [
+      "https://careers.tsmc.com/en_US/careers/JobDetail/Data-Scientist-in-Strategic-HR/12134"
+    ],
+    "summary": "TSMC's official Strategic HR Data Scientist posting calls for developing and implementing AI and machine-learning models to optimize HR processes, NLP and advanced analytics for HR transformation, predictive HR metrics, proof-of-concept projects, and AI-driven improvements to employee experience and operational efficiency. The role is a direct job-posting signal of investment in HR people analytics and AI."
   }
 ]
