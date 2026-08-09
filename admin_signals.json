@@ -2485,5 +2485,65 @@
       "https://careers.tsmc.com/en_US/careers/JobDetail/Data-Scientist-in-Strategic-HR/12134"
     ],
     "summary": "TSMC's official Strategic HR Data Scientist posting calls for developing and implementing AI and machine-learning models to optimize HR processes, NLP and advanced analytics for HR transformation, predictive HR metrics, proof-of-concept projects, and AI-driven improvements to employee experience and operational efficiency. The role is a direct job-posting signal of investment in HR people analytics and AI."
+  },
+  {
+    "company_name": "United Airlines",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "case study",
+    "date_event": "2023-12-07",
+    "date_found": "2026-08-09",
+    "source_urls": [
+      "https://www.phenom.com/blog/redefining-talent-acquisition-united-airlines-better-hiring"
+    ],
+    "summary": "United Airlines reported production use of Phenom's AI-powered career site, chatbot, interview scheduling, and automation for sourcing and screening. The case study cites 50% higher career-site traffic, 100+ events in the first six months, and progress toward reducing time to hire from as many as 14 weeks to a 2–4 week target."
+  },
+  {
+    "company_name": "UnitedHealth Group",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "news article",
+    "date_event": "2025-11-13",
+    "date_found": "2026-08-09",
+    "source_urls": [
+      "https://www.beckerspayer.com/payer/at-our-core-were-a-data-company-unitedhealth-leans-on-ai-to-drive-growth/"
+    ],
+    "summary": "UnitedHealth Group rolled out Alfred, a generative AI solution, to 300,000 employees for performance management and role-based communications, including goal setting and feedback. The company reported an estimated 86,400 working hours saved so far and expects nearly 300,000 hours of annual savings."
+  },
+  {
+    "company_name": "UnitedHealth Group",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-07-14",
+    "date_found": "2026-08-09",
+    "source_urls": [
+      "https://careers.unitedhealthgroup.com/job/eden-prairie/vp-people-analytics-and-data-strategy/34088/97790134576"
+    ],
+    "summary": "UnitedHealth Group's VP, People Analytics & Data Strategy role owns the People-side AI data strategy, AI data readiness for priority use cases and agent workflows, People data products for AI-first HR capabilities, and governance/value measurement for AI-enabled workflows. This is a senior hiring signal for investment in people analytics and AI-ready HR data."
+  },
+  {
+    "company_name": "UnitedHealth Group",
+    "signal_type": "I",
+    "HR_domain": "Recruiting",
+    "source_type": "social media",
+    "date_event": "2026-01-06",
+    "date_found": "2026-08-09",
+    "source_urls": [
+      "https://www.youtube.com/watch?v=O_BwnRiMEa0"
+    ],
+    "summary": "In a CodeSignal interview, UnitedHealth Group Talent Acquisition leader Kim Osoba described AI-assisted coding assessments for engineering hiring, along with AI-enabled level setting and skill definition. The team said it was still benchmarking and on an adoption-exploration path, so this is classified as an announcement/exploration signal rather than confirmed production deployment."
+  },
+  {
+    "company_name": "Unum Group",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2025-10-06",
+    "date_found": "2026-08-09",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/senior-data-scientist-ai-people-analytics-at-unum-4407582517"
+    ],
+    "summary": "Unum's Senior Data Scientist – AI & People Analytics posting calls for production-grade AI, ML, and LLM solutions for workforce optimization, predictive and prescriptive models, AI embedding in business processes, and responsible use of employee data. It is a direct hiring signal of investment in AI-enabled people analytics."
   }
 ]
