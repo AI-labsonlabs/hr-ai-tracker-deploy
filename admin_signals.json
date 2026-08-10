@@ -2545,5 +2545,101 @@
       "https://www.linkedin.com/jobs/view/senior-data-scientist-ai-people-analytics-at-unum-4407582517"
     ],
     "summary": "Unum's Senior Data Scientist – AI & People Analytics posting calls for production-grade AI, ML, and LLM solutions for workforce optimization, predictive and prescriptive models, AI embedding in business processes, and responsible use of employee data. It is a direct hiring signal of investment in AI-enabled people analytics."
+  },
+  {
+    "company_name": "Mastercard",
+    "signal_type": "A",
+    "HR_domain": "Talent Development",
+    "source_type": "case study",
+    "date_event": "2024-01-01",
+    "date_found": "2026-08-10",
+    "source_urls": [
+      "https://gloat.com/wp-content/uploads/Mastercard-case-study-2024.pdf"
+    ],
+    "summary": "Gloat’s Mastercard case study describes Unlocked, an AI-enabled internal talent marketplace that matches employees to projects and career-development opportunities. After a successful pilot, Mastercard rolled it out to its entire workforce; the case study reports 500,000+ unlocked hours, 31,740 work days saved in one year, and $55 million in unlocked productivity."
+  },
+  {
+    "company_name": "Vanguard",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-07-24",
+    "date_found": "2026-08-10",
+    "source_urls": [
+      "https://www.vanguardjobs.com/job/23631883/data-scientist-specialist-charlotte-nc/"
+    ],
+    "summary": "Vanguard’s Data Scientist, Specialist posting places the role on an HR Analytics and AI team developing and deploying machine learning, predictive analytics, generative AI, and workforce analytics solutions for smarter workforce decisions and employee experiences."
+  },
+  {
+    "company_name": "Viasat",
+    "signal_type": "J",
+    "HR_domain": "Talent Development",
+    "source_type": "job post",
+    "date_event": "2026-07-15",
+    "date_found": "2026-08-10",
+    "source_urls": [
+      "https://careers.viasat.com/jobs/6577?lang=en-us"
+    ],
+    "summary": "Viasat’s Talent & Development Specialist posting calls for AI-first redesign of talent, performance, and learning programs, automation of employee and manager workflows, and use of behavioral analytics and AI-enabled HR tools to improve talent processes."
+  },
+  {
+    "company_name": "Vertex Pharmaceuticals",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-08-05",
+    "date_found": "2026-08-10",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/people-analytics-senior-manager-at-vertex-pharmaceuticals-4449325561"
+    ],
+    "summary": "Vertex Pharmaceuticals is recruiting a People Analytics Senior Manager to build scalable HR data and AI solutions, including HR AI capabilities and agents, supporting talent acquisition, retention, performance, engagement, dashboards, and workforce decision-making."
+  },
+  {
+    "company_name": "Visa",
+    "signal_type": "A",
+    "HR_domain": "Learning & Development",
+    "source_type": "news article",
+    "date_event": "2025-11-04",
+    "date_found": "2026-08-10",
+    "source_urls": [
+      "https://www.linkedin.com/business/talent/blog/talent-acquisition/visa-ai-talent-strategy"
+    ],
+    "summary": "LinkedIn Talent Solutions reports that Visa created a required, organization-wide generative-AI certificate program through LinkedIn Learning, with role-specific AI pathways and manager support for OKR and skills agents. Visa set a goal of certifying 90% of employees in generative-AI skills by the end of 2026."
+  },
+  {
+    "company_name": "Volkswagen Group",
+    "signal_type": "A",
+    "HR_domain": "AI Hiring",
+    "source_type": "social media",
+    "date_event": "2025-12-31",
+    "date_found": "2026-08-10",
+    "source_urls": [
+      "https://www.linkedin.com/posts/vwgdigitalsolutionsindia_volkswagengrouptechnologysolutionsindia-activity-7444754836480270336-Ryf8"
+    ],
+    "summary": "Volkswagen Group Technology Solutions India reported production use of an AI interviewer in 2025: 1,100 interviews, a 55% selection success rate, and 760 hours saved for senior technical staff. The same HR update also describes AI-generated learning paths via Udemy AI."
+  },
+  {
+    "company_name": "Volkswagen Group",
+    "signal_type": "A",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "social media",
+    "date_event": "2025-05-26",
+    "date_found": "2026-08-10",
+    "source_urls": [
+      "https://www.linkedin.com/posts/jan-hohler-81a217167_volkswagengroup-hrtransformation-aiinhr-activity-7332651668494311424-uNqQ"
+    ],
+    "summary": "A Volkswagen Group HR transformation update announced the go-live of the Milo HR AI chatbot, which answers employee questions about HR processes and products 24/7, alongside AI-powered response suggestions in Salesforce Service Cloud for HR consulting-center agents."
+  },
+  {
+    "company_name": "Verizon",
+    "signal_type": "A",
+    "HR_domain": "Learning & Development",
+    "source_type": "conference talk",
+    "date_event": "2026-01-01",
+    "date_found": "2026-08-10",
+    "source_urls": [
+      "https://www.conference-board.org/bio/brent-vader"
+    ],
+    "summary": "The Conference Board profile for Verizon Chief Learning Officer Brent Vader says his team launched AI Unlocked, an enterprise-wide 2026 program to build AI fluency through learning experiences, networking, mentoring, change management, and live programming with AI innovators."
   }
 ]
