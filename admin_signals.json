@@ -2641,5 +2641,29 @@
       "https://www.conference-board.org/bio/brent-vader"
     ],
     "summary": "The Conference Board profile for Verizon Chief Learning Officer Brent Vader says his team launched AI Unlocked, an enterprise-wide 2026 program to build AI fluency through learning experiences, networking, mentoring, change management, and live programming with AI innovators."
+  },
+  {
+    "company_name": "CVS Health",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "company press release",
+    "source_urls": [
+      "https://www.cvshealth.com/news/company-news/cvs-health-earns-two-gold-and-one-silver-stevie-awards-for-great-employers.html"
+    ],
+    "date_event": "2026-08-04",
+    "date_found": "2026-08-10",
+    "summary": "CVS Health reported that its AI Learning Academy, launched in February 2026, used a phased persona-based model to build practical enterprise AI capabilities and embed responsible-AI training. The program generated more than 18,500 live-session attendances, improved colleague AI confidence by up to 72%, and up to 90% of participants reported sustained productivity gains of 45–60 minutes per week 30 days after training. SVP/Talent & Development Greg Karanastasis described the people-centered AI skills program."
+  },
+  {
+    "company_name": "Cisco",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "company newsroom",
+    "source_urls": [
+      "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m07/building-a-people-first-ai-strategy.html"
+    ],
+    "date_event": "2026-07-01",
+    "date_found": "2026-08-10",
+    "summary": "Cisco’s people and learning executives described a workforce AI initiative in which the company rolled out role-tailored foundational AI-literacy courses and live learning labs, encouraged daily employee experimentation, and emphasized human oversight, guardrails, ethical and secure adoption. Named leaders included SVP and Chief Learning & Future Readiness Officer Mary de Wysocki, EVP People, Policy & Purpose Officer Fran Katsoudas, and Chief Learning Officer Marci Paino."
   }
 ]
