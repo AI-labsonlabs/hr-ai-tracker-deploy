@@ -2665,5 +2665,41 @@
     "date_event": "2026-07-01",
     "date_found": "2026-08-10",
     "summary": "Cisco’s people and learning executives described a workforce AI initiative in which the company rolled out role-tailored foundational AI-literacy courses and live learning labs, encouraged daily employee experimentation, and emphasized human oversight, guardrails, ethical and secure adoption. Named leaders included SVP and Chief Learning & Future Readiness Officer Mary de Wysocki, EVP People, Policy & Purpose Officer Fran Katsoudas, and Chief Learning Officer Marci Paino."
+  },
+  {
+    "company_name": "Walmart",
+    "signal_type": "A",
+    "HR_domain": "Learning & Development",
+    "source_type": "SEC filing",
+    "date_event": "2026-03-13",
+    "date_found": "2026-08-11",
+    "source_urls": [
+      "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm"
+    ],
+    "summary": "Walmart's FY2026 Form 10-K says its workforce strategy is developing a digitally skilled, AI-enabled workforce, deploying digital tools that support associate effectiveness, engagement and performance, and providing company-wide AI learning pathways and certifications. The filing also links AI investment to associate work experience and talent recruitment and development."
+  },
+  {
+    "company_name": "Walmart",
+    "signal_type": "B",
+    "HR_domain": "Recruiting",
+    "source_type": "press release",
+    "date_event": "2025-06-05",
+    "date_found": "2026-08-11",
+    "source_urls": [
+      "https://corporate.walmart.com/news/2025/06/05/walmart-pilots-ai-interview-coach-and-accelerates-associate-to-technician-program-to-fuel-careers"
+    ],
+    "summary": "Walmart announced it was piloting an AI-powered interview coach for associates and candidates. The tool simulates a Walmart interview with up to 10 questions, scores each response from 1–10, and gives instant feedback on structure, clarity and confidence; Walmart said it planned to offer the coach to every internal and external applicant if the pilot performed as expected."
+  },
+  {
+    "company_name": "Wells Fargo",
+    "signal_type": "A",
+    "HR_domain": "Learning & Development",
+    "source_type": "news article",
+    "date_event": "2026-03-15",
+    "date_found": "2026-08-11",
+    "source_urls": [
+      "https://www.businessinsider.com/wells-fargo-ai-saul-van-beurden-jobs-banks-2026-3"
+    ],
+    "summary": "Business Insider reported that Wells Fargo is leaning on AI literacy programs and demos to build grassroots enthusiasm, with the goal of helping employees become comfortable enough with AI to be redeployed if their jobs change or remain competitive in the job market. The program is a named internal AI learning and reskilling use case."
   }
 ]
