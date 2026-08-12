@@ -2701,5 +2701,41 @@
       "https://www.businessinsider.com/wells-fargo-ai-saul-van-beurden-jobs-banks-2026-3"
     ],
     "summary": "Business Insider reported that Wells Fargo is leaning on AI literacy programs and demos to build grassroots enthusiasm, with the goal of helping employees become comfortable enough with AI to be redeployed if their jobs change or remain competitive in the job market. The program is a named internal AI learning and reskilling use case."
+  },
+  {
+    "company_name": "XPO",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-01-01",
+    "date_found": "2026-08-12",
+    "source_urls": [
+      "https://jobs.xpo.com/job/Greenwich-Director,-People-Analytics-and-Transformation-Hybrid-CT-06831/1344173900/"
+    ],
+    "summary": "XPO posted a Director, People Analytics and Transformation role reporting to the CHRO. The role calls for AI/ML models for workforce forecasting and attrition prediction, intelligent dashboards, HR automation, and implementation of emerging HR technologies across the global HR function."
+  },
+  {
+    "company_name": "Zimmer Biomet",
+    "signal_type": "I",
+    "HR_domain": "Governance",
+    "source_type": "product release notes",
+    "date_event": "2026-05-19",
+    "date_found": "2026-08-12",
+    "source_urls": [
+      "https://careers.zimmerbiomet.com/us/en/ai-and-recruitment-during-interviews"
+    ],
+    "summary": "Zimmer Biomet published an AI-and-recruitment policy for interviews. It prohibits unauthorized AI tools, recording, transcription, and automated assistance during live interviews, requires continuous video participation for identity and engagement checks, and cites interview integrity, equity, privacy, and accommodation controls."
+  },
+  {
+    "company_name": "Zoom Video Communications",
+    "signal_type": "F",
+    "HR_domain": "Recruiting",
+    "source_type": "SEC filing",
+    "date_event": "2025-12-01",
+    "date_found": "2026-08-12",
+    "source_urls": [
+      "https://investors.zoom.us/static-files/7370d7ce-5293-4f6f-b91e-6eb90c9a37b3"
+    ],
+    "summary": "Zoom's FY2026 Form 10-K says it acquired 100% of BrightHire on December 1, 2025 for $98.0 million in cash. BrightHire provides AI-powered interview intelligence and hiring automation, and Zoom said the acquisition expands its recruiting and candidate-engagement capabilities."
   }
 ]
