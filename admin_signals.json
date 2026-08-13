@@ -2737,5 +2737,53 @@
       "https://investors.zoom.us/static-files/7370d7ce-5293-4f6f-b91e-6eb90c9a37b3"
     ],
     "summary": "Zoom's FY2026 Form 10-K says it acquired 100% of BrightHire on December 1, 2025 for $98.0 million in cash. BrightHire provides AI-powered interview intelligence and hiring automation, and Zoom said the acquisition expands its recruiting and candidate-engagement capabilities."
+  },
+  {
+    "company_name": "Accenture",
+    "signal_type": "A",
+    "HR_domain": "Recruiting",
+    "source_type": "case study",
+    "date_event": "2026-03-27",
+    "date_found": "2026-08-13",
+    "source_urls": [
+      "https://www.accenture.com/us-en/case-studies/technology/continuous-reinvention-powered-with-workday"
+    ],
+    "summary": "Accenture's Workday-based HR transformation is described as in use across HR, including a global recruiting platform, skills and proficiency visibility, and gen-AI-enabled performance management. Accenture reports a 30% increase in hiring speed, the ability to onboard 40 acquisitions per year, and a 9% reduction in HR cost as a share of revenue over a three-year CAGR."
+  },
+  {
+    "company_name": "AMC Entertainment",
+    "signal_type": "J",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "job post",
+    "date_event": "2026-02-05",
+    "date_found": "2026-08-13",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/digital-shared-services-hr-manager-at-amc-theatres-4325584693"
+    ],
+    "summary": "AMC Theatres' Digital Shared Services HR Manager posting calls for identifying and expanding automation and AI tools for HR service delivery, leveraging virtual agents, and leading implementations of chatbots or virtual assistants while meeting privacy, security, and compliance standards. This is a direct hiring signal of investment in AI-enabled HR service delivery."
+  },
+  {
+    "company_name": "AMD",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-05-15",
+    "date_found": "2026-08-13",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/senior-data-scientist-%E2%80%93-people-analytics-at-amd-4417252669"
+    ],
+    "summary": "AMD's Senior Data Scientist — People Analytics posting calls for advanced analytics, predictive modeling, AI-driven insights, and AI agents to streamline data delivery and analysis for talent processes. The role covers workforce planning, engagement, organizational design, data products, and a long-term People Analytics strategy."
+  },
+  {
+    "company_name": "New York Life",
+    "signal_type": "A",
+    "HR_domain": "Employee Engagement",
+    "source_type": "case study",
+    "date_event": "2026-03-13",
+    "date_found": "2026-08-13",
+    "source_urls": [
+      "https://go.perceptyx.com/customer-stories/new-york-life-2026"
+    ],
+    "summary": "New York Life used monthly Perceptyx pulse surveys to guide and measure employee experience during AI adoption. After initial 250-person ChatGPT and Copilot pilots, it deployed secure ChatGPT access to all 12,000 employees and distributed nearly 40,000 AI licenses by the end of 2025; employees reported saving nearly three hours per week on average, with 76% regularly using AI tools."
   }
 ]
