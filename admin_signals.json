@@ -2785,5 +2785,29 @@
       "https://go.perceptyx.com/customer-stories/new-york-life-2026"
     ],
     "summary": "New York Life used monthly Perceptyx pulse surveys to guide and measure employee experience during AI adoption. After initial 250-person ChatGPT and Copilot pilots, it deployed secure ChatGPT access to all 12,000 employees and distributed nearly 40,000 AI licenses by the end of 2025; employees reported saving nearly three hours per week on average, with 76% regularly using AI tools."
+  },
+  {
+    "company_name": "Albertsons",
+    "signal_type": "I",
+    "HR_domain": "People Analytics",
+    "source_type": "company blog",
+    "date_event": "2026-02-03",
+    "date_found": "2026-08-14",
+    "source_urls": [
+      "https://www.albertsonscompanies.com/newsroom/blog/blog-details/2026/Shaping-the-Future-of-Retail-Accelerating-Growth-with-4-Big-Bets-in-Our-AI-Strategy/default.aspx"
+    ],
+    "summary": "Albertsons says it is working to deploy generative AI to help leaders forecast labor needs and optimize scheduling, while conversational AI tools are intended to make associates more productive. The company frames this as part of its 2026 AI strategy and planned workforce deployment, so it is classified as an announcement rather than a confirmed production deployment."
+  },
+  {
+    "company_name": "Affirm",
+    "signal_type": "J",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "job post",
+    "date_event": "2026-08-01",
+    "date_found": "2026-08-14",
+    "source_urls": [
+      "https://www.dice.com/job-detail/109fa10b-9aeb-4ee6-b8d0-b61d7891221b"
+    ],
+    "summary": "Affirm’s AI Solutions Engineer posting sits in People Tech & Analytics and calls for building and deploying AI-powered systems serving the People function and employee base. The role explicitly includes shipping AI agents, APIs, and applications, integrating Workday, Notion, and case-management tools, and owning production systems for People Operations—direct hiring evidence of investment in HR AI service delivery."
   }
 ]
