@@ -2809,5 +2809,65 @@
       "https://www.dice.com/job-detail/109fa10b-9aeb-4ee6-b8d0-b61d7891221b"
     ],
     "summary": "Affirm’s AI Solutions Engineer posting sits in People Tech & Analytics and calls for building and deploying AI-powered systems serving the People function and employee base. The role explicitly includes shipping AI agents, APIs, and applications, integrating Workday, Notion, and case-management tools, and owning production systems for People Operations—direct hiring evidence of investment in HR AI service delivery."
+  },
+  {
+    "company_name": "American Airlines",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-07-27",
+    "date_found": "2026-08-15",
+    "source_urls": [
+      "https://jobs.aa.com/job/AnalystSr-Analyst,-People-Analytics/87131-en_US/"
+    ],
+    "summary": "American Airlines posted an Analyst/Sr Analyst, People Analytics role within its People Division. The role will develop analytical models, forecasting models, scorecards, reporting tools, and HR process insights to support cost savings, process efficiency, and leadership decisions."
+  },
+  {
+    "company_name": "Anheuser-Busch InBev",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-07-13",
+    "date_found": "2026-08-15",
+    "source_urls": [
+      "https://job-boards.greenhouse.io/abinbev/jobs/8631716002?gh_src=d8rxjsm22us"
+    ],
+    "summary": "AB InBev posted a Senior People Data Analyst role focused on end-to-end People Analytics solutions in Power BI, workforce insights, automation, and executive reporting. The posting says initiatives cross systems, data, and AI and calls for collaboration with HR, data, and product partners to drive adoption and scalable outcomes."
+  },
+  {
+    "company_name": "Amgen",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-08-13",
+    "date_found": "2026-08-15",
+    "source_urls": [
+      "https://careers.amgen.com/en/job/hyderabad/manager-hr-data-analytics/87/96218610960"
+    ],
+    "summary": "Amgen posted a Manager, HR Data Analytics role to lead People Analytics and workforce insight delivery. Named use cases include attrition, engagement, hiring, performance, and DEI metrics, with statistical modeling, forecasting, experimentation, and HR-system data integration."
+  },
+  {
+    "company_name": "Apple",
+    "signal_type": "J",
+    "HR_domain": "People Analytics",
+    "source_type": "job post",
+    "date_event": "2026-08-05",
+    "date_found": "2026-08-15",
+    "source_urls": [
+      "https://jobs.apple.com/en-gb/details/200675970-3715/people-analytics-developer-and-software-engineer"
+    ],
+    "summary": "Apple posted a People Analytics Developer and Software Engineer role supporting recruitment, employee relations, people surveys, talent planning, and employee-experience products across its HRIS landscape. The role builds and operates analytics products, dashboards, automated workflows, and AI/system-interoperability services for the people domain."
+  },
+  {
+    "company_name": "Applied Materials",
+    "signal_type": "J",
+    "HR_domain": "HR Service Delivery",
+    "source_type": "job post",
+    "date_event": "2026-07-09",
+    "date_found": "2026-08-15",
+    "source_urls": [
+      "https://jobs.appliedmaterials.com/job/santa-clara/ai-business-analyst-hr-technology/95/97550713408"
+    ],
+    "summary": "Applied Materials posted an AI Business Analyst, HR Technology role supporting the AiMEE HR chatbot, Workday-based HR analytics models, and AI/automation initiatives. The role explicitly leads and supports pilot deployments of AiMEE across countries, gathering feedback and refining the experience for global scalability."
   }
 ]
