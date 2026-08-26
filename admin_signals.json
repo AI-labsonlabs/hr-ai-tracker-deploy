@@ -2209,5 +2209,90 @@
       "https://careers.nordstrom.com/sr-engineering-manager-hr-technology-hybrid-seattle-wa/job/D85D10221C0F0A779C8A3C55A0DA5EBB"
     ],
     "summary": "Nordstrom job posting for Sr. Engineering Manager (HR Technology) says the leader will define and drive AI and automation strategy across HR and Legal technology platforms (Workday HCM/WFM, Cornerstone Learning, integrations), including building team fluency in agentic workflows, LLM integration, and intelligent automation."
+  },
+  {
+    "company_name": "Leidos",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://newsroom.servicenow.com/press-releases/details/2026/Leidos-reimagines-experiences-for-50000-employees-and-boosts-operational-efficiency-with-the-ServiceNow-AI-Platform/default.aspx"
+    ],
+    "date_event": "2026-07-22",
+    "date_found": "2026-08-26",
+    "summary": "Leidos began expanding ServiceNow AI across approximately 50,000 employees, including EmployeeWorks and HR Service Delivery as a conversational entry point spanning HR, IT, and shared services. Targets of up to 60% autonomous IT ticket resolution and approximately 80,000 fewer tickets annually were projections rather than realized results."
+  },
+  {
+    "company_name": "Infosys",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.infosys.com/investors/reports-filings/annual-report/annual/documents/infosys-ar-26.pdf",
+      "https://www.infosys.com/newsroom/press-releases.html?utm_source=openai"
+    ],
+    "date_event": "2026-06-15",
+    "date_found": "2026-08-26",
+    "summary": "Infosys added generative-AI and prompt-engineering content to entry-level training. It reported that 10,766 graduates completed foundation training in fiscal 2026, 81.8% of its workforce received training, employees averaged 113 learning hours, and 84% were AI-aware. Its bridge programs combine training and internships to move existing employees into new career fields while retaining them."
+  },
+  {
+    "company_name": "Cognizant",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "press release",
+    "source_urls": [
+      "https://investors.cognizant.com/news-and-events/news/news-details/2026/Cognizant-to-scale-to-5000-Frontier-Certified-Engineers-and-10000-Frontier-Business-Operators/default.aspx"
+    ],
+    "date_event": "2026-07-09",
+    "date_found": "2026-08-26",
+    "summary": "Cognizant committed to developing 5,000 Frontier Certified Engineers and 10,000 Frontier Business Operators through a 40,000-person certification funnel, company-wide AI-fluency and responsible-AI training, and direct university hiring. The new job family distinguishes AI builders from operators managing human teams and agent fleets; the first cohort was expected in Q4 2026."
+  },
+  {
+    "company_name": "Microsoft",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://blogs.microsoft.com/blog/2026/07/06/the-latest-in-our-company-transformation/"
+    ],
+    "date_event": "2026-07-06",
+    "date_found": "2026-08-26",
+    "summary": "Microsoft reported redeploying more than 4,000 employees into new roles over the preceding year, including 500 in July, while continuing AI-skills investment. It also began embedding engineering experts alongside commercial customers as part of a revised delivery and staffing model."
+  },
+  {
+    "company_name": "Anthropic",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://job-boards.greenhouse.io/anthropic/jobs/5119468008?utm_source=openai"
+    ],
+    "date_event": "2026-08-12",
+    "date_found": "2026-08-26",
+    "summary": "Anthropic advertised a Staff Software Engineer for its internal People Products team to design and implement AI-native tools, evaluations, prompts and workflows using Claude. The team supports hiring, onboarding, teamwork, management and promotions for HR teams, recruiters and managers; no production or outcome metric was disclosed."
+  },
+  {
+    "company_name": "Anthropic",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://job-boards.greenhouse.io/anthropic/jobs/5290838008?utm_source=openai"
+    ],
+    "date_event": "2026-07-22",
+    "date_found": "2026-08-26",
+    "summary": "Anthropic opened a Recruiting Solutions Engineer role to convert recruiter-created AI skills into reusable assets, develop evaluations for AI-assisted hiring workflows and build technical resources that enable recruiting teams to operate with AI. No realized recruiting benefit was reported."
+  },
+  {
+    "company_name": "Capital One",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.capitalonecareers.com/en/job/mclean/principal-associate-data-scientist-people-strategy-and-analytics/1732/96519761616?utm_source=openai"
+    ],
+    "date_event": "2026-06-16",
+    "date_found": "2026-08-26",
+    "summary": "Capital One's People Strategy & Analytics team advertised a data-science role to build AI- and ML-based talent products. The mandate includes modeling associate behavior, improving HR tools and efficiency, automating real-time data, informing talent policy and developing internal HR products with NLP, LLMs, prompt engineering and retrieval-augmented generation; no quantified outcome was disclosed."
   }
 ]
