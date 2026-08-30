@@ -2294,5 +2294,90 @@
     "date_event": "2026-06-16",
     "date_found": "2026-08-26",
     "summary": "Capital One's People Strategy & Analytics team advertised a data-science role to build AI- and ML-based talent products. The mandate includes modeling associate behavior, improving HR tools and efficiency, automating real-time data, informing talent policy and developing internal HR products with NLP, LLMs, prompt engineering and retrieval-augmented generation; no quantified outcome was disclosed."
+  },
+  {
+    "company_name": "IBM",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "press release",
+    "source_urls": [
+      "https://uk.newsroom.ibm.com/ibm-launches-new-ai-learning-pathway?asPDF=1"
+    ],
+    "date_event": "2026-06-08",
+    "date_found": "2026-08-30",
+    "summary": "IBM expanded SkillsBuild with role-aligned AI learning for foundational users, practitioners, advanced technical specialists, senior leaders, and policymakers. Topics include prompting, analytics, responsible use, risk management, and simulations."
+  },
+  {
+    "company_name": "Leidos",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://investor.servicenow.com/news/news-details/2026/Leidos-reimagines-experiences-for-50000-employees-and-boosts-operational-efficiency-with-the-ServiceNow-AI-Platform/default.aspx"
+    ],
+    "date_event": "2026-07-22",
+    "date_found": "2026-08-30",
+    "summary": "Leidos expanded ServiceNow across approximately 50,000 employees, connecting HR Service Delivery, employee experience, IT, and shared services. It is also deploying AI Control Tower to make agent actions auditable and aligned with security requirements; announced savings and autonomous-resolution figures are projections."
+  },
+  {
+    "company_name": "Microsoft",
+    "HR_domain": "Talent Development",
+    "signal_type": "A",
+    "source_type": "earnings call",
+    "source_urls": [
+      "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4"
+    ],
+    "date_event": "2026-07-29",
+    "date_found": "2026-08-30",
+    "summary": "Microsoft disclosed Copilot commitments covering 505,000 NHS England staff, more than 276,000 KPMG professionals, 200,000 HSBC seats, and 400,000 EY employees. It also reported that a preceding NHS England trial saved workers an average of 43 minutes per day."
+  },
+  {
+    "company_name": "Abbott",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.abbott.com/content/dam/corp/abbott/en-us/documents/pdfs/abbott-citizenship/Abbott-2025-Global-Sustainability-Report-June-2026.pdf"
+    ],
+    "date_event": "2026-06-01",
+    "date_found": "2026-08-30",
+    "summary": "Abbott reported that its Leading with Impact II program uses an interactive AI avatar to let managers practice feedback and difficult conversations. More than 13,000 managers participated during 2025; Abbott also said 96% of its managers had participated in the broader Leading with Impact program since launch."
+  },
+  {
+    "company_name": "Abbott",
+    "HR_domain": "AI Hiring",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.abbott.com/content/dam/corp/abbott/en-us/documents/pdfs/abbott-citizenship/Abbott-2025-Global-Sustainability-Report-June-2026.pdf",
+      "https://www.abbott.com/en-us/privacy-policy/candidates/global"
+    ],
+    "date_event": "2026-06-01",
+    "date_found": "2026-08-30",
+    "summary": "Abbott disclosed operational use of AI in recruiting, including personalized career-site content, a candidate chatbot, resume parsing, informational fit scores, candidate discovery and job recommendations, interview transcription, and automated interview scheduling. Abbott says recruiters remain responsible and the tools do not make legally significant automated hiring decisions."
+  },
+  {
+    "company_name": "American Express",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.americanexpress.com/en-us/newsroom/articles/financial-news/2026-chairman-s-letter-to-shareholders.html?_sp=0b9c2d10-1fbc-42f9-8c6a-321406ba94a8&utm_source=openai"
+    ],
+    "date_event": "2026-03-01",
+    "date_found": "2026-08-30",
+    "summary": "American Express said it had provided nearly all colleagues globally with access to leading AI tools and invested in AI-fluency and responsible-use training. The company reported widespread daily adoption and hundreds of use cases producing productivity and cycle-time improvements, though it did not quantify those improvements."
+  },
+  {
+    "company_name": "BNY Mellon",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "earnings call",
+    "source_urls": [
+      "https://fortune.com/company-assets/738/quartr/slides-cdef9-2026-04-16-10-53-37.pdf"
+    ],
+    "date_event": "2026-04-16",
+    "date_found": "2026-08-30",
+    "summary": "BNY Mellon reported in its first-quarter presentation that proprietary AI training and development were available to every employee, demonstrating an enterprise-wide workforce enablement program rather than training limited to technical teams."
   }
 ]
