@@ -4301,6 +4301,19 @@ body.admin-mode .admin-edit-signal-btn { display: inline-flex; }
           This tracker evaluates HR AI adoption across companies by collecting, classifying, and scoring public signals. Below is a complete breakdown of how scores are computed.
         </p>
 
+        <div class="profile-card" style="margin-bottom:var(--space-6);border-color:var(--color-warning);">
+          <div class="profile-card-title">Provisional Companies and Benchmark Eligibility</div>
+          <p style="font-size:var(--text-xs);color:var(--color-text);line-height:1.7;margin-bottom:var(--space-3);">
+            Credible public evidence may identify a company outside the tracker&rsquo;s original benchmark cohort. The company and its signals are added as <strong>provisional</strong> so the evidence is visible without allowing discovery-based selection bias or thin research coverage to alter comparative results.
+          </p>
+          <div style="background:var(--color-surface-offset);border-radius:var(--radius-md);padding:var(--space-3);margin-bottom:var(--space-3);">
+            <code style="font-size:var(--text-xs);">Benchmark eligible = 5 distinct qualifying signals + 3 publisher domains + 2 HR categories</code>
+          </div>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.7;">
+            Until all three gates are met, provisional companies remain visible and searchable but are excluded from rankings, percentiles, peer comparisons, leader counts, industry averages, medians, and other aggregate benchmarks. Existing members of the original company universe remain in the benchmark cohort because they were selected independently of whether positive HR AI evidence was found. Signals are deduplicated before the threshold is evaluated, and multiple links repeating the same event do not create additional qualifying signals.
+          </p>
+        </div>
+
         <!-- HOW SCORING WORKS (explainer) -->
         <div class="profile-card" style="margin-bottom:var(--space-6);">
           <div class="profile-card-title">How Signal Scoring Works</div>
@@ -5812,6 +5825,14 @@ function openProfile(companyName) {
     return phrase + '.';
   }
   var companyDescHTML = buildCompanyDesc(co);
+  var isProvisional = detail.benchmark_eligible === false;
+  var be = detail.benchmark_evidence || {};
+  var provisionalNotice = isProvisional
+    ? '<div class="profile-card" style="margin-bottom:var(--space-4);border-color:var(--color-warning);background:var(--color-warning-highlight);">' +
+      '<div style="font-size:var(--text-sm);font-weight:600;color:var(--color-warning);margin-bottom:4px;">Provisional company \u00b7 excluded from benchmarks</div>' +
+      '<div style="font-size:var(--text-xs);line-height:1.6;color:var(--color-text);">Visible adoption evidence is shown below, but this company does not affect rankings, percentiles, peer comparisons, industry averages, or medians. Promotion progress: ' +
+      (be.qualifying_signals || 0) + '/5 signals \u00b7 ' + (be.publisher_domains || 0) + '/3 publisher domains \u00b7 ' + (be.hr_domains || 0) + '/2 HR categories.</div></div>'
+    : '';
 
   const html = '<div class="profile-back" onclick="closeProfile()" role="button" tabindex="0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</div>' +
     '<div class="profile-header"><span class="profile-company-name">' + co.company_name + '</span>' +
@@ -5819,7 +5840,9 @@ function openProfile(companyName) {
     '<span class="badge badge-blue">' + (co.industry || '') + '</span>' +
     '<span class="badge badge-gray">' + (co.sub_industry || '') + '</span>' +
     (co.public_or_private === 'Public' ? '<span class="badge badge-green">Public</span>' : '<span class="badge badge-gray">Private</span>') +
+    (isProvisional ? '<span class="badge badge-yellow">Provisional \u00b7 limited evidence</span>' : '') +
     '</div></div>' +
+    provisionalNotice +
     '<div class="profile-grid profile-grid-3col">' +
     // HR DOMAIN SCORES (left)
     '<div class="profile-card"><div class="profile-card-title">HR Domain Scores <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--color-text-muted);">(click to filter signals)</span></div>' +
@@ -6538,7 +6561,7 @@ function renderOverview() {
   document.getElementById('kpiGrid').innerHTML =
     kpiCard('Companies Tracked', s.total_companies, Object.keys(D.industries).length + ' industries') +
     kpiCard('Total Signals', s.total_signals, 'Across all companies') +
-    kpiCard('Avg Maturity', (function(){ var allScores = []; for(var ind in D.industries) D.industries[ind].forEach(function(c){ allScores.push(c.maturity); }); return allScores.length ? fmt(allScores.reduce(function(a,b){return a+b;},0)/allScores.length) : '0'; })(), 'Score 0\u2013100 scale', 'mobile-hide-median');
+    kpiCard('Avg Maturity', (function(){ var allScores = []; for(var ind in D.industries) D.industries[ind].forEach(function(c){ if (c.benchmark_eligible !== false) allScores.push(c.maturity); }); return allScores.length ? fmt(allScores.reduce(function(a,b){return a+b;},0)/allScores.length) : '0'; })(), 'Benchmark-eligible companies', 'mobile-hide-median');
 
   // Industry chart — primary = mean (avg); secondary = median & leaders count.
   // Sort by mean desc; exclude Conglomerate (single-company category).
@@ -6547,7 +6570,8 @@ function renderOverview() {
   for (const [ind, companies] of Object.entries(D.industries)) {
     if (ind === 'Conglomerate') continue;
     if (!companies.length) continue;
-    const scores = companies.map(c => c.maturity).sort((a, b) => a - b);
+    const scores = companies.filter(c => c.benchmark_eligible !== false).map(c => c.maturity).sort((a, b) => a - b);
+    if (!scores.length) continue;
     const mid = Math.floor(scores.length / 2);
     const median = scores.length % 2 ? scores[mid] : (scores[mid - 1] + scores[mid]) / 2;
     const mean = scores.reduce((a, b) => a + b, 0) / scores.length;
@@ -7160,9 +7184,14 @@ function renderOverviewTable() {
     return ((va || 0) - (vb || 0)) * sd;
   });
 
-  // Assign ranks within filtered set — follows current sort order
+  // Assign ranks only within the benchmark-eligible set. Provisional
+  // companies stay visible but never shift another company's rank.
   const rankMap = new Map();
-  filtered.forEach((c, i) => rankMap.set(c.name, i + 1));
+  let eligibleRank = 0;
+  filtered.forEach(function(c) {
+    if (c.benchmark_eligible === false) rankMap.set(c.name, null);
+    else rankMap.set(c.name, ++eligibleRank);
+  });
 
   if (isMobile()) {
     // Mobile card rendering
@@ -7171,8 +7200,8 @@ function renderOverviewTable() {
       var rank = rankMap.get(c.name);
       cardsHTML += '<div class="mobile-card" onclick="openProfile(\'' + esc(c.name) + '\')">' +
         '<div class="mobile-card-header">' +
-        '<span class="mobile-card-rank">#' + rank + '</span>' +
-        '<span class="mobile-card-name">' + c.name + '</span>' +
+        '<span class="mobile-card-rank">' + (rank ? '#' + rank : '\u2014') + '</span>' +
+        '<span class="mobile-card-name">' + c.name + (c.benchmark_eligible === false ? ' <span class="badge badge-yellow">Provisional</span>' : '') + '</span>' +
         '</div>' +
         '<div class="mobile-card-meta">' + c.industry + (c.sub_industry ? ' · ' + c.sub_industry : '') + '</div>' +
         '<div class="mobile-card-metrics">' +
@@ -7203,8 +7232,8 @@ function renderOverviewTable() {
 
     function buildRow(c, rank) {
       return '<tr onclick="openProfile(\'' + esc(c.name) + '\')">' +
-        '<td class="mono">' + rank + '</td>' +
-        '<td class="company-name">' + c.name + '</td>' +
+        '<td class="mono">' + (rank || '\u2014') + '</td>' +
+        '<td class="company-name">' + c.name + (c.benchmark_eligible === false ? ' <span class="badge badge-yellow">Provisional</span>' : '') + '</td>' +
         '<td>' + c.industry + '</td>' +
         '<td style="text-transform:capitalize;">' + (c.sub_industry || '\u2014') + '</td>' +
         '<td class="mono ' + maturityClass(c.maturity) + '">' + fmt(c.maturity) + '</td>' +
@@ -7951,9 +7980,10 @@ function initCompareSelector(selectId, searchId, profileId, side) {
   var profile = document.getElementById(profileId);
   if (!select || !search) return;
 
-  // Populate select
+  // Populate benchmark comparison with eligible companies only.
+  var benchmarkCompanies = allCompanies.filter(function(c) { return c.benchmark_eligible !== false; });
   select.innerHTML = '<option value="">Choose a company...</option>';
-  allCompanies.forEach(function(c) {
+  benchmarkCompanies.forEach(function(c) {
     var opt = document.createElement('option');
     opt.value = c.name;
     opt.textContent = c.name + ' (' + fmt(c.maturity) + ')';
@@ -7965,7 +7995,7 @@ function initCompareSelector(selectId, searchId, profileId, side) {
   dropdownEl.className = 'compare-dropdown';
   search.parentNode.appendChild(dropdownEl);
 
-  var items = allCompanies.map(function(c) {
+  var items = benchmarkCompanies.map(function(c) {
     return { name: c.name, maturity: c.maturity, industry: c.industry };
   });
 
