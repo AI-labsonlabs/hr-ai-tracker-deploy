@@ -2379,5 +2379,29 @@
     "date_event": "2026-04-16",
     "date_found": "2026-08-30",
     "summary": "BNY Mellon reported in its first-quarter presentation that proprietary AI training and development were available to every employee, demonstrating an enterprise-wide workforce enablement program rather than training limited to technical teams."
+  },
+  {
+    "company_name": "Health Connect America",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.take2.ai/blog/health-connect-america-take2-ai-case-study"
+    ],
+    "date_event": "2025-11-01",
+    "date_found": "2026-08-30",
+    "summary": "Health Connect America deployed Take2 AI agents for candidate sourcing, structured phone screening, interview scheduling, and credential and reference verification. The vendor-published customer case study reports production use and says final hiring decisions remain with people."
+  },
+  {
+    "company_name": "Aleris",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.hubert.ai/case-studies/how-aleris-cut-time-to-hire-and-improved-candidate-experience-with-only-a-5-working-day-go-live"
+    ],
+    "date_event": "2026-06-10",
+    "date_found": "2026-08-30",
+    "summary": "Aleris deployed Hubert competency-based AI interviews at the point of application, with ranked recommendations delivered to Teamtailor and recruiters retaining final decision authority. The vendor-published case study reports an 88% interview-completion rate and 9/10 candidate satisfaction."
   }
 ]
