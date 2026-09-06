@@ -2403,5 +2403,53 @@
     "date_event": "2026-06-10",
     "date_found": "2026-08-30",
     "summary": "Aleris deployed Hubert competency-based AI interviews at the point of application, with ranked recommendations delivered to Teamtailor and recruiters retaining final decision authority. The vendor-published case study reports an 88% interview-completion rate and 9/10 candidate satisfaction."
+  },
+  {
+    "company_name": "Oracle",
+    "HR_domain": "Talent Development",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.oracle.com/news/announcement/oracle-helps-organizations-scale-effective-leadership-with-oracle-manager-edge-2026-06-30/"
+    ],
+    "date_event": "2026-06-30",
+    "date_found": "2026-09-06",
+    "summary": "Oracle introduced Manager Edge, an AI coaching assistant that uses HCM data to give managers in-the-moment guidance on engagement, performance, employee development, and retention through tools including Teams and Slack."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "product release notes",
+    "source_urls": [
+      "https://doc.workday.com/hiredscore/en-us/workday-hiredscore/hiredscore-release-notes/2026/august/wednesday--5th-august.html"
+    ],
+    "date_event": "2026-08-05",
+    "date_found": "2026-09-06",
+    "summary": "Workday HiredScore released an opt-in LLM-based candidate fit-and-gap evaluation that explains qualification-level grades, cites supporting résumé evidence, and requires customers to pilot the feature on selected requisitions before global rollout."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "SEC filing",
+    "source_urls": [
+      "https://www.sec.gov/Archives/edgar/data/1327811/000132781126000042/0001327811-26-000042-index.html"
+    ],
+    "date_event": "2026-08-27",
+    "date_found": "2026-09-06",
+    "summary": "Workday reported that more than 5,500 customers used at least one Workday-built agent, an increase of more than 35% quarter over quarter. AI represented more than 25% of new annual contract value."
+  },
+  {
+    "company_name": "SAP",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://news.sap.com/2026/07/sap-business-ai-release-highlights-q2-2026/"
+    ],
+    "date_event": "2026-07-20",
+    "date_found": "2026-09-06",
+    "summary": "SAP expanded AI Agent Hub to discover agents across multiple vendors, conduct governance assessments, and issue verification badges that runtime systems can use to permit or block agents."
   }
 ]
