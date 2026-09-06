@@ -2451,5 +2451,17 @@
     "date_event": "2026-07-20",
     "date_found": "2026-09-06",
     "summary": "SAP expanded AI Agent Hub to discover agents across multiple vendors, conduct governance assessments, and issue verification badges that runtime systems can use to permit or block agents."
+  },
+  {
+    "company_name": "HR Path Brazil",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://news.sap.com/2026/07/ai-transformations-pattern-emerging/"
+    ],
+    "date_event": "2026-07-16",
+    "date_found": "2026-09-06",
+    "summary": "SAP reported that HR Path Brazil uses Joule embedded in SAP SuccessFactors HCM to automate routine HR interactions, helping employees find information and reducing standard HR support cases by 7% and HR support workload by two hours per week."
   }
 ]
