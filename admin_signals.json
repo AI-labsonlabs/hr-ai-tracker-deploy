@@ -24,16 +24,17 @@
     "summary": "Perceptyx announced a partnership with Tesco to enhance its employee experience program by capturing, analyzing, and acting on employee feedback across its global workforce, using AI-powered capabilities to automate analysis and support insight-led action."
   },
   {
-    "HR_domain": "HR Service Delivery",
     "company_name": "Google",
-    "date_event": "2026-05-29",
-    "date_found": "2026-05-31",
+    "HR_domain": "HR Service Delivery",
     "signal_type": "I",
-    "source_type": "news article",
+    "source_type": "press release",
     "source_urls": [
+      "https://newsroom.workday.com/2026-05-28-Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows",
       "https://www.peoplematters.in/news/hr-technology/google-and-workday-target-hr-transformation-with-enterprise-ai-agents-49988"
     ],
-    "summary": "People Matters reports that Alphabet will use the Gemini Enterprise Agent Platform to build a customized Workday agent aimed at automating and streamlining administrative workflows for Workday administrators, as part of the Google Cloud–Workday partnership announcement."
+    "date_event": "2026-05-28",
+    "date_found": "2026-05-29",
+    "summary": "Workday and Google Cloud announced that Alphabet will use the Gemini Enterprise Agent Platform to build and run a custom Workday agent that streamlines and automates workflows for Workday administrators."
   },
   {
     "HR_domain": "Talent Development",
@@ -1415,18 +1416,6 @@
   },
   {
     "HR_domain": "HR Service Delivery",
-    "company_name": "Google",
-    "date_event": "2026-05-28",
-    "date_found": "2026-05-29",
-    "signal_type": "I",
-    "source_type": "press release",
-    "source_urls": [
-      "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx"
-    ],
-    "summary": "Workday and Google Cloud announced Google will leverage the Gemini Enterprise Agent Platform to build and run a custom Workday agent to streamline and automate key workflows for Workday administrators (HR/Workday admin operations)."
-  },
-  {
-    "HR_domain": "HR Service Delivery",
     "company_name": "Accenture",
     "date_event": "2026-05-28",
     "date_found": "2026-05-29",
@@ -1823,15 +1812,6 @@
     "source_type": "press release",
     "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx",
     "summary": "Workday and Google Cloud announced an integration that brings Workday’s Sana Self‑Service Agent into Gemini Enterprise (early access), enabling employees and managers to complete HR self-service actions like time-off requests and payslip/tax info queries with Workday permissions applied."
-  },
-  {
-    "HR_domain": "HR Service Delivery",
-    "company_name": "Google",
-    "date_event": "2026-05-28",
-    "signal_type": "I",
-    "source_type": "press release",
-    "source_url": "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-and-Google-Cloud-Expand-Strategic-Partnership-to-Bring-AI-Agents-for-HR-and-Finance-Into-Employees-Daily-Workflows/default.aspx",
-    "summary": "Workday and Google Cloud said Alphabet will leverage the Gemini Enterprise Agent Platform to build and run a custom Workday agent intended to streamline and automate workflows for Workday administrators."
   },
   {
     "HR_domain": "Talent Development",
@@ -2463,5 +2443,222 @@
     "date_event": "2026-07-16",
     "date_found": "2026-09-06",
     "summary": "SAP reported that HR Path Brazil uses Joule embedded in SAP SuccessFactors HCM to automate routine HR interactions, helping employees find information and reducing standard HR support cases by 7% and HR support workload by two hours per week."
+  },
+  {
+    "company_name": "LC Waikiki",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://news.sap.com/2026/07/sap-business-ai-release-highlights-q2-2026/"
+    ],
+    "date_event": "2026-07-20",
+    "date_found": "2026-09-06",
+    "summary": "SAP reported that LC Waikiki uses an AI agent built on SAP Joule for natural-language HR transactions including leave requests and payroll queries, reducing HR process cycle times by 40% to 60%."
+  },
+  {
+    "company_name": "BNY Mellon",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.builtinnyc.com/job/senior-director-people-analytics/8992462"
+    ],
+    "date_event": "2026-04-08",
+    "date_found": "2026-09-06",
+    "summary": "BNY Mellon sought a Senior Director of People Analytics to use predictive and prescriptive analytics for talent demand, attrition risk, workforce productivity, scenario planning, and workforce simulations, and to apply AI and automation to workforce planning and access to HR data."
+  },
+  {
+    "company_name": "Randstad Enterprise",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.randstadenterprise.com/insights/randstad-enterprise-insights/introducing-randstad-enterprise-s-life-cycle-intelligence-agent-lia-powered-by-new-next-gen-ai-ecosystem/"
+    ],
+    "date_event": "2026-08-25",
+    "date_found": "2026-09-06",
+    "summary": "Randstad Enterprise made its Lia talent life-cycle intelligence agent available to clients through its Talent Agility Platform, supporting recruiting work from market intelligence and requisition planning through sourcing, screening, selection, offers, and onboarding with human specialist involvement."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://newsroom.workday.com/2026-06-02-Workday-Launches-Agent-Passport-to-Test,-Verify,-and-Continuously-Monitor-Every-AI-Agent-in-the-Enterprise"
+    ],
+    "date_event": "2026-06-02",
+    "date_found": "2026-09-06",
+    "summary": "Workday announced Agent Passport to test Workday and third-party AI agents before production and continuously monitor them at runtime, with controls mapped to NIST AI RMF, OWASP LLM Top 10, and MITRE ATLAS; Cisco serves as the launch attestor through Cisco AI Defense."
+  },
+  {
+    "company_name": "Cemex",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.microsoft.com/en/customers/story/26985-cemex-microsoft-copilot-studio"
+    ],
+    "date_event": "2026-08-11",
+    "date_found": "2026-09-07",
+    "summary": "Cemex deployed Consult HR, a Copilot Studio agent integrated with Teams, ServiceNow, and SAP SuccessFactors. It provides policy, benefits, and HR-service support to about 800 employees in Central Mexico and can initiate service requests."
+  },
+  {
+    "company_name": "State Farm",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.microsoft.com/en/customers/story/26947-state-farm-microsoft-power-platform"
+    ],
+    "date_event": "2026-08-11",
+    "date_found": "2026-09-07",
+    "summary": "State Farm put 41 risk-assessed AI builds into production, including an Ask HR agent for policy and benefits questions. Its HR team subsequently developed a roadmap for 12 additional agents."
+  },
+  {
+    "company_name": "Lifetime Products",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "B",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.microsoft.com/en/customers/story/27087-lifetime-products-microsoft-copilot-studio"
+    ],
+    "date_event": "2026-08-26",
+    "date_found": "2026-09-07",
+    "summary": "Lifetime Products built a handbook-grounded HR self-service agent for PTO and policy questions. It also reported moving 45 employees into new roles over two years as work was automated, with IT, HR, and business leaders reviewing redeployment and upskilling decisions."
+  },
+  {
+    "company_name": "Darussalam Assets",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://news.sap.com/sea/2026/08/darussalam-assets-advances-next-phase-of-ai-enabled-hr-transformation-with-sap/"
+    ],
+    "date_event": "2026-08-10",
+    "date_found": "2026-09-07",
+    "summary": "Darussalam Assets advanced its use of SAP Business AI and SuccessFactors across more than 9,000 employees, 30 subsidiaries, and 14 sectors as part of a shift from fragmented manual HR processes to standardized group HCM operations."
+  },
+  {
+    "company_name": "Korn Ferry",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.microsoft.com/en/customers/story/27106-korn-ferry-international-microsoft-365-enterprise"
+    ],
+    "date_event": "2026-08-28",
+    "date_found": "2026-09-07",
+    "summary": "Korn Ferry adopted Microsoft 365 E7 to combine enterprise AI with security, privacy, compliance, and agent-governance controls. It plans to apply AI across interviewing, coaching, assessment, development, and rewards while protecting candidate and client data."
+  },
+  {
+    "company_name": "Cognizant",
+    "HR_domain": "AI Hiring",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://news.cognizant.com/2026-07-15-Cognizant-On-Track-to-Hire-1%2C500-U-S-College-Graduates-in-2026-to-Power-AI-Era-Workforce"
+    ],
+    "date_event": "2026-07-15",
+    "date_found": "2026-09-07",
+    "summary": "Cognizant announced that it was on track to hire 1,500 U.S. college graduates by year-end for technology, engineering, and frontier-AI roles, supported by AI-enabled internships, mentorship, tool use, and accelerated engineering pathways."
+  },
+  {
+    "company_name": "Government of Fujairah",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "press release",
+    "source_urls": [
+      "https://news.sap.com/mena/2026/07/fujairah-government-partners-with-sap-to-empower-employees-with-advanced-ai-skills/?amp=1"
+    ],
+    "date_event": "2026-07-21",
+    "date_found": "2026-09-07",
+    "summary": "The Government of Fujairah launched an ongoing AI development program for employees across multiple government entities, combining SAP certification, Business AI, technical instruction, and soft-skills development."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "Talent Development",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://newsroom.workday.com/2026-07-22-Workday-Learning%2C-Powered-by-Sana%2C-Now-Generally-Available-as-an-AI-Native-Learning-Experience-Built-on-Workdays-Trusted-Data"
+    ],
+    "date_event": "2026-07-22",
+    "date_found": "2026-09-07",
+    "summary": "Workday made Workday Learning powered by Sana generally available, adding personalized AI tutoring, learning-path recommendations, interactive course generation and translation, and automated learning assignments and campaigns."
+  },
+  {
+    "company_name": "Oracle",
+    "HR_domain": "Talent Development",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.oracle.com/es/news/announcement/oracle-adds-new-fusion-agentic-applications-and-ai-agents-to-help-improve-talent-management-2026-08-11/"
+    ],
+    "date_event": "2026-08-11",
+    "date_found": "2026-09-07",
+    "summary": "Oracle introduced coordinated Fusion HR agents designed to identify skill needs, support employee development, improve internal mobility, and execute actions using enterprise policies, permissions, approvals, and transaction context."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Announces-Fiscal-2027-Second-Quarter-Financial-Results/default.aspx"
+    ],
+    "date_event": "2026-08-27",
+    "date_found": "2026-09-07",
+    "summary": "Workday reported that more than 5,500 customers used at least one organic Workday agent, an increase of more than 35% from the prior quarter, and that AI represented more than 25% of new annual contract value during the quarter."
+  },
+  {
+    "company_name": "Albertsons",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "earnings call",
+    "source_urls": [
+      "https://uk.investing.com/news/transcripts/earnings-call-transcript-albertsons-q1-2026-misses-profit-view-as-shares-sink-93CH-4785662?ampMode=1"
+    ],
+    "date_event": "2026-07-23",
+    "date_found": "2026-09-07",
+    "summary": "Albertsons reported that deployment of its AI-powered workforce-management platform was underway, with an enterprise-wide rollout targeted for early 2027. The platform is intended to automate employee scheduling, improve labor-plan adherence, expand associate self-service, and align staffing with customer demand."
+  },
+  {
+    "company_name": "Adobe",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.adobe.com/us/en/job/R168267/Manager-HR-Platform-Engineering-AI-Enablement",
+      "https://adobe.wd5.myworkdayjobs.com/external_experienced/job/san-jose/manager--hr-platform-engineering---ai-enablement_r168267?utm_source=openai"
+    ],
+    "date_event": "2026-05-16",
+    "date_found": "2026-09-07",
+    "summary": "Adobe advertised a Manager, HR Platform Engineering & AI Enablement role to define its HR AI-enablement strategy, prepare HR platforms and data foundations, establish security and privacy guardrails, prioritize use cases, and lead architecture and execution across systems including Workday, recruiting, learning, payroll, and benefits."
+  },
+  {
+    "company_name": "Boeing",
+    "HR_domain": "AI Hiring",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/senior-human-resources-data-scientist-at-boeing-4398279178?utm_source=openai"
+    ],
+    "date_event": "2026-03-25",
+    "date_found": "2026-09-07",
+    "summary": "Boeing sought a Senior Human Resources Data Scientist to build, deploy, and monitor production ML and LLM applications for recruiting, retention, internal mobility, skilling, compensation, résumé parsing, candidate experience, and employee-feedback analysis. The role also covered model drift, fairness, explainability, privacy, and AI-governance controls."
+  },
+  {
+    "company_name": "Boston Scientific",
+    "HR_domain": "Talent Development",
+    "signal_type": "D",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.aihub.masstech.org/companies/boston-scientific/jobs/73712320-hr-director-ai-organization-transformation"
+    ],
+    "date_event": "2026-04-08",
+    "date_found": "2026-09-07",
+    "summary": "Boston Scientific established and recruited an HR Director, AI Organization Transformation to lead AI-driven redesign of workflows, jobs, skills, career paths, organizational structures, and operating models. The remit connected human-AI work design to workforce planning, hiring, performance management, compensation, and adoption metrics."
   }
 ]
