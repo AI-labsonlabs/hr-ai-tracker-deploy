@@ -2660,5 +2660,270 @@
     "date_event": "2026-04-08",
     "date_found": "2026-09-07",
     "summary": "Boston Scientific established and recruited an HR Director, AI Organization Transformation to lead AI-driven redesign of workflows, jobs, skills, career paths, organizational structures, and operating models. The remit connected human-AI work design to workforce planning, hiring, performance management, compensation, and adoption metrics."
+  },
+  {
+    "company_name": "Wipro",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/09/01/3354202/0/en/ema-launches-hr-it-and-finance-hub-to-help-enterprises-put-ai-employees-to-work-in-minutes.html"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-09-13",
+    "summary": "Wipro deployed Ema’s employee assistant for more than 240,000 associates and over 100 workflows spanning payroll, benefits, timesheets, procurement, and related services. Ema reported approximately 2.9 million annual queries, response times reduced from days to seconds, and a 20% increase in employee satisfaction."
+  },
+  {
+    "company_name": "ADP",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://mediacenter.adp.com/2026-09-08-ADP-Partners-with-AWS-to-Accelerate-AI-Powered-Innovation-in-Human-Capital-Management"
+    ],
+    "date_event": "2026-09-08",
+    "date_found": "2026-09-13",
+    "summary": "ADP expanded its AWS partnership to develop ADP Assist agents that investigate payroll anomalies, answer complex questions, automate processes, and generate reports under human oversight. ADP also reported that a generative-AI onboarding process reduced certain critical onboarding steps by more than 50%."
+  },
+  {
+    "company_name": "Paychex",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.paychex.com/newsroom/news-releases/paychex-wise-microsoft-365-teams",
+      "https://www.globenewswire.com/news-release/2026/08/03/3337602/0/en/paychex-expands-wise-to-deliver-workforce-intelligence-across-business-tools.html"
+    ],
+    "date_event": "2026-08-03",
+    "date_found": "2026-09-13",
+    "summary": "Paychex expanded its WISE intelligence engine into Microsoft 365 Copilot and Teams, extending workforce intelligence and HCM assistance into employees’ everyday business tools."
+  },
+  {
+    "company_name": "Indeed",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.indeed.com/news/releases/indeeds-ai-powered-sourcing-assistant-helps-employers-hire-over-30-faster"
+    ],
+    "date_event": "2026-06-15",
+    "date_found": "2026-09-13",
+    "summary": "Indeed launched Sourcing Assistant after a beta covering 225 jobs. Indeed reported sourced applicants were 2.9 times more likely to be hired and were hired six days faster; 17 beta employers reported median savings of seven hours per week."
+  },
+  {
+    "company_name": "Bethany of the Northwest",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.indeed.com/news/releases/indeeds-ai-powered-sourcing-assistant-helps-employers-hire-over-30-faster"
+    ],
+    "date_event": "2026-06-15",
+    "date_found": "2026-09-13",
+    "summary": "Bethany of the Northwest used Indeed Sourcing Assistant to identify candidates for difficult healthcare roles, reducing the need for its one-person recruiting team to review large résumé pools manually while supporting as many as 250 annual hires."
+  },
+  {
+    "company_name": "Employ and VONQ",
+    "HR_domain": "Recruiting",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.prnewswire.com/news-releases/employ-and-vonq-partner-to-bring-responsible-ai-candidate-screening-directly-into-the-hiring-workflow-302802702.html"
+    ],
+    "date_event": "2026-06-17",
+    "date_found": "2026-09-13",
+    "summary": "Employ and VONQ introduced an AI screening agent inside JazzHR and Lever. The agent conducts chat or voice screening, asks role-specific questions, and produces explainable candidate dossiers and ranked shortlists while leaving hiring decisions to recruiters."
+  },
+  {
+    "company_name": "Manulife",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.phenom.com/blog/ai-governance-framework-recruiting-workflows-global-level"
+    ],
+    "date_event": "2026-07-10",
+    "date_found": "2026-09-13",
+    "summary": "Manulife embedded AI tools into the daily workflows of 150 recruiters, including a multilingual career site and automated interview scheduling. Phenom reported a 120% increase in adoption after go-live and recruiter satisfaction of 8.6 out of 10."
+  },
+  {
+    "company_name": "Eightfold AI",
+    "HR_domain": "Recruiting",
+    "signal_type": "I",
+    "source_type": "blog post",
+    "source_urls": [
+      "https://eightfold.ai/blog/meet-candidate-agent/"
+    ],
+    "date_event": "2026-07-15",
+    "date_found": "2026-09-13",
+    "summary": "Eightfold introduced a candidate agent for multilingual engagement, role discovery, application completion, routing, and handoff to structured AI interviews. Eightfold also reported substantial cycle-time reductions among unnamed early AI Interviewer adopters."
+  },
+  {
+    "company_name": "PageUp",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/06/15/3311575/0/en/doubling-down-on-ai-transparency-pageup-completes-warden-ai-certification-ahead-of-new-regulations.html"
+    ],
+    "date_event": "2026-06-15",
+    "date_found": "2026-09-13",
+    "summary": "PageUp completed an independent Warden AI audit and adopted monthly monitoring of its recruiting systems, including disparate-impact and counterfactual testing with current results made available through Warden’s directory."
+  },
+  {
+    "company_name": "UnitedHealth Group",
+    "HR_domain": "AI Hiring",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.unitedhealthgroup.com/en/job/eden-prairie/senior-director-enterprise-ai-modernization-and-workforce-strategy-remote/34088/96195251808"
+    ],
+    "date_event": "2026-08-06",
+    "date_found": "2026-09-13",
+    "summary": "UnitedHealth Group advertised a senior People Team role for enterprise AI modernization and workforce strategy, with responsibility for scaling workforce intelligence, connecting AI to workforce planning and organizational redesign, and leading human talent alongside AI agents."
+  },
+  {
+    "company_name": "BT",
+    "HR_domain": "AI Hiring",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.bt.com/BT/job/London-People-%26-AI-Transformation-Specialist-E1-8EP/61892-en_GB/"
+    ],
+    "date_event": "2026-08-14",
+    "date_found": "2026-09-13",
+    "summary": "BT advertised a People & AI Transformation Specialist to translate its AI-first strategy into workforce plans, capability-building programs, adoption frameworks, and reusable guidance for HR partners and business leaders."
+  },
+  {
+    "company_name": "Bentley Systems",
+    "HR_domain": "AI Hiring",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.bentley.com/job/Exton-HR-AI-Solutions-Partner-PA-19341/1425030800/"
+    ],
+    "date_event": "2026-08-31",
+    "date_found": "2026-09-13",
+    "summary": "Bentley Systems advertised an HR AI Solutions Partner to design and deploy agents, automations, and interfaces across recruiting, employee relations, people analytics, learning, shared services, and talent management, including production delivery and adoption."
+  },
+  {
+    "company_name": "Oracle",
+    "HR_domain": "Talent Development",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.oracle.com/news/announcement/oracle-adds-new-fusion-agentic-applications-and-ai-agents-to-help-improve-talent-management-2026-08-11/"
+    ],
+    "date_event": "2026-08-11",
+    "date_found": "2026-09-13",
+    "summary": "Oracle announced Fusion agentic applications that identify emerging skill needs, compare skills supply and demand against employee career interests, detect development-resource gaps, and prioritize career-development investments while retaining human control over critical decisions."
+  },
+  {
+    "company_name": "SAP",
+    "HR_domain": "Talent Development",
+    "signal_type": "B",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.sap.com/blogs/studying-real-world-ai-impact"
+    ],
+    "date_event": "2026-07-25",
+    "date_found": "2026-09-13",
+    "summary": "SAP published research involving 693 employees at six customers. Employees rated AI-assisted goal setting as more enjoyable than unaided goal setting, 3.88 versus 2.50 out of 5, but AI-generated goals scored lower on alignment with company objectives."
+  },
+  {
+    "company_name": "Rackspace Technology",
+    "HR_domain": "People Analytics",
+    "signal_type": "I",
+    "source_type": "SEC filing",
+    "source_urls": [
+      "https://www.sec.gov/Archives/edgar/data/1810019/000181001926000058/rxt-20260610.htm"
+    ],
+    "date_event": "2026-06-10",
+    "date_found": "2026-09-13",
+    "summary": "Rackspace approved a workforce realignment expected to eliminate approximately 15% of its global workforce, explicitly linking the action to shifting resources from selected legacy delivery functions toward its governed enterprise-AI buildout, with some potential strategic hiring and reinvestment."
+  },
+  {
+    "company_name": "Baker Hughes",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.bakerhughes.com/es/es/job/R160152/AI-Solutioning-Consultant?utm_source=openai"
+    ],
+    "date_event": "2026-05-04",
+    "date_found": "2026-09-13",
+    "summary": "Baker Hughes was hiring an AI Solutioning Consultant to co-lead an enterprise-wide employee enablement program focused on designing solutions with AI in mind and increasing organizational AI and digital literacy."
+  },
+  {
+    "company_name": "BNSF Railway",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.bnsf.com/us/en/job/94409/Staff-Engineering-Manager-Employee-Experience-Remote-US?utm_source=openai"
+    ],
+    "date_event": "2026-04-27",
+    "date_found": "2026-09-13",
+    "summary": "BNSF sought a Staff Engineering Manager to lead an AI-first digital employee experience, including a modern employee intranet using machine learning, natural-language processing, and intelligent automation in collaboration with HR, Communications, and IT."
+  },
+  {
+    "company_name": "BNSF Railway",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.bnsf.com/us/en/job/95403/Manager-Director-People-Analytics?utm_source=openai"
+    ],
+    "date_event": "2026-08-01",
+    "date_found": "2026-09-13",
+    "summary": "BNSF was staffing a People Analytics leader to develop predictive models, dashboards, and automated reporting across hiring, retention, workforce planning, performance, engagement, and leadership effectiveness, including the practical use of machine learning, GenAI, AI-assisted tools, and agentic tools."
+  },
+  {
+    "company_name": "Cargill",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.cargill.com/en/job/wayzata/people-analytics-consultant/23251/100187820208?utm_source=openai"
+    ],
+    "date_event": "2026-09-04",
+    "date_found": "2026-09-13",
+    "summary": "Cargill advertised a People Analytics Consultant role using AI and emerging analytics tools to accelerate analysis of retention, engagement, performance, workforce planning, diversity, and organizational effectiveness under responsible-AI standards, with human judgment accountable for recommendations."
+  },
+  {
+    "company_name": "Cargill",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.cargill.com/en/job/wayzata/director-capability-enablement-hr-and-law-compliance-and-corporate-affairs/23251/99226306640?utm_source=openai"
+    ],
+    "date_event": "2026-08-14",
+    "date_found": "2026-09-13",
+    "summary": "Cargill was hiring a Director of Capability Enablement to drive AI adoption and capability-building across its global HR and Law, Compliance and Corporate Affairs workforce through learning strategies, capability academies, communities of practice, and measurement of behavior change and business impact."
+  },
+  {
+    "company_name": "Caterpillar",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.caterpillar.com/it/lavori/r0000381382/workforce-insights-specialist-data-science/?utm_source=openai"
+    ],
+    "date_event": "2026-07-10",
+    "date_found": "2026-09-13",
+    "summary": "Caterpillar advertised a Workforce Insights Specialist role to model talent scenarios and risks, identify external markets with priority skills, evaluate workforce initiatives, and apply AI-driven methods to interpret workforce data and support evidence-based talent decisions."
+  },
+  {
+    "company_name": "Chevron",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.chevron.com/job/houston/strategic-workforce-planning-lead/38138/99732076864?utm_source=openai"
+    ],
+    "date_event": "2026-09-09",
+    "date_found": "2026-09-13",
+    "summary": "Chevron was hiring a Strategic Workforce Planning Lead to forecast headcount and skills, model internal skill supply and mobility, incorporate technology shifts into workforce scenarios, and use AI augmentation as an explicit option in build-buy-borrow-automate capability plans supported by milestones and value cases."
   }
 ]
