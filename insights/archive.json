@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-09-27",
+    "summary": "LC Waikiki, INRY, and Wipro show employee-service AI progressing beyond policy retrieval into leave, payroll, benefits, allocation, timesheet, and other workflow execution. The common architecture is a conversational front door...",
+    "trend_count": 8,
+    "addition_count": 3
+  },
+  {
     "date": "2026-09-20",
     "summary": "Dutch Bros and Sweetwater reported automating screening, scheduling, communications, offers, and downstream hiring tasks, while Manulife embedded scoring, generative AI, and scheduling into recruiter workflows. Eightfold and Workday are...",
     "trend_count": 8,

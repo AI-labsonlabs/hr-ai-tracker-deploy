@@ -2925,5 +2925,41 @@
     "date_event": "2026-09-09",
     "date_found": "2026-09-13",
     "summary": "Chevron was hiring a Strategic Workforce Planning Lead to forecast headcount and skills, model internal skill supply and mobility, incorporate technology shifts into workforce scenarios, and use AI augmentation as an explicit option in build-buy-borrow-automate capability plans supported by milestones and value cases."
+  },
+  {
+    "company_name": "Adyen",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.adyen.com/vacancies/8167431-senior-recruitment-business-partner-commercial-gtm?utm_source=openai"
+    ],
+    "date_event": "2026-09-26",
+    "date_found": "2026-09-27",
+    "summary": "Adyen sought a senior recruitment business partner responsible for using funnel data and recruiting insights and experimenting with AI, automation and other technology to improve recruiting processes."
+  },
+  {
+    "company_name": "Affirm",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://job-boards.greenhouse.io/affirm/jobs/7894014003?utm_source=openai"
+    ],
+    "date_event": "2026-09-26",
+    "date_found": "2026-09-27",
+    "summary": "Affirm advertised a VP of People Business Partners and Employee Relations role tasked with advising executives on workforce size, composition, capabilities and deployment, including how AI, technology and new operating models could improve workforce leverage and effectiveness."
+  },
+  {
+    "company_name": "BambooHR",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.bamboohr.com/about-bamboohr/press-release/bamboohr-launches-bamboo-ai?utm_source=openai"
+    ],
+    "date_event": "2026-07-21",
+    "date_found": "2026-09-27",
+    "summary": "BambooHR launched Bamboo AI, embedding AI agents and intelligence into its HR platform to support workforce decisions, employee engagement, productivity and execution of HR work under customers' existing controls. BambooHR cited more than 30,000 customers and over three million employee records but did not report customer outcome metrics."
   }
 ]
