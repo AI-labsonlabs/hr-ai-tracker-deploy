@@ -2961,5 +2961,392 @@
     "date_event": "2026-07-21",
     "date_found": "2026-09-27",
     "summary": "BambooHR launched Bamboo AI, embedding AI agents and intelligence into its HR platform to support workforce decisions, employee engagement, productivity and execution of HR work under customers' existing controls. BambooHR cited more than 30,000 customers and over three million employee records but did not report customer outcome metrics."
+  },
+  {
+    "company_name": "UCHealth",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "conference",
+    "source_urls": [
+      "https://www.take2.ai/blog/onstage/hr-healthcare-2026"
+    ],
+    "date_event": "2026-07-19",
+    "date_found": "2026-10-04",
+    "summary": "UCHealth disclosed using Take2 AI agents for candidate screening. Its talent-acquisition presentation reported an 81% screening-completion rate, an average 81 minutes from application to completed screen, and 60% of interviews occurring outside normal business hours."
+  },
+  {
+    "company_name": "Expedia Group",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.linkedin.com/business/talent/blog/talent-acquisition/ai-in-hiring?utm_source=openai"
+    ],
+    "date_event": "2026-07-22",
+    "date_found": "2026-10-04",
+    "summary": "LinkedIn reported that Expedia Group used Hiring Assistant to reduce time-to-hire by 30 days and revive hard-to-fill searches, including an engineering search that produced two hires after being open for more than 80 days."
+  },
+  {
+    "company_name": "BWX Technologies",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://blog.workday.com/en-us/leading-brands-drove-value-workday-ai-q2.html"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-10-04",
+    "summary": "Workday identified BWX Technologies as an adopter of its Candidate Experience Agent for answering candidate questions and coordinating interviews."
+  },
+  {
+    "company_name": "Cars.com",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://blog.workday.com/en-us/leading-brands-drove-value-workday-ai-q2.html"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-10-04",
+    "summary": "Workday identified Cars.com as an adopter of its Candidate Experience Agent for candidate support and interview coordination."
+  },
+  {
+    "company_name": "ICON Clinical Research",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://blog.workday.com/en-us/leading-brands-drove-value-workday-ai-q2.html"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-10-04",
+    "summary": "Workday disclosed that ICON Clinical Research adopted Workday Recruiting Agent; no ICON-specific outcome metric was provided."
+  },
+  {
+    "company_name": "Lithia & Driveway",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://blog.workday.com/en-us/leading-brands-drove-value-workday-ai-q2.html"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-10-04",
+    "summary": "Workday disclosed that Lithia & Driveway adopted Workday Recruiting Agent; no company-specific outcome metric was provided."
+  },
+  {
+    "company_name": "TKO Group Holdings",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://blog.workday.com/en-us/leading-brands-drove-value-workday-ai-q2.html"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-10-04",
+    "summary": "Workday identified TKO Group Holdings as an adopter of its Candidate Experience Agent."
+  },
+  {
+    "company_name": "AMD",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://news.linkedin.com/2026/hiring-assistant-2?linkId=100000441310616&utm_source=openai"
+    ],
+    "date_event": "2026-09-29",
+    "date_found": "2026-10-04",
+    "summary": "LinkedIn named AMD as a user of its agentic hiring solutions. LinkedIn's aggregate customer results were not attributed specifically to AMD."
+  },
+  {
+    "company_name": "Cisco",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://news.linkedin.com/2026/hiring-assistant-2?linkId=100000441310616&utm_source=openai"
+    ],
+    "date_event": "2026-09-29",
+    "date_found": "2026-10-04",
+    "summary": "LinkedIn named Cisco as a user of its agentic hiring solutions. LinkedIn's aggregate customer results were not attributed specifically to Cisco."
+  },
+  {
+    "company_name": "Ochsner Health",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://news.linkedin.com/2026/hiring-assistant-2?linkId=100000441310616&utm_source=openai"
+    ],
+    "date_event": "2026-09-29",
+    "date_found": "2026-10-04",
+    "summary": "LinkedIn named Ochsner Health as a user of its agentic hiring solutions. LinkedIn's aggregate customer results were not attributed specifically to Ochsner Health."
+  },
+  {
+    "company_name": "Palo Alto Networks",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://news.linkedin.com/2026/hiring-assistant-2?linkId=100000441310616&utm_source=openai"
+    ],
+    "date_event": "2026-09-29",
+    "date_found": "2026-10-04",
+    "summary": "LinkedIn named Palo Alto Networks as a user of its agentic hiring solutions. LinkedIn's aggregate customer results were not attributed specifically to Palo Alto Networks."
+  },
+  {
+    "company_name": "Zillow",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://news.linkedin.com/2026/hiring-assistant-2?linkId=100000441310616&utm_source=openai"
+    ],
+    "date_event": "2026-09-29",
+    "date_found": "2026-10-04",
+    "summary": "LinkedIn named Zillow as a user of its agentic hiring solutions. LinkedIn's aggregate customer results were not attributed specifically to Zillow."
+  },
+  {
+    "company_name": "Adecco",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.twilio.com/en-us/press/releases/orbio-ai-scales-ai-powered-frontline-recruitment-globally-with-t?utm_source=openai"
+    ],
+    "date_event": "2026-09-23",
+    "date_found": "2026-10-04",
+    "summary": "Twilio identified Adecco as an Orbio AI customer using a platform that can screen applicants, answer role questions, schedule interviews, capture feedback, and update hiring workflows. Platform-wide volumes were not allocated to Adecco."
+  },
+  {
+    "company_name": "RBE",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.twilio.com/en-us/press/releases/orbio-ai-scales-ai-powered-frontline-recruitment-globally-with-t?utm_source=openai"
+    ],
+    "date_event": "2026-09-23",
+    "date_found": "2026-10-04",
+    "summary": "Twilio identified RBE, an operator of Burger King and Tim Hortons locations, as an Orbio AI customer using AI-supported frontline hiring workflows. Platform-wide results were not allocated to RBE."
+  },
+  {
+    "company_name": "Yum! Brands (KFC)",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.twilio.com/en-us/press/releases/orbio-ai-scales-ai-powered-frontline-recruitment-globally-with-t?utm_source=openai"
+    ],
+    "date_event": "2026-09-23",
+    "date_found": "2026-10-04",
+    "summary": "Twilio identified Yum! Brands/KFC as an Orbio AI customer using AI-supported frontline hiring workflows. Platform-wide conversation and candidate volumes were not attributed specifically to this customer."
+  },
+  {
+    "company_name": "Atento",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.twilio.com/en-us/press/releases/orbio-ai-scales-ai-powered-frontline-recruitment-globally-with-t?utm_source=openai"
+    ],
+    "date_event": "2026-09-23",
+    "date_found": "2026-10-04",
+    "summary": "Twilio identified Atento as an Orbio AI customer using a platform that supports screening, candidate questions, scheduling, feedback capture, and hiring-workflow updates. Aggregate platform results were not allocated to Atento."
+  },
+  {
+    "company_name": "Prime Communications",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.twilio.com/en-us/press/releases/orbio-ai-scales-ai-powered-frontline-recruitment-globally-with-t?utm_source=openai"
+    ],
+    "date_event": "2026-09-23",
+    "date_found": "2026-10-04",
+    "summary": "Twilio identified Prime Communications as an Orbio AI customer using AI-supported frontline hiring workflows. Aggregate platform results were not allocated to Prime Communications."
+  },
+  {
+    "company_name": "Seminole Hard Rock Support Services",
+    "HR_domain": "Comp/Benefits",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://blog.workday.com/en-us/leading-brands-drove-value-workday-ai-q2.html"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-10-04",
+    "summary": "Seminole Hard Rock Support Services uses Workday Payroll Agent, called Wally, to analyze FLSA calculations, pay statements, configuration issues, retroactive processes, and transfer-related tax implications for payroll covering 28,000 employees across multiple countries."
+  },
+  {
+    "company_name": "The Carlyle Group",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://blog.workday.com/en-us/leading-brands-drove-value-workday-ai-q2.html"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-10-04",
+    "summary": "The Carlyle Group added Sana Enterprise so employees can ask questions and receive answers instead of searching across multiple enterprise systems."
+  },
+  {
+    "company_name": "Accenture",
+    "HR_domain": "Talent Development",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://en-sg.newsroom.workday.com/2026-07-22-Workday-Learning%2C-Powered-by-Sana%2C-Now-Generally-Available-as-an-AI-Native-Learning-Experience-Built-on-Workdays-Trusted-Data"
+    ],
+    "date_event": "2026-07-22",
+    "date_found": "2026-10-04",
+    "summary": "Accenture said it is incorporating Workday Learning powered by Sana into its learning ecosystem, building on Accenture LearnVantage to deliver more adaptive and personalized workforce learning."
+  },
+  {
+    "company_name": "The Josh Bersin Company",
+    "HR_domain": "Talent Development",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://en-sg.newsroom.workday.com/2026-07-22-Workday-Learning%2C-Powered-by-Sana%2C-Now-Generally-Available-as-an-AI-Native-Learning-Experience-Built-on-Workdays-Trusted-Data"
+    ],
+    "date_event": "2026-07-22",
+    "date_found": "2026-10-04",
+    "summary": "The Josh Bersin Company said it moved thousands of learners into an AI-first Sana environment and converted its existing program library into interactive courses over months rather than years."
+  },
+  {
+    "company_name": "ADP",
+    "HR_domain": "Comp/Benefits",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://uk.adp.com/about-adp/press-centre/adp-partners-with-aws-to-accelerate-ai-innovation-in-human-capital-management.aspx"
+    ],
+    "date_event": "2026-09-08",
+    "date_found": "2026-10-04",
+    "summary": "ADP expanded its AWS partnership to build and scale ADP Assist agents for HR and payroll, including payroll-anomaly correction, complex-question answering, and report generation under human oversight. ADP also said a generative-AI client-onboarding process reduced certain critical steps by more than 50%."
+  },
+  {
+    "company_name": "Eaton",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://eaton.eightfold.ai/careers/job/687237115037",
+      "https://lensa.com/job-v1/eaton-plc/remote/sales-enablement-lead/a708df2ffd33435c71a309d2ac9c4015?utm_source=openai"
+    ],
+    "date_event": "2026-08-01",
+    "date_found": "2026-10-04",
+    "summary": "Eaton sought an HR Innovation & Digital Enablement Leader to own its HR automation and AI roadmap, deploy AI across recruiting, onboarding, development, rewards, training, retention, and employee support, measure performance, and address privacy, security, and bias."
+  },
+  {
+    "company_name": "Flix",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.hvcapital.com/companies/flixbus-2/jobs/89918436-ai-integration-engineer-digital-transformation-m-f-d?utm_source=openai"
+    ],
+    "date_event": "2026-08-14",
+    "date_found": "2026-10-04",
+    "summary": "Flix sought an AI Integration Engineer embedded in Human Resources to deploy Claude-based HR applications, create agent and MCP integrations, operate AI tools on AWS, and implement role-based access, secrets management, and audit logging."
+  },
+  {
+    "company_name": "Meta",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "news article",
+    "source_urls": [
+      "https://apnews.com/article/019fb9c7fdc09167e91547546bce5be8"
+    ],
+    "date_event": "2026-07-14",
+    "date_found": "2026-10-04",
+    "summary": "Twenty-six employees sued Meta, alleging that internal AI systems, activity data, AI-token dashboards, and algorithmically assisted performance rankings influenced layoff selection and disadvantaged employees on protected leave. Meta disputes the allegation and says people, not AI, made the workforce decisions."
+  },
+  {
+    "company_name": "Applied Materials",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.appliedmaterials.com/job/santa-clara/ai-business-analyst-hr-technology/95/97550713408",
+      "https://www.appliedmaterials.com/us/en/pages/candidate-privacy-policy.html"
+    ],
+    "date_event": "2026-07-09",
+    "date_found": "2026-10-04",
+    "summary": "Applied Materials posted an AI Business Analyst – HR Technology role responsible for maintaining and expanding its AiMEE employee chatbot, leading country pilots, developing Workday-based HR analytics models, and supporting additional HR AI deployments. The company also discloses that Eightfold AI recommends job matches based on candidate skills and experience, while recruiters and hiring managers retain decision authority."
+  },
+  {
+    "company_name": "AutoNation",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.autonation.com/us/en/job/JR2026148245/Senior-Manager-HR-Shared-Services?utm_source=openai"
+    ],
+    "date_event": "2026-10-04",
+    "date_found": "2026-10-04",
+    "summary": "In a posting first observed on October 4, AutoNation sought a Senior Manager, HR Shared Services to expand AI-assisted employee support across an operation handling about 1,500 monthly cases for more than 25,000 associates. Responsibilities include deploying conversational assistants, AI-assisted triage and routing, knowledge-driven case deflection, and measuring deflection and containment rates."
+  },
+  {
+    "company_name": "Aurora Innovation",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://aurora.tech/careers/8183241c-42df-4b30-a76a-5beed1c0e9c9?utm_source=openai"
+    ],
+    "date_event": "2026-10-04",
+    "date_found": "2026-10-04",
+    "summary": "In a posting first observed on October 4, Aurora Innovation sought a Director, Head of People Technology to create an AI-integrated HR technology environment. The role would replace manual People workflows with AI-powered agents and build internal agents for employee self-service, reporting, and routine data audits, subject to privacy, governance, and audit controls."
+  },
+  {
+    "company_name": "Bayer Crop Science",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.bayer.com/en/about-us/explore-bayer/our-contributions/stories/genai-for-good?utm_source=openai"
+    ],
+    "date_event": "2026-10-04",
+    "date_found": "2026-10-04",
+    "summary": "A Bayer publication first observed on October 4 described E.L.Y. — Expert Learning for You, a generative-AI learning system developed with Microsoft for agronomists and other farmer-facing employees. Bayer said the system, whose pilot began earlier in 2026, was supporting more than 1,500 U.S. frontline employees with contextual agronomy, farm-management, and product knowledge validated by Bayer agronomists."
+  },
+  {
+    "company_name": "Becton Dickinson",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.cielotalent.com/resources/events/2026-how-becton-dickinson-is-modernizing-talent-strategy-with-ai/?%3A~%3Atext=Overcoming+cultural+debt+and+building+digital+trust"
+    ],
+    "date_event": "2026-05-19",
+    "date_found": "2026-10-04",
+    "summary": "Cielo's account of a joint session with Becton Dickinson and Workday says BD consolidated disconnected recruiting tools into a Workday-centered talent model supported by automation, combined workforce and skills data, and talent intelligence for skills-based planning. The account says recruiters, managers, and compliance teams helped establish automation boundaries and human accountability; it did not provide quantified time or cost savings."
+  },
+  {
+    "company_name": "Citigroup",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.citi.com/job/tampa/talent-acquisition-manager-u-s-consumer-cards-and-wealth/287/101275141248?utm_source=openai",
+      "https://jobs.citi.com/business/custom_fields.jobfamilyfacet/recruiting/287/5?utm_source=openai"
+    ],
+    "date_event": "2026-09-28",
+    "date_found": "2026-10-04",
+    "summary": "Citi's talent-acquisition materials disclose that it uses automated processing, including AI, to align candidate skills and abilities with current and potentially other suitable openings. Its careers interface identifies the personalized matching feature as “Match Me, powered by Eightfold,” while Citi states that people check and make hiring decisions."
+  },
+  {
+    "company_name": "Aldi",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "social media",
+    "source_urls": [
+      "https://www.reddit.com/r/antiai/comments/1uxhcyt/ai_making_finding_a_job_so_much_harder_who_does/?utm_source=openai"
+    ],
+    "date_event": "2026-07-15",
+    "date_found": "2026-10-04",
+    "summary": "An Aldi candidate reported receiving interview details and group-event scheduling through Paradox's Olivia AI assistant. The candidate also alleged that the assistant directed approximately 30 applicants to a store still under construction, where no interviewer appeared; this operational account comes from the candidate rather than Aldi."
   }
 ]
