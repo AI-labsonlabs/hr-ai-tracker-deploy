@@ -3348,5 +3348,18 @@
     "date_event": "2026-07-15",
     "date_found": "2026-10-04",
     "summary": "An Aldi candidate reported receiving interview details and group-event scheduling through Paradox's Olivia AI assistant. The candidate also alleged that the assistant directed approximately 30 applicants to a store still under construction, where no interviewer appeared; this operational account comes from the candidate rather than Aldi."
+  },
+  {
+    "company_name": "Block",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://builtin.com/job/people-intelligence-architect/10883402",
+      "https://conduitjobs.com/jobs/5a70ec16-57ef-4cb6-8753-fd2996859c6b/"
+    ],
+    "date_event": "2026-08-26",
+    "date_found": "2026-10-07",
+    "summary": "Block advertised a People Intelligence Architect role to build People data pipelines and predictive workforce models and to design and deploy AI agents for people reporting and workflows. The posting shows an AI-focused HR hiring mandate, not a completed deployment."
   }
 ]
