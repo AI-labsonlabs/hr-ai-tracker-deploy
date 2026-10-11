@@ -3361,5 +3361,186 @@
     "date_event": "2026-08-26",
     "date_found": "2026-10-07",
     "summary": "Block advertised a People Intelligence Architect role to build People data pipelines and predictive workforce models and to design and deploy AI agents for people reporting and workflows. The posting shows an AI-focused HR hiring mandate, not a completed deployment."
+  },
+  {
+    "company_name": "West Monroe",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.westmonroe.com/west-monroe-applicant-notice-of-artificial-intelligence-use-in-hiring"
+    ],
+    "date_event": "2026-09-28",
+    "date_found": "2026-10-11",
+    "summary": "West Monroe disclosed using AI for candidate sourcing, interview recording and transcription, interview summaries, assessment-integrity review, and identity verification. Its notice names Gem AI Sourcing and BrightHire AI Interview Notes."
+  },
+  {
+    "company_name": "CacheFly",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/09/14/3361284/0/en/workable-brings-its-new-line-of-ai-recruiting-agents-to-general-availability-with-new-credit-based-pricing-model-and-expanded-mcp-capabilities.html"
+    ],
+    "date_event": "2026-09-14",
+    "date_found": "2026-10-11",
+    "summary": "Workable reported that CacheFly used its Screening Agent after receiving 930 applications for one HR position in 36 hours. According to Workable, the agent automatically removed approximately 20% of unqualified applications, reducing manual review."
+  },
+  {
+    "company_name": "Belong",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/09/14/3361284/0/en/workable-brings-its-new-line-of-ai-recruiting-agents-to-general-availability-with-new-credit-based-pricing-model-and-expanded-mcp-capabilities.html"
+    ],
+    "date_event": "2026-09-14",
+    "date_found": "2026-10-11",
+    "summary": "Workable reported that Belong's three-person recruiting team used its recruiting agents to fill a Head of Operations position in seven days."
+  },
+  {
+    "company_name": "H2 Health",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/09/14/3361284/0/en/workable-brings-its-new-line-of-ai-recruiting-agents-to-general-availability-with-new-credit-based-pricing-model-and-expanded-mcp-capabilities.html"
+    ],
+    "date_event": "2026-09-14",
+    "date_found": "2026-10-11",
+    "summary": "Workable disclosed that H2 Health uses its Sourcing Agent for continuous sourcing across clinical roles while expanding from 60 to more than 300 locations. H2 Health's recruiting director said background sourcing reduces the time recruiters spend sourcing candidates."
+  },
+  {
+    "company_name": "UBS",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "news article",
+    "source_urls": [
+      "https://headlinesbriefing.com/market/ft-companies/ubs-requires-ai-proficiency-for-junior-bankers-377a2c22"
+    ],
+    "date_event": "2026-09-07",
+    "date_found": "2026-10-11",
+    "summary": "Financial Times-derived reporting said UBS required applicants for selected 2027 graduate and intern positions in global banking and markets to demonstrate how AI could improve outcomes and efficiency, embedding AI proficiency into candidate evaluation."
+  },
+  {
+    "company_name": "Cognizant",
+    "HR_domain": "AI Hiring",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://news.cognizant.com/2026-09-07-Cognizant-Invests-in-Americas-AI-Era-Workforce"
+    ],
+    "date_event": "2026-09-07",
+    "date_found": "2026-10-11",
+    "summary": "Cognizant announced plans to hire 1,500 U.S. college graduates and create Frontier Certified Engineer and Frontier Business Operator job families totaling 15,000 positions focused on implementing enterprise AI and redesigning work around it."
+  },
+  {
+    "company_name": "Verizon",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.verizon.com/about/news/verizon-ai-skills-for-america-investment?trk=article-ssr-frontend-pulse_little-text-block"
+    ],
+    "date_event": "2026-09-23",
+    "date_found": "2026-10-11",
+    "summary": "Verizon announced $50 million in new funding for no-cost AI training for job seekers, displaced workers, educators, and small businesses, alongside a previously committed $20 million Reskilling and Career Transition Fund for departing workers."
+  },
+  {
+    "company_name": "Apple",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.anitab.org/companies/apple/jobs/92357040-people-ai-enablement-lead"
+    ],
+    "date_event": "2026-09-04",
+    "date_found": "2026-10-11",
+    "summary": "Apple advertised a People AI Enablement Lead responsible for designing automated and agentic People workflows, enabling deployment and adoption, maintaining People-specific knowledge repositories, establishing feedback loops, and coordinating with engineering, security, platform, and governance teams."
+  },
+  {
+    "company_name": "NatWest Group",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://job-in.uk/people_london-c512815/2026-09-natwest-group_i4220036325"
+    ],
+    "date_event": "2026-09-29",
+    "date_found": "2026-10-11",
+    "summary": "NatWest Group advertised a People AI & Governance Digital Product Manager to apply AI governance, model-risk, and data-ethics controls across People technology products, including lifecycle controls, audit evidence, release governance, and performance monitoring."
+  },
+  {
+    "company_name": "Yahoo Holdings",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://tallo.com/talent/job/business/operations-manager-or-supervisor/remote/senior-manager-hr-ai-strategy-a6d1d83c"
+    ],
+    "date_event": "2026-09-17",
+    "date_found": "2026-10-11",
+    "summary": "Yahoo Holdings advertised a Senior Manager, HR AI Strategy & Governance to establish HR's AI roadmap, prioritize use cases, coordinate legal, privacy, and security reviews, develop HR assistants and case-routing tools, and measure adoption and return on investment."
+  },
+  {
+    "company_name": "Workable",
+    "HR_domain": "Recruiting",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/09/14/3361284/0/en/workable-brings-its-new-line-of-ai-recruiting-agents-to-general-availability-with-new-credit-based-pricing-model-and-expanded-mcp-capabilities.html"
+    ],
+    "date_event": "2026-09-14",
+    "date_found": "2026-10-11",
+    "summary": "Workable made Job Brief, Sourcing, Screening, and Engagement recruiting agents generally available globally. The company said the agents had processed more than 120,000 candidates by launch and can produce ranked shortlists while leaving final hiring judgment with employers."
+  },
+  {
+    "company_name": "Paychex",
+    "HR_domain": "Recruiting",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/9/23/3367408/0/en/paychex-introduces-agentic-ai-recruiting-capabilities-through-wise-hire.html"
+    ],
+    "date_event": "2026-09-23",
+    "date_found": "2026-10-11",
+    "summary": "Paychex introduced WISE Hire for candidate sourcing, screening, matching, coordination, and scheduling. Paychex said customers can hire qualified workers four times faster on average while employers remain responsible for evaluation and final decisions."
+  },
+  {
+    "company_name": "iCIMS",
+    "HR_domain": "Recruiting",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.prnewswire.com/news-releases/icims-debuts-its-vision-for-the-future-of-hiring-the-intelligent-hiring-platform-302865673.html"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-10-11",
+    "summary": "iCIMS announced Hiring and Interview Scheduling agents alongside its existing Sourcing Agent. The scheduling agent checks availability, books interviews, manages changes, and communicates with candidates and hiring teams, while the Hiring Agent addresses feedback and approval delays."
+  },
+  {
+    "company_name": "Ashby",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "conference",
+    "source_urls": [
+      "https://www.ashbyhq.com/ashby-one/2026/london/product-keynote"
+    ],
+    "date_event": "2026-10-11",
+    "date_found": "2026-10-11",
+    "summary": "In a product keynote, Ashby said that 91% of its customers regularly used its AI features as of September 2026, compared with predominantly one-off experimentation a year earlier. The exact keynote publication day was unavailable, so the run date is used as the first-observed date."
+  },
+  {
+    "company_name": "Coinbase",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://directsource.magnitglobal.com/us/coinbase/jobs/104182-software-engineer-ai-applications-contractor-remote",
+      "https://bebee.com/us/jobs/ai-software-engineer-ai-hr-applications-100-remote-ztek-consulting--theirstack-669282085?utm_source=openai"
+    ],
+    "date_event": "2026-06-22",
+    "date_found": "2026-10-11",
+    "summary": "Coinbase advertised a contract Senior Software Engineer, AI — HR, Talent & Recruiting role to translate HR and recruiting problems into AI use cases; prototype AI agents, copilots, and LLM-based workflows; productionize and pilot the systems; measure adoption and ROI; and coordinate privacy, security, legal, and ethical controls. A contemporaneous copy listed June 22, 2026 as the opportunity's closing date. The posting positioned the work as part of Coinbase's stated goal of becoming an “AI-Native” company by 2028."
   }
 ]
