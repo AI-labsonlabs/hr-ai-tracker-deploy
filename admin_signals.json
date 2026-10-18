@@ -3542,5 +3542,113 @@
     "date_event": "2026-06-22",
     "date_found": "2026-10-11",
     "summary": "Coinbase advertised a contract Senior Software Engineer, AI — HR, Talent & Recruiting role to translate HR and recruiting problems into AI use cases; prototype AI agents, copilots, and LLM-based workflows; productionize and pilot the systems; measure adoption and ROI; and coordinate privacy, security, legal, and ethical controls. A contemporaneous copy listed June 22, 2026 as the opportunity's closing date. The posting positioned the work as part of Coinbase's stated goal of becoming an “AI-Native” company by 2028."
+  },
+  {
+    "company_name": "Workable",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/07/20/3329974/0/en/Workable-Expands-MCP-Server-to-94-Tools-Extending-AI-Assistant-Access-Across-the-Full-Hiring-and-HR-Lifecycle.html"
+    ],
+    "date_event": "2026-07-20",
+    "date_found": "2026-10-18",
+    "summary": "Workable expanded its MCP server to 94 tools, enabling AI assistants to access permission-scoped workflows spanning candidates, employees, performance reviews, and account administration."
+  },
+  {
+    "company_name": "Bank of Montreal (BMO)",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "news article",
+    "source_urls": [
+      "https://www.itpro.com/technology/artificial-intelligence/workday-customers-showcase-how-to-unlock-ai-value"
+    ],
+    "date_event": "2026-10-15",
+    "date_found": "2026-10-18",
+    "summary": "ITPro reported that BMO had rolled Workday's Self-Service Agent out to all 55,000 employees; the deployment occurred in June 2026 and was newly reported on October 15."
+  },
+  {
+    "company_name": "Intermountain Health",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "news article",
+    "source_urls": [
+      "https://www.itpro.com/technology/artificial-intelligence/workday-customers-showcase-how-to-unlock-ai-value"
+    ],
+    "date_event": "2026-10-15",
+    "date_found": "2026-10-18",
+    "summary": "ITPro reported that Intermountain Health participated in Workday early-adopter programs, tested agents in a sandbox, and used Developer Agent, Payroll Agent, and Self-Service Agent to develop use cases for caregivers and administrators."
+  },
+  {
+    "company_name": "Lyft",
+    "HR_domain": "Comp/Benefits",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://newsroom.workday.com/2026-09-24-Workday-Launches-Total-Benefits%2C-Bringing-Health%2C-Wealth%2C-and-Wellbeing-Support-Together-in-One-Place"
+    ],
+    "date_event": "2026-09-24",
+    "date_found": "2026-10-18",
+    "summary": "Lyft publicly identified its use of Workday Wellness, an AI-supported benefits environment intended to surface relevant benefits to employees and provide benefits leaders with utilization and cost information."
+  },
+  {
+    "company_name": "Ethos",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://job-boards.greenhouse.io/ethoslife/jobs/8811624002?gh_src=sd395mlf2us&utm_source=openai"
+    ],
+    "date_event": "2026-09-15",
+    "date_found": "2026-10-18",
+    "summary": "Ethos posted a Director, Global People Operations & AI role to own a multi-year People Operations roadmap, determine where agents should handle repeatable work, and establish controls for human review, privacy, security, auditability, and cross-jurisdictional compliance."
+  },
+  {
+    "company_name": "Blink Health",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://job-boards.greenhouse.io/blinkhealth/jobs/8859945002?gh_src=8VC+job+board"
+    ],
+    "date_event": "2026-10-18",
+    "date_found": "2026-10-18",
+    "summary": "Blink Health advertised a newly created Sr. Lead, People Operations, AI & Automation role responsible for architecting AI-enabled People Operations across the United States and India, including onboarding workflows. The exact posting date was unavailable, so October 18 is used as the first-observed date."
+  },
+  {
+    "company_name": "Carrier Global",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "job post",
+    "source_urls": [
+      "https://carrier.wd5.myworkdayjobs.com/es/jobs/job/Senior-Manager--People-Analytics---Workforce-Strategy_30205210-1?utm_source=openai"
+    ],
+    "date_event": "2026-05-07",
+    "date_found": "2026-10-18",
+    "summary": "Carrier disclosed in a job posting that technology-enabled tools may support portions of its recruitment process with human oversight. The disclosure supports AI-assisted recruiting but not autonomous hiring decisions."
+  },
+  {
+    "company_name": "Cigna Group",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://cigna.wd5.myworkdayjobs.com/en-US/cignacareers/job/Managing-Director--HR-Product---Transformation_26008924?utm_source=openai"
+    ],
+    "date_event": "2026-08-10",
+    "date_found": "2026-10-18",
+    "summary": "Cigna opened a Managing Director, HR Product & Transformation role to establish and scale a centralized capability covering AI-enabled HR workflows, copilots, agents, automation and process redesign. The role also owns HR-specific AI governance, human-review requirements and controls; these are stated objectives rather than achieved results."
+  },
+  {
+    "company_name": "Coca-Cola",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://coke.wd1.myworkdayjobs.com/coca-cola-careers/job/Senior-Director--People-and-Culture---Global-P-C_R-147300?utm_source=openai"
+    ],
+    "date_event": "2026-10-09",
+    "date_found": "2026-10-18",
+    "summary": "Coca-Cola advertised a Senior Director, People and Culture—Global P&C role with a dedicated AI and workforce-transformation mandate. Responsibilities include identifying AI and automation opportunities, assessing effects on roles and skills, supporting workforce transitions and reskilling, and helping leaders redesign work around human-machine operating models."
   }
 ]
