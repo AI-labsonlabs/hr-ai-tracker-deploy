@@ -3650,5 +3650,173 @@
     "date_event": "2026-10-09",
     "date_found": "2026-10-18",
     "summary": "Coca-Cola advertised a Senior Director, People and Culture—Global P&C role with a dedicated AI and workforce-transformation mandate. Responsibilities include identifying AI and automation opportunities, assessing effects on roles and skills, supporting workforce transitions and reskilling, and helping leaders redesign work around human-machine operating models."
+  },
+  {
+    "company_name": "Temple University Health System",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.take2.ai/blog"
+    ],
+    "date_event": "2026-10-08",
+    "date_found": "2026-10-25",
+    "summary": "Temple University Health System deployed Take2 AI recruiting agents to engage every applicant and produce candidate shortlists. Take2 said recruiters previously reached roughly one in five applicants and attributed a 69% increase in hires to the deployment."
+  },
+  {
+    "company_name": "The Adecco Group",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.salesforce.com/uk/news/stories/dreamforce-live-2026/?bc=OTH"
+    ],
+    "date_event": "2026-09-16",
+    "date_found": "2026-10-25",
+    "summary": "Adecco announced plans to make Agentforce Coworker available to approximately 27,000 employees in more than 40 countries following UK and France pilots. Adecco said its recruiting agents were already live in ten countries and had handled more than 2.5 million candidate interactions since April 2025."
+  },
+  {
+    "company_name": "Autism Queensland",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "B",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.salesforce.com/news/stories/agentforce-job-ready-ai-agents/?bc=OTH"
+    ],
+    "date_event": "2026-09-11",
+    "date_found": "2026-10-25",
+    "summary": "Autism Queensland deployed an employee-service agent named Paige across HR and IT tools, Slack, and employee portals. Salesforce reported that Paige resolves 70% of administrative requests while operating under organizational permissions and business rules."
+  },
+  {
+    "company_name": "Citizens Financial Group",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.radancy.com/customer-solutions/citizens-builds-a-human-centered-ai-enabled-talent-acquisition-engine/"
+    ],
+    "date_event": "2026-10-25",
+    "date_found": "2026-10-25",
+    "summary": "Citizens embedded AI into recruiter workflows for interview guides, labor-market intelligence, hiring-strategy materials, scheduling, assessments, and candidate questions. Radancy reported 98% daily adoption in talent acquisition, approximately 25% faster hiring for selected high-volume roles, and four fewer days to interview; the undated case study was first observed on October 25."
+  },
+  {
+    "company_name": "U.S. Office of Personnel Management",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.opm.gov/chcoc/latest-memos/use-of-artificial-intelligence-in-the-federal-hiring-process.pdf"
+    ],
+    "date_event": "2026-08-27",
+    "date_found": "2026-10-25",
+    "summary": "OPM issued guidance encouraging executive-branch agencies to consider AI across the federal hiring lifecycle while determining whether employment-related systems qualify as high-impact AI and applying the corresponding governance framework."
+  },
+  {
+    "company_name": "Anew Health",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "news article",
+    "source_urls": [
+      "https://www.itpro.com/technology/artificial-intelligence/workday-is-moving-like-a-start-up-to-compete-in-the-ai-era?utm_source=openai"
+    ],
+    "date_event": "2026-10-21",
+    "date_found": "2026-10-25",
+    "summary": "Anew Health said it was using Workday's Recruiting Agent and Candidate Experience Agent to identify and hire staff faster. The October 21 report did not provide a quantified outcome."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "Recruiting",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Launches-Autopilot-Agents-That-Get-Real-Work-Done-Across-HR-Finance-and-IT/default.aspx"
+    ],
+    "date_event": "2026-10-13",
+    "date_found": "2026-10-25",
+    "summary": "Workday launched early-adopter access for a Talent Acquisition Agent that monitors requisitions, identifies candidates, drafts outreach, coordinates interviews, provides interviewer context, and drafts feedback. Customers set autonomy boundaries, candidate outreach requires recruiter approval, and general availability was planned for early 2027."
+  },
+  {
+    "company_name": "Paychex",
+    "HR_domain": "Recruiting",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/09/23/3367408/0/en/paychex-introduces-agentic-ai-recruiting-capabilities-through-wise-hire.html?trk=public_post_comment-text"
+    ],
+    "date_event": "2026-09-23",
+    "date_found": "2026-10-25",
+    "summary": "Paychex introduced agentic recruiting capabilities through Wise Hire. The announced design retains employer control and human oversight, with people remaining responsible for candidate evaluation and hiring decisions."
+  },
+  {
+    "company_name": "Bristol-Myers Squibb",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://bristolmyerssquibb.wd5.myworkdayjobs.com/en-US/BMS/job/Director-TA-Innovation_R1604469"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-10-25",
+    "summary": "Bristol-Myers Squibb advertised a Director, Talent Acquisition Innovation role responsible for governing its recruiting technology stack, supporting AI-powered enhancements across the talent-acquisition lifecycle, consolidating technology, establishing analytics and KPIs, and driving adoption of redesigned global recruiting processes. The posting did not disclose implementation results."
+  },
+  {
+    "company_name": "The Campbell's Company",
+    "HR_domain": "People Analytics",
+    "signal_type": "A",
+    "source_type": "conference",
+    "source_urls": [
+      "https://www.hrtechnologyconference.com/seminar-programme-2026/workday"
+    ],
+    "date_event": "2026-10-20",
+    "date_found": "2026-10-25",
+    "summary": "At an HR Technology Conference session, Campbell's head of talent acquisition said the company had operationalized AI across hiring decisions, internal mobility, workforce planning, recruiter effectiveness, and manager and employee productivity. The session described significant business impact and a shift toward integrated platforms, but provided no quantified results."
+  },
+  {
+    "company_name": "Carnival Corporation",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.carnival.com/job/miami/manager-human-resource-technology/8858/99418576336"
+    ],
+    "date_event": "2026-08-18",
+    "date_found": "2026-10-25",
+    "summary": "Carnival Corporation posted a Manager, Human Resource Technology role charged with identifying, evaluating, and implementing AI-enabled capabilities, including Oracle AI features, across recruitment, talent management, learning, compensation, core HR, HR help desk, absence management, and analytics. The posting establishes an implementation mandate but does not report completed results."
+  },
+  {
+    "company_name": "CF Industries",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "job post",
+    "source_urls": [
+      "https://cfindustries.wd1.myworkdayjobs.com/careers/job/NorthbrookIl/Sr-Talent-Acquisition-Specialist_R0008254"
+    ],
+    "date_event": "2026-10-25",
+    "date_found": "2026-10-25",
+    "summary": "In a recruiting disclosure embedded in a company job posting, CF Industries said its recruitment process may use AI and machine-learning tools to identify and prioritize applicants based on résumés, work history, education, qualifications, and application answers. CF said the tools support recruiters while final employment decisions remain with talent-acquisition personnel or hiring managers. The exact publication date was unavailable, so the run date is used as the first-observed date."
+  },
+  {
+    "company_name": "Charter Communications",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.spectrum.com/job/charlotte/senior-analyst-hr-ai-architecture/4673/102223442144"
+    ],
+    "date_event": "2026-10-20",
+    "date_found": "2026-10-25",
+    "summary": "Spectrum, Charter Communications' operating brand, posted a Senior Analyst, HR AI Architecture role to develop AI initiatives spanning recruiting, onboarding, talent management, employee experience, and HR case deflection. Responsibilities include talent matching, agentic AI, retrieval-augmented generation, LLM evaluation, MLOps, and model monitoring, with targeted outcomes such as lower time-to-hire, increased internal mobility, and greater help-desk deflection. These are intended outcomes, not reported results."
+  },
+  {
+    "company_name": "Citizens Financial",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.radancy.com/customer-solutions/citizens-builds-a-human-centered-ai-enabled-talent-acquisition-engine/"
+    ],
+    "date_event": "2026-10-25",
+    "date_found": "2026-10-25",
+    "summary": "A Radancy customer case study described Citizens Financial's deployment of conversational AI, automated interview scheduling, assessments, AI-enabled candidate matching, labor-market intelligence, analytics, and AI-powered recruitment advertising. Radancy reported that recruitment marketing influenced about 10%–15% of hires, the platform contributed to an estimated 38% increase in organic impressions, and Q2 2026 survey measures improved five percentage points for talent acquisition's strategic-partner perception and four points for perceived fairness and evidence-based hiring. The run date is used as the first-observed publication date; the performance indicators pertain to Q2 2026."
   }
 ]
