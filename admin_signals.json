@@ -3733,7 +3733,8 @@
     ],
     "date_event": "2026-10-13",
     "date_found": "2026-10-25",
-    "summary": "Workday launched early-adopter access for a Talent Acquisition Agent that monitors requisitions, identifies candidates, drafts outreach, coordinates interviews, provides interviewer context, and drafts feedback. Customers set autonomy boundaries, candidate outreach requires recruiter approval, and general availability was planned for early 2027."
+    "signal_kind": "vendor_product_launch",
+    "summary": "Workday made the autopilot capabilities of its Talent Acquisition Agent available to early-adopter customers. The agent monitors requisitions, identifies candidates, drafts outreach, coordinates interviews, provides interviewer context, and drafts feedback. Customers set autonomy boundaries and must approve candidate outreach. General availability was planned for early 2027."
   },
   {
     "company_name": "Paychex",
