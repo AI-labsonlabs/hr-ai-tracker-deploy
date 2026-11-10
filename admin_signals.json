@@ -3819,5 +3819,17 @@
     "date_event": "2026-10-25",
     "date_found": "2026-10-25",
     "summary": "A Radancy customer case study described Citizens Financial's deployment of conversational AI, automated interview scheduling, assessments, AI-enabled candidate matching, labor-market intelligence, analytics, and AI-powered recruitment advertising. Radancy reported that recruitment marketing influenced about 10%–15% of hires, the platform contributed to an estimated 38% increase in organic impressions, and Q2 2026 survey measures improved five percentage points for talent acquisition's strategic-partner perception and four points for perceived fairness and evidence-based hiring. The run date is used as the first-observed publication date; the performance indicators pertain to Q2 2026."
+  },
+  {
+    "company_name": "Kraft Heinz",
+    "HR_domain": "Talent Development",
+    "signal_type": "A",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.retorio.com/news/kraft-heinz-negotiation-coaching"
+    ],
+    "date_event": "2026-08-07",
+    "date_found": "2026-11-10",
+    "summary": "Kraft Heinz is using Retorio's AI coaching platform across Europe and North America to train key account managers. Employees rehearse high-pressure retail negotiations with a virtual counterpart and receive immediate behavioral feedback, creating a consistent commercial-training standard across regions. ([retorio.com](https://www.retorio.com/news/kraft-heinz-negotiation-coaching))"
   }
 ]
