@@ -3831,5 +3831,414 @@
     "date_event": "2026-08-07",
     "date_found": "2026-11-10",
     "summary": "Kraft Heinz is using Retorio's AI coaching platform across Europe and North America to train key account managers. Employees rehearse high-pressure retail negotiations with a virtual counterpart and receive immediate behavioral feedback, creating a consistent commercial-training standard across regions. ([retorio.com](https://www.retorio.com/news/kraft-heinz-negotiation-coaching))"
+  },
+  {
+    "company_name": "Providence",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://newsroom.ibm.com/2026-10-07-providence-health-collaborates-with-ibm-using-ai-to-reduce-hiring-admin-time-without-replacing-a-single-system?lnk=hpln2au"
+    ],
+    "date_event": "2026-10-07",
+    "date_found": "2026-11-10",
+    "summary": "Providence and IBM built RITA to orchestrate requisitions, approvals, internal transfers, job marketing, and status updates across existing recruiting systems. IBM reported a 90% reduction in hiring-manager administration, transfers starting 12 days sooner, 60% lower transfer costs, and process-accuracy improvements of up to 70%."
+  },
+  {
+    "company_name": "Uniper",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "news article",
+    "source_urls": [
+      "https://itbrief.news/story/uniper-cuts-hiring-delays-with-ai-recruitment-agent"
+    ],
+    "date_event": "2026-09-09",
+    "date_found": "2026-11-10",
+    "summary": "Uniper deployed an AI recruiting agent built with Celonis and Microsoft Copilot Studio. The companies said average time to sign candidates fell by 27 days and the screening phase shortened by 13 days."
+  },
+  {
+    "company_name": "Chipotle",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "news article",
+    "source_urls": [
+      "https://diginomica.com/workday-rising-how-hr-leaders-turn-ai-explorations-business-value"
+    ],
+    "date_event": "2026-10-15",
+    "date_found": "2026-11-10",
+    "summary": "Chipotle disclosed using conversational AI in high-volume restaurant hiring. At Workday Rising, it reported that application completion increased from 50% to 85%, restaurant time-to-hire fell by as much as 75%, and manager administration savings were estimated at about $1 million annually."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "case study",
+    "source_urls": [
+      "https://www.chro.org/w/ai-case-study-workday-how-ai-turned-reactive-recruiting-into-precision-hiring"
+    ],
+    "date_event": "2026-11-03",
+    "date_found": "2026-11-10",
+    "summary": "Workday disclosed embedding AI-generated candidate scores and scheduling automation into its own recruiting workflows. The company reported reducing screening volume by 57% and shortening interview scheduling from days to hours."
+  },
+  {
+    "company_name": "Hays",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.haysplc.com/media/press-releases/2026/hays-accelerates-ai-transformation-with-enterprise-scale-rollout-of-microsoft-ai-capabilities"
+    ],
+    "date_event": "2026-08-25",
+    "date_found": "2026-11-10",
+    "summary": "Hays expanded access to Microsoft AI agents, Copilot Studio, and governance controls to more than 8,000 employees. In an initial 1,000-participant proof of value, Hays reported that 77% of participants saved more than one hour per week."
+  },
+  {
+    "company_name": "TRC Talent Solutions",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.streetinsider.com/Business%2BWire/TRC%2BTalent%2BSolutions%2BScales%2BTRC%2BTalentAI%2Bto%2Bfill%2B90%25%2Bof%2BPlacements%2C%2BCombining%2BSpeed%2Bwith%2BDeep%2BHuman%2BConnection/26974312.html"
+    ],
+    "date_event": "2026-08-25",
+    "date_found": "2026-11-10",
+    "summary": "TRC Talent Solutions said its proprietary recruiting agents assist with sourcing, engagement, initial screening, assessments, matching, and scheduling in 90% of placements. It also said more than 40% of candidate engagements occur outside normal business hours, while recruiters retain relationship and fit-assessment duties."
+  },
+  {
+    "company_name": "Medtronic",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "A",
+    "source_type": "conference",
+    "source_urls": [
+      "https://info.servicenow.com/WBR-MA00015707_Q3-FY26-EXP-AI-Advantage-for-CHRO_MT00003585_LP.html?referencesource=community"
+    ],
+    "date_event": "2026-09-15",
+    "date_found": "2026-11-10",
+    "summary": "Medtronic presented HRmony, an AI employee assistant designed both to answer employee questions and complete work. Its implementation model included HR-IT alignment, workflow and content modernization, value measurement, and enterprise governance."
+  },
+  {
+    "company_name": "Kelly Services",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "earnings call",
+    "source_urls": [
+      "https://ir.kellyservices.com/static-files/90684e60-8d94-4205-9012-ceee1e98159c"
+    ],
+    "date_event": "2026-11-05",
+    "date_found": "2026-11-10",
+    "summary": "Kelly Services disclosed using an AI recruiting agent to match candidates with opportunities. Management said recruiters guide the candidate process and every hiring decision is made by a person, establishing an explicit boundary around automated decision-making."
+  },
+  {
+    "company_name": "JPMorgan Chase",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://haystackapp.io/jobs/aa25789b-4b5a-42c3-a11c-0865105b28fb"
+    ],
+    "date_event": "2026-09-12",
+    "date_found": "2026-11-10",
+    "summary": "JPMorgan Chase posted an AI Policy and Regulatory Change Senior Associate role in the HR Chief Data Office to implement AI-related legal requirements, govern HR AI use cases, maintain controls and documentation, and coordinate regulatory-change delivery."
+  },
+  {
+    "company_name": "University of Miami",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.allhighered.com/jobdetail-475038-ai-performance-manager-human-resources"
+    ],
+    "date_event": "2026-10-27",
+    "date_found": "2026-11-10",
+    "summary": "The University of Miami posted an AI Performance Manager role in Human Resources to measure AI value, monitor adoption and performance, improve AI-enabled processes, and oversee ethical and compliant use across the organization."
+  },
+  {
+    "company_name": "LaunchDarkly",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://ascenrajobs.com/job/people-systems-analytics-and-ai-manager/"
+    ],
+    "date_event": "2026-10-21",
+    "date_found": "2026-11-10",
+    "summary": "LaunchDarkly posted a People Systems, Analytics and AI Manager role to apply AI to workforce reporting and natural-language insights, automate HR workflows, govern people-data standards, and coordinate responsible AI controls with legal and security teams."
+  },
+  {
+    "company_name": "Elastic",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.elastic.co/jobs/human-resources/united-states/analytics-engineer-hr-analytics/8244449?gh_jid=8244449"
+    ],
+    "date_event": "2026-10-29",
+    "date_found": "2026-11-10",
+    "summary": "Elastic advertised an Analytics Engineer, HR Analytics role to build HR data pipelines and an AI-powered analytics layer, beginning with recruiting reporting. Duties include governance, access controls, validation, self-service analytics, and integration across HR platforms."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "People Analytics",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://newsroom.workday.com/2026-10-05-Workday-Global-Workforce-Report-AI-Is-Rewriting-Jobs-More-Than-Its-Cutting-Them?trk=public_post_comment-text"
+    ],
+    "date_event": "2026-10-05",
+    "date_found": "2026-11-10",
+    "summary": "Workday analyzed requisitions from more than 550 employers and found that demand for basic AI skills declined 25% after peaking in January 2026, while demand for capabilities such as AI tool-building, workflow automation, and AI engineering rose 51% from September 2025 through July 2026."
+  },
+  {
+    "company_name": "Workable",
+    "HR_domain": "Recruiting",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/09/14/3361284/0/en/Workable-Brings-its-New-Line-of-AI-Recruiting-Agents-to-General-Availability-with-New-Credit-Based-Pricing-Model-and-Expanded-MCP-Capabilities.html"
+    ],
+    "date_event": "2026-09-14",
+    "date_found": "2026-11-10",
+    "summary": "Workable made specialized agents for job briefs, sourcing, screening, and candidate engagement generally available and said the agents had processed more than 120,000 candidates. The source also supplied vendor-reported results from named customers including H2 Health, CacheFly, and Belong."
+  },
+  {
+    "company_name": "Paychex",
+    "HR_domain": "Recruiting",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/de/news-release/2026/09/23/3367408/0/en/paychex-introduces-agentic-ai-recruiting-capabilities-through-wise-hire.html"
+    ],
+    "date_event": "2026-09-23",
+    "date_found": "2026-11-10",
+    "summary": "Paychex launched WISE Hire, combining agents for candidate sourcing, recruiting, and hiring coaching. Paychex claimed customers hire qualified talent four times faster on average while specifying that employers remain responsible for candidate evaluation and hiring decisions."
+  },
+  {
+    "company_name": "ADP",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://hk.adp.com/about-adp/press-centre/adp-partners-with-aws-to-accelerate-ai-powered-innovation-in-human-capital-management.aspx"
+    ],
+    "date_event": "2026-09-09",
+    "date_found": "2026-11-10",
+    "summary": "ADP expanded its AWS partnership to develop generative and agentic capabilities across its HCM platform. The announcement signals supply-side investment and potential distribution through ADP's client base, but does not establish client adoption of the new capabilities."
+  },
+  {
+    "company_name": "American Airlines",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.aa.com/job/Fort-Worth-Instructional-Designer%2C-Training-Development-and-Administration-TX-76101/89214-en_US/?utm_source=openai"
+    ],
+    "date_event": "2026-11-02",
+    "date_found": "2026-11-10",
+    "summary": "American Airlines posted an Instructional Designer role tasked with using AI-powered authoring tools to shorten training-development cycles, improve delivery efficiency, and increase learner engagement."
+  },
+  {
+    "company_name": "American Airlines",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.aa.com/job/Manager%2C-Training-Program-Delivery/89283-en_US/?utm_source=openai"
+    ],
+    "date_event": "2026-11-04",
+    "date_found": "2026-11-10",
+    "summary": "American Airlines posted a training-program manager role responsible for introducing AI-enhanced learning tools and immersive simulations across airport, contact-center, and cargo training while tracking learner and instructor outcomes."
+  },
+  {
+    "company_name": "AMC Entertainment",
+    "HR_domain": "People Analytics",
+    "signal_type": "A",
+    "source_type": "podcast",
+    "source_urls": [
+      "https://hrdailyadvisor.hci.org/podcast/hr-works-video-podcast-the-tools-behind-the-screen-w-amc/"
+    ],
+    "date_event": "2026-10-27",
+    "date_found": "2026-11-10",
+    "summary": "AMC Entertainment's Director of People Analytics said AI is helping the company examine large volumes of people data. AMC combines AI analysis with HR leaders' contextual judgment when developing workforce tools; no quantified outcome was disclosed."
+  },
+  {
+    "company_name": "Cencora",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.cencora.com/ca/fr/job/R2618835/Digital-Human-Resources-Intern?utm_source=openai"
+    ],
+    "date_event": "2026-11-02",
+    "date_found": "2026-11-10",
+    "summary": "Cencora posted a Digital Human Resources Intern role principally assigned to an internal HR AI hackathon. The role will identify use cases across recruiting, onboarding, employee relations, learning, and HR technology; support Copilot-agent and Claude-skill prototypes; and prepare prototypes for governance review."
+  },
+  {
+    "company_name": "Cencora",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.cencora.com/us/en/job/R2618147/Director-Learning-Measurement-Evaluation-Reporting?utm_source=openai"
+    ],
+    "date_event": "2026-11-02",
+    "date_found": "2026-11-10",
+    "summary": "Cencora posted a Director of Learning Measurement role responsible for using AI to synthesize learner feedback, identify themes, accelerate reporting, and connect learning data with skills, talent, workforce, and employee-experience data."
+  },
+  {
+    "company_name": "Cencora",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.cencora.com/us/en/job/R2619115/Senior-Creative-Director-Cencora-University?utm_source=openai"
+    ],
+    "date_event": "2026-11-06",
+    "date_found": "2026-11-10",
+    "summary": "Cencora posted a senior learning role to lead a shift toward AI-native learning design and production using generative AI, synthetic media, AI assistants, personalization, and automated workflows, with controls for accuracy, accessibility, and responsible development."
+  },
+  {
+    "company_name": "Charles Schwab",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.schwabjobs.com/job/austin/program-manager-ai-readiness-ai-x/33727/99991459936?utm_source=openai"
+    ],
+    "date_event": "2026-09-29",
+    "date_found": "2026-11-10",
+    "summary": "In a posting with a September 29 application deadline, Charles Schwab said it had placed AI in the hands of tens of thousands of employees. It sought an AI Readiness program manager to build a five-level enterprise curriculum, distribute it through MyTraining, and reinforce adoption through internal AI champions."
+  },
+  {
+    "company_name": "Charles Schwab",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.schwabjobs.com/how-we-hire?utm_source=openai"
+    ],
+    "date_event": "2026-11-10",
+    "date_found": "2026-11-10",
+    "summary": "First observed on November 10, Schwab's recruiting disclosure states that the company may use AI-enabled tools behind the scenes to support portions of hiring while retaining people as the final decision-makers. Schwab does not identify the tool, hiring stage, or measured outcome."
+  },
+  {
+    "company_name": "Clorox",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://bebee.com/us/jobs/talent-acquisition-leader-the-clorox-company-durham--fj-2402353109"
+    ],
+    "date_event": "2026-11-10",
+    "date_found": "2026-11-10",
+    "summary": "First observed on November 10, Clorox's Talent Acquisition Leader posting assigns responsibility for advancing AI, recruiting technology, talent intelligence, and analytics to improve recruiter productivity, decision quality, and hiring outcomes, including AI adoption across recruiting and sourcing."
+  },
+  {
+    "company_name": "Cohere",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.ashbyhq.com/cohere/830c613b-d4bf-4673-ab33-46ccc12cc415?source=remote.com&utm_source=openai"
+    ],
+    "date_event": "2026-10-24",
+    "date_found": "2026-11-10",
+    "summary": "Cohere disclosed in a company-hosted posting that it may use AI-enabled tools to screen and assess applicants against job criteria while allowing recruiters to review applicants independently."
+  },
+  {
+    "company_name": "Comcast",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.comcast.com/job/philadelphia/sr-director-talent-management-skills-intelligence/45483/102302223984"
+    ],
+    "date_event": "2026-10-22",
+    "date_found": "2026-11-10",
+    "summary": "Comcast posted a senior HR role to establish enterprise skills intelligence across workforce planning, talent management, learning, performance, recruitment, and internal mobility. The role will use AI to infer and validate skills, identify adjacencies, match employees to opportunities, and maintain skills profiles with bias monitoring and human oversight."
+  },
+  {
+    "company_name": "Conagra Brands",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "job post",
+    "source_urls": [
+      "https://careers.conagrabrands.com/us/en/job/Req-040889/Consumer-Insights-Manager?utm_source=openai",
+      "https://careers.conagrabrands.com/us/en/hiringprocess"
+    ],
+    "date_event": "2026-11-10",
+    "date_found": "2026-11-10",
+    "summary": "First observed on November 10, Conagra's job posting and hiring-process disclosure state that the company uses AI in screening, assessing, and selecting applicants. AI or machine learning may process education, skills, experience, and interview information, with human oversight and final decisions by hiring managers or HR."
+  },
+  {
+    "company_name": "American Electric Power",
+    "HR_domain": "AI Hiring",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.dice.com/jobs/q-journeyman%2Bcloud%2Bengineer-jobs?page=93&utm_source=openai"
+    ],
+    "date_event": "2026-11-10",
+    "date_found": "2026-11-10",
+    "summary": "American Electric Power was recruiting an Infrastructure Engineer Lead – Cloud AI to build and operate secure AWS and on-premises infrastructure for AI and machine-learning workloads and partner with AI, architecture, security, and application teams. The reproduced posting listed a November 16 closing date."
+  },
+  {
+    "company_name": "American Tower",
+    "HR_domain": "AI Hiring",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.dice.com/job-detail/a321adf5-2088-4015-adaa-db80ba27feea?utm_source=openai"
+    ],
+    "date_event": "2026-11-10",
+    "date_found": "2026-11-10",
+    "summary": "American Tower was recruiting a Director of Applied AI to lead development of machine-learning, optimization, generative-AI, and agentic-AI systems supporting autonomous workflows and decision support across the enterprise."
+  },
+  {
+    "company_name": "BorgWarner",
+    "HR_domain": "AI Hiring",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.borgwarner.com/careers/job-search?id=R2026-3664&time=full+time&utm_source=openai"
+    ],
+    "date_event": "2026-10-19",
+    "date_found": "2026-11-10",
+    "summary": "BorgWarner posted an AI/ML Systems Engineer role to design, train, deploy, and validate custom machine-learning models, build data pipelines, and integrate AI into engineering workflows."
+  },
+  {
+    "company_name": "Colgate-Palmolive",
+    "HR_domain": "AI Hiring",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.colgate.com/job/Piscataway-AI-Platform-Engineer-NJ/176728-en_US/?feedId=430400&utm_source=openai"
+    ],
+    "date_event": "2026-10-29",
+    "date_found": "2026-11-10",
+    "summary": "Colgate-Palmolive posted an AI Platform Engineer role to build the governed platform foundation for enterprise AI applications and agents, including model access, orchestration, policy enforcement, evaluation, observability, and cost controls."
+  },
+  {
+    "company_name": "Colgate-Palmolive",
+    "HR_domain": "AI Hiring",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.colgate.com/job/AI-Solution-Engineer/176868-en_US/?utm_source=openai"
+    ],
+    "date_event": "2026-11-02",
+    "date_found": "2026-11-10",
+    "summary": "Colgate-Palmolive posted an AI Solution Engineer role to build and operate production applications using large language models, retrieval-augmented generation, agents, and human-in-the-loop workflows, with AI-specific testing and monitoring."
+  },
+  {
+    "company_name": "Constellation Energy",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.constellationenergy.com/careers-home/jobs/139963?utm_source=openai"
+    ],
+    "date_event": "2026-10-27",
+    "date_found": "2026-11-10",
+    "summary": "Constellation Energy posted a Manager, Responsible AI Governance role to operate and mature its enterprise AI-use-case intake, review, approval-tracking, and sustainment process in coordination with Risk, Legal, IT, and business units."
   }
 ]
