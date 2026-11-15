@@ -4240,5 +4240,258 @@
     "date_event": "2026-10-27",
     "date_found": "2026-11-10",
     "summary": "Constellation Energy posted a Manager, Responsible AI Governance role to operate and mature its enterprise AI-use-case intake, review, approval-tracking, and sustainment process in coordination with Risk, Legal, IT, and business units."
+  },
+  {
+    "company_name": "Rockland Trust",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "B",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://www.zensar.com/insights/case-study/banking-and-financial-services/artificial-intelligence/rockland-trust-ai-powered-hr-assistant-claude?utm_source=openai"
+    ],
+    "date_event": "2026-09-30",
+    "date_found": "2026-11-15",
+    "summary": "Rockland Trust deployed a Claude-based, retrieval-augmented HR assistant in Microsoft Teams that provides citation-backed policy answers. Zensar reported a 5.9-second median response time, 53.6% deflection of repeat queries, a 100% prompt-injection safety pass rate, and no production failures during the first 20 days."
+  },
+  {
+    "company_name": "Oracle",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "news article",
+    "source_urls": [
+      "https://www.techradar.com/pro/oracle-co-ceo-mike-sicilia-questions-whether-all-of-todays-work-will-be-necessary-going-forward-says-ai-will-give-people-more-time-to-be-human"
+    ],
+    "date_event": "2026-10-28",
+    "date_found": "2026-11-15",
+    "summary": "Oracle disclosed that its recruiting team uses agentic AI to prepare market research. TechRadar reported that the task was reduced from two to four days to approximately 15–20 minutes."
+  },
+  {
+    "company_name": "Anew Health",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "news article",
+    "source_urls": [
+      "https://www.itpro.com/technology/artificial-intelligence/workday-is-moving-like-a-start-up-to-compete-in-the-ai-era"
+    ],
+    "date_event": "2026-10-01",
+    "date_found": "2026-11-15",
+    "summary": "Anew Health said it was using Workday's AI Talent Suite, including Recruiting Agent and Candidate Experience Agent, to identify and hire staff faster. The October report did not provide a company-specific quantitative result."
+  },
+  {
+    "company_name": "PwC Belgium",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.pwc.be/en/fy27/documents/FY26-sustainability-report.pdf"
+    ],
+    "date_event": "2026-10-05",
+    "date_found": "2026-11-15",
+    "summary": "PwC Belgium incorporated a 'Capture the AI Flag' game into graduate recruiting and university events to assess prospective hires' AI knowledge. It reported participation by 650 students, with campus winners attending an October 5 learning day."
+  },
+  {
+    "company_name": "Belong",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/news-release/2026/11/10/3399926/0/en/workable-reveals-just-0-1-of-candidates-engaging-with-its-ai-recruiting-agent-requested-a-human.html"
+    ],
+    "date_event": "2026-11-10",
+    "date_found": "2026-11-15",
+    "summary": "Workable reported that Belong's three-person recruiting team used its recruiting agent to fill a Head of Operations position in seven days from posting to offer."
+  },
+  {
+    "company_name": "Airbus",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.urbanodx.com/job/hr-ai-solutions-and-governance-specialist-at-airbus-6af56534fc7d34f21c71d0a4?utm_source=openai"
+    ],
+    "date_event": "2026-11-12",
+    "date_found": "2026-11-15",
+    "summary": "Airbus sought an HR AI Solutions and Governance Specialist to oversee HR-agent workflow architecture, implement AI model-governance frameworks, and coordinate HR, Digital, Audit, and Legal stakeholders."
+  },
+  {
+    "company_name": "Mutual of Omaha",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.computerjobs.com/us/en/extjob/HR-AI-AUTOMATION-ENABLEMENT-SPECIALIST-in-Torrance-California-USA-830D944729E65D5926/"
+    ],
+    "date_event": "2026-11-10",
+    "date_found": "2026-11-15",
+    "summary": "Mutual of Omaha sought an HR AI and Automation Enablement Specialist to identify use cases, lead controlled pilots, configure low-code agents, coordinate responsible-AI and human-oversight reviews, measure outcomes, and transition solutions into sustained HR ownership."
+  },
+  {
+    "company_name": "Fortive",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.caferemote.com/jobs/fortive-hr-ai-systems-architect?utm_source=openai"
+    ],
+    "date_event": "2026-11-09",
+    "date_found": "2026-11-15",
+    "summary": "Fortive sought an HR and AI Systems Architect to define how AI augments HR workflows across Oracle HCM, ServiceNow HRSD, Eightfold, learning platforms, integrations, and enterprise data flows."
+  },
+  {
+    "company_name": "MSD",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.urbanodx.com/job/executive-director-hr-business-partnership-it-solutions-lead-at-msd-6aeb6b6ee6784b0e9b1afce6?utm_source=openai"
+    ],
+    "date_event": "2026-11-04",
+    "date_found": "2026-11-15",
+    "summary": "MSD sought an executive to lead an enterprise HR digital, data, technology, and AI strategy spanning generative AI, agents, analytics, operating-model transformation, multiyear roadmaps, adoption, and measurable value."
+  },
+  {
+    "company_name": "Jabil",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.equest.com/jobs/FL/jabil-inc/senior-hris-manager-ai-and-emerging-technology-492245436.html?utm_source=openai"
+    ],
+    "date_event": "2026-10-23",
+    "date_found": "2026-11-15",
+    "summary": "Jabil sought a Senior HRIS Manager—AI and Emerging Technology to evaluate HR AI use cases and support intake, testing, risk assessment, approval, monitoring, lifecycle governance, and an HR AI task force."
+  },
+  {
+    "company_name": "JPMorgan Chase",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.chefscircle.co.uk/jobs/628765982-ai-policy-and-regulatory-change-senior-associate-hr-chief-data-office-at-j-p-morgan?utm_source=openai"
+    ],
+    "date_event": "2026-10-20",
+    "date_found": "2026-11-15",
+    "summary": "JPMorgan Chase sought an AI policy and regulatory-change specialist in its HR Chief Data Office to govern HR AI use cases and translate the EU AI Act and U.S. state requirements into controls, documentation, implementation plans, and delivery tracking."
+  },
+  {
+    "company_name": "Bristol Myers Squibb",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.equest.com/jobs/NJ/bms/director-talent-acquisition-innovation-487473342.html"
+    ],
+    "date_event": "2026-10-01",
+    "date_found": "2026-11-15",
+    "summary": "Bristol Myers Squibb sought a director to govern AI-powered enhancements across the talent-acquisition lifecycle as part of a multiyear recruiting transformation involving process redesign, operating-model change, analytics, interview standards, and capability development."
+  },
+  {
+    "company_name": "Salesloft",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.choppingblock.ai/jobs/senior-director-talent-acquisition-at-salesloft"
+    ],
+    "date_event": "2026-10-28",
+    "date_found": "2026-11-15",
+    "summary": "Salesloft sought a global talent-acquisition leader responsible for building and applying AI across the recruiting lifecycle while defining recruiting KPIs, operations, technology strategy, and scalable practices."
+  },
+  {
+    "company_name": "Collibra",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.chefscircle.co.uk/jobs/614466055-director-talent-acquisition-at-collibra"
+    ],
+    "date_event": "2026-10-02",
+    "date_found": "2026-11-15",
+    "summary": "Collibra sought a talent-acquisition director to evaluate and govern recruiting AI, implement AI-powered workflows, and incorporate AI-fluency assessment into hiring."
+  },
+  {
+    "company_name": "Paychex",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.globenewswire.com/de/news-release/2026/09/23/3367408/0/en/paychex-introduces-agentic-ai-recruiting-capabilities-through-wise-hire.html?utm_source=openai"
+    ],
+    "date_event": "2026-09-23",
+    "date_found": "2026-11-15",
+    "summary": "Paychex launched WISE Hire, an agentic recruiting capability, and reported an average fourfold improvement in hiring speed while stating that employers retain decision authority."
+  },
+  {
+    "company_name": "LinkedIn",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://news.linkedin.com/2026/hiring-assistant-2?mcid=7412864047022268418"
+    ],
+    "date_event": "2026-09-29",
+    "date_found": "2026-11-15",
+    "summary": "LinkedIn announced Hiring Assistant 2 and said more than 20,000 companies were using its agentic hiring products. It reported aggregate outcomes including 83% fewer profiles reviewed, interview-quality applicants found 33% faster, and a six-minute median prescreening time."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://en-gb.newsroom.workday.com/2026-10-13-Workday-Launches-Autopilot-Agents-That-Get-Real-Work-Done-Across-HR%2C-Finance%2C-and-IT?asPDF=1"
+    ],
+    "date_event": "2026-10-13",
+    "date_found": "2026-11-15",
+    "summary": "Workday announced always-on Autopilot agents for talent acquisition, payroll, and compliance, with controls based on organizational policies, permissions, and approvals."
+  },
+  {
+    "company_name": "Dayforce",
+    "HR_domain": "Recruiting",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.dayforce.com/who-we-are/newsroom/dayforce-to-acquire-ribbon-ai-inc-to-advance-agentic-recruiting"
+    ],
+    "date_event": "2026-11-15",
+    "date_found": "2026-11-15",
+    "summary": "Dayforce announced plans to acquire Ribbon AI to expand agentic recruiting. Dayforce said Ribbon's technology had completed more than one million AI interviews across hundreds of customers; the announcement was first observed for this run on November 15."
+  },
+  {
+    "company_name": "Proton",
+    "HR_domain": "People Analytics",
+    "signal_type": "I",
+    "source_type": "blog post",
+    "source_urls": [
+      "https://genedai.me/2026/11/08/proton-ai-interviews-coding-security-trust/",
+      "https://www.tomsguide.com/computing/vpns/proton-to-re-interview-staff-on-ai-use-and-jobs-may-be-on-the-line"
+    ],
+    "date_event": "2026-10-30",
+    "date_found": "2026-11-15",
+    "summary": "Proton announced and then canceled a cross-team employee assessment that would have examined demonstrated AI use and could have affected roles or continued employment. The cancellation followed employee concern about the consequential use of the assessment."
+  },
+  {
+    "company_name": "Barclays",
+    "HR_domain": "People Analytics",
+    "signal_type": "I",
+    "source_type": "news article",
+    "source_urls": [
+      "https://apnews.com/article/ai-layoffs-meta-microsoft-barclays-300bd6c2585b4a6996c2ac553d870055"
+    ],
+    "date_event": "2026-10-22",
+    "date_found": "2026-11-15",
+    "summary": "Barclays disclosed plans to cut approximately 5,000 jobs while linking organizational simplification and technology efficiency to increased use of AI. The evidence supports an AI-linked workforce-planning action, not a claim that every affected job was directly replaced by AI."
+  },
+  {
+    "company_name": "Kroger",
+    "HR_domain": "People Analytics",
+    "signal_type": "I",
+    "source_type": "news article",
+    "source_urls": [
+      "https://apnews.com/article/ai-layoffs-meta-microsoft-barclays-300bd6c2585b4a6996c2ac553d870055"
+    ],
+    "date_event": "2026-11-15",
+    "date_found": "2026-11-15",
+    "summary": "Kroger announced approximately 3,000 planned corporate workforce reductions while expanding technology and AI adoption. The cited evidence presents AI as one element of a wider restructuring rather than the sole cause of the reductions; the item was first observed for this run on November 15."
   }
 ]
