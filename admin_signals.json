@@ -4493,5 +4493,377 @@
     "date_event": "2026-11-15",
     "date_found": "2026-11-15",
     "summary": "Kroger announced approximately 3,000 planned corporate workforce reductions while expanding technology and AI adoption. The cited evidence presents AI as one element of a wider restructuring rather than the sole cause of the reductions; the item was first observed for this run on November 15."
+  },
+  {
+    "company_name": "Providence",
+    "HR_domain": "Recruiting",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://newsroom.ibm.com/2026-10-07-providence-health-collaborates-with-ibm-using-ai-to-reduce-hiring-admin-time-without-replacing-a-single-system?utm_source=openai"
+    ],
+    "date_event": "2026-10-07",
+    "date_found": "2026-11-22",
+    "summary": "Providence deployed an IBM watsonx Orchestrate agent spanning requisition creation, approvals, internal transfers, job marketing, and status updates. Providence and IBM attributed 90% less hiring-manager administrative effort, 12-day-faster internal starts, 60% lower transfer costs, and up to 70% better process accuracy to the deployment."
+  },
+  {
+    "company_name": "LTM",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "B",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-adds-Hiring-Assistant-to-a-suite-of-Productivity-Assistants-for-HR-leaders-and-managers-/default.aspx"
+    ],
+    "date_event": "2026-11-04",
+    "date_found": "2026-11-22",
+    "summary": "ServiceNow reported that LTM's RAIma assistant supports employees across the lifecycle and generates documentation for 14,000 HR incidents and case resolutions monthly. ServiceNow attributed a 21% increase in HR productivity and an onboarding-satisfaction increase from 4.7 to 5.0 to the deployment."
+  },
+  {
+    "company_name": "Robinhood",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "B",
+    "source_type": "vendor case study",
+    "source_urls": [
+      "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-adds-Hiring-Assistant-to-a-suite-of-Productivity-Assistants-for-HR-leaders-and-managers-/default.aspx"
+    ],
+    "date_event": "2026-11-04",
+    "date_found": "2026-11-22",
+    "summary": "Robinhood consolidated nearly 250 routes for requesting HR and IT assistance into one AI-enabled interface. ServiceNow reported 70% request deflection without human intervention, 94% employee satisfaction, and 90% internal-support satisfaction."
+  },
+  {
+    "company_name": "Cityblock Health",
+    "HR_domain": "People Analytics",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://jobs.generalcatalyst.com/companies/cityblock-health/jobs/92893214-principal-workforce-innovation?utm_source=openai"
+    ],
+    "date_event": "2026-09-11",
+    "date_found": "2026-11-22",
+    "summary": "Cityblock Health sought a Principal, Workforce Innovation & People AI to model work at task level, determine what should remain human or be automated, redesign jobs and hiring profiles, build People-team agents, define human escalation, establish an HR AI center of excellence, and measure effects on productivity, quality, cost, and retention."
+  },
+  {
+    "company_name": "Deepgram",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://job.careers/job/daca19b34eca02425dba9e29551c905b/?utm_source=openai"
+    ],
+    "date_event": "2026-11-18",
+    "date_found": "2026-11-22",
+    "summary": "Deepgram sought a People AI Operations Specialist to build and maintain AI-first People and Talent workflows, connect HR systems through APIs and webhooks, create agents that answer questions and complete defined actions, automate recruiting processes, and protect sensitive employee data."
+  },
+  {
+    "company_name": "Airbus",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.drjobpro.com/usa/jobs/hr-ai-solutions-and-governance-specialist-herndon-airbus-MWEG80SL6XDOXTG?utm_source=openai"
+    ],
+    "date_event": "2026-11-13",
+    "date_found": "2026-11-22",
+    "summary": "An employer-attributed posting observed on November 13 showed Airbus seeking an HR AI Solutions and Governance Specialist to design and govern AI solutions in its North American HR Digital organization."
+  },
+  {
+    "company_name": "EY",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.ey.com/content/dam/ey-unified-site/ey-com/en-gl/campaigns/value-realized/documents/2026/ey-value-realized-2026.pdf"
+    ],
+    "date_event": "2026-11-22",
+    "date_found": "2026-11-22",
+    "summary": "In a company report first observed for this run on November 22, EY disclosed more than 5.2 million formal AI-learning hours, more than 40,000 new AI badges, and another 104,000 badges in progress. Its programs included agentic-AI training and pathways intended to advance employees from beginners to AI-agent builders."
+  },
+  {
+    "company_name": "Cargill",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.cargill.com/sustainability/doc/1451399051522/2026-cargill-impact-report.pdf"
+    ],
+    "date_event": "2026-11-22",
+    "date_found": "2026-11-22",
+    "summary": "In a company impact report first observed for this run on November 22, Cargill said more than 15,000 employees had participated in generative-AI sessions covering hands-on use and responsible operation. AI use was also incorporated into a leadership program completed by more than 2,700 people leaders."
+  },
+  {
+    "company_name": "PwC",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "news article",
+    "source_urls": [
+      "https://finance.yahoo.com/technology/ai/articles/pwc-plans-certify-workers-critical-131019483.html?utm_source=openai"
+    ],
+    "date_event": "2026-11-09",
+    "date_found": "2026-11-22",
+    "summary": "PwC announced plans to put more than 85,000 employees across the United States, Mexico, and its acceleration centers through a critical-thinking certification focused on judgment, simulations, empathy, adaptability, and other human capabilities expected to grow in importance as AI assumes more research, writing, and analysis work."
+  },
+  {
+    "company_name": "Zscaler",
+    "HR_domain": "People Analytics",
+    "signal_type": "I",
+    "source_type": "SEC filing",
+    "source_urls": [
+      "https://www.sec.gov/Archives/edgar/data/1713683/000171368326000157/zs-20260731.htm"
+    ],
+    "date_event": "2026-09-01",
+    "date_found": "2026-11-22",
+    "summary": "Zscaler committed to reducing worldwide headcount by approximately 3%, describing the action as a strategic resource reallocation intended to create additional capacity for AI and growth initiatives. The filing did not characterize every affected position as directly automated by AI."
+  },
+  {
+    "company_name": "FICO",
+    "HR_domain": "People Analytics",
+    "signal_type": "I",
+    "source_type": "SEC filing",
+    "source_urls": [
+      "https://www.sec.gov/Archives/edgar/data/814547/000119312526415732/d127042d8k.htm"
+    ],
+    "date_event": "2026-10-01",
+    "date_found": "2026-11-22",
+    "summary": "FICO approved a reduction of approximately 15% of positions alongside fewer management layers, structural simplification, process and tool optimization, and integration of AI-driven product development. The filing did not isolate the proportion of reductions attributable to AI."
+  },
+  {
+    "company_name": "Proton",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "news article",
+    "source_urls": [
+      "https://www.techradar.com/vpn/vpn-services/proton-is-re-interviewing-staff-about-how-they-use-ai-and-their-jobs-could-depend-on-the-answers"
+    ],
+    "date_event": "2026-10-27",
+    "date_found": "2026-11-22",
+    "summary": "Proton reportedly planned consequential employee re-interviews requiring selected staff to demonstrate how AI had changed their work and what outcomes it produced. Proton said the process was not a pretext for layoffs and was also intended to identify employees needing support."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "People Analytics",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-Introduces-Work-Intelligence-to-Help-Customers-Design-Work-for-AI/default.aspx?trk=article-ssr-frontend-pulse_little-text-block"
+    ],
+    "date_event": "2026-10-13",
+    "date_found": "2026-11-22",
+    "summary": "Workday introduced Work Intelligence to decompose jobs into tasks and map those tasks to skills, training requirements, and potential AI augmentation, supporting workforce planning around human-agent collaboration. Workday said the underlying Skills Cloud was used by more than 3,450 customers."
+  },
+  {
+    "company_name": "Workday",
+    "HR_domain": "Governance",
+    "signal_type": "I",
+    "source_type": "press release",
+    "source_urls": [
+      "https://newsroom.workday.com/2026-10-13-Workday-Launches-Autopilot-Agents-That-Get-Real-Work-Done-Across-HR%2C-Finance%2C-and-IT?asPDF=1&es_id=f0f0bedac7"
+    ],
+    "date_event": "2026-10-13",
+    "date_found": "2026-11-22",
+    "summary": "Workday announced HR, finance, and IT Autopilot Agents designed to inherit each customer's policies, permissions, approvals, and controls. The announced recruiting workflow retained recruiter approval for candidate outreach."
+  },
+  {
+    "company_name": "Alaska Air Group",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://corporatejobs-alaskaair.icims.com/jobs/24849/senior-ai-learning-solutions-designer/job?in_iframe=1&utm_source=openai"
+    ],
+    "date_event": "2026-11-20",
+    "date_found": "2026-11-22",
+    "summary": "Alaska Airlines posted a Senior AI Learning Solutions Designer role to develop skills-first employee-learning products using AI and work across Learning & Development, Talent Management, technology, and business teams."
+  },
+  {
+    "company_name": "Anheuser-Busch InBev",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://getmereferred.com/in/job-listing/manager-talent-acquisition-campus-programs-ab-inbev-gcc-india-inkabengaluru-8-to-10-years-experience-3bf7ab5f-6052-4a0c-b2f0-72d188122590?utm_source=openai"
+    ],
+    "date_event": "2026-09-06",
+    "date_found": "2026-11-22",
+    "summary": "AB InBev GCC India advertised a Manager, Talent Acquisition & Campus Programs role responsible for integrating AI-assisted sourcing, automated screening, generative-AI job descriptions and outreach, and intelligent pipeline scoring into recruiting operations. The role also covered recruiter training and adoption playbooks."
+  },
+  {
+    "company_name": "The Campbell's Company",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "conference",
+    "source_urls": [
+      "https://www.hrtechnologyconference.com/seminar-programme-2026/workday?utm_source=openai"
+    ],
+    "date_event": "2026-10-20",
+    "date_found": "2026-11-22",
+    "summary": "At HR Tech 2026, Campbell's AVP of Talent Acquisition described the company as operationalizing AI across hiring decisions, internal mobility, workforce planning, and manager and employee productivity, while moving from individual HR tools toward integrated enterprise platforms."
+  },
+  {
+    "company_name": "Corteva Agriscience",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "job post",
+    "source_urls": [
+      "https://apply.corteva.com/careers/job/893397611685?domain=corteva.com&hl=en&visitor_id=linkedin&utm_source=openai"
+    ],
+    "date_event": "2026-09-30",
+    "date_found": "2026-11-22",
+    "summary": "Corteva disclosed that Talent Acquisition uses Eightfold AI to compare applicant qualifications with job requirements and provide match scores and explanations for recruiter review. Corteva offers an opt-out for human-only review and states that people retain final decision authority; the posting also called for AI-enabled recruiting initiatives."
+  },
+  {
+    "company_name": "Cummins",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/talent-acquisition-capability-excellence-leader-at-cummins-inc-4460220341?utm_source=openai"
+    ],
+    "date_event": "2026-08-31",
+    "date_found": "2026-11-22",
+    "summary": "Cummins advertised a Talent Acquisition Capability & Excellence Leader role to implement AI-driven recruiting solutions, govern global AI agents used by Talent Acquisition, manage compliance and change, and align recruiter and hiring-manager learning with evolving AI capabilities."
+  },
+  {
+    "company_name": "Danaher",
+    "HR_domain": "Recruiting",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://danaher.wd1.myworkdayjobs.com/en-US/DanaherJobs/job/Advisor--Global-Talent-Acquisition-Programs--USA-Remote-_R1311087?utm_source=openai"
+    ],
+    "date_event": "2026-06-19",
+    "date_found": "2026-11-22",
+    "summary": "Danaher advertised an Advisor, Global Talent Acquisition Programs role responsible for managing recruiting-AI initiatives and vendors, optimizing ATS, CRM, and sourcing technology, creating recruiter training, and measuring program impact and ROI. June 19 was the stated application deadline."
+  },
+  {
+    "company_name": "Delta Air Lines",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "company blog",
+    "source_urls": [
+      "https://www.delta.com/us/en/careers/flight-attendant-careers"
+    ],
+    "date_event": "2026-11-22",
+    "date_found": "2026-11-22",
+    "summary": "First observed on the run date, Delta's flight-attendant careers page states that applicants complete an AI-powered candidate assessment supplied by MakiPeople, followed by a Fitme values assessment and HireVue on-demand interview. Delta says hiring leaders retain final decision responsibility."
+  },
+  {
+    "company_name": "Dollar Tree",
+    "HR_domain": "Recruiting",
+    "signal_type": "A",
+    "source_type": "earnings call",
+    "source_urls": [
+      "https://stockanalysis.com/stocks/dltr/transcripts/660106-agm-2026/"
+    ],
+    "date_event": "2026-06-16",
+    "date_found": "2026-11-22",
+    "summary": "At Dollar Tree's annual shareholder meeting, CEO Michael Creedon said the retailer was already using AI-enabled tools in recruiting, scheduling, onboarding, and administrative work to reduce routine tasks and give associates more time to serve customers."
+  },
+  {
+    "company_name": "Best Buy",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.indeed.com/q-director-organizational-effectiveness-l-minneapolis%2C-mn-jobs.html?utm_source=openai"
+    ],
+    "date_event": "2026-11-18",
+    "date_found": "2026-11-22",
+    "summary": "Best Buy advertised a Senior Director, Organizational Effectiveness and Workforce Strategy role to translate AI-enabled workflow changes into workforce and organizational strategies, including human-agent operating models, reskilling, role evolution, redeployment, capacity planning, and operating-model redesign."
+  },
+  {
+    "company_name": "C.H. Robinson",
+    "HR_domain": "Talent Development",
+    "signal_type": "D",
+    "source_type": "press release",
+    "source_urls": [
+      "https://www.chrobinson.com/en-us/about-us/newsroom/press-releases/2026/valerie-capers-workman-chief-human-resources-officer/?trk=article-ssr-frontend-pulse_little-text-block&utm_source=openai"
+    ],
+    "date_event": "2026-10-22",
+    "date_found": "2026-11-22",
+    "summary": "C.H. Robinson appointed Valerie Capers Workman as CHRO, effective November 16, with a mandate to align talent, culture, and organizational capabilities with the company's Lean AI strategy and translate technological advancement into business performance."
+  },
+  {
+    "company_name": "DaVita",
+    "HR_domain": "HR Service Delivery",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://davita.wd1.myworkdayjobs.com/es/DKC_External/job/Director--People-Hub_R0461331?utm_source=openai"
+    ],
+    "date_event": "2026-06-01",
+    "date_found": "2026-11-22",
+    "summary": "DaVita advertised a Director, People Hub role to lead HR shared services across Talent Acquisition, Talent Management, Total Rewards, Learning & Development, and reporting while automating and standardizing workflows with AI-assisted tools including ServiceNow Now Assist."
+  },
+  {
+    "company_name": "Dairy Farmers of America",
+    "HR_domain": "Talent Development",
+    "signal_type": "J",
+    "source_type": "job post",
+    "source_urls": [
+      "https://www.linkedin.com/jobs/view/emerging-technology-enablement-lead-at-dairy-farmers-of-america-4438842063?utm_source=openai"
+    ],
+    "date_event": "2026-11-22",
+    "date_found": "2026-11-22",
+    "summary": "First observed on the run date, DFA's Emerging Technology Enablement Lead posting described responsibility for enterprise AI workforce adoption, Microsoft 365 Copilot enablement, role-based learning journeys, AI champion programs, executive training, DairyU integration, responsible-AI content, and adoption and business-value metrics."
+  },
+  {
+    "company_name": "BASF Agricultural Solutions",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "case study",
+    "source_urls": [
+      "https://www.basf.com/dam/jcr%3A9f792867-2f96-4cbe-98a9-e0224f921fdd/basf/www/global/documents/en/investor-relations/sustainable-investments/Creating-Fair-and-Attractive-Working-Conditions-at-BASF.pdf"
+    ],
+    "date_event": "2026-11-22",
+    "date_found": "2026-11-22",
+    "summary": "First observed on the run date, BASF disclosed a global three-module AI for Leaders curriculum covering BASF AI tools, relevant use cases, and opportunities for leaders to apply AI in their areas. The program is BASF-wide, including Agricultural Solutions, but no segment-specific participation was disclosed."
+  },
+  {
+    "company_name": "Calix",
+    "HR_domain": "Talent Development",
+    "signal_type": "B",
+    "source_type": "press release",
+    "source_urls": [
+      "https://investor-relations.calix.com/news-events/press-releases/detail/1033/calix-named-to-newsweeks-greatest-workplaces-in-tech-2026-on-strength-of-human-centric-agentic-innovation"
+    ],
+    "date_event": "2026-06-18",
+    "date_found": "2026-11-22",
+    "summary": "Calix reported approximately 98% employee adoption of Microsoft Copilot, more than 400 employee-built enterprise agents, and over 20,000 monthly interactions. Calix estimated that AI-supported employee workflows generated $37 million in annual productivity gains and supported learning through AI@Calix, its Learning Academy, learning tables, and peer demonstrations."
+  },
+  {
+    "company_name": "CNH Industrial",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "case study",
+    "source_urls": [
+      "https://www.cnh.com/-/media/CNHi/cnhicorporate/Sustainability/sustainability_reports/docs/CNH_Sustainability_2025_0605-Final.pdf?utm_source=openai"
+    ],
+    "date_event": "2026-11-22",
+    "date_found": "2026-11-22",
+    "summary": "First observed on the run date, CNH's sustainability report said the company launched an AI coach and AI role-play within LinkedIn Learning. CNH reported 6,348 active users, more than 10,632 completed courses, and over 13,000 hours of viewed learning content in 2025, without isolating usage of the AI features."
+  },
+  {
+    "company_name": "Deere & Company",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "conference",
+    "source_urls": [
+      "https://videos.itrevolution.com/watch/1183103033?utm_source=openai"
+    ],
+    "date_event": "2026-06-01",
+    "date_found": "2026-11-22",
+    "summary": "In a public AI Summit presentation, a John Deere global IT transformation leader described an employee adoption program centered on curiosity, continuous learning, and peer advocacy. The presentation reported approximately 90%–93% weekly AI usage across the workforce and said the program accommodated function-specific use, including HR."
+  },
+  {
+    "company_name": "Diageo",
+    "HR_domain": "Talent Development",
+    "signal_type": "F",
+    "source_type": "SEC filing",
+    "source_urls": [
+      "https://www.diageo.com/~/media/Files/D/Diageo-V2/Diageo-Corp/investors/results-reports-and-events/annual-reports/2026/annual-report-2026.pdf?utm_source=openai"
+    ],
+    "date_event": "2026-08-18",
+    "date_found": "2026-11-22",
+    "summary": "Diageo's fiscal-2026 annual report said the company used AI to expand learning opportunities. More than 4,800 employees completed digital or AI training, and Diageo created a Supply Chain Digital Academy to build digital and data confidence and capability."
   }
 ]
